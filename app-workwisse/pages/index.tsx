@@ -1,7 +1,7 @@
 import DefaultLayout from "@/layouts/default";
-import { LandingHero } from "@/components/LandingHero";
-import { LandingFeaturedLogos } from "@/components/LandingFeaturedLogos";
-import { LandingMainContent } from "@/components/LandingMainContent";
+import { LandingHero } from "@/components/landing/LandingHero";
+import { LandingFeaturedLogos } from "@/components/landing/LandingFeaturedLogos";
+import { LandingMainContent } from "@/components/landing/LandingMainContent";
 
 export default function IndexPage() {
   return (
