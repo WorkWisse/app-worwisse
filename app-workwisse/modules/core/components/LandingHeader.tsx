@@ -21,12 +21,21 @@ export const LandingHeader = () => {
           <Logo />
           workwisse
         </Link>
-        <Link
-          href="/company/add" // Or a more relevant link like /register-company
-          className="text-sm font-medium text-slate-600 hover:text-sky-600 transition-colors duration-300"
-        >
-          Sumá tu empresa
-        </Link>
+
+        <nav className="flex items-center space-x-6">
+          <Link
+            href="/about"
+            className="text-sm font-medium text-slate-600 hover:text-sky-600 transition-colors duration-300"
+          >
+            Sobre nosotros
+          </Link>
+          <Link
+            href="/company/add"
+            className="bg-sky-600 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-sky-700 transition-all duration-300 shadow-sm hover:shadow-md"
+          >
+            Sumá tu empresa
+          </Link>
+        </nav>
       </div>
     </header>
   );
