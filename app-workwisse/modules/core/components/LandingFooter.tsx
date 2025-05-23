@@ -1,45 +1,190 @@
 import { Link } from "@heroui/link";
 
-// Placeholder for social icons
-const SocialIconPlaceholder = ({ title }: { title: string }) => (
-  <div className="w-8 h-8 bg-gray-700 rounded-full flex items-center justify-center text-white text-xs">
+const SocialIcon = ({ title, href }: { title: string; href: string }) => (
+  <a
+    href={href}
+    target="_blank"
+    rel="noopener noreferrer"
+    className="w-10 h-10 bg-slate-200 hover:bg-sky-600 hover:text-white rounded-full flex items-center justify-center text-slate-600 transition-all duration-300 font-semibold text-sm"
+    aria-label={title}
+  >
     {title.substring(0, 1)}
-  </div>
+  </a>
 );
 
 export const LandingFooter = () => {
   return (
-    <footer className="bg-slate-100 border-t border-slate-200 py-10 sm:py-12">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col md:flex-row justify-between items-center gap-6">
-          <div className="text-sm text-slate-500 text-center md:text-left">
-            <p>
-              &copy; {new Date().getFullYear()} workwisse. Todos los derechos
-              reservados.
+    <footer className="bg-slate-900 text-white">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+          <div className="space-y-4">
+            <div className="flex items-center text-2xl font-bold">
+              <img
+                src="https://picsum.photos/seed/workwisselogo/40/40"
+                alt="WorkWise Logo"
+                className="h-8 w-8 mr-2 rounded-full"
+              />
+              workwisse
+            </div>
+            <p className="text-slate-300 leading-relaxed max-w-sm">
+              La plataforma que te ayuda a tomar mejores decisiones laborales.
+              Información real, transparente y gratuita para todos.
             </p>
-            <p>Potenciando decisiones profesionales con transparencia.</p>
+            <div className="flex space-x-3">
+              <SocialIcon title="LinkedIn" href="#" />
+              <SocialIcon title="Twitter" href="#" />
+              <SocialIcon title="Instagram" href="#" />
+              <SocialIcon title="Facebook" href="#" />
+            </div>
           </div>
-          <div className="flex items-center space-x-5">
-            <Link
-              href="/terms"
-              className="text-xs text-slate-500 hover:text-sky-600 transition-colors"
-            >
-              Términos
-            </Link>
-            <span className="text-xs text-slate-400">|</span>
-            <Link
-              href="/privacy"
-              className="text-xs text-slate-500 hover:text-sky-600 transition-colors"
-            >
-              Privacidad
-            </Link>
-            <span className="text-xs text-slate-400">|</span>
-            <Link
-              href="/contact"
-              className="text-xs text-slate-500 hover:text-sky-600 transition-colors"
-            >
-              Contacto
-            </Link>
+
+          <div className="space-y-4">
+            <h3 className="text-lg font-semibold">Para Trabajadores</h3>
+            <ul className="space-y-2 text-slate-300">
+              <li>
+                <Link
+                  href="/companies"
+                  className="hover:text-sky-400 transition-colors"
+                >
+                  Buscar empresas
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/rankings"
+                  className="hover:text-sky-400 transition-colors"
+                >
+                  Mejores empresas
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/salaries"
+                  className="hover:text-sky-400 transition-colors"
+                >
+                  Ver salarios
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/reviews"
+                  className="hover:text-sky-400 transition-colors"
+                >
+                  Escribir opinión
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/jobs"
+                  className="hover:text-sky-400 transition-colors"
+                >
+                  Buscar trabajos
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          <div className="space-y-4">
+            <h3 className="text-lg font-semibold">Para Empresas</h3>
+            <ul className="space-y-2 text-slate-300">
+              <li>
+                <Link
+                  href="/company/add"
+                  className="hover:text-sky-400 transition-colors"
+                >
+                  Sumá tu empresa
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/enterprise"
+                  className="hover:text-sky-400 transition-colors"
+                >
+                  Servicios empresariales
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/employer-branding"
+                  className="hover:text-sky-400 transition-colors"
+                >
+                  Mejorar imagen
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/analytics"
+                  className="hover:text-sky-400 transition-colors"
+                >
+                  Ver estadísticas
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          <div className="space-y-4">
+            <h3 className="text-lg font-semibold">Mantenete informado</h3>
+            <p className="text-slate-300 text-sm">
+              Recibí las últimas novedades del mundo laboral y consejos para tu
+              carrera.
+            </p>
+            <div className="space-y-3">
+              <input
+                type="email"
+                placeholder="tu-email@ejemplo.com"
+                className="w-full px-4 py-2 rounded-lg bg-slate-800 border border-slate-600 text-white placeholder-slate-400 focus:border-sky-500 focus:ring-1 focus:ring-sky-500 outline-none transition-colors"
+              />
+              <button className="w-full bg-sky-600 hover:bg-sky-700 text-white px-4 py-2 rounded-lg font-semibold transition-colors">
+                Suscribirse
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div className="border-t border-slate-700 pt-8">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+            <div className="text-sm text-slate-400 text-center md:text-left">
+              <p className="mb-1">
+                &copy; {new Date().getFullYear()} WorkWise. Todos los derechos
+                reservados.
+              </p>
+              <p>
+                Ayudando a trabajadores a tomar mejores decisiones laborales.
+              </p>
+            </div>
+
+            <div className="flex flex-wrap items-center gap-6 text-sm">
+              <Link
+                href="/about"
+                className="text-slate-400 hover:text-sky-400 transition-colors"
+              >
+                Sobre nosotros
+              </Link>
+              <Link
+                href="/privacy"
+                className="text-slate-400 hover:text-sky-400 transition-colors"
+              >
+                Privacidad
+              </Link>
+              <Link
+                href="/terms"
+                className="text-slate-400 hover:text-sky-400 transition-colors"
+              >
+                Términos
+              </Link>
+              <Link
+                href="/contact"
+                className="text-slate-400 hover:text-sky-400 transition-colors"
+              >
+                Contacto
+              </Link>
+              <Link
+                href="/help"
+                className="text-slate-400 hover:text-sky-400 transition-colors"
+              >
+                Ayuda
+              </Link>
+            </div>
           </div>
         </div>
       </div>
