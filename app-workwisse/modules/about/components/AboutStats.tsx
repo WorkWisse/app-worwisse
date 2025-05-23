@@ -7,27 +7,25 @@ interface Stat {
 const stats: Stat[] = [
   {
     number: "50K+",
-    label: "Profesionales activos",
+    label: "Trabajadores que nos usan",
     description:
-      "Usuarios registrados que confían en nuestra plataforma para sus decisiones laborales",
+      "Personas que ya usan WorkWise para conocer la verdad sobre las empresas",
   },
   {
     number: "2,500+",
     label: "Empresas evaluadas",
-    description:
-      "Compañías analizadas con reviews detalladas y información verificada",
+    description: "Compañías con opiniones reales de trabajadores como vos",
   },
   {
     number: "95%",
-    label: "Satisfacción de usuarios",
-    description:
-      "De nuestros usuarios recomendarían WorkWise a otros profesionales",
+    label: "Personas satisfechas",
+    description: "De quienes usan WorkWise lo recomiendan a otros trabajadores",
   },
   {
     number: "24/7",
-    label: "Disponibilidad",
+    label: "Siempre disponible",
     description:
-      "Acceso continuo a información actualizada sobre oportunidades laborales",
+      "Podés consultar información sobre empresas cuando lo necesites",
   },
 ];
 
@@ -37,11 +35,11 @@ export default function AboutStats() {
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16 animate-fade-in-up">
           <h2 className="text-4xl lg:text-5xl font-bold text-white mb-6">
-            Nuestro <span className="text-sky-200">impacto</span> en números
+            Lo que hemos <span className="text-sky-200">logrado</span> juntos
           </h2>
           <p className="text-xl text-sky-100 max-w-3xl mx-auto leading-relaxed">
-            Estos números reflejan el crecimiento de nuestra comunidad y el
-            valor que hemos creado para profesionales en toda la región.
+            Estos números muestran cómo estamos ayudando a los trabajadores a
+            tener más información antes de elegir dónde trabajar.
           </p>
         </div>
 
@@ -70,18 +68,18 @@ export default function AboutStats() {
         <div className="mt-16 text-center">
           <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 max-w-4xl mx-auto">
             <h3 className="text-2xl font-bold text-white mb-4">
-              ¿Listo para ser parte de esta comunidad?
+              ¿Querés ser parte de esta comunidad?
             </h3>
             <p className="text-sky-100 mb-6 text-lg">
-              Únete a miles de profesionales que ya están tomando decisiones
-              laborales más inteligentes.
+              Unite a miles de trabajadores que ya están tomando mejores
+              decisiones sobre dónde trabajar.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <button className="bg-white text-sky-600 px-8 py-3 rounded-lg font-semibold hover:bg-sky-50 transition-colors">
-                Registrarse gratis
+                Empezar gratis
               </button>
               <button className="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white/10 transition-colors">
-                Explorar empresas
+                Ver empresas
               </button>
             </div>
           </div>

@@ -1,0 +1,193 @@
+{
+    "hero": {
+        "badge": "✨ Mais de 50.000 trabalhadores já conhecem a verdade",
+        "title": "Conheça a verdade sobre seu <1>próximo trabalho</1> antes de se candidatar",
+        "description": "Acesse opiniões reais de funcionários, informações salariais reais e rankings transparentes. <1>Tome decisões profissionais informadas</1> com informações que realmente importam.",
+        "searchPlaceholder": "Buscar por nome da empresa...",
+        "searchButton": "Buscar",
+        "ctaFeatured": "Ver empresas em destaque",
+        "ctaHowItWorks": "Como funciona? →",
+        "trustBadges": {
+            "free": "Grátis sempre",
+            "verified": "Opiniões verificadas",
+            "anonymous": "100% anônimo"
+        },
+        "notifications": {
+            "success": "Maria encontrou um trabalho que ela gosta",
+            "timeAgo": "2 horas atrás",
+            "rating": "4.9/5 estrelas",
+            "reviews": "+2.500 opiniões"
+        }
+    },
+    "features": {
+        "title": "Tudo o que você precisa para <1>escolher melhor onde trabalhar</1>",
+        "description": "Temos as informações que você precisa para encontrar um trabalho que realmente goste e tomar decisões profissionais informadas.",
+        "items": {
+            "reviews": {
+                "title": "Opiniões Verificadas",
+                "description": "Comentários autênticos de funcionários que realmente trabalharam lá",
+                "benefit": "Informação real e confiável"
+            },
+            "data": {
+                "title": "Dados Reais",
+                "description": "Informações sobre salários, benefícios e ambiente de trabalho",
+                "benefit": "Decisões baseadas em fatos"
+            },
+            "jobs": {
+                "title": "Oportunidades de Trabalho",
+                "description": "Descubra trabalhos disponíveis em empresas que você conhece",
+                "benefit": "Encontre seu próximo trabalho"
+            },
+            "rankings": {
+                "title": "Melhores Empregadores",
+                "description": "Conheça quais são as melhores empresas para trabalhar",
+                "benefit": "Trabalhe nos melhores lugares"
+            },
+            "insights": {
+                "title": "Informações do Mercado",
+                "description": "Tendências salariais e novidades do mundo do trabalho",
+                "benefit": "Mantenha-se atualizado"
+            },
+            "community": {
+                "title": "Comunidade de Trabalhadores",
+                "description": "Conecte-se com outros trabalhadores e compartilhe experiências",
+                "benefit": "Compartilhe e aprenda"
+            }
+        },
+        "cta": {
+            "title": "Pronto para começar?",
+            "description": "Junte-se a milhares de trabalhadores que já estão usando o WorkWise para tomar melhores decisões profissionais.",
+            "primary": "Ver empresas em destaque",
+            "secondary": "Buscar trabalhos"
+        }
+    },
+    "testimonials": {
+        "title": "Milhares de trabalhadores já estão <1>tomando melhores decisões</1>",
+        "description": "Ouça o que dizem aqueles que já usaram o WorkWise para encontrar um trabalho que realmente gostam.",
+        "stats": {
+            "workers": {
+                "value": "50K+",
+                "label": "Trabalhadores ativos",
+                "description": "Confiam em nossas informações"
+            },
+            "companies": {
+                "value": "2.500+",
+                "label": "Empresas avaliadas",
+                "description": "Com informações detalhadas"
+            },
+            "satisfaction": {
+                "value": "95%",
+                "label": "Satisfação",
+                "description": "Dos nossos usuários"
+            },
+            "availability": {
+                "value": "24/7",
+                "label": "Disponível",
+                "description": "Informações sempre atualizadas"
+            }
+        },
+        "reviews": {
+            "maria": {
+                "name": "Maria Rodriguez",
+                "role": "Vendedora",
+                "company": "Retail Fashion",
+                "quote": "Graças ao WorkWise pude conhecer o ambiente de trabalho antes de aceitar. Agora sei que escolhi bem."
+            },
+            "carlos": {
+                "name": "Carlos Mendoza",
+                "role": "Operário",
+                "company": "Logística Plus",
+                "quote": "As informações sobre horários e benefícios me ajudaram muito. Pude comparar e escolher onde mais me convinha."
+            },
+            "ana": {
+                "name": "Ana Silva",
+                "role": "Administrativa",
+                "company": "Serviços Contábeis",
+                "quote": "Encontrei meu trabalho atual lendo as opiniões. Me ajudou a entender como era trabalhar lá realmente."
+            }
+        },
+        "cta": {
+            "title": "Quer ser o próximo a encontrar um trabalho que goste?",
+            "description": "Comece a tomar decisões profissionais mais inteligentes hoje mesmo.",
+            "button": "Explorar empresas agora"
+        }
+    },
+    "faq": {
+        "title": "Perguntas <1>frequentes</1>",
+        "description": "Tudo o que você precisa saber sobre o WorkWise. Se tiver alguma outra pergunta, entre em contato conosco sem problemas.",
+        "items": {
+            "free": {
+                "question": "É grátis usar o WorkWise?",
+                "answer": "Sim, o WorkWise é completamente gratuito. Você pode ver opiniões, buscar empresas e acessar informações de salários sem nenhum custo."
+            },
+            "verification": {
+                "question": "Como sabem que as opiniões são reais?",
+                "answer": "Verificamos que as pessoas realmente trabalharam nas empresas que comentam. Revisamos cada opinião antes de publicá-la para garantir que seja autêntica."
+            },
+            "anonymity": {
+                "question": "As empresas podem saber quem escreveu as opiniões?",
+                "answer": "Não, todas as opiniões são completamente anônimas. As empresas podem ler os comentários mas nunca sabem quem os escreveu."
+            },
+            "information": {
+                "question": "Que tipo de informação posso encontrar sobre as empresas?",
+                "answer": "Você encontrará informações sobre ambiente de trabalho, salários, benefícios, horários, chefes, colegas e tudo o que precisa saber antes de se candidatar."
+            },
+            "addCompany": {
+                "question": "Como posso adicionar minha empresa à plataforma?",
+                "answer": "Se sua empresa não está no WorkWise, você pode entrar em contato conosco e a adicionamos. É simples e rápido."
+            },
+            "salaryData": {
+                "question": "As informações de salários são atuais?",
+                "answer": "Sim, as informações são atualizadas constantemente com dados de trabalhadores atuais. Mostramos faixas reais baseadas em experiências recentes."
+            }
+        },
+        "cta": {
+            "title": "Tem mais perguntas?",
+            "description": "Nossa equipe está disponível para ajudá-lo com qualquer consulta que tenha.",
+            "primary": "Entre em contato",
+            "secondary": "Ver mais informações"
+        }
+    },
+    "footer": {
+        "description": "A plataforma que te ajuda a tomar melhores decisões profissionais. Informações reais, transparentes e gratuitas para todos.",
+        "workers": {
+            "title": "Para Trabalhadores",
+            "links": {
+                "search": "Buscar empresas",
+                "rankings": "Melhores empresas",
+                "salaries": "Ver salários",
+                "reviews": "Escrever opinião",
+                "jobs": "Buscar trabalhos"
+            }
+        },
+        "companies": {
+            "title": "Para Empresas",
+            "links": {
+                "add": "Adicione sua empresa",
+                "services": "Serviços empresariais",
+                "branding": "Melhorar imagem",
+                "analytics": "Ver estatísticas"
+            }
+        },
+        "newsletter": {
+            "title": "Mantenha-se informado",
+            "description": "Receba as últimas novidades do mundo do trabalho e conselhos para sua carreira.",
+            "placeholder": "seu-email@exemplo.com",
+            "button": "Inscrever-se"
+        },
+        "legal": {
+            "copyright": "© {{year}} WorkWise. Todos os direitos reservados.",
+            "tagline": "Ajudando trabalhadores a tomar melhores decisões profissionais.",
+            "about": "Sobre nós",
+            "privacy": "Privacidade",
+            "terms": "Termos",
+            "contact": "Contato",
+            "help": "Ajuda"
+        }
+    },
+    "header": {
+        "about": "Sobre nós",
+        "addCompany": "Adicione sua empresa",
+        "language": "Idioma"
+    }
+}

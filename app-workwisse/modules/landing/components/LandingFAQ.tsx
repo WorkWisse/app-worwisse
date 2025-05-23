@@ -1,44 +1,40 @@
 import { useState } from "react";
+import { useTranslation, Trans } from "react-i18next";
 
 interface FAQItem {
-  question: string;
-  answer: string;
+  questionKey: string;
+  answerKey: string;
 }
 
 const faqData: FAQItem[] = [
   {
-    question: "¿Es gratis usar WorkWise?",
-    answer:
-      "Sí, WorkWise es completamente gratuito. Podés ver opiniones, buscar empresas y acceder a información de salarios sin costo alguno.",
+    questionKey: "faq.items.free.question",
+    answerKey: "faq.items.free.answer",
   },
   {
-    question: "¿Cómo saben que las opiniones son reales?",
-    answer:
-      "Verificamos que las personas realmente hayan trabajado en las empresas que comentan. Revisamos cada opinión antes de publicarla para asegurar que sea auténtica.",
+    questionKey: "faq.items.verification.question",
+    answerKey: "faq.items.verification.answer",
   },
   {
-    question: "¿Las empresas pueden saber quién escribió las opiniones?",
-    answer:
-      "No, todas las opiniones son completamente anónimas. Las empresas pueden leer los comentarios pero nunca saben quién los escribió.",
+    questionKey: "faq.items.anonymity.question",
+    answerKey: "faq.items.anonymity.answer",
   },
   {
-    question: "¿Qué tipo de información puedo encontrar sobre las empresas?",
-    answer:
-      "Encontrarás información sobre ambiente de trabajo, salarios, beneficios, horarios, jefes, compañeros y todo lo que necesitás saber antes de postularte.",
+    questionKey: "faq.items.information.question",
+    answerKey: "faq.items.information.answer",
   },
   {
-    question: "¿Cómo puedo agregar mi empresa a la plataforma?",
-    answer:
-      "Si tu empresa no está en WorkWise, podés contactarnos y la agregamos. Es simple y rápido.",
+    questionKey: "faq.items.addCompany.question",
+    answerKey: "faq.items.addCompany.answer",
   },
   {
-    question: "¿La información de salarios es actual?",
-    answer:
-      "Sí, la información se actualiza constantemente con datos de trabajadores actuales. Mostramos rangos reales basados en experiencias recientes.",
+    questionKey: "faq.items.salaryData.question",
+    answerKey: "faq.items.salaryData.answer",
   },
 ];
 
 export const LandingFAQ = () => {
+  const { t } = useTranslation();
   const [openItems, setOpenItems] = useState<number[]>([]);
 
   const toggleItem = (index: number) => {
@@ -54,11 +50,13 @@ export const LandingFAQ = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl">
         <div className="text-center mb-16 animate-fade-in-up">
           <h2 className="text-4xl lg:text-5xl font-bold text-slate-900 mb-6">
-            Preguntas <span className="text-sky-600">frecuentes</span>
+            <Trans
+              i18nKey="faq.title"
+              components={{ 1: <span className="text-sky-600" /> }}
+            />
           </h2>
           <p className="text-xl text-slate-600 leading-relaxed">
-            Todo lo que necesitás saber sobre WorkWise. Si tenés alguna otra
-            pregunta, contactanos sin problema.
+            {t("faq.description")}
           </p>
         </div>
 
@@ -75,7 +73,7 @@ export const LandingFAQ = () => {
                 aria-expanded={openItems.includes(index)}
               >
                 <h3 className="text-lg font-semibold text-slate-900 pr-4">
-                  {faq.question}
+                  {t(faq.questionKey)}
                 </h3>
                 <div className="flex-shrink-0">
                   <svg
@@ -101,7 +99,7 @@ export const LandingFAQ = () => {
                 <div className="px-6 pb-6">
                   <div className="border-t border-slate-200 pt-4">
                     <p className="text-slate-600 leading-relaxed">
-                      {faq.answer}
+                      {t(faq.answerKey)}
                     </p>
                   </div>
                 </div>
@@ -113,18 +111,15 @@ export const LandingFAQ = () => {
         <div className="text-center mt-16">
           <div className="bg-gradient-to-r from-slate-50 to-sky-50 rounded-2xl p-8 border border-sky-100">
             <h3 className="text-2xl font-bold text-slate-900 mb-4">
-              ¿Tenés más preguntas?
+              {t("faq.cta.title")}
             </h3>
-            <p className="text-slate-600 mb-6">
-              Nuestro equipo está disponible para ayudarte con cualquier
-              consulta que tengas.
-            </p>
+            <p className="text-slate-600 mb-6">{t("faq.cta.description")}</p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <button className="bg-sky-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-sky-700 transition-colors">
-                Contactanos
+                {t("faq.cta.primary")}
               </button>
               <button className="border-2 border-slate-300 text-slate-700 px-6 py-3 rounded-lg font-semibold hover:bg-slate-50 transition-colors">
-                Ver más info
+                {t("faq.cta.secondary")}
               </button>
             </div>
           </div>

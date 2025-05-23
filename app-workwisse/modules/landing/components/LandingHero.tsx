@@ -1,34 +1,38 @@
 import { Input } from "@heroui/input";
 import { Button } from "@heroui/button";
+import { useTranslation, Trans } from "react-i18next";
 
 export const LandingHero = () => {
+  const { t } = useTranslation();
+
   return (
     <section className="bg-gradient-to-br from-slate-50 to-sky-100 py-20 sm:py-28 overflow-hidden">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-12 gap-y-16 items-center">
           <div className="animate-fade-in-up delay-200">
             <div className="bg-sky-100 text-sky-700 px-4 py-2 rounded-full text-sm font-semibold inline-block mb-6">
-              ✨ Más de 50,000 trabajadores ya conocen la verdad
+              {t("hero.badge")}
             </div>
 
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-800 mb-6 tracking-tight leading-tight">
-              Conocé la verdad sobre tu
-              <span className="text-sky-600"> próximo trabajo</span> antes de
-              postularte
+              <Trans
+                i18nKey="hero.title"
+                components={{ 1: <span className="text-sky-600" /> }}
+              />
             </h1>
 
             <p className="text-lg text-slate-600 mb-8 max-w-xl leading-relaxed">
-              Accedé a opiniones reales de empleados, información salarial real
-              y rankings transparentes.{" "}
-              <strong>Tomá decisiones laborales informadas</strong>
-              con información que realmente importa.
+              <Trans
+                i18nKey="hero.description"
+                components={{ 1: <strong /> }}
+              />
             </p>
 
             <form className="max-w-lg mb-8">
               <div className="flex items-center gap-2">
                 <Input
                   type="search"
-                  placeholder="Buscar por nombre de empresa..."
+                  placeholder={t("hero.searchPlaceholder")}
                   aria-label="Buscar empresa"
                   fullWidth
                   size="lg"
@@ -63,7 +67,7 @@ export const LandingHero = () => {
                   size="lg"
                   className="bg-sky-600 hover:bg-sky-700 text-white font-semibold shadow-md hover:shadow-lg transition-all duration-300 transform hover:scale-105 rounded-lg whitespace-nowrap px-8"
                 >
-                  Buscar
+                  {t("hero.searchButton")}
                 </Button>
               </div>
             </form>
@@ -73,29 +77,29 @@ export const LandingHero = () => {
                 size="lg"
                 className="bg-white border-2 border-sky-600 text-sky-600 hover:bg-sky-50 font-semibold px-8 shadow-sm"
               >
-                Ver empresas destacadas
+                {t("hero.ctaFeatured")}
               </Button>
               <Button
                 size="lg"
                 variant="light"
                 className="text-slate-600 hover:text-slate-800 font-medium"
               >
-                ¿Cómo funciona? →
+                {t("hero.ctaHowItWorks")}
               </Button>
             </div>
 
             <div className="flex items-center gap-6 text-sm text-slate-500">
               <div className="flex items-center gap-2">
                 <div className="w-2 h-2 bg-green-500 rounded-full" />
-                <span>Gratis siempre</span>
+                <span>{t("hero.trustBadges.free")}</span>
               </div>
               <div className="flex items-center gap-2">
                 <div className="w-2 h-2 bg-green-500 rounded-full" />
-                <span>Opiniones verificadas</span>
+                <span>{t("hero.trustBadges.verified")}</span>
               </div>
               <div className="flex items-center gap-2">
                 <div className="w-2 h-2 bg-green-500 rounded-full" />
-                <span>100% anónimo</span>
+                <span>{t("hero.trustBadges.anonymous")}</span>
               </div>
             </div>
           </div>
@@ -125,9 +129,11 @@ export const LandingHero = () => {
                   </div>
                   <div>
                     <p className="font-semibold text-slate-900 text-sm">
-                      María encontró un trabajo que le gusta
+                      {t("hero.notifications.success")}
                     </p>
-                    <p className="text-slate-600 text-xs">Hace 2 horas</p>
+                    <p className="text-slate-600 text-xs">
+                      {t("hero.notifications.timeAgo")}
+                    </p>
                   </div>
                 </div>
               </div>
@@ -146,9 +152,11 @@ export const LandingHero = () => {
                   </div>
                   <div>
                     <p className="font-semibold text-slate-900 text-sm">
-                      4.9/5 estrellas
+                      {t("hero.notifications.rating")}
                     </p>
-                    <p className="text-slate-600 text-xs">+2,500 opiniones</p>
+                    <p className="text-slate-600 text-xs">
+                      {t("hero.notifications.reviews")}
+                    </p>
                   </div>
                 </div>
               </div>

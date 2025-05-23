@@ -9,13 +9,13 @@ export default function AboutHero() {
             <div className="space-y-4">
               <h1 className="text-5xl lg:text-6xl font-bold text-slate-900 leading-tight">
                 Conectamos
-                <span className="text-sky-600"> talento</span> con
-                <span className="text-sky-600"> oportunidades</span>
+                <span className="text-sky-600"> trabajadores</span> con
+                <span className="text-sky-600"> buenos empleos</span>
               </h1>
               <p className="text-xl text-slate-600 leading-relaxed">
-                Somos la plataforma líder en evaluación y descubrimiento de
-                empresas, ayudando a profesionales a tomar decisiones informadas
-                sobre su carrera.
+                Somos la plataforma que te ayuda a conocer la verdad sobre las
+                empresas, para que puedas elegir dónde trabajar con información
+                real de otros trabajadores como vos.
               </p>
             </div>
 
@@ -24,7 +24,7 @@ export default function AboutHero() {
                 size="lg"
                 className="bg-sky-600 text-white hover:bg-sky-700 font-semibold px-8"
               >
-                Conoce nuestro equipo
+                Conocé nuestro equipo
               </Button>
               <Button
                 size="lg"

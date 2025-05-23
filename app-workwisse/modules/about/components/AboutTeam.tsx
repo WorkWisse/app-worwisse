@@ -10,26 +10,26 @@ interface TeamMember {
 const teamMembers: TeamMember[] = [
   {
     name: "María González",
-    role: "CEO & Fundadora",
-    bio: "Ex-directora de RRHH con 15+ años de experiencia en empresas Fortune 500. Apasionada por democratizar la información laboral.",
+    role: "Fundadora",
+    bio: "Trabajó muchos años en recursos humanos y se cansó de ver cómo la información sobre empresas no era transparente. Decidió crear WorkWise para cambiar eso.",
     imageId: "maria",
   },
   {
     name: "Carlos Rodríguez",
-    role: "CTO",
-    bio: "Ingeniero en sistemas con experiencia en startups tecnológicas. Especialista en arquitecturas escalables y experiencia de usuario.",
+    role: "Responsable de Tecnología",
+    bio: "Se encarga de que la plataforma funcione bien y sea fácil de usar. Cree que la tecnología debe estar al servicio de las personas.",
     imageId: "carlos",
   },
   {
     name: "Ana Martínez",
-    role: "Head of Community",
-    bio: "Psicóloga organizacional enfocada en bienestar laboral y construcción de comunidades profesionales saludables.",
+    role: "Responsable de Comunidad",
+    bio: "Cuida que nuestra comunidad sea un lugar seguro donde los trabajadores puedan compartir sus experiencias sin miedo.",
     imageId: "ana",
   },
   {
     name: "Diego López",
-    role: "Head of Data",
-    bio: "Científico de datos con background en machine learning. Lidera nuestros algoritmos de matching y análisis predictivo.",
+    role: "Responsable de Información",
+    bio: "Se asegura de que toda la información que mostramos sea precisa y útil para ayudarte a tomar mejores decisiones.",
     imageId: "diego",
   },
 ];
@@ -40,12 +40,12 @@ export default function AboutTeam() {
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16 animate-fade-in-up">
           <h2 className="text-4xl lg:text-5xl font-bold text-slate-900 mb-6">
-            Conoce a nuestro <span className="text-sky-600">equipo</span>
+            Conocé a nuestro <span className="text-sky-600">equipo</span>
           </h2>
           <p className="text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
-            Un grupo diverso de profesionales unidos por la misión de
-            transformar la forma en que las personas encuentran su lugar ideal
-            de trabajo.
+            Somos un grupo de personas que también trabajamos y entendemos lo
+            importante que es encontrar un buen lugar para desarrollarse
+            laboralmente.
           </p>
         </div>
 
@@ -84,14 +84,14 @@ export default function AboutTeam() {
         <div className="text-center mt-16">
           <div className="bg-white rounded-2xl p-8 shadow-lg max-w-4xl mx-auto">
             <h3 className="text-2xl font-bold text-slate-900 mb-4">
-              ¿Quieres formar parte de nuestro equipo?
+              ¿Querés trabajar con nosotros?
             </h3>
             <p className="text-slate-600 mb-6">
-              Estamos siempre buscando talento apasionado por mejorar el mundo
-              laboral. Si compartes nuestra visión, nos encantaría conocerte.
+              Siempre estamos buscando personas que quieran ayudar a mejorar el
+              mundo del trabajo. Si te gusta nuestra misión, charlemos.
             </p>
             <button className="bg-sky-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-sky-700 transition-colors">
-              Ver oportunidades abiertas
+              Ver trabajos disponibles
             </button>
           </div>
         </div>

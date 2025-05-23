@@ -1,69 +1,73 @@
+import { useTranslation, Trans } from "react-i18next";
+
 interface Feature {
   icon: string;
-  title: string;
-  description: string;
-  benefit: string;
+  titleKey: string;
+  descriptionKey: string;
+  benefitKey: string;
 }
 
 const features: Feature[] = [
   {
     icon: "🔍",
-    title: "Opiniones Verificadas",
-    description:
-      "Comentarios auténticos de empleados que realmente trabajaron ahí",
-    benefit: "Información real y confiable",
+    titleKey: "features.items.reviews.title",
+    descriptionKey: "features.items.reviews.description",
+    benefitKey: "features.items.reviews.benefit",
   },
   {
     icon: "📊",
-    title: "Datos Reales",
-    description: "Información sobre salarios, beneficios y ambiente de trabajo",
-    benefit: "Decisiones basadas en hechos",
+    titleKey: "features.items.data.title",
+    descriptionKey: "features.items.data.description",
+    benefitKey: "features.items.data.benefit",
   },
   {
     icon: "🚀",
-    title: "Oportunidades de Trabajo",
-    description: "Descubrí trabajos disponibles en empresas que conocés",
-    benefit: "Encontrá tu próximo trabajo",
+    titleKey: "features.items.jobs.title",
+    descriptionKey: "features.items.jobs.description",
+    benefitKey: "features.items.jobs.benefit",
   },
   {
     icon: "🏆",
-    title: "Mejores Empleadores",
-    description: "Conocé cuáles son las mejores empresas para trabajar",
-    benefit: "Trabajá en los mejores lugares",
+    titleKey: "features.items.rankings.title",
+    descriptionKey: "features.items.rankings.description",
+    benefitKey: "features.items.rankings.benefit",
   },
   {
     icon: "💡",
-    title: "Información del Mercado",
-    description: "Tendencias salariales y novedades del mundo laboral",
-    benefit: "Mantente al día",
+    titleKey: "features.items.insights.title",
+    descriptionKey: "features.items.insights.description",
+    benefitKey: "features.items.insights.benefit",
   },
   {
     icon: "🤝",
-    title: "Comunidad de Trabajadores",
-    description: "Conecta con otros trabajadores y comparte experiencias",
-    benefit: "Compartí y aprendé",
+    titleKey: "features.items.community.title",
+    descriptionKey: "features.items.community.description",
+    benefitKey: "features.items.community.benefit",
   },
 ];
 
 export const LandingFeatures = () => {
+  const { t } = useTranslation();
+
   return (
     <section className="py-20 sm:py-28 bg-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16 animate-fade-in-up">
           <h2 className="text-4xl lg:text-5xl font-bold text-slate-900 mb-6">
-            Todo lo que necesitás para
-            <span className="text-sky-600"> elegir mejor dónde trabajar</span>
+            <Trans
+              i18nKey="features.title"
+              components={{ 1: <span className="text-sky-600" /> }}
+            />
           </h2>
           <p className="text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
-            Tenemos la información que necesitás para encontrar un trabajo que
-            realmente te guste y tomar decisiones laborales informadas.
+            {t("features.description")}
           </p>
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {features.map((feature, index) => (
             <div
-              key={feature.title}
+              key={feature.titleKey}
               className="group p-8 rounded-2xl bg-slate-50 hover:bg-white hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-transparent hover:border-sky-100 animate-fade-in-up"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
@@ -72,15 +76,15 @@ export const LandingFeatures = () => {
               </div>
 
               <h3 className="text-xl font-bold text-slate-900 mb-3 group-hover:text-sky-600 transition-colors">
-                {feature.title}
+                {t(feature.titleKey)}
               </h3>
 
               <p className="text-slate-600 mb-4 leading-relaxed">
-                {feature.description}
+                {t(feature.descriptionKey)}
               </p>
 
               <div className="text-sm font-semibold text-sky-600 bg-sky-50 px-3 py-2 rounded-full inline-block">
-                ✓ {feature.benefit}
+                ✓ {t(feature.benefitKey)}
               </div>
             </div>
           ))}
@@ -89,18 +93,17 @@ export const LandingFeatures = () => {
         <div className="text-center mt-16">
           <div className="bg-gradient-to-r from-sky-50 to-slate-50 rounded-2xl p-8 max-w-4xl mx-auto border border-sky-100">
             <h3 className="text-2xl font-bold text-slate-900 mb-4">
-              ¿Listo para empezar?
+              {t("features.cta.title")}
             </h3>
             <p className="text-slate-600 mb-6 text-lg">
-              Únete a miles de trabajadores que ya están usando WorkWise para
-              tomar mejores decisiones laborales.
+              {t("features.cta.description")}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <button className="bg-sky-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-sky-700 transition-colors shadow-md hover:shadow-lg">
-                Ver empresas destacadas
+                {t("features.cta.primary")}
               </button>
               <button className="border-2 border-sky-600 text-sky-600 px-8 py-3 rounded-lg font-semibold hover:bg-sky-50 transition-colors">
-                Buscar trabajos
+                {t("features.cta.secondary")}
               </button>
             </div>
           </div>

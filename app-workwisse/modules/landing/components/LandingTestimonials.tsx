@@ -1,97 +1,101 @@
+import { useTranslation, Trans } from "react-i18next";
+
 interface Testimonial {
-  name: string;
-  role: string;
-  company: string;
-  quote: string;
+  nameKey: string;
+  roleKey: string;
+  companyKey: string;
+  quoteKey: string;
   avatar: string;
 }
 
 interface Stat {
-  value: string;
-  label: string;
-  description: string;
+  valueKey: string;
+  labelKey: string;
+  descriptionKey: string;
 }
 
 const testimonials: Testimonial[] = [
   {
-    name: "María Rodriguez",
-    role: "Vendedora",
-    company: "Retail Fashion",
-    quote:
-      "Gracias a WorkWise pude conocer el ambiente de trabajo antes de aceptar. Ahora sé que elegí bien.",
+    nameKey: "testimonials.reviews.maria.name",
+    roleKey: "testimonials.reviews.maria.role",
+    companyKey: "testimonials.reviews.maria.company",
+    quoteKey: "testimonials.reviews.maria.quote",
     avatar: "mariar",
   },
   {
-    name: "Carlos Mendoza",
-    role: "Operario",
-    company: "Logística Plus",
-    quote:
-      "La información sobre horarios y beneficios me ayudó mucho. Pude comparar y elegir donde más me convenía.",
+    nameKey: "testimonials.reviews.carlos.name",
+    roleKey: "testimonials.reviews.carlos.role",
+    companyKey: "testimonials.reviews.carlos.company",
+    quoteKey: "testimonials.reviews.carlos.quote",
     avatar: "carlosm",
   },
   {
-    name: "Ana Silva",
-    role: "Administrativa",
-    company: "Servicios Contables",
-    quote:
-      "Encontré mi trabajo actual leyendo las opiniones. Me ayudó a entender cómo era trabajar ahí realmente.",
+    nameKey: "testimonials.reviews.ana.name",
+    roleKey: "testimonials.reviews.ana.role",
+    companyKey: "testimonials.reviews.ana.company",
+    quoteKey: "testimonials.reviews.ana.quote",
     avatar: "anas",
   },
 ];
 
 const stats: Stat[] = [
   {
-    value: "50K+",
-    label: "Trabajadores activos",
-    description: "Confían en nuestra información",
+    valueKey: "testimonials.stats.workers.value",
+    labelKey: "testimonials.stats.workers.label",
+    descriptionKey: "testimonials.stats.workers.description",
   },
   {
-    value: "2,500+",
-    label: "Empresas evaluadas",
-    description: "Con información detallada",
+    valueKey: "testimonials.stats.companies.value",
+    labelKey: "testimonials.stats.companies.label",
+    descriptionKey: "testimonials.stats.companies.description",
   },
   {
-    value: "95%",
-    label: "Satisfacción",
-    description: "De nuestros usuarios",
+    valueKey: "testimonials.stats.satisfaction.value",
+    labelKey: "testimonials.stats.satisfaction.label",
+    descriptionKey: "testimonials.stats.satisfaction.description",
   },
   {
-    value: "24/7",
-    label: "Disponible",
-    description: "Información siempre actualizada",
+    valueKey: "testimonials.stats.availability.value",
+    labelKey: "testimonials.stats.availability.label",
+    descriptionKey: "testimonials.stats.availability.description",
   },
 ];
 
 export const LandingTestimonials = () => {
+  const { t } = useTranslation();
+
   return (
     <section className="py-20 sm:py-28 bg-gradient-to-br from-sky-50 to-slate-50">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16 animate-fade-in-up">
           <h2 className="text-4xl lg:text-5xl font-bold text-slate-900 mb-6">
-            Miles de trabajadores ya están
-            <span className="text-sky-600"> tomando mejores decisiones</span>
+            <Trans
+              i18nKey="testimonials.title"
+              components={{ 1: <span className="text-sky-600" /> }}
+            />
           </h2>
           <p className="text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
-            Escuchá lo que dicen quienes ya usaron WorkWise para encontrar un
-            trabajo que realmente les gusta.
+            {t("testimonials.description")}
           </p>
         </div>
 
         <div className="grid md:grid-cols-4 gap-8 mb-20">
           {stats.map((stat, index) => (
             <div
-              key={stat.label}
+              key={stat.labelKey}
               className="text-center animate-fade-in-up"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
               <div className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-300">
                 <div className="text-4xl lg:text-5xl font-bold text-sky-600 mb-2">
-                  {stat.value}
+                  {t(stat.valueKey)}
                 </div>
                 <h3 className="text-lg font-semibold text-slate-900 mb-1">
-                  {stat.label}
+                  {t(stat.labelKey)}
                 </h3>
-                <p className="text-sm text-slate-600">{stat.description}</p>
+                <p className="text-sm text-slate-600">
+                  {t(stat.descriptionKey)}
+                </p>
               </div>
             </div>
           ))}
@@ -100,28 +104,28 @@ export const LandingTestimonials = () => {
         <div className="grid md:grid-cols-3 gap-8">
           {testimonials.map((testimonial, index) => (
             <div
-              key={testimonial.name}
+              key={testimonial.nameKey}
               className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 animate-fade-in-up"
               style={{ animationDelay: `${index * 0.2}s` }}
             >
               <div className="flex items-center mb-6">
                 <img
                   src={`https://picsum.photos/seed/${testimonial.avatar}/60/60`}
-                  alt={testimonial.name}
+                  alt={t(testimonial.nameKey)}
                   className="w-12 h-12 rounded-full object-cover mr-4"
                 />
                 <div>
                   <h4 className="font-semibold text-slate-900">
-                    {testimonial.name}
+                    {t(testimonial.nameKey)}
                   </h4>
                   <p className="text-sm text-slate-600">
-                    {testimonial.role} en {testimonial.company}
+                    {t(testimonial.roleKey)} en {t(testimonial.companyKey)}
                   </p>
                 </div>
               </div>
 
               <blockquote className="text-slate-700 leading-relaxed mb-4">
-                &ldquo;{testimonial.quote}&rdquo;
+                &ldquo;{t(testimonial.quoteKey)}&rdquo;
               </blockquote>
 
               <div className="flex text-yellow-400">
@@ -143,13 +147,13 @@ export const LandingTestimonials = () => {
         <div className="text-center mt-16">
           <div className="bg-white/70 backdrop-blur-sm rounded-2xl p-8 max-w-4xl mx-auto border border-sky-100">
             <h3 className="text-2xl font-bold text-slate-900 mb-4">
-              ¿Querés ser el próximo en encontrar un trabajo que te guste?
+              {t("testimonials.cta.title")}
             </h3>
             <p className="text-slate-600 mb-6 text-lg">
-              Empezá a tomar decisiones laborales más inteligentes hoy mismo.
+              {t("testimonials.cta.description")}
             </p>
             <button className="bg-sky-600 text-white px-8 py-4 rounded-lg font-semibold hover:bg-sky-700 transition-colors shadow-lg hover:shadow-xl text-lg">
-              Explorar empresas ahora
+              {t("testimonials.cta.button")}
             </button>
           </div>
         </div>

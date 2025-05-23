@@ -6,6 +6,7 @@ import { useRouter } from "next/router";
 
 import { fontSans, fontMono } from "@/config/fonts";
 import "@/styles/globals.css";
+import "@/config/i18n";
 
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter();

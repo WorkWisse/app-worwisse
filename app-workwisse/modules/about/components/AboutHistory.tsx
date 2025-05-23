@@ -7,33 +7,33 @@ interface TimelineEvent {
 const timeline: TimelineEvent[] = [
   {
     year: "2020",
-    title: "Nacimiento de la idea",
+    title: "La idea que cambió todo",
     description:
-      "Identificamos la necesidad de transparencia en el mercado laboral durante la pandemia, cuando cambió la forma de trabajar.",
+      "Nos dimos cuenta de que los trabajadores necesitaban información real sobre las empresas, especialmente cuando todo cambió con la pandemia.",
   },
   {
     year: "2021",
-    title: "Lanzamiento de MVP",
+    title: "Primeros pasos",
     description:
-      "Lanzamos nuestra primera versión con 100 empresas evaluadas y una comunidad inicial de 1,000 usuarios.",
+      "Lanzamos WorkWise con información de 100 empresas y 1,000 trabajadores que se animaron a compartir sus experiencias.",
   },
   {
     year: "2022",
-    title: "Expansión regional",
+    title: "Crecimos juntos",
     description:
-      "Ampliamos cobertura a 5 países de Latinoamérica y alcanzamos 10,000 usuarios activos mensuales.",
+      "Llegamos a 5 países de Latinoamérica y ya éramos 10,000 trabajadores ayudándonos entre todos.",
   },
   {
     year: "2023",
-    title: "Integración de IA",
+    title: "Mejoramos la experiencia",
     description:
-      "Implementamos algoritmos de machine learning para mejorar las recomendaciones y matching personalizado.",
+      "Usamos tecnología para que sea más fácil encontrar la información que necesitás sobre cualquier empresa.",
   },
   {
     year: "2024",
-    title: "Liderazgo en la región",
+    title: "Somos comunidad",
     description:
-      "Nos consolidamos como la plataforma líder con 50K+ usuarios y partnerships estratégicos con universidades.",
+      "Ya somos más de 50,000 trabajadores compartiendo información real para ayudarnos a elegir mejor dónde trabajar.",
   },
 ];
 
@@ -46,8 +46,8 @@ export default function AboutHistory() {
             Nuestra <span className="text-sky-600">historia</span>
           </h2>
           <p className="text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
-            Un viaje de innovación y crecimiento impulsado por la visión de
-            transformar el mercado laboral en Latinoamérica.
+            Así empezó todo y cómo llegamos hasta acá, siempre pensando en hacer
+            más fácil la vida de los trabajadores.
           </p>
         </div>
 
@@ -93,26 +93,25 @@ export default function AboutHistory() {
         <div className="mt-20 text-center">
           <div className="bg-gradient-to-r from-sky-50 to-slate-50 rounded-2xl p-8 max-w-4xl mx-auto border border-sky-100">
             <h3 className="text-2xl font-bold text-slate-900 mb-4">
-              El futuro que estamos construyendo
+              Lo que viene después
             </h3>
             <p className="text-slate-600 mb-6 leading-relaxed">
-              Continuamos innovando para crear un ecosistema laboral más
-              transparente, justo y eficiente. Nuestro objetivo es que cada
-              profesional pueda encontrar su lugar ideal de trabajo basado en
-              datos reales y experiencias auténticas.
+              Seguimos trabajando para que cada vez sea más fácil conocer la
+              verdad sobre las empresas. Queremos que todos los trabajadores
+              puedan tomar mejores decisiones con información real y honesta.
             </p>
             <div className="flex flex-wrap justify-center gap-4 text-sm">
               <span className="bg-sky-100 text-sky-700 px-4 py-2 rounded-full">
-                Expansión internacional
+                Más países
               </span>
               <span className="bg-sky-100 text-sky-700 px-4 py-2 rounded-full">
-                IA más avanzada
+                Mejor experiencia
               </span>
               <span className="bg-sky-100 text-sky-700 px-4 py-2 rounded-full">
-                Nuevas funcionalidades
+                Más información útil
               </span>
               <span className="bg-sky-100 text-sky-700 px-4 py-2 rounded-full">
-                Partnerships estratégicos
+                Nuevas alianzas
               </span>
             </div>
           </div>

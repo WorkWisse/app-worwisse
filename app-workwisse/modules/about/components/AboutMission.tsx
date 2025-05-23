@@ -10,25 +10,25 @@ const values: ValueItem[] = [
   {
     title: "Transparencia",
     description:
-      "Creemos en la información clara y honesta para que puedas tomar las mejores decisiones laborales.",
+      "Creemos en mostrar información clara y honesta para que puedas tomar las mejores decisiones laborales.",
     icon: "🔍",
   },
   {
-    title: "Innovación",
+    title: "Simplicidad",
     description:
-      "Utilizamos la última tecnología para conectar talento con las oportunidades más relevantes.",
+      "Hacemos que sea fácil encontrar y entender la información que necesitás sobre cualquier empresa.",
     icon: "💡",
   },
   {
     title: "Comunidad",
     description:
-      "Construimos una comunidad donde profesionales comparten experiencias y se apoyan mutuamente.",
+      "Construimos una comunidad donde trabajadores comparten sus experiencias y se ayudan entre sí.",
     icon: "🤝",
   },
   {
-    title: "Excelencia",
+    title: "Honestidad",
     description:
-      "Nos comprometemos a ofrecer la mejor experiencia y resultados excepcionales para nuestros usuarios.",
+      "Nos comprometemos a mostrar la realidad de cada empresa, sin filtros ni información manipulada.",
     icon: "⭐",
   },
 ];
@@ -43,13 +43,13 @@ export default function AboutMission() {
           </h2>
           <div className="max-w-4xl mx-auto space-y-6">
             <p className="text-xl text-slate-600 leading-relaxed">
-              Democratizar el acceso a información laboral de calidad,
-              empoderando a los profesionales para que encuentren empresas que
-              realmente valoren su talento y se alineen con sus valores.
+              Que todos los trabajadores tengan acceso a información real sobre
+              las empresas, para que puedan encontrar lugares de trabajo donde
+              realmente se sientan valorados y respetados.
             </p>
             <p className="text-lg text-slate-500">
-              Creemos que cada persona merece trabajar en un lugar donde pueda
-              crecer, contribuir y ser valorada por lo que aporta.
+              Creemos que toda persona merece trabajar en un lugar donde pueda
+              crecer, aportar y ser tratada con dignidad.
             </p>
           </div>
         </div>

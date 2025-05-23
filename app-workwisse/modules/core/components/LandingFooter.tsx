@@ -1,4 +1,5 @@
 import { Link } from "@heroui/link";
+import { useTranslation } from "react-i18next";
 
 const SocialIcon = ({ title, href }: { title: string; href: string }) => (
   <a
@@ -13,6 +14,8 @@ const SocialIcon = ({ title, href }: { title: string; href: string }) => (
 );
 
 export const LandingFooter = () => {
+  const { t } = useTranslation();
+
   return (
     <footer className="bg-slate-900 text-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16">
@@ -27,8 +30,7 @@ export const LandingFooter = () => {
               workwisse
             </div>
             <p className="text-slate-300 leading-relaxed max-w-sm">
-              La plataforma que te ayuda a tomar mejores decisiones laborales.
-              Información real, transparente y gratuita para todos.
+              {t("footer.description")}
             </p>
             <div className="flex space-x-3">
               <SocialIcon title="LinkedIn" href="#" />
@@ -39,14 +41,16 @@ export const LandingFooter = () => {
           </div>
 
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold">Para Trabajadores</h3>
+            <h3 className="text-lg font-semibold">
+              {t("footer.workers.title")}
+            </h3>
             <ul className="space-y-2 text-slate-300">
               <li>
                 <Link
                   href="/companies"
                   className="hover:text-sky-400 transition-colors"
                 >
-                  Buscar empresas
+                  {t("footer.workers.links.search")}
                 </Link>
               </li>
               <li>
@@ -54,7 +58,7 @@ export const LandingFooter = () => {
                   href="/rankings"
                   className="hover:text-sky-400 transition-colors"
                 >
-                  Mejores empresas
+                  {t("footer.workers.links.rankings")}
                 </Link>
               </li>
               <li>
@@ -62,7 +66,7 @@ export const LandingFooter = () => {
                   href="/salaries"
                   className="hover:text-sky-400 transition-colors"
                 >
-                  Ver salarios
+                  {t("footer.workers.links.salaries")}
                 </Link>
               </li>
               <li>
@@ -70,7 +74,7 @@ export const LandingFooter = () => {
                   href="/reviews"
                   className="hover:text-sky-400 transition-colors"
                 >
-                  Escribir opinión
+                  {t("footer.workers.links.reviews")}
                 </Link>
               </li>
               <li>
@@ -78,21 +82,23 @@ export const LandingFooter = () => {
                   href="/jobs"
                   className="hover:text-sky-400 transition-colors"
                 >
-                  Buscar trabajos
+                  {t("footer.workers.links.jobs")}
                 </Link>
               </li>
             </ul>
           </div>
 
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold">Para Empresas</h3>
+            <h3 className="text-lg font-semibold">
+              {t("footer.companies.title")}
+            </h3>
             <ul className="space-y-2 text-slate-300">
               <li>
                 <Link
                   href="/company/add"
                   className="hover:text-sky-400 transition-colors"
                 >
-                  Sumá tu empresa
+                  {t("footer.companies.links.add")}
                 </Link>
               </li>
               <li>
@@ -100,7 +106,7 @@ export const LandingFooter = () => {
                   href="/enterprise"
                   className="hover:text-sky-400 transition-colors"
                 >
-                  Servicios empresariales
+                  {t("footer.companies.links.services")}
                 </Link>
               </li>
               <li>
@@ -108,7 +114,7 @@ export const LandingFooter = () => {
                   href="/employer-branding"
                   className="hover:text-sky-400 transition-colors"
                 >
-                  Mejorar imagen
+                  {t("footer.companies.links.branding")}
                 </Link>
               </li>
               <li>
@@ -116,26 +122,27 @@ export const LandingFooter = () => {
                   href="/analytics"
                   className="hover:text-sky-400 transition-colors"
                 >
-                  Ver estadísticas
+                  {t("footer.companies.links.analytics")}
                 </Link>
               </li>
             </ul>
           </div>
 
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold">Mantenete informado</h3>
+            <h3 className="text-lg font-semibold">
+              {t("footer.newsletter.title")}
+            </h3>
             <p className="text-slate-300 text-sm">
-              Recibí las últimas novedades del mundo laboral y consejos para tu
-              carrera.
+              {t("footer.newsletter.description")}
             </p>
             <div className="space-y-3">
               <input
                 type="email"
-                placeholder="tu-email@ejemplo.com"
+                placeholder={t("footer.newsletter.placeholder")}
                 className="w-full px-4 py-2 rounded-lg bg-slate-800 border border-slate-600 text-white placeholder-slate-400 focus:border-sky-500 focus:ring-1 focus:ring-sky-500 outline-none transition-colors"
               />
               <button className="w-full bg-sky-600 hover:bg-sky-700 text-white px-4 py-2 rounded-lg font-semibold transition-colors">
-                Suscribirse
+                {t("footer.newsletter.button")}
               </button>
             </div>
           </div>
@@ -145,12 +152,11 @@ export const LandingFooter = () => {
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <div className="text-sm text-slate-400 text-center md:text-left">
               <p className="mb-1">
-                &copy; {new Date().getFullYear()} WorkWise. Todos los derechos
-                reservados.
+                {t("footer.legal.copyright", {
+                  year: new Date().getFullYear(),
+                })}
               </p>
-              <p>
-                Ayudando a trabajadores a tomar mejores decisiones laborales.
-              </p>
+              <p>{t("footer.legal.tagline")}</p>
             </div>
 
             <div className="flex flex-wrap items-center gap-6 text-sm">
@@ -158,31 +164,31 @@ export const LandingFooter = () => {
                 href="/about"
                 className="text-slate-400 hover:text-sky-400 transition-colors"
               >
-                Sobre nosotros
+                {t("footer.legal.about")}
               </Link>
               <Link
                 href="/privacy"
                 className="text-slate-400 hover:text-sky-400 transition-colors"
               >
-                Privacidad
+                {t("footer.legal.privacy")}
               </Link>
               <Link
                 href="/terms"
                 className="text-slate-400 hover:text-sky-400 transition-colors"
               >
-                Términos
+                {t("footer.legal.terms")}
               </Link>
               <Link
                 href="/contact"
                 className="text-slate-400 hover:text-sky-400 transition-colors"
               >
-                Contacto
+                {t("footer.legal.contact")}
               </Link>
               <Link
                 href="/help"
                 className="text-slate-400 hover:text-sky-400 transition-colors"
               >
-                Ayuda
+                {t("footer.legal.help")}
               </Link>
             </div>
           </div>
