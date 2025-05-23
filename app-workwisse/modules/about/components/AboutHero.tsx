@@ -1,6 +1,9 @@
 import { Button } from "@heroui/button";
+import { useTranslation, Trans } from "react-i18next";
 
 export default function AboutHero() {
+  const { t } = useTranslation();
+
   return (
     <section className="relative bg-gradient-to-br from-slate-50 to-sky-100 py-20 px-4">
       <div className="max-w-7xl mx-auto">
@@ -8,14 +11,16 @@ export default function AboutHero() {
           <div className="space-y-8 animate-fade-in-up">
             <div className="space-y-4">
               <h1 className="text-5xl lg:text-6xl font-bold text-slate-900 leading-tight">
-                Conectamos
-                <span className="text-sky-600"> trabajadores</span> con
-                <span className="text-sky-600"> buenos empleos</span>
+                <Trans
+                  i18nKey="about.hero.title"
+                  components={{
+                    1: <span className="text-sky-600" />,
+                    2: <span className="text-sky-600" />,
+                  }}
+                />
               </h1>
               <p className="text-xl text-slate-600 leading-relaxed">
-                Somos la plataforma que te ayuda a conocer la verdad sobre las
-                empresas, para que puedas elegir dónde trabajar con información
-                real de otros trabajadores como vos.
+                {t("about.hero.description")}
               </p>
             </div>
 
@@ -24,14 +29,14 @@ export default function AboutHero() {
                 size="lg"
                 className="bg-sky-600 text-white hover:bg-sky-700 font-semibold px-8"
               >
-                Conocé nuestro equipo
+                {t("about.hero.ctaTeam")}
               </Button>
               <Button
                 size="lg"
                 variant="bordered"
                 className="border-sky-600 text-sky-600 hover:bg-sky-50 font-semibold px-8"
               >
-                Nuestra historia
+                {t("about.hero.ctaHistory")}
               </Button>
             </div>
           </div>
@@ -43,7 +48,7 @@ export default function AboutHero() {
                 alt="Nuestro equipo"
                 className="rounded-2xl shadow-2xl"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-sky-600/20 to-transparent rounded-2xl"></div>
+              <div className="absolute inset-0 bg-gradient-to-t from-sky-600/20 to-transparent rounded-2xl" />
             </div>
           </div>
         </div>

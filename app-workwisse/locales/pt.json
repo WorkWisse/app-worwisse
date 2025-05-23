@@ -19,6 +19,156 @@
             "reviews": "+2.500 opiniões"
         }
     },
+    "about": {
+        "hero": {
+            "title": "Conectamos <1>trabalhadores</1> com <2>bons empregos</2>",
+            "description": "Somos a plataforma que ajuda você a conhecer a verdade sobre as empresas, para que possa escolher onde trabalhar com informações reais de outros trabalhadores como você.",
+            "ctaTeam": "Conheça nossa equipe",
+            "ctaHistory": "Nossa história"
+        },
+        "mission": {
+            "title": "Nossa <1>missão</1>",
+            "description1": "Que todos os trabalhadores tenham acesso a informações reais sobre as empresas, para que possam encontrar locais de trabalho onde realmente se sintam valorizados e respeitados.",
+            "description2": "Acreditamos que toda pessoa merece trabalhar em um lugar onde possa crescer, contribuir e ser tratada com dignidade.",
+            "values": {
+                "transparency": {
+                    "title": "Transparência",
+                    "description": "Acreditamos em mostrar informações claras e honestas para que você possa tomar as melhores decisões profissionais."
+                },
+                "simplicity": {
+                    "title": "Simplicidade",
+                    "description": "Fazemos com que seja fácil encontrar e entender as informações que você precisa sobre qualquer empresa."
+                },
+                "community": {
+                    "title": "Comunidade",
+                    "description": "Construímos uma comunidade onde trabalhadores compartilham suas experiências e se ajudam mutuamente."
+                },
+                "honesty": {
+                    "title": "Honestidade",
+                    "description": "Nos comprometemos a mostrar a realidade de cada empresa, sem filtros ou informações manipuladas."
+                }
+            }
+        },
+        "team": {
+            "title": "Conheça nossa <1>equipe</1>",
+            "description": "Somos um grupo de pessoas que também trabalhamos e entendemos o quanto é importante encontrar um bom lugar para se desenvolver profissionalmente.",
+            "members": {
+                "maria": {
+                    "name": "María González",
+                    "role": "Fundadora",
+                    "bio": "Trabalhou muitos anos em recursos humanos e se cansou de ver como as informações sobre empresas não eram transparentes. Decidiu criar o WorkWise para mudar isso."
+                },
+                "carlos": {
+                    "name": "Carlos Rodríguez",
+                    "role": "Responsável pela Tecnologia",
+                    "bio": "Cuida para que a plataforma funcione bem e seja fácil de usar. Acredita que a tecnologia deve estar a serviço das pessoas."
+                },
+                "ana": {
+                    "name": "Ana Martínez",
+                    "role": "Responsável pela Comunidade",
+                    "bio": "Cuida para que nossa comunidade seja um lugar seguro onde os trabalhadores possam compartilhar suas experiências sem medo."
+                },
+                "diego": {
+                    "name": "Diego López",
+                    "role": "Responsável pela Informação",
+                    "bio": "Garante que todas as informações que mostramos sejam precisas e úteis para ajudar você a tomar melhores decisões."
+                }
+            },
+            "cta": {
+                "title": "Quer trabalhar conosco?",
+                "description": "Estamos sempre procurando pessoas que queiram ajudar a melhorar o mundo do trabalho. Se você gosta da nossa missão, vamos conversar.",
+                "button": "Ver trabalhos disponíveis"
+            }
+        },
+        "stats": {
+            "title": "O que conseguimos <1>juntos</1>",
+            "description": "Estes números mostram como estamos ajudando os trabalhadores a ter mais informações antes de escolher onde trabalhar.",
+            "items": {
+                "workers": {
+                    "number": "50K+",
+                    "label": "Trabalhadores que nos usam",
+                    "description": "Pessoas que já usam o WorkWise para conhecer a verdade sobre as empresas"
+                },
+                "companies": {
+                    "number": "2.500+",
+                    "label": "Empresas avaliadas",
+                    "description": "Empresas com opiniões reais de trabalhadores como você"
+                },
+                "satisfaction": {
+                    "number": "95%",
+                    "label": "Pessoas satisfeitas",
+                    "description": "De quem usa o WorkWise recomendam para outros trabalhadores"
+                },
+                "availability": {
+                    "number": "24/7",
+                    "label": "Sempre disponível",
+                    "description": "Você pode consultar informações sobre empresas quando precisar"
+                }
+            },
+            "cta": {
+                "title": "Quer fazer parte desta comunidade?",
+                "description": "Junte-se a milhares de trabalhadores que já estão tomando melhores decisões sobre onde trabalhar.",
+                "primaryButton": "Começar grátis",
+                "secondaryButton": "Ver empresas"
+            }
+        },
+        "history": {
+            "title": "Nossa <1>história</1>",
+            "description": "Assim tudo começou e como chegamos até aqui, sempre pensando em facilitar a vida dos trabalhadores.",
+            "timeline": {
+                "2020": {
+                    "title": "A ideia que mudou tudo",
+                    "description": "Percebemos que os trabalhadores precisavam de informações reais sobre as empresas, especialmente quando tudo mudou com a pandemia."
+                },
+                "2021": {
+                    "title": "Primeiros passos",
+                    "description": "Lançamos o WorkWise com informações de 100 empresas e 1.000 trabalhadores que se animaram a compartilhar suas experiências."
+                },
+                "2022": {
+                    "title": "Crescemos juntos",
+                    "description": "Chegamos a 5 países da América Latina e já éramos 10.000 trabalhadores se ajudando."
+                },
+                "2023": {
+                    "title": "Melhoramos a experiência",
+                    "description": "Usamos tecnologia para que seja mais fácil encontrar as informações que você precisa sobre qualquer empresa."
+                },
+                "2024": {
+                    "title": "Somos comunidade",
+                    "description": "Já somos mais de 50.000 trabalhadores compartilhando informações reais para nos ajudar a escolher melhor onde trabalhar."
+                }
+            },
+            "future": {
+                "title": "O que vem por aí",
+                "description": "Continuamos trabalhando para que seja cada vez mais fácil conhecer a verdade sobre as empresas. Queremos que todos os trabalhadores possam tomar melhores decisões com informações reais e honestas.",
+                "tags": {
+                    "countries": "Mais países",
+                    "experience": "Melhor experiência",
+                    "information": "Mais informações úteis",
+                    "partnerships": "Novas parcerias"
+                }
+            }
+        },
+        "cta": {
+            "title": "Quer tomar melhores <1>decisões profissionais</1>?",
+            "description": "Junte-se à nossa comunidade de trabalhadores que já estão usando informações reais para escolher melhor onde trabalhar.",
+            "primaryButton": "Começar grátis",
+            "secondaryButton": "Ver empresas",
+            "benefits": {
+                "improve": {
+                    "title": "Melhore seu trabalho",
+                    "description": "Encontre locais de trabalho que realmente convém para você"
+                },
+                "connect": {
+                    "title": "Conecte-se com outros",
+                    "description": "Faça parte de uma comunidade de trabalhadores que se ajudam"
+                },
+                "information": {
+                    "title": "Informação real",
+                    "description": "Acesse opiniões verdadeiras sobre empresas e trabalhos"
+                }
+            }
+        }
+    },
     "features": {
         "title": "Tudo o que você precisa para <1>escolher melhor onde trabalhar</1>",
         "description": "Temos as informações que você precisa para encontrar um trabalho que realmente goste e tomar decisões profissionais informadas.",

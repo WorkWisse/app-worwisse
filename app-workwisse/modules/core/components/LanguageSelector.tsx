@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import {
   Dropdown,
@@ -7,20 +8,54 @@ import {
 } from "@heroui/dropdown";
 import { Button } from "@heroui/button";
 
-const languages = [
-  { code: "es", name: "Español", flag: "🇪🇸" },
-  { code: "pt", name: "Português", flag: "🇧🇷" },
-];
-
 export const LanguageSelector = () => {
-  const { i18n, t } = useTranslation();
+  const { i18n } = useTranslation();
+  const [mounted, setMounted] = useState(false);
 
-  const currentLanguage =
-    languages.find((lang) => lang.code === i18n.language) || languages[0];
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
-  const handleLanguageChange = (languageCode: string) => {
-    i18n.changeLanguage(languageCode);
+  // Prevent hydration errors by not rendering until mounted
+  if (!mounted) {
+    return (
+      <Button
+        variant="light"
+        size="sm"
+        className="min-w-unit-16 px-2"
+        aria-label="Language selector loading"
+      >
+        ES
+      </Button>
+    );
+  }
+
+  const currentLanguage = i18n.language || "es";
+
+  const languages = [
+    {
+      key: "es",
+      label: "Español",
+      flag: "🇦🇷",
+    },
+    {
+      key: "pt",
+      label: "Português",
+      flag: "🇧🇷",
+    },
+  ];
+
+  const getCurrentLanguageInfo = () => {
+    return (
+      languages.find((lang) => lang.key === currentLanguage) || languages[0]
+    );
   };
+
+  const handleLanguageChange = (languageKey: string) => {
+    i18n.changeLanguage(languageKey);
+  };
+
+  const currentLangInfo = getCurrentLanguageInfo();
 
   return (
     <Dropdown>
@@ -28,43 +63,67 @@ export const LanguageSelector = () => {
         <Button
           variant="light"
           size="sm"
-          className="text-slate-600 hover:text-slate-800 font-medium px-3"
-          startContent={currentLanguage.flag}
-          endContent={
-            <svg
-              className="w-4 h-4 ml-1"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <title>Dropdown Arrow</title>
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M19 9l-7 7-7-7"
-              />
-            </svg>
-          }
+          className="min-w-unit-16 px-2 gap-1 data-[hover=true]:bg-slate-100"
+          aria-label={`Current language: ${currentLangInfo.label}`}
         >
-          {currentLanguage.name}
+          <span className="text-base">{currentLangInfo.flag}</span>
+          <span className="text-sm font-medium">
+            {currentLangInfo.key.toUpperCase()}
+          </span>
+          <svg
+            width="12"
+            height="12"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className="opacity-50"
+          >
+            <title>Dropdown arrow</title>
+            <path d="m6 9 6 6 6-6" />
+          </svg>
         </Button>
       </DropdownTrigger>
+
       <DropdownMenu
-        aria-label={t("header.language")}
-        onAction={(key) => handleLanguageChange(key as string)}
-        selectedKeys={[i18n.language]}
+        aria-label="Language selection"
+        selectedKeys={new Set([currentLanguage])}
         selectionMode="single"
+        onSelectionChange={(keys) => {
+          const selectedKey = Array.from(keys)[0] as string;
+          if (selectedKey) {
+            handleLanguageChange(selectedKey);
+          }
+        }}
       >
         {languages.map((language) => (
           <DropdownItem
-            key={language.code}
-            startContent={language.flag}
-            className={
-              i18n.language === language.code ? "bg-sky-50 text-sky-600" : ""
-            }
+            key={language.key}
+            className="gap-2"
+            aria-label={`Switch to ${language.label}`}
           >
-            {language.name}
+            <div className="flex items-center gap-2">
+              <span className="text-base">{language.flag}</span>
+              <span className="font-medium">{language.label}</span>
+              {currentLanguage === language.key && (
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="text-sky-600"
+                >
+                  <title>Selected language indicator</title>
+                  <path d="M20 6 9 17l-5-5" />
+                </svg>
+              )}
+            </div>
           </DropdownItem>
         ))}
       </DropdownMenu>

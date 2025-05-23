@@ -1,53 +1,44 @@
+import { useTranslation, Trans } from "react-i18next";
+
 interface TimelineEvent {
   year: string;
-  title: string;
-  description: string;
 }
 
 const timeline: TimelineEvent[] = [
   {
     year: "2020",
-    title: "La idea que cambió todo",
-    description:
-      "Nos dimos cuenta de que los trabajadores necesitaban información real sobre las empresas, especialmente cuando todo cambió con la pandemia.",
   },
   {
     year: "2021",
-    title: "Primeros pasos",
-    description:
-      "Lanzamos WorkWise con información de 100 empresas y 1,000 trabajadores que se animaron a compartir sus experiencias.",
   },
   {
     year: "2022",
-    title: "Crecimos juntos",
-    description:
-      "Llegamos a 5 países de Latinoamérica y ya éramos 10,000 trabajadores ayudándonos entre todos.",
   },
   {
     year: "2023",
-    title: "Mejoramos la experiencia",
-    description:
-      "Usamos tecnología para que sea más fácil encontrar la información que necesitás sobre cualquier empresa.",
   },
   {
     year: "2024",
-    title: "Somos comunidad",
-    description:
-      "Ya somos más de 50,000 trabajadores compartiendo información real para ayudarnos a elegir mejor dónde trabajar.",
   },
 ];
 
 export default function AboutHistory() {
+  const { t } = useTranslation();
+
   return (
     <section className="py-20 px-4 bg-white">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16 animate-fade-in-up">
           <h2 className="text-4xl lg:text-5xl font-bold text-slate-900 mb-6">
-            Nuestra <span className="text-sky-600">historia</span>
+            <Trans
+              i18nKey="about.history.title"
+              components={{
+                1: <span className="text-sky-600" />,
+              }}
+            />
           </h2>
           <p className="text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
-            Así empezó todo y cómo llegamos hasta acá, siempre pensando en hacer
-            más fácil la vida de los trabajadores.
+            {t("about.history.description")}
           </p>
         </div>
 
@@ -71,10 +62,10 @@ export default function AboutHistory() {
                       {event.year}
                     </div>
                     <h3 className="text-2xl font-bold text-slate-900">
-                      {event.title}
+                      {t(`about.history.timeline.${event.year}.title`)}
                     </h3>
                     <p className="text-slate-600 leading-relaxed max-w-md mx-auto lg:mx-0">
-                      {event.description}
+                      {t(`about.history.timeline.${event.year}.description`)}
                     </p>
                   </div>
                 </div>
@@ -93,25 +84,23 @@ export default function AboutHistory() {
         <div className="mt-20 text-center">
           <div className="bg-gradient-to-r from-sky-50 to-slate-50 rounded-2xl p-8 max-w-4xl mx-auto border border-sky-100">
             <h3 className="text-2xl font-bold text-slate-900 mb-4">
-              Lo que viene después
+              {t("about.history.future.title")}
             </h3>
             <p className="text-slate-600 mb-6 leading-relaxed">
-              Seguimos trabajando para que cada vez sea más fácil conocer la
-              verdad sobre las empresas. Queremos que todos los trabajadores
-              puedan tomar mejores decisiones con información real y honesta.
+              {t("about.history.future.description")}
             </p>
             <div className="flex flex-wrap justify-center gap-4 text-sm">
               <span className="bg-sky-100 text-sky-700 px-4 py-2 rounded-full">
-                Más países
+                {t("about.history.future.tags.countries")}
               </span>
               <span className="bg-sky-100 text-sky-700 px-4 py-2 rounded-full">
-                Mejor experiencia
+                {t("about.history.future.tags.experience")}
               </span>
               <span className="bg-sky-100 text-sky-700 px-4 py-2 rounded-full">
-                Más información útil
+                {t("about.history.future.tags.information")}
               </span>
               <span className="bg-sky-100 text-sky-700 px-4 py-2 rounded-full">
-                Nuevas alianzas
+                {t("about.history.future.tags.partnerships")}
               </span>
             </div>
           </div>
