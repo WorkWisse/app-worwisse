@@ -49,9 +49,8 @@ export default function AboutHistory() {
             {timeline.map((event, index) => (
               <div
                 key={event.year}
-                className={`flex flex-col lg:flex-row items-center gap-8 animate-fade-in-up ${
-                  index % 2 === 0 ? "lg:flex-row" : "lg:flex-row-reverse"
-                }`}
+                className={`flex flex-col lg:flex-row items-center gap-8 animate-fade-in-up ${index % 2 === 0 ? "lg:flex-row" : "lg:flex-row-reverse"
+                  }`}
                 style={{ animationDelay: `${index * 0.2}s` }}
               >
                 <div className="flex-1 text-center lg:text-left">
@@ -81,7 +80,7 @@ export default function AboutHistory() {
           </div>
         </div>
 
-        <div className="mt-20 text-center">
+        {/* <div className="mt-20 text-center">
           <div className="bg-gradient-to-r from-sky-50 to-slate-50 rounded-2xl p-8 max-w-4xl mx-auto border border-sky-100">
             <h3 className="text-2xl font-bold text-slate-900 mb-4">
               {t("about.history.future.title")}
@@ -104,7 +103,7 @@ export default function AboutHistory() {
               </span>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
     </section>
   );

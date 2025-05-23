@@ -21,29 +21,11 @@ const features: Feature[] = [
     benefitKey: "features.items.data.benefit",
   },
   {
-    icon: "🚀",
-    titleKey: "features.items.jobs.title",
-    descriptionKey: "features.items.jobs.description",
-    benefitKey: "features.items.jobs.benefit",
-  },
-  {
     icon: "🏆",
     titleKey: "features.items.rankings.title",
     descriptionKey: "features.items.rankings.description",
     benefitKey: "features.items.rankings.benefit",
-  },
-  {
-    icon: "💡",
-    titleKey: "features.items.insights.title",
-    descriptionKey: "features.items.insights.description",
-    benefitKey: "features.items.insights.benefit",
-  },
-  {
-    icon: "🤝",
-    titleKey: "features.items.community.title",
-    descriptionKey: "features.items.community.description",
-    benefitKey: "features.items.community.benefit",
-  },
+  }
 ];
 
 export const LandingFeatures = () => {
@@ -102,9 +84,7 @@ export const LandingFeatures = () => {
               <button className="bg-sky-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-sky-700 transition-colors shadow-md hover:shadow-lg">
                 {t("features.cta.primary")}
               </button>
-              <button className="border-2 border-sky-600 text-sky-600 px-8 py-3 rounded-lg font-semibold hover:bg-sky-50 transition-colors">
-                {t("features.cta.secondary")}
-              </button>
+
             </div>
           </div>
         </div>

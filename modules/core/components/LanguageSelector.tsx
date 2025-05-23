@@ -25,7 +25,7 @@ export const LanguageSelector = () => {
         className="min-w-unit-16 px-2"
         aria-label="Language selector loading"
       >
-        ES
+        <span className="text-xl">🇪🇸</span>
       </Button>
     );
   }
@@ -36,12 +36,12 @@ export const LanguageSelector = () => {
     {
       key: "es",
       label: "Español",
-      flag: "🇦🇷",
+      flag: "🇪🇸",
     },
     {
       key: "pt",
       label: "Português",
-      flag: "🇧🇷",
+      flag: "🇵🇹",
     },
   ];
 
@@ -66,10 +66,7 @@ export const LanguageSelector = () => {
           className="min-w-unit-16 px-2 gap-1 data-[hover=true]:bg-slate-100"
           aria-label={`Current language: ${currentLangInfo.label}`}
         >
-          <span className="text-base">{currentLangInfo.flag}</span>
-          <span className="text-sm font-medium">
-            {currentLangInfo.key.toUpperCase()}
-          </span>
+          <span className="text-xl">{currentLangInfo.flag}</span>
           <svg
             width="12"
             height="12"
@@ -105,7 +102,7 @@ export const LanguageSelector = () => {
             aria-label={`Switch to ${language.label}`}
           >
             <div className="flex items-center gap-2">
-              <span className="text-base">{language.flag}</span>
+              <span className="text-xl">{language.flag}</span>
               <span className="font-medium">{language.label}</span>
               {currentLanguage === language.key && (
                 <svg

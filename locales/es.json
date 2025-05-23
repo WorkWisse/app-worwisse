@@ -1,14 +1,12 @@
 {
     "hero": {
-        "badge": "✨ Más de 50,000 trabajadores ya conocen la verdad",
         "title": "Conocé la verdad sobre tu <1>próximo trabajo</1> antes de postularte",
         "description": "Accedé a opiniones reales de empleados, información salarial real y rankings transparentes. <1>Tomá decisiones laborales informadas</1> con información que realmente importa.",
         "searchPlaceholder": "Buscar por nombre de empresa...",
         "searchButton": "Buscar",
         "ctaFeatured": "Ver empresas destacadas",
-        "ctaHowItWorks": "¿Cómo funciona? →",
         "trustBadges": {
-            "free": "Gratis siempre",
+            "free": "Gratis",
             "verified": "Opiniones verificadas",
             "anonymous": "100% anónimo"
         },
@@ -56,7 +54,7 @@
                 "maria": {
                     "name": "María González",
                     "role": "Fundadora",
-                    "bio": "Trabajó muchos años en recursos humanos y se cansó de ver cómo la información sobre empresas no era transparente. Decidió crear WorkWise para cambiar eso."
+                    "bio": "Trabajó muchos años en recursos humanos y se cansó de ver cómo la información sobre empresas no era transparente. Decidió crear WorkWisse para cambiar eso."
                 },
                 "carlos": {
                     "name": "Carlos Rodríguez",
@@ -73,11 +71,6 @@
                     "role": "Responsable de Información",
                     "bio": "Se asegura de que toda la información que mostramos sea precisa y útil para ayudarte a tomar mejores decisiones."
                 }
-            },
-            "cta": {
-                "title": "¿Querés trabajar con nosotros?",
-                "description": "Siempre estamos buscando personas que quieran ayudar a mejorar el mundo del trabajo. Si te gusta nuestra misión, charlemos.",
-                "button": "Ver trabajos disponibles"
             }
         },
         "stats": {
@@ -87,7 +80,7 @@
                 "workers": {
                     "number": "50K+",
                     "label": "Trabajadores que nos usan",
-                    "description": "Personas que ya usan WorkWise para conocer la verdad sobre las empresas"
+                    "description": "Personas que ya usan WorkWisse para conocer la verdad sobre las empresas"
                 },
                 "companies": {
                     "number": "2,500+",
@@ -97,19 +90,13 @@
                 "satisfaction": {
                     "number": "95%",
                     "label": "Personas satisfechas",
-                    "description": "De quienes usan WorkWise lo recomiendan a otros trabajadores"
+                    "description": "De quienes usan WorkWisse lo recomiendan a otros trabajadores"
                 },
                 "availability": {
                     "number": "24/7",
                     "label": "Siempre disponible",
                     "description": "Podés consultar información sobre empresas cuando lo necesites"
                 }
-            },
-            "cta": {
-                "title": "¿Querés ser parte de esta comunidad?",
-                "description": "Unite a miles de trabajadores que ya están tomando mejores decisiones sobre dónde trabajar.",
-                "primaryButton": "Empezar gratis",
-                "secondaryButton": "Ver empresas"
             }
         },
         "history": {
@@ -122,7 +109,7 @@
                 },
                 "2021": {
                     "title": "Primeros pasos",
-                    "description": "Lanzamos WorkWise con información de 100 empresas y 1,000 trabajadores que se animaron a compartir sus experiencias."
+                    "description": "Lanzamos WorkWisse con información de 100 empresas y 1,000 trabajadores que se animaron a compartir sus experiencias."
                 },
                 "2022": {
                     "title": "Crecimos juntos",
@@ -150,7 +137,7 @@
         },
         "cta": {
             "title": "¿Querés tomar mejores <1>decisiones laborales</1>?",
-            "description": "Unite a nuestra comunidad de trabajadores que ya están usando información real para elegir mejor dónde trabajar.",
+            "description": "El cambio empieza con una decisión informada. Descubre lo que otros ya están haciendo para transformar su futuro laboral.",
             "primaryButton": "Empezar gratis",
             "secondaryButton": "Ver empresas",
             "benefits": {
@@ -183,37 +170,22 @@
                 "description": "Información sobre salarios, beneficios y ambiente de trabajo",
                 "benefit": "Decisiones basadas en hechos"
             },
-            "jobs": {
-                "title": "Oportunidades de Trabajo",
-                "description": "Descubrí trabajos disponibles en empresas que conocés",
-                "benefit": "Encontrá tu próximo trabajo"
-            },
             "rankings": {
                 "title": "Mejores Empleadores",
                 "description": "Conocé cuáles son las mejores empresas para trabajar",
                 "benefit": "Trabajá en los mejores lugares"
-            },
-            "insights": {
-                "title": "Información del Mercado",
-                "description": "Tendencias salariales y novedades del mundo laboral",
-                "benefit": "Mantente al día"
-            },
-            "community": {
-                "title": "Comunidad de Trabajadores",
-                "description": "Conecta con otros trabajadores y comparte experiencias",
-                "benefit": "Compartí y aprendé"
             }
         },
         "cta": {
             "title": "¿Listo para empezar?",
-            "description": "Únete a miles de trabajadores que ya están usando WorkWise para tomar mejores decisiones laborales.",
+            "description": "Únete a miles de trabajadores que ya están usando WorkWisse para tomar mejores decisiones laborales.",
             "primary": "Ver empresas destacadas",
             "secondary": "Buscar trabajos"
         }
     },
     "testimonials": {
         "title": "Miles de trabajadores ya están <1>tomando mejores decisiones</1>",
-        "description": "Escuchá lo que dicen quienes ya usaron WorkWise para encontrar un trabajo que realmente les gusta.",
+        "description": "Escuchá lo que dicen quienes ya usaron WorkWisse para encontrar un trabajo que realmente les gusta.",
         "stats": {
             "workers": {
                 "value": "50K+",
@@ -241,7 +213,7 @@
                 "name": "María Rodriguez",
                 "role": "Vendedora",
                 "company": "Retail Fashion",
-                "quote": "Gracias a WorkWise pude conocer el ambiente de trabajo antes de aceptar. Ahora sé que elegí bien."
+                "quote": "Gracias a WorkWisse pude conocer el ambiente de trabajo antes de aceptar. Ahora sé que elegí bien."
             },
             "carlos": {
                 "name": "Carlos Mendoza",
@@ -264,11 +236,11 @@
     },
     "faq": {
         "title": "Preguntas <1>frecuentes</1>",
-        "description": "Todo lo que necesitás saber sobre WorkWise. Si tenés alguna otra pregunta, contactanos sin problema.",
+        "description": "Todo lo que necesitás saber sobre WorkWisse. Si tenés alguna otra pregunta, contactanos sin problema.",
         "items": {
             "free": {
-                "question": "¿Es gratis usar WorkWise?",
-                "answer": "Sí, WorkWise es completamente gratuito. Podés ver opiniones, buscar empresas y acceder a información de salarios sin costo alguno."
+                "question": "¿Es gratis usar WorkWisse?",
+                "answer": "Sí, WorkWisse es completamente gratuito. Podés ver opiniones, buscar empresas y acceder a información de salarios sin costo alguno."
             },
             "verification": {
                 "question": "¿Cómo saben que las opiniones son reales?",
@@ -284,7 +256,7 @@
             },
             "addCompany": {
                 "question": "¿Cómo puedo agregar mi empresa a la plataforma?",
-                "answer": "Si tu empresa no está en WorkWise, podés contactarnos y la agregamos. Es simple y rápido."
+                "answer": "Si tu empresa no está en WorkWisse, podés contactarnos y la agregamos. Es simple y rápido."
             },
             "salaryData": {
                 "question": "¿La información de salarios es actual?",
@@ -305,9 +277,7 @@
             "links": {
                 "search": "Buscar empresas",
                 "rankings": "Mejores empresas",
-                "salaries": "Ver salarios",
-                "reviews": "Escribir opinión",
-                "jobs": "Buscar trabajos"
+                "reviews": "Escribir opinión"
             }
         },
         "companies": {
@@ -319,20 +289,13 @@
                 "analytics": "Ver estadísticas"
             }
         },
-        "newsletter": {
-            "title": "Mantenete informado",
-            "description": "Recibí las últimas novedades del mundo laboral y consejos para tu carrera.",
-            "placeholder": "tu-email@ejemplo.com",
-            "button": "Suscribirse"
-        },
         "legal": {
-            "copyright": "© {{year}} WorkWise. Todos los derechos reservados.",
+            "copyright": "© {{year}} WorkWisse. Todos los derechos reservados.",
             "tagline": "Ayudando a trabajadores a tomar mejores decisiones laborales.",
             "about": "Sobre nosotros",
             "privacy": "Privacidad",
             "terms": "Términos",
-            "contact": "Contacto",
-            "help": "Ayuda"
+            "contact": "Contacto"
         }
     },
     "header": {

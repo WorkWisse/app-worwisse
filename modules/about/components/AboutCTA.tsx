@@ -23,14 +23,8 @@ export default function AboutCTA() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
             <Button
               size="lg"
+              variant="solid"
               className="bg-sky-500 text-white hover:bg-sky-600 font-semibold px-8 py-4 text-lg"
-            >
-              {t("about.cta.primaryButton")}
-            </Button>
-            <Button
-              size="lg"
-              variant="bordered"
-              className="border-white text-white hover:bg-white/10 font-semibold px-8 py-4 text-lg"
             >
               {t("about.cta.secondaryButton")}
             </Button>

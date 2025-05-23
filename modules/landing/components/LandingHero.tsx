@@ -10,10 +10,6 @@ export const LandingHero = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-12 gap-y-16 items-center">
           <div className="animate-fade-in-up delay-200">
-            <div className="bg-sky-100 text-sky-700 px-4 py-2 rounded-full text-sm font-semibold inline-block mb-6">
-              {t("hero.badge")}
-            </div>
-
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-800 mb-6 tracking-tight leading-tight">
               <Trans
                 i18nKey="hero.title"
@@ -71,22 +67,6 @@ export const LandingHero = () => {
                 </Button>
               </div>
             </form>
-
-            <div className="flex flex-col sm:flex-row gap-4 mb-8">
-              <Button
-                size="lg"
-                className="bg-white border-2 border-sky-600 text-sky-600 hover:bg-sky-50 font-semibold px-8 shadow-sm"
-              >
-                {t("hero.ctaFeatured")}
-              </Button>
-              <Button
-                size="lg"
-                variant="light"
-                className="text-slate-600 hover:text-slate-800 font-medium"
-              >
-                {t("hero.ctaHowItWorks")}
-              </Button>
-            </div>
 
             <div className="flex items-center gap-6 text-sm text-slate-500">
               <div className="flex items-center gap-2">

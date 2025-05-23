@@ -60,25 +60,6 @@ export default function AboutStats() {
             </div>
           ))}
         </div>
-
-        <div className="mt-16 text-center">
-          <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 max-w-4xl mx-auto">
-            <h3 className="text-2xl font-bold text-white mb-4">
-              {t("about.stats.cta.title")}
-            </h3>
-            <p className="text-sky-100 mb-6 text-lg">
-              {t("about.stats.cta.description")}
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="bg-white text-sky-600 px-8 py-3 rounded-lg font-semibold hover:bg-sky-50 transition-colors">
-                {t("about.stats.cta.primaryButton")}
-              </button>
-              <button className="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white/10 transition-colors">
-                {t("about.stats.cta.secondaryButton")}
-              </button>
-            </div>
-          </div>
-        </div>
       </div>
     </section>
   );
