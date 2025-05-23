@@ -1,14 +1,20 @@
-import { title } from "@/components/primitives";
 import DefaultLayout from "@/layouts/default";
+import AboutHero from "@/modules/about/components/AboutHero";
+import AboutMission from "@/modules/about/components/AboutMission";
+import AboutHistory from "@/modules/about/components/AboutHistory";
+import AboutTeam from "@/modules/about/components/AboutTeam";
+import AboutStats from "@/modules/about/components/AboutStats";
+import AboutCTA from "@/modules/about/components/AboutCTA";
 
-export default function DocsPage() {
+export default function AboutPage() {
   return (
     <DefaultLayout>
-      <section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10">
-        <div className="inline-block max-w-lg text-center justify-center">
-          <h1 className={title()}>About</h1>
-        </div>
-      </section>
+      <AboutHero />
+      <AboutMission />
+      <AboutHistory />
+      <AboutStats />
+      <AboutTeam />
+      <AboutCTA />
     </DefaultLayout>
   );
 }
