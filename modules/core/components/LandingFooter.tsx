@@ -104,11 +104,11 @@ export const LandingFooter = () => {
               {t("footer.description")}
             </p>
             <div className="flex space-x-3">
-              <SocialIcon title="LinkedIn" href="#" />
-              <SocialIcon title="X" href="#" />
-              <SocialIcon title="Instagram" href="#" />
-              <SocialIcon title="Facebook" href="#" />
-              <SocialIcon title="TikTok" href="#" />
+              <SocialIcon title="LinkedIn" href="https://www.linkedin.com/in/workwisse-workwisse-537095368/" />
+              <SocialIcon title="X" href="https://x.com/workwisse" />
+              <SocialIcon title="Instagram" href="https://www.instagram.com/wworkwisse/" />
+              <SocialIcon title="Facebook" href="https://www.facebook.com/profile.php?id=61576610527779" />
+              <SocialIcon title="TikTok" href="https://www.tiktok.com/@workwisse" />
             </div>
           </div>
 
