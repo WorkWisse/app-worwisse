@@ -301,6 +301,93 @@
     "header": {
         "about": "Sobre nosotros",
         "addCompany": "Sumá tu empresa",
-        "language": "Idioma"
+        "language": "Idioma",
+        "contact": "Contacto"
+    },
+    "contact": {
+        "hero": {
+            "title": "Ponete en <1>contacto</1>",
+            "description": "Nos encantaría escucharte. Envianos un mensaje y te responderemos lo antes posible.",
+            "email": "Email",
+            "phone": "Teléfono",
+            "office": "Oficina",
+            "emailAddress": "hola@worwisse.com",
+            "phoneNumber": "+54 11 1234-5678",
+            "officeAddress": "Av. Corrientes 1234<br />Piso 5, CABA, Argentina"
+        },
+        "form": {
+            "title": "Envianos un mensaje",
+            "description": "¿Tenés alguna pregunta o querés trabajar con nosotros? Nos encantaría escucharte. Completá el formulario y te responderemos lo antes posible.",
+            "fields": {
+                "name": {
+                    "label": "Nombre completo",
+                    "placeholder": "Ingresá tu nombre completo"
+                },
+                "email": {
+                    "label": "Dirección de email",
+                    "placeholder": "Ingresá tu email"
+                },
+                "subject": {
+                    "label": "Asunto",
+                    "placeholder": "¿De qué se trata?"
+                },
+                "message": {
+                    "label": "Mensaje",
+                    "placeholder": "Contanos más sobre tu consulta..."
+                }
+            },
+            "button": {
+                "send": "Enviar mensaje",
+                "sending": "Enviando..."
+            }
+        },
+        "faq": {
+            "title": "Preguntas frecuentes",
+            "description": "¿Tenés preguntas? Tenemos respuestas. Revisá nuestras preguntas más comunes.",
+            "items": {
+                "response": {
+                    "question": "¿Qué tan rápido responden a las consultas?",
+                    "answer": "Típicamente respondemos a todas las consultas dentro de las 24 horas en días hábiles. Para asuntos urgentes, por favor llamanos directamente."
+                },
+                "information": {
+                    "question": "¿Qué información debería incluir en mi mensaje?",
+                    "answer": "Por favor incluí todos los detalles posibles sobre tu proyecto o consulta, incluyendo cronograma, presupuesto y requerimientos específicos."
+                },
+                "consultation": {
+                    "question": "¿Ofrecen consultas gratuitas?",
+                    "answer": "Sí, ofrecemos una consulta gratuita de 30 minutos para discutir tu proyecto y cómo podemos ayudarte a lograr tus objetivos."
+                },
+                "hours": {
+                    "question": "¿Cuáles son sus horarios de atención?",
+                    "answer": "Estamos abiertos de lunes a viernes de 9:00 a 18:00, y sábados de 10:00 a 16:00. Los domingos estamos cerrados."
+                }
+            }
+        },
+        "map": {
+            "title": "Visitá nuestra oficina",
+            "description": "Vení a conocernos en persona. Estamos ubicados en el corazón de la ciudad con fácil acceso al transporte público.",
+            "address": {
+                "title": "Dirección",
+                "street": "Av. Corrientes 1234",
+                "suite": "Piso 5",
+                "city": "Buenos Aires, CABA 1043"
+            },
+            "hours": {
+                "title": "Horarios de atención",
+                "weekdays": "Lunes - Viernes: 9:00 - 18:00",
+                "saturday": "Sábado: 10:00 - 16:00",
+                "sunday": "Domingo: Cerrado"
+            },
+            "transport": {
+                "title": "Transporte",
+                "subway": "Subte: 2 cuadras de Estación Carlos Pellegrini",
+                "bus": "Colectivos: Múltiples líneas cercanas",
+                "parking": "Estacionamiento: Disponible en el edificio"
+            },
+            "mapPlaceholder": {
+                "title": "Mapa interactivo",
+                "subtitle": "Integración de mapa próximamente"
+            }
+        }
     }
 }
