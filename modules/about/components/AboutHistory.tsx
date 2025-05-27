@@ -26,7 +26,7 @@ export default function AboutHistory() {
   const { t } = useTranslation();
 
   return (
-    <section className="py-20 px-4 bg-white">
+    <section id="history" className="py-20 px-4 bg-white">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16 animate-fade-in-up">
           <h2 className="text-4xl lg:text-5xl font-bold text-slate-900 mb-6">

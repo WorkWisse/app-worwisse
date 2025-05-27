@@ -4,6 +4,16 @@ import { useTranslation, Trans } from "react-i18next";
 export default function AboutHero() {
   const { t } = useTranslation();
 
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start',
+      });
+    }
+  };
+
   return (
     <section className="relative bg-gradient-to-br from-slate-50 to-sky-100 py-20 px-4">
       <div className="max-w-7xl mx-auto">
@@ -28,6 +38,7 @@ export default function AboutHero() {
               <Button
                 size="lg"
                 className="bg-sky-600 text-white hover:bg-sky-700 font-semibold px-8"
+                onClick={() => scrollToSection('team')}
               >
                 {t("about.hero.ctaTeam")}
               </Button>
@@ -35,6 +46,7 @@ export default function AboutHero() {
                 size="lg"
                 variant="bordered"
                 className="border-sky-600 text-sky-600 hover:bg-sky-50 font-semibold px-8"
+                onClick={() => scrollToSection('history')}
               >
                 {t("about.hero.ctaHistory")}
               </Button>

@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { Button } from "@heroui/button";
+import { Link } from "@heroui/link";
 import { useTranslation, Trans } from "react-i18next";
 
 interface FAQItem {
@@ -77,9 +79,8 @@ export const LandingFAQ = () => {
                 </h3>
                 <div className="flex-shrink-0">
                   <svg
-                    className={`w-6 h-6 text-slate-500 transition-transform duration-300 ${
-                      openItems.includes(index) ? "rotate-180" : ""
-                    }`}
+                    className={`w-6 h-6 text-slate-500 transition-transform duration-300 ${openItems.includes(index) ? "rotate-180" : ""
+                      }`}
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
@@ -115,12 +116,13 @@ export const LandingFAQ = () => {
             </h3>
             <p className="text-slate-600 mb-6">{t("faq.cta.description")}</p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="bg-sky-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-sky-700 transition-colors">
+              <Button
+                as={Link}
+                href="/contact"
+                className="bg-sky-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-sky-700 transition-colors"
+              >
                 {t("faq.cta.primary")}
-              </button>
-              <button className="border-2 border-slate-300 text-slate-700 px-6 py-3 rounded-lg font-semibold hover:bg-slate-50 transition-colors">
-                {t("faq.cta.secondary")}
-              </button>
+              </Button>
             </div>
           </div>
         </div>
