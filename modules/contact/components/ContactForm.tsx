@@ -30,16 +30,16 @@ export default function ContactForm() {
   };
 
   return (
-    <section className="py-20 px-4 bg-white">
+    <section className="py-14 px-4 bg-white">
       <div className="max-w-4xl mx-auto">
-        <div className="text-center mb-16">
+        {/* <div className="text-center mb-16">
           <h2 className="text-4xl font-bold text-slate-900 mb-4">
             {t("contact.form.title")}
           </h2>
           <p className="text-lg text-slate-600 max-w-2xl mx-auto">
             {t("contact.form.description")}
           </p>
-        </div>
+        </div> */}
 
         <Card className="p-8 shadow-xl">
           <form onSubmit={handleSubmit} className="space-y-6">

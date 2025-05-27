@@ -317,7 +317,7 @@
         },
         "form": {
             "title": "Envie-nos uma mensagem",
-            "description": "Tem alguma pergunta ou quer trabalhar conosco? Adoraríamos ouvir de você. Preencha o formulário e responderemos o mais breve possível.",
+            "description": "Tem alguma pergunta ou sugestão? Adoraríamos ouvir de você. Preencha o formulário e responderemos o mais breve possível.",
             "fields": {
                 "name": {
                     "label": "Nome completo",
@@ -340,54 +340,6 @@
                 "send": "Enviar mensagem",
                 "sending": "Enviando..."
             }
-        },
-        "faq": {
-            "title": "Perguntas frequentes",
-            "description": "Tem perguntas? Temos respostas. Confira nossas perguntas mais comuns.",
-            "items": {
-                "response": {
-                    "question": "Quão rápido vocês respondem às consultas?",
-                    "answer": "Tipicamente respondemos a todas as consultas dentro de 24 horas em dias úteis. Para assuntos urgentes, por favor nos ligue diretamente."
-                },
-                "information": {
-                    "question": "Que informações devo incluir na minha mensagem?",
-                    "answer": "Por favor inclua o máximo de detalhes possível sobre seu projeto ou consulta, incluindo cronograma, orçamento e requisitos específicos."
-                },
-                "consultation": {
-                    "question": "Vocês oferecem consultas gratuitas?",
-                    "answer": "Sim, oferecemos uma consulta gratuita de 30 minutos para discutir seu projeto e como podemos ajudá-lo a alcançar seus objetivos."
-                },
-                "hours": {
-                    "question": "Quais são seus horários de atendimento?",
-                    "answer": "Estamos abertos de segunda a sexta das 9:00 às 18:00, e sábados das 10:00 às 16:00. Aos domingos estamos fechados."
-                }
-            }
-        },
-        "map": {
-            "title": "Visite nosso escritório",
-            "description": "Venha nos conhecer pessoalmente. Estamos localizados no coração da cidade com fácil acesso ao transporte público.",
-            "address": {
-                "title": "Endereço",
-                "street": "Av. Paulista 1234",
-                "suite": "Andar 5",
-                "city": "São Paulo, SP 01310-100"
-            },
-            "hours": {
-                "title": "Horários de atendimento",
-                "weekdays": "Segunda - Sexta: 9:00 - 18:00",
-                "saturday": "Sábado: 10:00 - 16:00",
-                "sunday": "Domingo: Fechado"
-            },
-            "transport": {
-                "title": "Transporte",
-                "subway": "Metrô: 2 quadras da Estação Trianon-MASP",
-                "bus": "Ônibus: Múltiplas linhas próximas",
-                "parking": "Estacionamento: Disponível no prédio"
-            },
-            "mapPlaceholder": {
-                "title": "Mapa interativo",
-                "subtitle": "Integração de mapa em breve"
-            }
-        }
+        }        
     }
 }

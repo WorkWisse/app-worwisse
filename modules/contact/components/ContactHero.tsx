@@ -17,11 +17,13 @@ export default function ContactHero() {
               />
             </h1>
             <p className="text-xl text-slate-600 leading-relaxed max-w-3xl mx-auto">
-              {t("contact.hero.description")}
+              {t("contact.form.description")}
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8 mt-16">
+          {/* TODO: VER SI ESTO VA */}
+
+          {/* <div className="grid md:grid-cols-2 gap-8 mt-16">
             <div className="text-center space-y-4">
               <div className="w-16 h-16 bg-sky-100 rounded-full flex items-center justify-center mx-auto">
                 <svg
@@ -69,42 +71,7 @@ export default function ContactHero() {
               </h3>
               <p className="text-slate-600">{t("contact.hero.phoneNumber")}</p>
             </div>
-
-            <div className="text-center space-y-4">
-              <div className="w-16 h-16 bg-sky-100 rounded-full flex items-center justify-center mx-auto">
-                <svg
-                  className="w-8 h-8 text-sky-600"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  aria-label="Office icon"
-                >
-                  <title>Office icon</title>
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
-                  />
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
-                  />
-                </svg>
-              </div>
-              <h3 className="text-xl font-semibold text-slate-900">
-                {t("contact.hero.office")}
-              </h3>
-              <p
-                className="text-slate-600"
-                dangerouslySetInnerHTML={{
-                  __html: t("contact.hero.officeAddress"),
-                }}
-              />
-            </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </section>
