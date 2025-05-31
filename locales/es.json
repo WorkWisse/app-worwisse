@@ -341,5 +341,162 @@
                 "sending": "Enviando..."
             }
         }
+    },
+    "addCompany": {
+        "title": "Agregar empresa",
+        "description": "Necesitamos algunos datos básicos para que puedas agregar la empresa y calificarla.",
+        "form": {
+            "companyName": {
+                "label": "Nombre de la empresa",
+                "placeholder": "Ej: TechCorp SA"
+            },
+            "industry": {
+                "label": "Industria o Sector",
+                "placeholder": "Seleccionar industria",
+                "options": {
+                    "tech": "Tecnología",
+                    "finance": "Finanzas",
+                    "healthcare": "Salud",
+                    "education": "Educación",
+                    "retail": "Retail",
+                    "manufacturing": "Manufactura",
+                    "consulting": "Consultoría",
+                    "marketing": "Marketing",
+                    "real-estate": "Inmobiliaria",
+                    "logistics": "Logística",
+                    "other": "Otro"
+                }
+            },
+            "website": {
+                "label": "Sitio Web",
+                "placeholder": "https://empresa.com"
+            },
+            "country": {
+                "label": "País de la empresa",
+                "placeholder": "Seleccionar país",
+                "options": {
+                    "ar": "Argentina",
+                    "br": "Brasil",
+                    "cl": "Chile",
+                    "co": "Colombia",
+                    "mx": "México",
+                    "pe": "Perú",
+                    "uy": "Uruguay",
+                    "other": "Otro"
+                }
+            },
+            "region": {
+                "labels": {
+                    "ar": "Provincia",
+                    "br": "Estado",
+                    "cl": "Región",
+                    "co": "Departamento",
+                    "mx": "Estado",
+                    "pe": "Departamento",
+                    "uy": "Departamento",
+                    "default": "Estado/Provincia"
+                },
+                "placeholders": {
+                    "ar": "Seleccionar provincia",
+                    "br": "Seleccionar estado",
+                    "cl": "Seleccionar región",
+                    "co": "Seleccionar departamento",
+                    "mx": "Seleccionar estado",
+                    "pe": "Seleccionar departamento",
+                    "uy": "Seleccionar departamento",
+                    "default": "Primero selecciona el país"
+                }
+            },
+            "benefits": {
+                "label": "Beneficios y cultura laboral",
+                "placeholder": "Describe los beneficios, cultura laboral, modalidad de trabajo, horarios flexibles, capacitaciones, etc..."
+            },
+            "terms": {
+                "label": "He leído y acepto las",
+                "link": "normas de convivencia",
+                "suffix": "de la plataforma"
+            },
+            "submitButton": "Agregar empresa",
+            "submitting": "Agregando empresa..."
+        },
+        "sidebar": {
+            "experience": {
+                "title": "Tu experiencia importa",
+                "description": "Tu opinión ayuda a otras personas a tomar mejores decisiones laborales."
+            },
+            "rules": {
+                "title": "Normas de convivencia:",
+                "items": [
+                    "No menciones nombres específicos de personas",
+                    "Evita contenido agresivo o discriminatorio",
+                    "No compartas información confidencial"
+                ]
+            },
+            "impact": {
+                "title": "Impacto de tu contribución",
+                "stats": {
+                    "companies": "Empresas agregadas:",
+                    "users": "Usuarios activos:",
+                    "reviews": "Reseñas totales:"
+                }
+            }
+        },
+        "messages": {
+            "termsRequired": "Debes aceptar las normas de convivencia para continuar",
+            "success": "¡Empresa agregada exitosamente! Será revisada por nuestro equipo."
+        }
+    },
+    "terms": {
+        "hero": {
+            "badge": "Normas de convivencia",
+            "title": "Normas de convivencia",
+            "subtitle": "Construimos juntos una comunidad laboral respetuosa, transparente y colaborativa donde todos puedan compartir sus experiencias de forma segura.",
+            "lastUpdated": "Última actualización: Mayo 2025",
+            "readTime": "Tiempo de lectura: 5 minutos"
+        },
+        "content": {
+            "mainTitle": "Principios de nuestra comunidad",
+            "mainSubtitle": "Estas normas garantizan un espacio seguro y constructivo para todos los usuarios de WorkWisse",
+            "purpose": {
+                "title": "Propósito de la plataforma",
+                "content": "WorkWisse es un espacio para compartir experiencias laborales genuinas que ayuden a otros trabajadores a tomar decisiones informadas. Buscamos crear una comunidad donde la transparencia y el respeto mutuo sean los pilares fundamentales."
+            },
+            "respect": {
+                "title": "Respeto y civismo",
+                "content": "Tratamos a todos los miembros de la comunidad con respeto, independientemente de su posición, empresa o experiencia. No toleramos discriminación por género, edad, orientación sexual, religión, nacionalidad, raza o cualquier otra característica personal. Las diferencias de opinión deben expresarse de manera constructiva y respetuosa."
+            },
+            "privacy": {
+                "title": "Privacidad y anonimato",
+                "content": "Respetamos la privacidad de todos los usuarios. No reveles nombres completos de personas específicas (compañeros, jefes, clientes). Evita compartir información personal identificable propia o de terceros. Mantén la confidencialidad de información sensible de las empresas que pueda comprometer su competitividad o violar acuerdos de confidencialidad."
+            },
+            "accuracy": {
+                "title": "Veracidad y autenticidad",
+                "content": "Comparte solo experiencias reales y verificables. Basa tus opiniones en hechos concretos y experiencias personales. Evita exageraciones o distorsiones que puedan mislead a otros usuarios. Si compartes información de segunda mano, especifícalo claramente."
+            },
+            "prohibited": {
+                "title": "Contenido prohibido",
+                "content": "No está permitido: lenguaje ofensivo, amenazante o discriminatorio; contenido que promueva actividades ilegales; spam, publicidad no autorizada o contenido comercial; información falsa, difamatoria o malintencionada; contenido que viole derechos de autor o propiedad intelectual; acoso, intimidación o ataques personales."
+            },
+            "consequences": {
+                "title": "Consecuencias del incumplimiento",
+                "content": "El incumplimiento de estas normas puede resultar en: eliminación temporal o permanente de contenido."
+            },
+            "important": {
+                "title": "Importante recordar",
+                "content": "Estas normas están diseñadas para proteger a toda la comunidad. Si ves contenido que viola estas normas, repórtalo inmediatamente. Nuestro equipo revisa todos los reportes y toma acciones apropiadas."
+            },
+            "contact": {
+                "title": "¿Dudas o consultas?",
+                "content": "Si tienes preguntas sobre estas normas o necesitas reportar contenido inapropiado, no dudes en",
+                "link": "contactarnos"
+            }
+        },
+        "cta": {
+            "title": "¿Listo para contribuir?",
+            "subtitle": "Únete a nuestra comunidad y ayuda a otros trabajadores compartiendo tu experiencia de forma responsable y constructiva.",
+            "addCompanyButton": "Agregar empresa",
+            "backHomeButton": "Volver al inicio",
+            "footer": "Al usar WorkWisse, aceptas cumplir con estas normas de convivencia."
+        }
     }
 }

@@ -8,7 +8,7 @@ import { LanguageSelector } from "./LanguageSelector";
 const Logo = () => (
   <img
     src="https://picsum.photos/seed/workwisselogo/40/40" // Seeded for consistency
-    alt="Workwisse Logo Placeholder"
+    alt="WorkWisse Logo Placeholder"
     className="h-8 w-8 mr-2 rounded-full group-hover:opacity-90 transition-opacity duration-300"
   />
 );
@@ -41,7 +41,7 @@ export const LandingHeader = () => {
             <Link
               href="/"
               className="flex items-center text-2xl font-semibold text-slate-800 group transition-opacity duration-300 hover:opacity-80"
-              aria-label="Workwisse Home"
+              aria-label="WorkWisse Home"
             >
               <Logo />
               WorkWisse
@@ -105,9 +105,8 @@ export const LandingHeader = () => {
 
           {/* Mobile Navigation Menu */}
           <div
-            className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${
-              isMenuOpen ? "max-h-80 opacity-100" : "max-h-0 opacity-0"
-            }`}
+            className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${isMenuOpen ? "max-h-80 opacity-100" : "max-h-0 opacity-0"
+              }`}
           >
             <nav className="py-4 border-t border-slate-200 mt-4 bg-white relative z-50">
               <div className="flex flex-col space-y-2">
