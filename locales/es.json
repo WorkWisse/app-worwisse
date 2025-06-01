@@ -343,7 +343,7 @@
         }
     },
     "addCompany": {
-        "title": "Agregar empresa",
+        "title": "Agregar <1>empresa</1>",
         "description": "Necesitamos algunos datos básicos para que puedas agregar la empresa y calificarla.",
         "form": {
             "companyName": {
@@ -449,7 +449,7 @@
     "terms": {
         "hero": {
             "badge": "Normas de convivencia",
-            "title": "Normas de convivencia",
+            "title": "Normas de <1>convivencia</1>",
             "subtitle": "Construimos juntos una comunidad laboral respetuosa, transparente y colaborativa donde todos puedan compartir sus experiencias de forma segura.",
             "lastUpdated": "Última actualización: Mayo 2025",
             "readTime": "Tiempo de lectura: 5 minutos"

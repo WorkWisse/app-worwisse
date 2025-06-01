@@ -4,7 +4,7 @@ import { Input } from "@heroui/input";
 import { Card } from "@heroui/card";
 import { Select, SelectItem } from "@heroui/select";
 import { Textarea } from "@heroui/input";
-import { useTranslation } from "react-i18next";
+import { Trans, useTranslation } from "react-i18next";
 
 export default function AddCompanyForm() {
     const { t } = useTranslation();
@@ -315,19 +315,22 @@ export default function AddCompanyForm() {
                     {/* Formulario - Más compacto */}
                     <div className="xl:col-span-3">
                         <div className="mb-6 lg:mb-8">
-                            <h1 className="text-3xl lg:text-4xl xl:text-5xl font-bold text-slate-900 mb-3 lg:mb-4 leading-tight">
-                                {t("addCompany.title")}
+                            <h1 className="text-center text-3xl lg:text-6xl font-bold text-slate-900 mb-3 lg:mb-4 leading-tight">
+                                <Trans
+                                    i18nKey="addCompany.title"
+                                    components={{ 1: <span className="text-sky-600" /> }}
+                                />
                             </h1>
-                            <p className="text-base lg:text-lg text-slate-600 leading-relaxed max-w-2xl">
+                            <p className="text-center text-base lg:text-lg text-slate-600 leading-relaxed ">
                                 {t("addCompany.description")}
                             </p>
                         </div>
 
                         <Card className="p-6 lg:p-8 xl:p-10 shadow-xl bg-white/95 backdrop-blur-sm border border-white/20">
                             <form onSubmit={handleSubmit} className="space-y-6">
-                                {/* Grid más compacto para campos */}
-                                <div className="grid lg:grid-cols-2 xl:grid-cols-3 gap-4 lg:gap-6">
-                                    <div className="xl:col-span-1">
+                                {/* Primera row: Nombre e Industria */}
+                                <div className="grid lg:grid-cols-2 gap-4 lg:gap-6">
+                                    <div>
                                         <Input
                                             label={t("addCompany.form.companyName.label")}
                                             placeholder={t("addCompany.form.companyName.placeholder")}
@@ -344,7 +347,7 @@ export default function AddCompanyForm() {
                                         />
                                     </div>
 
-                                    <div className="xl:col-span-1">
+                                    <div>
                                         <Select
                                             label={t("addCompany.form.industry.label")}
                                             placeholder={t("addCompany.form.industry.placeholder")}
@@ -367,8 +370,11 @@ export default function AddCompanyForm() {
                                             ))}
                                         </Select>
                                     </div>
+                                </div>
 
-                                    <div className="xl:col-span-1">
+                                {/* Segunda row: Sitio Web (solo ocupa la mitad) */}
+                                <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-6">
+                                    <div>
                                         <Input
                                             label={t("addCompany.form.website.label")}
                                             placeholder={t("addCompany.form.website.placeholder")}
@@ -384,9 +390,10 @@ export default function AddCompanyForm() {
                                             }}
                                         />
                                     </div>
+                                    <div className="hidden lg:block"></div> {/* Espacio vacío para mantener la estructura */}
                                 </div>
 
-                                {/* Ubicación en grid separado */}
+                                {/* Tercera row: País y Estado/Provincia */}
                                 <div className="grid lg:grid-cols-2 gap-4 lg:gap-6">
                                     <Select
                                         label={t("addCompany.form.country.label")}
@@ -436,7 +443,7 @@ export default function AddCompanyForm() {
                                     </Select>
                                 </div>
 
-                                {/* Beneficios más compacto */}
+                                {/* Cuarta row: Beneficios y cultura laboral */}
                                 <div className="space-y-2">
                                     <label
                                         htmlFor="benefits"
@@ -454,7 +461,7 @@ export default function AddCompanyForm() {
                                     />
                                 </div>
 
-                                {/* Términos más compacto */}
+                                {/* Quinta row: He leído y acepto... */}
                                 <div className="flex items-start gap-3 p-4 bg-slate-50 rounded-lg border border-slate-200">
                                     <input
                                         type="checkbox"
