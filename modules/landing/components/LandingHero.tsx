@@ -87,11 +87,11 @@ export const LandingHero = () => {
           <div className="hidden lg:flex justify-center items-center animate-slide-in-right delay-300">
             <div className="relative">
               <img
-                src="https://picsum.photos/seed/workwissehero/600/400"
+                src="/images/community.jpg"
                 alt="Trabajadores tomando decisiones informadas"
                 className="w-full max-w-lg h-auto object-cover rounded-2xl shadow-2xl"
               />
-              <div className="absolute -bottom-6 -left-6 bg-white rounded-lg shadow-xl p-4 max-w-xs">
+              {/* <div className="absolute -bottom-6 -left-6 bg-white rounded-lg shadow-xl p-4 max-w-xs">
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center">
                     <svg
@@ -116,9 +116,9 @@ export const LandingHero = () => {
                     </p>
                   </div>
                 </div>
-              </div>
+              </div> */}
 
-              <div className="absolute -top-6 -right-6 bg-white rounded-lg shadow-xl p-4 max-w-xs">
+              {/* <div className="absolute -top-6 -right-6 bg-white rounded-lg shadow-xl p-4 max-w-xs">
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
                     <svg
@@ -139,7 +139,7 @@ export const LandingHero = () => {
                     </p>
                   </div>
                 </div>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>
