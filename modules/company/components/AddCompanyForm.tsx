@@ -341,7 +341,7 @@ export default function AddCompanyForm() {
                                             variant="bordered"
                                             classNames={{
                                                 input: "text-slate-900",
-                                                label: "text-slate-700 font-medium text-sm",
+                                                label: "text-slate-700 font-medium text-md",
                                                 inputWrapper: "min-h-[48px]",
                                             }}
                                         />
@@ -359,7 +359,7 @@ export default function AddCompanyForm() {
                                             size="md"
                                             variant="bordered"
                                             classNames={{
-                                                label: "text-slate-700 font-medium text-sm",
+                                                label: "text-slate-700 font-medium text-md",
                                                 trigger: "border-slate-300 min-h-[48px]",
                                             }}
                                         >
@@ -385,7 +385,7 @@ export default function AddCompanyForm() {
                                             variant="bordered"
                                             classNames={{
                                                 input: "text-slate-900",
-                                                label: "text-slate-700 font-medium text-sm",
+                                                label: "text-slate-700 font-medium text-md",
                                                 inputWrapper: "min-h-[48px]",
                                             }}
                                         />
@@ -406,7 +406,7 @@ export default function AddCompanyForm() {
                                         size="md"
                                         variant="bordered"
                                         classNames={{
-                                            label: "text-slate-700 font-medium text-sm",
+                                            label: "text-slate-700 font-medium text-md",
                                             trigger: "border-slate-300 min-h-[48px]",
                                         }}
                                     >
@@ -428,7 +428,7 @@ export default function AddCompanyForm() {
                                         size="md"
                                         variant="bordered"
                                         classNames={{
-                                            label: "text-slate-700 font-medium text-sm",
+                                            label: "text-slate-700 font-medium text-md",
                                             trigger: "border-slate-300 min-h-[48px]",
                                         }}
                                         isDisabled={!formData.country || formData.country === "other"}
@@ -447,7 +447,7 @@ export default function AddCompanyForm() {
                                 <div className="space-y-2">
                                     <label
                                         htmlFor="benefits"
-                                        className="block text-slate-700 font-medium text-sm"
+                                        className="block text-slate-700 font-medium text-md"
                                     >
                                         {t("addCompany.form.benefits.label")}
                                     </label>
@@ -470,7 +470,7 @@ export default function AddCompanyForm() {
                                         onChange={(e) => setAcceptedTerms(e.target.checked)}
                                         className="mt-0.5 w-4 h-4 text-sky-600 border-slate-300 rounded focus:ring-sky-500"
                                     />
-                                    <label htmlFor="terms" className="text-sm text-slate-600 leading-relaxed">
+                                    <label htmlFor="terms" className="text-md text-slate-600 leading-relaxed">
                                         {t("addCompany.form.terms.label")}{" "}
                                         <a
                                             href="/terms"
@@ -503,14 +503,14 @@ export default function AddCompanyForm() {
                             <h3 className="text-lg lg:text-xl font-bold text-slate-900 mb-3">
                                 {t("addCompany.sidebar.experience.title")}
                             </h3>
-                            <p className="text-slate-600 mb-4 leading-relaxed text-sm">
+                            <p className="text-slate-600 mb-4 leading-relaxed text-md">
                                 {t("addCompany.sidebar.experience.description")}
                             </p>
                             <div className="space-y-3">
                                 <h4 className="font-bold text-slate-900">
                                     {t("addCompany.sidebar.rules.title")}
                                 </h4>
-                                <ul className="space-y-2 text-sm text-slate-600">
+                                <ul className="space-y-2 text-md text-slate-600">
                                     <li className="flex items-start gap-2">
                                         <span className="text-green-600 font-bold">•</span>
                                         <span>{t("addCompany.sidebar.rules.items.0")}</span>
