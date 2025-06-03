@@ -30,18 +30,18 @@ export default function ContactForm() {
   };
 
   return (
-    <section className="py-14 px-4 bg-white">
+    <section className="py-14 px-4 bg-white dark:bg-slate-900 transition-colors duration-200">
       <div className="max-w-4xl mx-auto">
         {/* <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-slate-900 mb-4">
+          <h2 className="text-4xl font-bold text-slate-900 dark:text-white mb-4">
             {t("contact.form.title")}
           </h2>
-          <p className="text-lg text-slate-600 max-w-2xl mx-auto">
+          <p className="text-lg text-slate-600 dark:text-slate-300 max-w-2xl mx-auto">
             {t("contact.form.description")}
           </p>
         </div> */}
 
-        <Card className="p-8 shadow-xl">
+        <Card className="p-8 shadow-xl bg-white dark:bg-slate-800 border dark:border-slate-700">
           <form onSubmit={handleSubmit} className="space-y-6">
             <div className="grid md:grid-cols-2 gap-6">
               <Input
@@ -53,8 +53,8 @@ export default function ContactForm() {
                 size="lg"
                 variant="bordered"
                 classNames={{
-                  input: "text-slate-900",
-                  label: "text-slate-700 font-medium",
+                  input: "text-slate-900 dark:text-white",
+                  label: "text-slate-700 dark:text-slate-300 font-medium",
                 }}
               />
               <Input
@@ -67,8 +67,8 @@ export default function ContactForm() {
                 size="lg"
                 variant="bordered"
                 classNames={{
-                  input: "text-slate-900",
-                  label: "text-slate-700 font-medium",
+                  input: "text-slate-900 dark:text-white",
+                  label: "text-slate-700 dark:text-slate-300 font-medium",
                 }}
               />
             </div>
@@ -82,15 +82,15 @@ export default function ContactForm() {
               size="lg"
               variant="bordered"
               classNames={{
-                input: "text-slate-900",
-                label: "text-slate-700 font-medium",
+                input: "text-slate-900 dark:text-white",
+                label: "text-slate-700 dark:text-slate-300 font-medium",
               }}
             />
 
             <div className="space-y-2">
               <label
                 htmlFor="message"
-                className="block text-slate-700 font-medium text-sm"
+                className="block text-slate-700 dark:text-slate-300 font-medium text-sm"
               >
                 {t("contact.form.fields.message.label")}
               </label>
@@ -101,7 +101,7 @@ export default function ContactForm() {
                 onChange={(e) => handleChange("message", e.target.value)}
                 required
                 rows={6}
-                className="w-full px-4 py-3 border-2 border-slate-200 rounded-lg focus:border-sky-500 focus:outline-none resize-none text-slate-900 placeholder-slate-400"
+                className="w-full px-4 py-3 border-2 border-slate-200 dark:border-slate-600 rounded-lg focus:border-sky-500 dark:focus:border-sky-400 focus:outline-none resize-none text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 bg-white dark:bg-slate-800 transition-colors duration-200"
               />
             </div>
 
@@ -109,7 +109,7 @@ export default function ContactForm() {
               <Button
                 type="submit"
                 size="lg"
-                className="bg-sky-600 text-white hover:bg-sky-700 font-semibold px-12 py-3"
+                className="bg-sky-600 dark:bg-sky-600 text-white hover:bg-sky-700 dark:hover:bg-sky-700 font-semibold px-12 py-3 transition-colors duration-200"
                 disabled={isSubmitting}
               >
                 {isSubmitting

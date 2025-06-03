@@ -12,13 +12,13 @@ export default function ContactFAQ() {
   const faqKeys = ["response", "information", "consultation", "hours"];
 
   return (
-    <section className="py-20 px-4 bg-white">
+    <section className="py-20 px-4 bg-white dark:bg-slate-900 transition-colors duration-200">
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-slate-900 mb-4">
+          <h2 className="text-4xl font-bold text-slate-900 dark:text-white mb-4">
             {t("contact.faq.title")}
           </h2>
-          <p className="text-lg text-slate-600 max-w-2xl mx-auto">
+          <p className="text-lg text-slate-600 dark:text-slate-300 max-w-2xl mx-auto">
             {t("contact.faq.description")}
           </p>
         </div>
@@ -27,18 +27,18 @@ export default function ContactFAQ() {
           {faqKeys.map((faqKey, index) => (
             <div
               key={index}
-              className="border border-slate-200 rounded-lg overflow-hidden"
+              className="border border-slate-200 dark:border-slate-700 rounded-lg overflow-hidden"
             >
               <button
-                className="w-full px-6 py-4 text-left bg-slate-50 hover:bg-slate-100 transition-colors duration-200 flex justify-between items-center"
+                className="w-full px-6 py-4 text-left bg-slate-50 dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors duration-200 flex justify-between items-center"
                 onClick={() => toggleFAQ(index)}
                 aria-expanded={openIndex === index}
               >
-                <span className="font-semibold text-slate-900">
+                <span className="font-semibold text-slate-900 dark:text-white">
                   {t(`contact.faq.items.${faqKey}.question`)}
                 </span>
                 <svg
-                  className={`w-5 h-5 text-slate-500 transition-transform duration-200 ${
+                  className={`w-5 h-5 text-slate-500 dark:text-slate-400 transition-transform duration-200 ${
                     openIndex === index ? "rotate-180" : ""
                   }`}
                   fill="none"
@@ -56,8 +56,8 @@ export default function ContactFAQ() {
                 </svg>
               </button>
               {openIndex === index && (
-                <div className="px-6 py-4 bg-white">
-                  <p className="text-slate-600 leading-relaxed">
+                <div className="px-6 py-4 bg-white dark:bg-slate-900">
+                  <p className="text-slate-600 dark:text-slate-300 leading-relaxed">
                     {t(`contact.faq.items.${faqKey}.answer`)}
                   </p>
                 </div>

@@ -168,18 +168,18 @@ export const LandingMainContent = () => {
   };
 
   return (
-    <section className="py-20 sm:py-28 bg-slate-100">
+    <section className="py-20 sm:py-28 bg-slate-100 dark:bg-slate-900 transition-colors duration-200">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 lg:gap-12 items-start">
           {/* Top 5 Companies */}
           <div className="lg:col-span-1 space-y-6 animate-fade-in-up delay-300">
             <div className="flex justify-between items-center">
-              <h2 className="text-3xl font-bold text-slate-800 tracking-tight">
+              <h2 className="text-3xl font-bold text-slate-800 dark:text-slate-200 tracking-tight transition-colors duration-200">
                 Empresas Destacadas
               </h2>
               <Link
                 href="/rankings"
-                className="text-sm font-medium text-sky-600 hover:text-sky-700 flex items-center transition-colors duration-300"
+                className="text-sm font-medium text-sky-600 dark:text-sky-400 hover:text-sky-700 dark:hover:text-sky-300 flex items-center transition-colors duration-300"
               >
                 Ver Todas
                 <ChevronRightIcon className="h-4 w-4 ml-1" />
@@ -191,11 +191,11 @@ export const LandingMainContent = () => {
                 as={Link}
                 href={company.href}
                 isPressable
-                className="shadow-lg hover:shadow-xl transition-all duration-300 ease-out transform hover:-translate-y-1 bg-white rounded-xl overflow-hidden w-full group"
+                className="shadow-lg hover:shadow-xl transition-all duration-300 ease-out transform hover:-translate-y-1 bg-white dark:bg-slate-800 rounded-xl overflow-hidden w-full group"
               >
                 <CardBody className="p-5">
                   <div className="flex items-center space-x-4">
-                    <span className="text-xl font-semibold text-slate-400 w-5 text-center">
+                    <span className="text-xl font-semibold text-slate-400 dark:text-slate-500 w-5 text-center transition-colors duration-200">
                       {company.rank}.
                     </span>
                     <img
@@ -205,12 +205,12 @@ export const LandingMainContent = () => {
                     />
                     <div className="flex-grow min-w-0">
                       <h3
-                        className="font-semibold text-slate-800 truncate group-hover:text-sky-600 transition-colors"
+                        className="font-semibold text-slate-800 dark:text-slate-200 truncate group-hover:text-sky-600 dark:group-hover:text-sky-400 transition-colors"
                         title={company.name}
                       >
                         {company.name}
                       </h3>
-                      <div className="flex items-center text-sm text-slate-500">
+                      <div className="flex items-center text-sm text-slate-500 dark:text-slate-400 transition-colors duration-200">
                         <StarIcon className="h-4 w-4 text-yellow-400 mr-1" />
                         <span>
                           {company.rating.toFixed(1)} ({company.reviews}{" "}
@@ -227,7 +227,7 @@ export const LandingMainContent = () => {
           {/* Latest Reviews */}
           <div className="lg:col-span-2 space-y-8 animate-fade-in-up delay-500 overflow-x-hidden">
             <div className="flex justify-between items-center">
-              <h2 className="text-3xl font-bold text-slate-800 tracking-tight">
+              <h2 className="text-3xl font-bold text-slate-800 dark:text-slate-200 tracking-tight transition-colors duration-200">
                 Últimas Opiniones
               </h2>
               {latestReviewsData.length > 1 && (
@@ -235,7 +235,7 @@ export const LandingMainContent = () => {
                   <Button
                     isIconOnly
                     variant="ghost"
-                    className="rounded-full border-slate-300 text-slate-600 hover:bg-slate-200 hover:border-slate-400"
+                    className="rounded-full border-slate-300 dark:border-slate-600 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 hover:border-slate-400 dark:hover:border-slate-500 transition-colors duration-200"
                     aria-label="Anterior"
                     onClick={() => paginate(-1)}
                   >
@@ -244,7 +244,7 @@ export const LandingMainContent = () => {
                   <Button
                     isIconOnly
                     variant="ghost"
-                    className="rounded-full border-slate-300 text-slate-600 hover:bg-slate-200 hover:border-slate-400"
+                    className="rounded-full border-slate-300 dark:border-slate-600 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 hover:border-slate-400 dark:hover:border-slate-500 transition-colors duration-200"
                     aria-label="Siguiente"
                     onClick={() => paginate(1)}
                   >
@@ -270,8 +270,8 @@ export const LandingMainContent = () => {
                     className="w-full absolute top-0 left-0"
                     style={{ position: "absolute" }}
                   >
-                    <Card className="shadow-lg bg-white rounded-xl overflow-hidden">
-                      <CardHeader className="p-5 pb-3 border-b border-slate-100">
+                    <Card className="shadow-lg bg-white dark:bg-slate-800 rounded-xl overflow-hidden transition-colors duration-200">
+                      <CardHeader className="p-5 pb-3 border-b border-slate-100 dark:border-slate-700 transition-colors duration-200">
                         <div className="flex items-start justify-between">
                           <div className="flex items-center space-x-4">
                             <img
@@ -284,11 +284,11 @@ export const LandingMainContent = () => {
                                 href={currentReview.company.href}
                                 className="hover:underline"
                               >
-                                <h3 className="text-lg font-semibold text-slate-800 hover:text-sky-600 transition-colors">
+                                <h3 className="text-lg font-semibold text-slate-800 dark:text-slate-200 hover:text-sky-600 dark:hover:text-sky-400 transition-colors">
                                   {currentReview.company.name}
                                 </h3>
                               </Link>
-                              <p className="text-sm text-slate-500">
+                              <p className="text-sm text-slate-500 dark:text-slate-400 transition-colors duration-200">
                                 {currentReview.company.industry}
                               </p>
                             </div>
@@ -297,42 +297,42 @@ export const LandingMainContent = () => {
                             <div className="flex items-center text-lg font-bold text-sky-600">
                               <StarIcon className="h-5 w-5 text-yellow-400 mr-1" />
                               {currentReview.rating.toFixed(1)}
-                              <span className="text-sm text-slate-400 font-normal ml-0.5">
+                              <span className="text-sm text-slate-400 dark:text-slate-500 font-normal ml-0.5 transition-colors duration-200">
                                 /5
                               </span>
                             </div>
-                            <p className="text-xs text-slate-400 mt-0.5">
+                            <p className="text-xs text-slate-400 dark:text-slate-500 mt-0.5 transition-colors duration-200">
                               {currentReview.timeAgo}
                             </p>
                           </div>
                         </div>
                       </CardHeader>
                       <CardBody className="p-5 space-y-3">
-                        <p className="text-sm text-slate-600">
-                          <span className="font-semibold text-slate-700">
+                        <p className="text-sm text-slate-600 dark:text-slate-300 transition-colors duration-200">
+                          <span className="font-semibold text-slate-700 dark:text-slate-200 transition-colors duration-200">
                             {currentReview.role}
                           </span>
                         </p>
                         <div>
-                          <h4 className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1">
+                          <h4 className="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-1 transition-colors duration-200">
                             Lo bueno:
                           </h4>
-                          <p className="text-sm text-slate-700 leading-relaxed line-clamp-2 group-hover:line-clamp-none transition-all duration-300 ease-in-out">
+                          <p className="text-sm text-slate-700 dark:text-slate-300 leading-relaxed line-clamp-2 group-hover:line-clamp-none transition-all duration-300 ease-in-out">
                             {currentReview.pros}
                           </p>
                         </div>
                         <div>
-                          <h4 className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1">
+                          <h4 className="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-1 transition-colors duration-200">
                             A mejorar:
                           </h4>
-                          <p className="text-sm text-slate-700 leading-relaxed line-clamp-2 group-hover:line-clamp-none transition-all duration-300 ease-in-out">
+                          <p className="text-sm text-slate-700 dark:text-slate-300 leading-relaxed line-clamp-2 group-hover:line-clamp-none transition-all duration-300 ease-in-out">
                             {currentReview.cons}
                           </p>
                         </div>
                         <div className="pt-1">
                           <Link
                             href={currentReview.reviewLink}
-                            className="text-sm font-medium text-sky-600 hover:text-sky-700 transition-colors duration-300 flex items-center group/link"
+                            className="text-sm font-medium text-sky-600 dark:text-sky-400 hover:text-sky-700 dark:hover:text-sky-300 transition-colors duration-300 flex items-center group/link"
                           >
                             Leer opinión completa
                             <ChevronRightIcon className="h-4 w-4 ml-1 opacity-0 group-hover/link:opacity-100 transition-opacity duration-300 transform group-hover/link:translate-x-1" />
@@ -345,7 +345,7 @@ export const LandingMainContent = () => {
               </AnimatePresence>
             </div>
             {latestReviewsData.length === 0 && (
-              <p className="text-slate-500 text-center py-10">
+              <p className="text-slate-500 dark:text-slate-400 text-center py-10 transition-colors duration-200">
                 No hay opiniones recientes para mostrar.
               </p>
             )}

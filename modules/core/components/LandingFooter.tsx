@@ -76,7 +76,7 @@ const SocialIcon = ({ title, href }: { title: string; href: string }) => {
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className="w-10 h-10 bg-slate-200 hover:bg-sky-600 hover:text-white rounded-full flex items-center justify-center text-slate-600 transition-all duration-300"
+      className="w-10 h-10 bg-slate-200 dark:bg-slate-700 hover:bg-sky-600 dark:hover:bg-sky-500 hover:text-white text-slate-600 dark:text-slate-300 rounded-full flex items-center justify-center transition-all duration-300"
       aria-label={title}
     >
       {getIcon()}
@@ -88,7 +88,7 @@ export const LandingFooter = () => {
   const { t } = useTranslation();
 
   return (
-    <footer className="bg-slate-900 text-white">
+    <footer className="bg-slate-900 dark:bg-slate-950 text-white transition-colors duration-200">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-8 mb-12">
           <div className="space-y-4">
@@ -100,7 +100,7 @@ export const LandingFooter = () => {
               />
               WorkWisse
             </div>
-            <p className="text-slate-300 leading-relaxed max-w-sm">
+            <p className="text-slate-300 dark:text-slate-400 leading-relaxed max-w-sm transition-colors duration-200">
               {t("footer.description")}
             </p>
             <div className="flex space-x-3">
@@ -113,14 +113,14 @@ export const LandingFooter = () => {
           </div>
 
           <div className="space-y-4 space-y-4 md:justify-self-end md:text-right ">
-            <h3 className="text-lg font-semibold">
+            <h3 className="text-lg font-semibold transition-colors duration-200">
               {t("footer.workers.title")}
             </h3>
-            <ul className="space-y-2 text-slate-300">
+            <ul className="space-y-2 text-slate-300 dark:text-slate-400 transition-colors duration-200">
               <li>
                 <Link
                   href="/company/add"
-                  className="hover:text-sky-400 transition-colors"
+                  className="hover:text-sky-400 dark:hover:text-sky-300 transition-colors"
                 >
                   {t("footer.companies.links.add")}
                 </Link>
@@ -128,7 +128,7 @@ export const LandingFooter = () => {
               <li>
                 <Link
                   href="/companies"
-                  className="hover:text-sky-400 transition-colors"
+                  className="hover:text-sky-400 dark:hover:text-sky-300 transition-colors"
                 >
                   {t("footer.workers.links.search")}
                 </Link>
@@ -136,7 +136,7 @@ export const LandingFooter = () => {
               <li>
                 <Link
                   href="/rankings"
-                  className="hover:text-sky-400 transition-colors"
+                  className="hover:text-sky-400 dark:hover:text-sky-300 transition-colors"
                 >
                   {t("footer.workers.links.rankings")}
                 </Link>
@@ -144,7 +144,7 @@ export const LandingFooter = () => {
               <li>
                 <Link
                   href="/reviews"
-                  className="hover:text-sky-400 transition-colors"
+                  className="hover:text-sky-400 dark:hover:text-sky-300 transition-colors"
                 >
                   {t("footer.workers.links.reviews")}
                 </Link>
@@ -193,9 +193,9 @@ export const LandingFooter = () => {
           </div> */}
         </div>
 
-        <div className="border-t border-slate-700 pt-8">
+        <div className="border-t border-slate-700 dark:border-slate-600 pt-8 transition-colors duration-200">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <div className="text-sm text-slate-400 text-center md:text-left">
+            <div className="text-sm text-slate-400 dark:text-slate-500 text-center md:text-left transition-colors duration-200">
               <p className="mb-1">
                 {t("footer.legal.copyright", {
                   year: new Date().getFullYear(),
@@ -207,25 +207,25 @@ export const LandingFooter = () => {
             <div className="flex flex-wrap items-center gap-6 text-sm">
               <Link
                 href="/about"
-                className="text-slate-400 hover:text-sky-400 transition-colors"
+                className="text-slate-400 dark:text-slate-500 hover:text-sky-400 dark:hover:text-sky-300 transition-colors"
               >
                 {t("footer.legal.about")}
               </Link>
               <Link
                 href="/privacy"
-                className="text-slate-400 hover:text-sky-400 transition-colors"
+                className="text-slate-400 dark:text-slate-500 hover:text-sky-400 dark:hover:text-sky-300 transition-colors"
               >
                 {t("footer.legal.privacy")}
               </Link>
               <Link
                 href="/terms"
-                className="text-slate-400 hover:text-sky-400 transition-colors"
+                className="text-slate-400 dark:text-slate-500 hover:text-sky-400 dark:hover:text-sky-300 transition-colors"
               >
                 {t("footer.legal.terms")}
               </Link>
               <Link
                 href="/contact"
-                className="text-slate-400 hover:text-sky-400 transition-colors"
+                className="text-slate-400 dark:text-slate-500 hover:text-sky-400 dark:hover:text-sky-300 transition-colors"
               >
                 {t("footer.legal.contact")}
               </Link>

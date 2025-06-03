@@ -29,18 +29,18 @@ export default function AboutTeam() {
   const { t } = useTranslation();
 
   return (
-    <section id="team" className="py-20 px-4 bg-slate-50">
+    <section id="team" className="py-20 px-4 bg-slate-50 dark:bg-slate-800 transition-colors duration-200">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16 animate-fade-in-up">
-          <h2 className="text-4xl lg:text-5xl font-bold text-slate-900 mb-6">
+          <h2 className="text-4xl lg:text-5xl font-bold text-slate-900 dark:text-white mb-6">
             <Trans
               i18nKey="about.team.title"
               components={{
-                1: <span className="text-sky-600" />,
+                1: <span className="text-sky-600 dark:text-sky-400" />,
               }}
             />
           </h2>
-          <p className="text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-xl text-slate-600 dark:text-slate-300 max-w-3xl mx-auto leading-relaxed">
             {t("about.team.description")}
           </p>
         </div>
@@ -49,7 +49,7 @@ export default function AboutTeam() {
           {teamMembers.map((member, index) => (
             <Card
               key={member.key}
-              className="border-none shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 bg-white"
+              className="border-none shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 bg-white dark:bg-slate-700"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
               <CardBody className="p-6 text-center space-y-4">
@@ -63,15 +63,15 @@ export default function AboutTeam() {
                 </div>
 
                 <div className="space-y-2">
-                  <h3 className="text-xl font-bold text-slate-900">
+                  <h3 className="text-xl font-bold text-slate-900 dark:text-white">
                     {t(`about.team.members.${member.key}.name`)}
                   </h3>
-                  <p className="text-sky-600 font-semibold">
+                  <p className="text-sky-600 dark:text-sky-400 font-semibold">
                     {t(`about.team.members.${member.key}.role`)}
                   </p>
                 </div>
 
-                <p className="text-slate-600 text-sm leading-relaxed">
+                <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
                   {t(`about.team.members.${member.key}.bio`)}
                 </p>
               </CardBody>

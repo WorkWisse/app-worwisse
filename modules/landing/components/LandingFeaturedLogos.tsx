@@ -28,9 +28,9 @@ const companyLogos = [
 
 export const LandingFeaturedLogos = () => {
   return (
-    <section className="py-16 bg-slate-50">
+    <section className="py-16 bg-slate-50 dark:bg-slate-900 transition-colors duration-200">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-center text-sm font-semibold text-slate-500 uppercase tracking-wider mb-10">
+        <h2 className="text-center text-sm font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-10 transition-colors duration-200">
           Empresas que confían en la transparencia
         </h2>
         <div className="flex flex-wrap justify-center items-center gap-x-10 gap-y-8 sm:gap-x-14 lg:gap-x-16 animate-fade-in-up delay-500">
@@ -51,7 +51,7 @@ export const LandingFeaturedLogos = () => {
         </div>
         <div className="text-center mt-16 animate-fade-in-up delay-700">
           <svg
-            className="h-7 w-7 text-slate-400 mx-auto animate-subtle-bounce"
+            className="h-7 w-7 text-slate-400 dark:text-slate-500 mx-auto animate-subtle-bounce transition-colors duration-200"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"

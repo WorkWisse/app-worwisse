@@ -309,24 +309,24 @@ export default function AddCompanyForm() {
     };
 
     return (
-        <section className="py-8 lg:py-12 px-4 bg-gradient-to-br from-slate-50 via-blue-50 to-sky-100 min-h-screen">
+        <section className="py-8 lg:py-12 px-4 bg-gradient-to-br from-slate-50 via-blue-50 to-sky-100 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 min-h-screen transition-colors duration-200">
             <div className="max-w-[90vw] 2xl:max-w-[1400px] mx-auto">
                 <div className="grid xl:grid-cols-4 gap-6 lg:gap-8 items-start">
                     {/* Formulario - Más compacto */}
                     <div className="xl:col-span-3">
                         <div className="mb-6 lg:mb-8">
-                            <h1 className="text-center text-3xl lg:text-6xl font-bold text-slate-900 mb-3 lg:mb-4 leading-tight">
+                            <h1 className="text-center text-3xl lg:text-6xl font-bold text-slate-900 dark:text-white mb-3 lg:mb-4 leading-tight transition-colors duration-200">
                                 <Trans
                                     i18nKey="addCompany.title"
-                                    components={{ 1: <span className="text-sky-600" /> }}
+                                    components={{ 1: <span className="text-sky-600 dark:text-sky-400" /> }}
                                 />
                             </h1>
-                            <p className="text-center text-base lg:text-lg text-slate-600 leading-relaxed ">
+                            <p className="text-center text-base lg:text-lg text-slate-600 dark:text-slate-300 leading-relaxed transition-colors duration-200">
                                 {t("addCompany.description")}
                             </p>
                         </div>
 
-                        <Card className="p-6 lg:p-8 xl:p-10 shadow-xl bg-white/95 backdrop-blur-sm border border-white/20">
+                        <Card className="p-6 lg:p-8 xl:p-10 shadow-xl bg-white/95 dark:bg-slate-800/95 backdrop-blur-sm border border-white/20 dark:border-slate-700/50 transition-colors duration-200">
                             <form onSubmit={handleSubmit} className="space-y-6">
                                 {/* Primera row: Nombre e Industria */}
                                 <div className="grid lg:grid-cols-2 gap-4 lg:gap-6">
@@ -340,9 +340,9 @@ export default function AddCompanyForm() {
                                             size="md"
                                             variant="bordered"
                                             classNames={{
-                                                input: "text-slate-900",
-                                                label: "text-slate-700 font-medium text-md",
-                                                inputWrapper: "min-h-[48px]",
+                                                input: "text-slate-900 dark:text-white",
+                                                label: "text-slate-700 dark:text-slate-300 font-medium text-md",
+                                                inputWrapper: "min-h-[48px] dark:border-slate-600",
                                             }}
                                         />
                                     </div>
@@ -359,8 +359,8 @@ export default function AddCompanyForm() {
                                             size="md"
                                             variant="bordered"
                                             classNames={{
-                                                label: "text-slate-700 font-medium text-md",
-                                                trigger: "border-slate-300 min-h-[48px]",
+                                                label: "text-slate-700 dark:text-slate-300 font-medium text-md",
+                                                trigger: "border-slate-300 dark:border-slate-600 min-h-[48px]",
                                             }}
                                         >
                                             {industries.map((industry) => (
@@ -384,9 +384,9 @@ export default function AddCompanyForm() {
                                             size="md"
                                             variant="bordered"
                                             classNames={{
-                                                input: "text-slate-900",
-                                                label: "text-slate-700 font-medium text-md",
-                                                inputWrapper: "min-h-[48px]",
+                                                input: "text-slate-900 dark:text-white",
+                                                label: "text-slate-700 dark:text-slate-300 font-medium text-md",
+                                                inputWrapper: "min-h-[48px] dark:border-slate-600",
                                             }}
                                         />
                                     </div>
@@ -406,8 +406,8 @@ export default function AddCompanyForm() {
                                         size="md"
                                         variant="bordered"
                                         classNames={{
-                                            label: "text-slate-700 font-medium text-md",
-                                            trigger: "border-slate-300 min-h-[48px]",
+                                            label: "text-slate-700 dark:text-slate-300 font-medium text-md",
+                                            trigger: "border-slate-300 dark:border-slate-600 min-h-[48px]",
                                         }}
                                     >
                                         {countries.map((country) => (
@@ -428,8 +428,8 @@ export default function AddCompanyForm() {
                                         size="md"
                                         variant="bordered"
                                         classNames={{
-                                            label: "text-slate-700 font-medium text-md",
-                                            trigger: "border-slate-300 min-h-[48px]",
+                                            label: "text-slate-700 dark:text-slate-300 font-medium text-md",
+                                            trigger: "border-slate-300 dark:border-slate-600 min-h-[48px]",
                                         }}
                                         isDisabled={!formData.country || formData.country === "other"}
                                     >
@@ -447,7 +447,7 @@ export default function AddCompanyForm() {
                                 <div className="space-y-2">
                                     <label
                                         htmlFor="benefits"
-                                        className="block text-slate-700 font-medium text-md"
+                                        className="block text-slate-700 dark:text-slate-300 font-medium text-md transition-colors duration-200"
                                     >
                                         {t("addCompany.form.benefits.label")}
                                     </label>
@@ -457,24 +457,24 @@ export default function AddCompanyForm() {
                                         value={formData.benefits}
                                         onChange={(e) => handleChange("benefits", e.target.value)}
                                         rows={4}
-                                        className="w-full px-4 py-3 border-2 border-slate-200 rounded-lg focus:border-sky-500 focus:outline-none resize-none text-slate-900 placeholder-slate-400 leading-relaxed"
+                                        className="w-full px-4 py-3 border-2 border-slate-200 dark:border-slate-600 rounded-lg focus:border-sky-500 dark:focus:border-sky-400 focus:outline-none resize-none text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 leading-relaxed bg-white dark:bg-slate-700 transition-colors duration-200"
                                     />
                                 </div>
 
                                 {/* Quinta row: He leído y acepto... */}
-                                <div className="flex items-start gap-3 p-4 bg-slate-50 rounded-lg border border-slate-200">
+                                <div className="flex items-start gap-3 p-4 bg-slate-50 dark:bg-slate-700 rounded-lg border border-slate-200 dark:border-slate-600 transition-colors duration-200">
                                     <input
                                         type="checkbox"
                                         id="terms"
                                         checked={acceptedTerms}
                                         onChange={(e) => setAcceptedTerms(e.target.checked)}
-                                        className="mt-0.5 w-4 h-4 text-sky-600 border-slate-300 rounded focus:ring-sky-500"
+                                        className="mt-0.5 w-4 h-4 text-sky-600 border-slate-300 dark:border-slate-500 rounded focus:ring-sky-500 dark:bg-slate-600"
                                     />
-                                    <label htmlFor="terms" className="text-md text-slate-600 leading-relaxed">
+                                    <label htmlFor="terms" className="text-md text-slate-600 dark:text-slate-300 leading-relaxed transition-colors duration-200">
                                         {t("addCompany.form.terms.label")}{" "}
                                         <a
                                             href="/terms"
-                                            className="text-sky-600 hover:text-sky-700 underline font-medium"
+                                            className="text-sky-600 dark:text-sky-400 hover:text-sky-700 dark:hover:text-sky-300 underline font-medium transition-colors duration-200"
                                         >
                                             {t("addCompany.form.terms.link")}
                                         </a>{" "}
@@ -499,28 +499,28 @@ export default function AddCompanyForm() {
 
                     {/* Panel lateral más compacto */}
                     <div className="xl:col-span-1 space-y-4">
-                        <Card className="p-5 lg:p-6 bg-gradient-to-br from-sky-50 to-slate-50 border border-sky-100 shadow-lg">
-                            <h3 className="text-lg lg:text-xl font-bold text-slate-900 mb-3">
+                        <Card className="p-5 lg:p-6 bg-gradient-to-br from-sky-50 to-slate-50 dark:from-slate-800 dark:to-slate-700 border border-sky-100 dark:border-slate-600 shadow-lg transition-colors duration-200">
+                            <h3 className="text-lg lg:text-xl font-bold text-slate-900 dark:text-white mb-3 transition-colors duration-200">
                                 {t("addCompany.sidebar.experience.title")}
                             </h3>
-                            <p className="text-slate-600 mb-4 leading-relaxed text-md">
+                            <p className="text-slate-600 dark:text-slate-300 mb-4 leading-relaxed text-md transition-colors duration-200">
                                 {t("addCompany.sidebar.experience.description")}
                             </p>
                             <div className="space-y-3">
-                                <h4 className="font-bold text-slate-900">
+                                <h4 className="font-bold text-slate-900 dark:text-white transition-colors duration-200">
                                     {t("addCompany.sidebar.rules.title")}
                                 </h4>
-                                <ul className="space-y-2 text-md text-slate-600">
+                                <ul className="space-y-2 text-md text-slate-600 dark:text-slate-300 transition-colors duration-200">
                                     <li className="flex items-start gap-2">
-                                        <span className="text-green-600 font-bold">•</span>
+                                        <span className="text-green-600 dark:text-green-400 font-bold">•</span>
                                         <span>{t("addCompany.sidebar.rules.items.0")}</span>
                                     </li>
                                     <li className="flex items-start gap-2">
-                                        <span className="text-green-600 font-bold">•</span>
+                                        <span className="text-green-600 dark:text-green-400 font-bold">•</span>
                                         <span>{t("addCompany.sidebar.rules.items.1")}</span>
                                     </li>
                                     <li className="flex items-start gap-2">
-                                        <span className="text-green-600 font-bold">•</span>
+                                        <span className="text-green-600 dark:text-green-400 font-bold">•</span>
                                         <span>{t("addCompany.sidebar.rules.items.2")}</span>
                                     </li>
                                 </ul>

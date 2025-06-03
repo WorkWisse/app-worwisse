@@ -4,19 +4,19 @@ export default function ContactHero() {
   const { t } = useTranslation();
 
   return (
-    <section className="relative bg-gradient-to-br from-slate-50 to-sky-100 py-20 px-4">
+    <section className="relative bg-gradient-to-br from-slate-50 to-sky-100 dark:from-slate-900 dark:to-slate-800 py-20 px-4 transition-colors duration-200">
       <div className="max-w-7xl mx-auto">
         <div className="text-center space-y-8 animate-fade-in-up">
           <div className="space-y-4">
-            <h1 className="text-5xl lg:text-6xl font-bold text-slate-900 leading-tight">
+            <h1 className="text-5xl lg:text-6xl font-bold text-slate-900 dark:text-slate-100 leading-tight transition-colors duration-200">
               <Trans
                 i18nKey="contact.hero.title"
                 components={{
-                  1: <span className="text-sky-600" />,
+                  1: <span className="text-sky-600 dark:text-sky-400" />,
                 }}
               />
             </h1>
-            <p className="text-xl text-slate-600 leading-relaxed max-w-3xl mx-auto">
+            <p className="text-xl text-slate-600 dark:text-slate-300 leading-relaxed max-w-3xl mx-auto transition-colors duration-200">
               {t("contact.form.description")}
             </p>
           </div>

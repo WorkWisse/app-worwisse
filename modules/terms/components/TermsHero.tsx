@@ -4,11 +4,11 @@ export default function TermsHero() {
     const { t } = useTranslation();
 
     return (
-        <section className="relative py-16 lg:py-24 px-4 bg-gradient-to-br from-slate-50 via-blue-50 to-sky-100 overflow-hidden">
+        <section className="relative py-16 lg:py-24 px-4 bg-gradient-to-br from-slate-50 via-blue-50 to-sky-100 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 overflow-hidden transition-colors duration-200">
             {/* Background decorative elements */}
             <div className="absolute inset-0 overflow-hidden">
-                <div className="absolute -top-40 -right-40 w-80 h-80 bg-sky-200/30 rounded-full blur-3xl"></div>
-                <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-blue-200/30 rounded-full blur-3xl"></div>
+                <div className="absolute -top-40 -right-40 w-80 h-80 bg-sky-200/30 dark:bg-sky-400/20 rounded-full blur-3xl"></div>
+                <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-blue-200/30 dark:bg-blue-400/20 rounded-full blur-3xl"></div>
             </div>
 
             <div className="relative max-w-4xl mx-auto text-center">
@@ -21,18 +21,18 @@ export default function TermsHero() {
                     </span>
                 </div> */}
 
-                <h1 className="text-4xl lg:text-6xl font-bold text-slate-900 mb-6 leading-tight">
+                <h1 className="text-4xl lg:text-6xl font-bold text-slate-900 dark:text-white mb-6 leading-tight transition-colors duration-200">
                     <Trans
                         i18nKey="terms.hero.title"
-                        components={{ 1: <span className="text-sky-600" /> }}
+                        components={{ 1: <span className="text-sky-600 dark:text-sky-400" /> }}
                     />
                 </h1>
 
-                <p className="text-lg lg:text-xl text-slate-600 mb-8 leading-relaxed max-w-3xl mx-auto">
+                <p className="text-lg lg:text-xl text-slate-600 dark:text-slate-300 mb-8 leading-relaxed max-w-3xl mx-auto transition-colors duration-200">
                     {t("terms.hero.subtitle")}
                 </p>
 
-                <div className="flex flex-col sm:flex-row items-center justify-center gap-4 text-sm text-slate-500">
+                <div className="flex flex-col sm:flex-row items-center justify-center gap-4 text-sm text-slate-500 dark:text-slate-400 transition-colors duration-200">
                     <div className="flex items-center gap-2">
                         <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
                             <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clipRule="evenodd" />

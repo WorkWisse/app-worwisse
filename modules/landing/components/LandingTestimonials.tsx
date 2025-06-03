@@ -65,16 +65,16 @@ export const LandingTestimonials = () => {
   const { t } = useTranslation();
 
   return (
-    <section className="py-20 sm:py-28 bg-gradient-to-br from-sky-50 to-slate-50">
+    <section className="py-20 sm:py-28 bg-gradient-to-br from-sky-50 to-slate-50 dark:from-slate-800 dark:to-slate-900 transition-colors duration-200">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16 animate-fade-in-up">
-          <h2 className="text-4xl lg:text-5xl font-bold text-slate-900 mb-6">
+          <h2 className="text-4xl lg:text-5xl font-bold text-slate-900 dark:text-slate-100 mb-6 transition-colors duration-200">
             <Trans
               i18nKey="testimonials.title"
-              components={{ 1: <span className="text-sky-600" /> }}
+              components={{ 1: <span className="text-sky-600 dark:text-sky-400" /> }}
             />
           </h2>
-          <p className="text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-xl text-slate-600 dark:text-slate-300 max-w-3xl mx-auto leading-relaxed transition-colors duration-200">
             {t("testimonials.description")}
           </p>
         </div>
@@ -86,14 +86,14 @@ export const LandingTestimonials = () => {
               className="text-center animate-fade-in-up"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
-              <div className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-300">
-                <div className="text-4xl lg:text-5xl font-bold text-sky-600 mb-2">
+              <div className="bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300">
+                <div className="text-4xl lg:text-5xl font-bold text-sky-600 dark:text-sky-400 mb-2 transition-colors duration-200">
                   {t(stat.valueKey)}
                 </div>
-                <h3 className="text-lg font-semibold text-slate-900 mb-1">
+                <h3 className="text-lg font-semibold text-slate-900 dark:text-slate-100 mb-1 transition-colors duration-200">
                   {t(stat.labelKey)}
                 </h3>
-                <p className="text-sm text-slate-600">
+                <p className="text-sm text-slate-600 dark:text-slate-300 transition-colors duration-200">
                   {t(stat.descriptionKey)}
                 </p>
               </div>
@@ -105,7 +105,7 @@ export const LandingTestimonials = () => {
           {testimonials.map((testimonial, index) => (
             <div
               key={testimonial.nameKey}
-              className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 animate-fade-in-up"
+              className="bg-white dark:bg-slate-800 rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 animate-fade-in-up"
               style={{ animationDelay: `${index * 0.2}s` }}
             >
               <div className="flex items-center mb-6">
@@ -115,16 +115,16 @@ export const LandingTestimonials = () => {
                   className="w-12 h-12 rounded-full object-cover mr-4"
                 />
                 <div>
-                  <h4 className="font-semibold text-slate-900">
+                  <h4 className="font-semibold text-slate-900 dark:text-slate-100 transition-colors duration-200">
                     {t(testimonial.nameKey)}
                   </h4>
-                  <p className="text-sm text-slate-600">
+                  <p className="text-sm text-slate-600 dark:text-slate-300 transition-colors duration-200">
                     {t(testimonial.roleKey)} en {t(testimonial.companyKey)}
                   </p>
                 </div>
               </div>
 
-              <blockquote className="text-slate-700 leading-relaxed mb-4">
+              <blockquote className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4 transition-colors duration-200">
                 &ldquo;{t(testimonial.quoteKey)}&rdquo;
               </blockquote>
 

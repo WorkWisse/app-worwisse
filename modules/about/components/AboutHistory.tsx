@@ -26,24 +26,24 @@ export default function AboutHistory() {
   const { t } = useTranslation();
 
   return (
-    <section id="history" className="py-20 px-4 bg-white">
+    <section id="history" className="py-20 px-4 bg-white dark:bg-slate-900 transition-colors duration-200">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16 animate-fade-in-up">
-          <h2 className="text-4xl lg:text-5xl font-bold text-slate-900 mb-6">
+          <h2 className="text-4xl lg:text-5xl font-bold text-slate-900 dark:text-white mb-6">
             <Trans
               i18nKey="about.history.title"
               components={{
-                1: <span className="text-sky-600" />,
+                1: <span className="text-sky-600 dark:text-sky-400" />,
               }}
             />
           </h2>
-          <p className="text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-xl text-slate-600 dark:text-slate-300 max-w-3xl mx-auto leading-relaxed">
             {t("about.history.description")}
           </p>
         </div>
 
         <div className="relative">
-          <div className="absolute left-1/2 transform -translate-x-1/2 w-1 bg-sky-200 h-full hidden lg:block" />
+          <div className="absolute left-1/2 transform -translate-x-1/2 w-1 bg-sky-200 dark:bg-sky-800 h-full hidden lg:block" />
 
           <div className="space-y-12">
             {timeline.map((event, index) => (
@@ -57,21 +57,21 @@ export default function AboutHistory() {
                   <div
                     className={`space-y-4 ${index % 2 === 0 ? "lg:text-right lg:pr-8" : "lg:text-left lg:pl-8"}`}
                   >
-                    <div className="inline-block bg-sky-600 text-white px-4 py-2 rounded-full font-bold text-lg">
+                    <div className="inline-block bg-sky-600 dark:bg-sky-600 text-white px-4 py-2 rounded-full font-bold text-lg">
                       {event.year}
                     </div>
-                    <h3 className="text-2xl font-bold text-slate-900">
+                    <h3 className="text-2xl font-bold text-slate-900 dark:text-white">
                       {t(`about.history.timeline.${event.year}.title`)}
                     </h3>
-                    <p className="text-slate-600 leading-relaxed max-w-md mx-auto lg:mx-0">
+                    <p className="text-slate-600 dark:text-slate-300 leading-relaxed max-w-md mx-auto lg:mx-0">
                       {t(`about.history.timeline.${event.year}.description`)}
                     </p>
                   </div>
                 </div>
 
                 <div className="relative">
-                  <div className="w-4 h-4 bg-sky-600 rounded-full border-4 border-white shadow-lg" />
-                  <div className="absolute inset-0 w-4 h-4 bg-sky-600 rounded-full animate-ping opacity-20" />
+                  <div className="w-4 h-4 bg-sky-600 dark:bg-sky-600 rounded-full border-4 border-white dark:border-slate-900 shadow-lg" />
+                  <div className="absolute inset-0 w-4 h-4 bg-sky-600 dark:bg-sky-600 rounded-full animate-ping opacity-20" />
                 </div>
 
                 <div className="flex-1" />

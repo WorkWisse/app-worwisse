@@ -6,18 +6,18 @@ export const LandingHero = () => {
   const { t } = useTranslation();
 
   return (
-    <section className="bg-gradient-to-br from-slate-50 to-sky-100 py-20 sm:py-28 overflow-hidden">
+    <section className="bg-gradient-to-br from-slate-50 to-sky-100 dark:from-slate-900 dark:to-slate-800 py-20 sm:py-28 overflow-hidden transition-colors duration-200">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-12 gap-y-16 items-center">
           <div className="animate-fade-in-up delay-200">
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-800 mb-6 tracking-tight leading-tight">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-800 dark:text-slate-100 mb-6 tracking-tight leading-tight transition-colors duration-200">
               <Trans
                 i18nKey="hero.title"
                 components={{ 1: <span className="text-sky-600" /> }}
               />
             </h1>
 
-            <p className="text-lg text-slate-600 mb-8 max-w-xl leading-relaxed">
+            <p className="text-lg text-slate-600 dark:text-slate-300 mb-8 max-w-xl leading-relaxed transition-colors duration-200">
               <Trans
                 i18nKey="hero.description"
                 components={{ 1: <strong /> }}
@@ -35,12 +35,12 @@ export const LandingHero = () => {
                   className="shadow-md hover:shadow-lg transition-shadow duration-300 rounded-lg"
                   classNames={{
                     inputWrapper:
-                      "bg-white border-slate-300 focus-within:border-sky-500 focus-within:ring-sky-500",
-                    input: "text-slate-700 placeholder-slate-400 text-base",
+                      "bg-white dark:bg-slate-800 border-slate-300 dark:border-slate-600 focus-within:border-sky-500 focus-within:ring-sky-500 transition-colors duration-200",
+                    input: "text-slate-700 dark:text-slate-200 placeholder-slate-400 dark:placeholder-slate-500 text-base",
                   }}
                   startContent={
                     <svg
-                      className="h-5 w-5 text-slate-400 pointer-events-none"
+                      className="h-5 w-5 text-slate-400 dark:text-slate-500 pointer-events-none transition-colors duration-200"
                       xmlns="http://www.w3.org/2000/svg"
                       fill="none"
                       viewBox="0 0 24 24"
@@ -68,7 +68,7 @@ export const LandingHero = () => {
               </div>
             </form>
 
-            <div className="flex items-center gap-6 text-sm text-slate-500">
+            <div className="flex items-center gap-6 text-sm text-slate-500 dark:text-slate-400 transition-colors duration-200">
               <div className="flex items-center gap-2">
                 <div className="w-2 h-2 bg-green-500 rounded-full" />
                 <span>{t("hero.trustBadges.free")}</span>

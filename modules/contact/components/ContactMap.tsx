@@ -4,13 +4,13 @@ export default function ContactMap() {
   const { t } = useTranslation();
 
   return (
-    <section className="py-20 px-4 bg-slate-50">
+    <section className="py-20 px-4 bg-slate-50 dark:bg-slate-800 transition-colors duration-200">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-slate-900 mb-4">
+          <h2 className="text-4xl font-bold text-slate-900 dark:text-white mb-4">
             {t("contact.map.title")}
           </h2>
-          <p className="text-lg text-slate-600 max-w-2xl mx-auto">
+          <p className="text-lg text-slate-600 dark:text-slate-300 max-w-2xl mx-auto">
             {t("contact.map.description")}
           </p>
         </div>
@@ -19,9 +19,9 @@ export default function ContactMap() {
           <div className="space-y-8">
             <div className="space-y-6">
               <div className="flex items-start space-x-4">
-                <div className="w-12 h-12 bg-sky-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                <div className="w-12 h-12 bg-sky-100 dark:bg-sky-900 rounded-lg flex items-center justify-center flex-shrink-0">
                   <svg
-                    className="w-6 h-6 text-sky-600"
+                    className="w-6 h-6 text-sky-600 dark:text-sky-400"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -42,10 +42,10 @@ export default function ContactMap() {
                   </svg>
                 </div>
                 <div>
-                  <h3 className="text-xl font-semibold text-slate-900 mb-2">
+                  <h3 className="text-xl font-semibold text-slate-900 dark:text-white mb-2">
                     {t("contact.map.address.title")}
                   </h3>
-                  <p className="text-slate-600">
+                  <p className="text-slate-600 dark:text-slate-300">
                     {t("contact.map.address.street")}
                     <br />
                     {t("contact.map.address.suite")}
@@ -56,9 +56,9 @@ export default function ContactMap() {
               </div>
 
               <div className="flex items-start space-x-4">
-                <div className="w-12 h-12 bg-sky-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                <div className="w-12 h-12 bg-sky-100 dark:bg-sky-900 rounded-lg flex items-center justify-center flex-shrink-0">
                   <svg
-                    className="w-6 h-6 text-sky-600"
+                    className="w-6 h-6 text-sky-600 dark:text-sky-400"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -74,10 +74,10 @@ export default function ContactMap() {
                   </svg>
                 </div>
                 <div>
-                  <h3 className="text-xl font-semibold text-slate-900 mb-2">
+                  <h3 className="text-xl font-semibold text-slate-900 dark:text-white mb-2">
                     {t("contact.map.hours.title")}
                   </h3>
-                  <div className="text-slate-600 space-y-1">
+                  <div className="text-slate-600 dark:text-slate-300 space-y-1">
                     <p>{t("contact.map.hours.weekdays")}</p>
                     <p>{t("contact.map.hours.saturday")}</p>
                     <p>{t("contact.map.hours.sunday")}</p>
@@ -86,9 +86,9 @@ export default function ContactMap() {
               </div>
 
               <div className="flex items-start space-x-4">
-                <div className="w-12 h-12 bg-sky-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                <div className="w-12 h-12 bg-sky-100 dark:bg-sky-900 rounded-lg flex items-center justify-center flex-shrink-0">
                   <svg
-                    className="w-6 h-6 text-sky-600"
+                    className="w-6 h-6 text-sky-600 dark:text-sky-400"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -104,10 +104,10 @@ export default function ContactMap() {
                   </svg>
                 </div>
                 <div>
-                  <h3 className="text-xl font-semibold text-slate-900 mb-2">
+                  <h3 className="text-xl font-semibold text-slate-900 dark:text-white mb-2">
                     {t("contact.map.transport.title")}
                   </h3>
-                  <div className="text-slate-600 space-y-1">
+                  <div className="text-slate-600 dark:text-slate-300 space-y-1">
                     <p>{t("contact.map.transport.subway")}</p>
                     <p>{t("contact.map.transport.bus")}</p>
                     <p>{t("contact.map.transport.parking")}</p>
@@ -118,11 +118,11 @@ export default function ContactMap() {
           </div>
 
           <div className="relative">
-            <div className="bg-slate-200 rounded-2xl h-96 flex items-center justify-center">
+            <div className="bg-slate-200 dark:bg-slate-700 rounded-2xl h-96 flex items-center justify-center">
               <div className="text-center space-y-4">
-                <div className="w-16 h-16 bg-sky-100 rounded-full flex items-center justify-center mx-auto">
+                <div className="w-16 h-16 bg-sky-100 dark:bg-sky-900 rounded-full flex items-center justify-center mx-auto">
                   <svg
-                    className="w-8 h-8 text-sky-600"
+                    className="w-8 h-8 text-sky-600 dark:text-sky-400"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -137,10 +137,10 @@ export default function ContactMap() {
                   </svg>
                 </div>
                 <div>
-                  <h3 className="text-lg font-semibold text-slate-700">
+                  <h3 className="text-lg font-semibold text-slate-700 dark:text-slate-200">
                     {t("contact.map.mapPlaceholder.title")}
                   </h3>
-                  <p className="text-slate-500">
+                  <p className="text-slate-500 dark:text-slate-400">
                     {t("contact.map.mapPlaceholder.subtitle")}
                   </p>
                 </div>

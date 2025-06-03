@@ -48,16 +48,16 @@ export const LandingFAQ = () => {
   };
 
   return (
-    <section className="py-20 sm:py-28 bg-white">
+    <section className="py-20 sm:py-28 bg-white dark:bg-slate-900 transition-colors duration-200">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl">
         <div className="text-center mb-16 animate-fade-in-up">
-          <h2 className="text-4xl lg:text-5xl font-bold text-slate-900 mb-6">
+          <h2 className="text-4xl lg:text-5xl font-bold text-slate-900 dark:text-slate-100 mb-6 transition-colors duration-200">
             <Trans
               i18nKey="faq.title"
-              components={{ 1: <span className="text-sky-600" /> }}
+              components={{ 1: <span className="text-sky-600 dark:text-sky-400" /> }}
             />
           </h2>
-          <p className="text-xl text-slate-600 leading-relaxed">
+          <p className="text-xl text-slate-600 dark:text-slate-300 leading-relaxed transition-colors duration-200">
             {t("faq.description")}
           </p>
         </div>
@@ -66,21 +66,22 @@ export const LandingFAQ = () => {
           {faqData.map((faq, index) => (
             <div
               key={index}
-              className="border border-slate-200 rounded-xl bg-slate-50 hover:bg-white hover:shadow-md transition-all duration-300 animate-fade-in-up"
+              className="border border-slate-200 dark:border-slate-700 rounded-xl bg-slate-50 dark:bg-slate-800 hover:bg-white dark:hover:bg-slate-700 hover:shadow-md transition-all duration-300 animate-fade-in-up"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
               <button
-                className="w-full px-6 py-6 text-left flex justify-between items-center focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-inset rounded-xl"
+                className="w-full px-6 py-6 text-left flex justify-between items-center focus:outline-none focus:ring-2 focus:ring-sky-500 dark:focus:ring-sky-400 focus:ring-inset rounded-xl"
                 onClick={() => toggleItem(index)}
                 aria-expanded={openItems.includes(index)}
               >
-                <h3 className="text-lg font-semibold text-slate-900 pr-4">
+                <h3 className="text-lg font-semibold text-slate-900 dark:text-slate-100 pr-4 transition-colors duration-200">
                   {t(faq.questionKey)}
                 </h3>
                 <div className="flex-shrink-0">
                   <svg
-                    className={`w-6 h-6 text-slate-500 transition-transform duration-300 ${openItems.includes(index) ? "rotate-180" : ""
-                      }`}
+                    className={`w-6 h-6 text-slate-500 dark:text-slate-400 transition-all duration-300 ${
+                      openItems.includes(index) ? "rotate-180" : ""
+                    }`}
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
@@ -98,8 +99,8 @@ export const LandingFAQ = () => {
 
               {openItems.includes(index) && (
                 <div className="px-6 pb-6">
-                  <div className="border-t border-slate-200 pt-4">
-                    <p className="text-slate-600 leading-relaxed">
+                  <div className="border-t border-slate-200 dark:border-slate-700 pt-4 transition-colors duration-200">
+                    <p className="text-slate-600 dark:text-slate-300 leading-relaxed transition-colors duration-200">
                       {t(faq.answerKey)}
                     </p>
                   </div>
@@ -110,16 +111,16 @@ export const LandingFAQ = () => {
         </div>
 
         <div className="text-center mt-16">
-          <div className="bg-gradient-to-r from-slate-50 to-sky-50 rounded-2xl p-8 border border-sky-100">
-            <h3 className="text-2xl font-bold text-slate-900 mb-4">
+          <div className="bg-gradient-to-r from-slate-50 to-sky-50 dark:from-slate-800 dark:to-slate-700 rounded-2xl p-8 border border-sky-100 dark:border-slate-600 transition-colors duration-200">
+            <h3 className="text-2xl font-bold text-slate-900 dark:text-slate-100 mb-4 transition-colors duration-200">
               {t("faq.cta.title")}
             </h3>
-            <p className="text-slate-600 mb-6">{t("faq.cta.description")}</p>
+            <p className="text-slate-600 dark:text-slate-300 mb-6 transition-colors duration-200">{t("faq.cta.description")}</p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button
                 as={Link}
                 href="/contact"
-                className="bg-sky-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-sky-700 transition-colors"
+                className="bg-sky-600 dark:bg-sky-500 text-white px-6 py-3 rounded-lg font-semibold hover:bg-sky-700 dark:hover:bg-sky-600 transition-colors"
               >
                 {t("faq.cta.primary")}
               </Button>

@@ -3,6 +3,7 @@ import { Link } from "@heroui/link";
 import { Button } from "@heroui/button";
 import { useTranslation } from "react-i18next";
 import { LanguageSelector } from "./LanguageSelector";
+import { ThemeToggle } from "./ThemeToggle";
 
 // Consider using an actual SVG or a dedicated Icon component if you have one in HeroUI
 const Logo = () => (
@@ -33,14 +34,14 @@ export const LandingHeader = () => {
 
   return (
     <>
-      <header className="py-5 px-4 sm:px-6 lg:px-8 bg-white shadow-sm sticky top-0 z-50">
+      <header className="py-5 px-4 sm:px-6 lg:px-8 bg-white dark:bg-slate-900 shadow-sm sticky top-0 z-50 transition-colors duration-200">
         <div className="container mx-auto">
           {/* Desktop and Mobile Header */}
           <div className="flex justify-between items-center">
             {/* Logo */}
             <Link
               href="/"
-              className="flex items-center text-2xl font-semibold text-slate-800 group transition-opacity duration-300 hover:opacity-80"
+              className="flex items-center text-2xl font-semibold text-slate-800 dark:text-slate-200 group transition-opacity duration-300 hover:opacity-80"
               aria-label="WorkWisse Home"
             >
               <Logo />
@@ -51,13 +52,13 @@ export const LandingHeader = () => {
             <nav className="hidden md:flex items-center space-x-6">
               <Link
                 href="/about"
-                className="text-sm font-medium text-slate-600 hover:text-sky-600 transition-colors duration-300"
+                className="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-sky-600 dark:hover:text-sky-400 transition-colors duration-300"
               >
                 {t("header.about")}
               </Link>
               <Link
                 href="/contact"
-                className="text-sm font-medium text-slate-600 hover:text-sky-600 transition-colors duration-300"
+                className="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-sky-600 dark:hover:text-sky-400 transition-colors duration-300"
               >
                 {t("header.contact")}
               </Link>
@@ -67,12 +68,13 @@ export const LandingHeader = () => {
               >
                 {t("header.addCompany")}
               </Link>
+              <ThemeToggle />
               <LanguageSelector />
             </nav>
 
             {/* Mobile Hamburger Button */}
             <button
-              className="md:hidden p-2 rounded-lg text-slate-600 hover:text-slate-800 hover:bg-slate-100 transition-colors duration-300"
+              className="md:hidden p-2 rounded-lg text-slate-600 dark:text-slate-300 hover:text-slate-800 dark:hover:text-slate-100 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors duration-300"
               onClick={toggleMenu}
               aria-label="Toggle menu"
               aria-expanded={isMenuOpen}
@@ -108,11 +110,11 @@ export const LandingHeader = () => {
             className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${isMenuOpen ? "max-h-80 opacity-100" : "max-h-0 opacity-0"
               }`}
           >
-            <nav className="py-4 border-t border-slate-200 mt-4 bg-white relative z-50">
+            <nav className="py-4 border-t border-slate-200 dark:border-slate-700 mt-4 bg-white dark:bg-slate-900 relative z-50">
               <div className="flex flex-col space-y-2">
                 <Link
                   href="/about"
-                  className="text-base font-medium text-slate-700 hover:text-sky-600 hover:bg-slate-50 transition-colors duration-300 py-3 px-2 rounded-lg"
+                  className="text-base font-medium text-slate-700 dark:text-slate-300 hover:text-sky-600 dark:hover:text-sky-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors duration-300 py-3 px-2 rounded-lg"
                   onClick={closeMenu}
                 >
                   {t("header.about")}
@@ -120,7 +122,7 @@ export const LandingHeader = () => {
 
                 <Link
                   href="/contact"
-                  className="text-base font-medium text-slate-700 hover:text-sky-600 hover:bg-slate-50 transition-colors duration-300 py-3 px-2 rounded-lg"
+                  className="text-base font-medium text-slate-700 dark:text-slate-300 hover:text-sky-600 dark:hover:text-sky-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors duration-300 py-3 px-2 rounded-lg"
                   onClick={closeMenu}
                 >
                   {t("header.contact")}
@@ -134,10 +136,20 @@ export const LandingHeader = () => {
                   {t("header.addCompany")}
                 </Link>
 
-                {/* Language Selector in Mobile Menu */}
-                <div className="py-3 px-2 border-t border-slate-100 mt-3">
+                {/* Theme Toggle in Mobile Menu */}
+                <div className="py-3 px-2 border-t border-slate-100 dark:border-slate-700 mt-3">
                   <div className="flex items-center justify-between">
-                    <span className="text-sm font-medium text-slate-600">
+                    <span className="text-sm font-medium text-slate-600 dark:text-slate-300">
+                      {t("header.theme", "Theme")}:
+                    </span>
+                    <ThemeToggle />
+                  </div>
+                </div>
+
+                {/* Language Selector in Mobile Menu */}
+                <div className="py-3 px-2 border-t border-slate-100 dark:border-slate-700 mt-3">
+                  <div className="flex items-center justify-between">
+                    <span className="text-sm font-medium text-slate-600 dark:text-slate-300">
                       {t("header.language")}:
                     </span>
                     <div className="z-50">
@@ -154,7 +166,7 @@ export const LandingHeader = () => {
       {/* Mobile Menu Overlay - moved outside header */}
       {isMenuOpen && (
         <div
-          className="md:hidden fixed inset-0 bg-black bg-opacity-25 z-40"
+          className="md:hidden fixed inset-0 bg-black bg-opacity-25 dark:bg-opacity-50 z-40"
           style={{ top: "84px" }} // Adjust based on header height
           onClick={closeMenu}
           onKeyDown={handleOverlayKeyDown}
