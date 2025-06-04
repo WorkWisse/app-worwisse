@@ -96,7 +96,7 @@ const latestReviewsData = [
   },
 ];
 
-interface IconProps extends React.SVGProps<SVGSVGElement> {}
+interface IconProps extends React.SVGProps<SVGSVGElement> { }
 
 const ChevronLeftIcon = (props: IconProps) => (
   <svg

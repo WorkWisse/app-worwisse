@@ -79,9 +79,8 @@ export const LandingFAQ = () => {
                 </h3>
                 <div className="flex-shrink-0">
                   <svg
-                    className={`w-6 h-6 text-slate-500 dark:text-slate-400 transition-all duration-300 ${
-                      openItems.includes(index) ? "rotate-180" : ""
-                    }`}
+                    className={`w-6 h-6 text-slate-500 dark:text-slate-400 transition-all duration-300 ${openItems.includes(index) ? "rotate-180" : ""
+                      }`}
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"

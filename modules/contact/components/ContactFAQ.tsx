@@ -38,9 +38,8 @@ export default function ContactFAQ() {
                   {t(`contact.faq.items.${faqKey}.question`)}
                 </span>
                 <svg
-                  className={`w-5 h-5 text-slate-500 dark:text-slate-400 transition-transform duration-200 ${
-                    openIndex === index ? "rotate-180" : ""
-                  }`}
+                  className={`w-5 h-5 text-slate-500 dark:text-slate-400 transition-transform duration-200 ${openIndex === index ? "rotate-180" : ""
+                    }`}
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
