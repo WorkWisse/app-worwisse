@@ -56,9 +56,9 @@ export default function AboutHero() {
           <div className="relative animate-slide-in-right">
             <div className="relative">
               <img
-                src="https://picsum.photos/seed/aboutteam/600/400"
-                alt="Nuestro equipo"
-                className="rounded-2xl shadow-2xl"
+                src="/images/about-us.png"
+                alt="Trabajadores tomando decisiones informadas"
+                className="w-full max-w-lg h-auto object-cover rounded-2xl shadow-2xl"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-sky-600/20 to-transparent rounded-2xl" />
             </div>

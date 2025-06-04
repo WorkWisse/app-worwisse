@@ -87,7 +87,7 @@ export const LandingHero = () => {
           <div className="hidden lg:flex justify-center items-center animate-slide-in-right delay-300">
             <div className="relative">
               <img
-                src="/images/community.jpg"
+                src="/images/home-1.png"
                 alt="Trabajadores tomando decisiones informadas"
                 className="w-full max-w-lg h-auto object-cover rounded-2xl shadow-2xl"
               />

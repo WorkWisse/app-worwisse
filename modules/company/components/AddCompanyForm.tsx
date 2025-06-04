@@ -13,10 +13,36 @@ export default function AddCompanyForm() {
         country: "",
         state: "",
         website: "",
-        benefits: "",
+        benefits: [] as string[], // Cambiar a array de strings
     });
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [acceptedTerms, setAcceptedTerms] = useState(false);
+
+    // Nuevo estado para el autocomplete de beneficios
+    const [benefitsInput, setBenefitsInput] = useState("");
+    const [showBenefitsSuggestions, setShowBenefitsSuggestions] = useState(false);
+
+    // Lista de beneficios preestablecidos
+    const predefinedBenefits = [
+        t("addCompany.form.benefits.options.remote"),
+        t("addCompany.form.benefits.options.flexibleHours"),
+        t("addCompany.form.benefits.options.healthInsurance"),
+        t("addCompany.form.benefits.options.dental"),
+        t("addCompany.form.benefits.options.vision"),
+        t("addCompany.form.benefits.options.lifeInsurance"),
+        t("addCompany.form.benefits.options.vacation"),
+        t("addCompany.form.benefits.options.paidLeave"),
+        t("addCompany.form.benefits.options.training"),
+        t("addCompany.form.benefits.options.gym"),
+        t("addCompany.form.benefits.options.freeLunch"),
+        t("addCompany.form.benefits.options.transportation"),
+        t("addCompany.form.benefits.options.parking"),
+        t("addCompany.form.benefits.options.childcare"),
+        t("addCompany.form.benefits.options.stockOptions"),
+        t("addCompany.form.benefits.options.bonus"),
+        t("addCompany.form.benefits.options.teamEvents"),
+        t("addCompany.form.benefits.options.workFromHome"),
+    ];
 
     const industries = [
         { key: "tech", label: t("addCompany.form.industry.options.tech") },
@@ -142,6 +168,46 @@ export default function AddCompanyForm() {
         }
     };
 
+    // Funciones para manejar beneficios
+    const handleBenefitsInputChange = (value: string) => {
+        setBenefitsInput(value);
+        setShowBenefitsSuggestions(value.length > 0);
+    };
+
+    const addBenefit = (benefit: string) => {
+        const trimmedBenefit = benefit.trim();
+        if (trimmedBenefit && !formData.benefits.includes(trimmedBenefit)) {
+            setFormData(prev => ({
+                ...prev,
+                benefits: [...prev.benefits, trimmedBenefit]
+            }));
+        }
+        setBenefitsInput("");
+        setShowBenefitsSuggestions(false);
+    };
+
+    const removeBenefit = (benefitToRemove: string) => {
+        setFormData(prev => ({
+            ...prev,
+            benefits: prev.benefits.filter(benefit => benefit !== benefitToRemove)
+        }));
+    };
+
+    const handleBenefitsKeyDown = (e: React.KeyboardEvent) => {
+        if (e.key === "Enter") {
+            e.preventDefault();
+            if (benefitsInput.trim()) {
+                addBenefit(benefitsInput);
+            }
+        }
+    };
+
+    // Filtrar sugerencias basadas en el input
+    const filteredBenefits = predefinedBenefits.filter(benefit =>
+        benefit.toLowerCase().includes(benefitsInput.toLowerCase()) &&
+        !formData.benefits.includes(benefit)
+    );
+
     const handleSubmit = async () => {
         if (!acceptedTerms) {
             alert(t("addCompany.form.acceptTermsRequired"));
@@ -160,9 +226,10 @@ export default function AddCompanyForm() {
                 country: "",
                 state: "",
                 website: "",
-                benefits: "",
+                benefits: [],
             });
             setAcceptedTerms(false);
+            setBenefitsInput("");
         } catch (error) {
             alert(t("addCompany.form.submitError"));
         } finally {
@@ -192,50 +259,54 @@ export default function AddCompanyForm() {
 
                         <Card className="p-6 lg:p-8 shadow-xl border-0 bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm transition-colors duration-200">
                             <div className="space-y-5">
-                                {/* Company Name */}
-                                <div>
-                                    <Input
-                                        type="text"
-                                        label={t("addCompany.form.name.label")}
-                                        placeholder={t("addCompany.form.name.placeholder")}
-                                        value={formData.name}
-                                        onValueChange={(value) => handleInputChange("name", value)}
-                                        isRequired
-                                        size="lg"
-                                        variant="bordered"
-                                        classNames={{
-                                            input: "text-slate-900 dark:text-white",
-                                            label: "text-slate-700 dark:text-slate-300 font-medium",
-                                        }}
-                                    />
+                                {/* Row 1: Company Name and Industry */}
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                                    {/* Company Name */}
+                                    <div>
+                                        <Input
+                                            type="text"
+                                            label={t("addCompany.form.name.label")}
+                                            placeholder={t("addCompany.form.name.placeholder")}
+                                            value={formData.name}
+                                            onValueChange={(value) => handleInputChange("name", value)}
+                                            isRequired
+                                            size="lg"
+                                            variant="bordered"
+                                            classNames={{
+                                                input: "text-slate-900 dark:text-white",
+                                                label: "text-slate-700 dark:text-slate-300 font-medium",
+                                            }}
+                                        />
+                                    </div>
+
+                                    {/* Industry */}
+                                    <div>
+                                        <Select
+                                            label={t("addCompany.form.industry.label")}
+                                            placeholder={t("addCompany.form.industry.placeholder")}
+                                            selectedKeys={formData.industry ? [formData.industry] : []}
+                                            onSelectionChange={(keys) => {
+                                                const selectedKey = Array.from(keys)[0] as string;
+                                                handleInputChange("industry", selectedKey);
+                                            }}
+                                            isRequired
+                                            size="lg"
+                                            variant="bordered"
+                                            classNames={{
+                                                value: "text-slate-900 dark:text-white",
+                                                label: "text-slate-700 dark:text-slate-300 font-medium",
+                                            }}
+                                        >
+                                            {industries.map((industry) => (
+                                                <SelectItem key={industry.key} className="text-slate-900 dark:text-white">
+                                                    {industry.label}
+                                                </SelectItem>
+                                            ))}
+                                        </Select>
+                                    </div>
                                 </div>
 
-                                {/* Industry */}
-                                <div>
-                                    <Select
-                                        label={t("addCompany.form.industry.label")}
-                                        placeholder={t("addCompany.form.industry.placeholder")}
-                                        selectedKeys={formData.industry ? [formData.industry] : []}
-                                        onSelectionChange={(keys) => {
-                                            const selectedKey = Array.from(keys)[0] as string;
-                                            handleInputChange("industry", selectedKey);
-                                        }}
-                                        isRequired
-                                        size="lg"
-                                        variant="bordered"
-                                        classNames={{
-                                            value: "text-slate-900 dark:text-white",
-                                            label: "text-slate-700 dark:text-slate-300 font-medium",
-                                        }}
-                                    >
-                                        {industries.map((industry) => (
-                                            <SelectItem key={industry.key} className="text-slate-900 dark:text-white">
-                                                {industry.label}
-                                            </SelectItem>
-                                        ))}
-                                    </Select>
-                                </div>
-
+                                {/* Row 2: Country and State */}
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                                     {/* Country */}
                                     <div>
@@ -291,42 +362,94 @@ export default function AddCompanyForm() {
                                     </div>
                                 </div>
 
-                                {/* Website */}
-                                <div>
-                                    <Input
-                                        type="url"
-                                        label={t("addCompany.form.website.label")}
-                                        placeholder={t("addCompany.form.website.placeholder")}
-                                        value={formData.website}
-                                        onValueChange={(value) => handleInputChange("website", value)}
-                                        size="lg"
-                                        variant="bordered"
-                                        classNames={{
-                                            input: "text-slate-900 dark:text-white",
-                                            label: "text-slate-700 dark:text-slate-300 font-medium",
-                                        }}
-                                    />
+                                {/* Row 3: Website */}
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                                    <div>
+                                        <Input
+                                            type="url"
+                                            label={t("addCompany.form.website.label")}
+                                            placeholder={t("addCompany.form.website.placeholder")}
+                                            value={formData.website}
+                                            onValueChange={(value) => handleInputChange("website", value)}
+                                            size="lg"
+                                            variant="bordered"
+                                            classNames={{
+                                                input: "text-slate-900 dark:text-white",
+                                                label: "text-slate-700 dark:text-slate-300 font-medium",
+                                            }}
+                                        />
+                                    </div>
                                 </div>
 
-                                {/* Benefits */}
-                                <div className="space-y-2">
+                                {/* Row 4: Benefits */}
+                                <div className="space-y-3">
                                     <label
                                         htmlFor="benefits"
                                         className="block text-slate-700 dark:text-slate-300 font-medium text-sm"
                                     >
                                         {t("addCompany.form.benefits.label")}
                                     </label>
-                                    <textarea
-                                        id="benefits"
-                                        placeholder={t("addCompany.form.benefits.placeholder")}
-                                        value={formData.benefits}
-                                        onChange={(e) => handleInputChange("benefits", e.target.value)}
-                                        rows={4}
-                                        className="w-full px-4 py-3 border-2 border-slate-200 dark:border-slate-600 rounded-lg focus:border-sky-500 dark:focus:border-sky-400 focus:outline-none resize-none text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 bg-white dark:bg-slate-800 transition-colors duration-200"
-                                    />
+
+                                    {/* Benefits chips */}
+                                    {formData.benefits.length > 0 && (
+                                        <div className="flex flex-wrap gap-2 mb-3">
+                                            {formData.benefits.map((benefit, index) => (
+                                                <div
+                                                    key={index}
+                                                    className="inline-flex items-center gap-2 px-3 py-1.5 bg-sky-100 dark:bg-sky-900/30 text-sky-800 dark:text-sky-200 rounded-lg text-sm border border-sky-200 dark:border-sky-700"
+                                                >
+                                                    <span>{benefit}</span>
+                                                    <button
+                                                        type="button"
+                                                        onClick={() => removeBenefit(benefit)}
+                                                        className="ml-1 text-sky-600 dark:text-sky-400 hover:text-sky-800 dark:hover:text-sky-200 transition-colors"
+                                                    >
+                                                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                                                        </svg>
+                                                    </button>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    )}
+
+                                    {/* Benefits input with autocomplete */}
+                                    <div className="relative">
+                                        <input
+                                            id="benefits"
+                                            type="text"
+                                            placeholder={t("addCompany.form.benefits.placeholder")}
+                                            value={benefitsInput}
+                                            onChange={(e) => handleBenefitsInputChange(e.target.value)}
+                                            onKeyDown={handleBenefitsKeyDown}
+                                            onFocus={() => setShowBenefitsSuggestions(benefitsInput.length > 0)}
+                                            onBlur={() => setTimeout(() => setShowBenefitsSuggestions(false), 200)}
+                                            className="w-full px-4 py-3 border-2 border-slate-200 dark:border-slate-600 rounded-lg focus:border-sky-500 dark:focus:border-sky-400 focus:outline-none text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 bg-white dark:bg-slate-800 transition-colors duration-200"
+                                        />
+
+                                        {/* Autocomplete suggestions */}
+                                        {showBenefitsSuggestions && filteredBenefits.length > 0 && (
+                                            <div className="absolute z-10 w-full mt-1 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-600 rounded-lg shadow-lg max-h-48 overflow-y-auto">
+                                                {filteredBenefits.slice(0, 8).map((benefit, index) => (
+                                                    <button
+                                                        key={index}
+                                                        type="button"
+                                                        onClick={() => addBenefit(benefit)}
+                                                        className="w-full px-4 py-2 text-left text-slate-900 dark:text-white hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors duration-200 first:rounded-t-lg last:rounded-b-lg"
+                                                    >
+                                                        {benefit}
+                                                    </button>
+                                                ))}
+                                            </div>
+                                        )}
+                                    </div>
+
+                                    <p className="text-xs text-slate-500 dark:text-slate-400">
+                                        {t("addCompany.form.benefits.help")}
+                                    </p>
                                 </div>
 
-                                {/* Terms and Conditions */}
+                                {/* Row 5: Terms and Conditions */}
                                 <div className="flex items-start gap-3 p-4 bg-slate-50 dark:bg-slate-700 rounded-lg border border-slate-200 dark:border-slate-600 transition-colors duration-200">
                                     <input
                                         type="checkbox"

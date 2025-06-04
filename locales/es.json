@@ -346,7 +346,7 @@
         "title": "Agregar <1>empresa</1>",
         "description": "Necesitamos algunos datos básicos para que puedas agregar la empresa y calificarla.",
         "form": {
-            "companyName": {
+            "name": {
                 "label": "Nombre de la empresa",
                 "placeholder": "Ej: TechCorp SA"
             },
@@ -385,61 +385,53 @@
                     "other": "Otro"
                 }
             },
-            "region": {
-                "labels": {
-                    "ar": "Provincia",
-                    "br": "Estado",
-                    "cl": "Región",
-                    "co": "Departamento",
-                    "mx": "Estado",
-                    "pe": "Departamento",
-                    "uy": "Departamento",
-                    "default": "Estado/Provincia"
-                },
-                "placeholders": {
-                    "ar": "Seleccionar provincia",
-                    "br": "Seleccionar estado",
-                    "cl": "Seleccionar región",
-                    "co": "Seleccionar departamento",
-                    "mx": "Seleccionar estado",
-                    "pe": "Seleccionar departamento",
-                    "uy": "Seleccionar departamento",
-                    "default": "Primero selecciona el país"
-                }
+            "state": {
+                "label": "Estado/Provincia",
+                "placeholder": "Seleccionar estado/provincia"
             },
             "benefits": {
                 "label": "Beneficios y cultura laboral",
-                "placeholder": "Describe los beneficios, cultura laboral, modalidad de trabajo, horarios flexibles, capacitaciones, etc..."
-            },
-            "terms": {
-                "label": "He leído y acepto las",
-                "link": "normas de convivencia",
-                "suffix": "de la plataforma"
-            },
-            "submitButton": "Agregar empresa",
-            "submitting": "Agregando empresa..."
-        },
-        "sidebar": {
-            "experience": {
-                "title": "Tu experiencia importa",
-                "description": "Tu opinión ayuda a otras personas a tomar mejores decisiones laborales."
-            },
-            "rules": {
-                "title": "Normas de convivencia:",
-                "items": [
-                    "No menciones nombres específicos de personas",
-                    "Evita contenido agresivo o discriminatorio",
-                    "No compartas información confidencial"
-                ]
-            },
-            "impact": {
-                "title": "Impacto de tu contribución",
-                "stats": {
-                    "companies": "Empresas agregadas:",
-                    "users": "Usuarios activos:",
-                    "reviews": "Reseñas totales:"
+                "placeholder": "Escribe un beneficio y presiona Enter, o selecciona de las sugerencias...",
+                "help": "Presiona Enter para agregar beneficios personalizados, o selecciona de las sugerencias predefinidas.",
+                "options": {
+                    "remote": "Trabajo remoto",
+                    "flexibleHours": "Horarios flexibles",
+                    "healthInsurance": "Seguro médico",
+                    "dental": "Seguro dental",
+                    "vision": "Seguro de visión",
+                    "lifeInsurance": "Seguro de vida",
+                    "vacation": "Vacaciones pagadas",
+                    "paidLeave": "Licencias pagas",
+                    "training": "Capacitaciones",
+                    "gym": "Gimnasio",
+                    "freeLunch": "Almuerzo gratis",
+                    "transportation": "Subsidio de transporte",
+                    "parking": "Estacionamiento",
+                    "childcare": "Guardería",
+                    "stockOptions": "Opciones de acciones",
+                    "bonus": "Bonos anuales",
+                    "teamEvents": "Eventos de equipo",
+                    "workFromHome": "Trabajo desde casa"
                 }
-            }
+            },
+            "terms": "Acepto los <1>términos y condiciones</1> de la plataforma",
+            "acceptTermsRequired": "Debes aceptar los términos y condiciones para continuar",
+            "submit": "Agregar empresa",
+            "submitting": "Agregando empresa...",
+            "submitSuccess": "¡Empresa agregada exitosamente!",
+            "submitError": "Error al agregar la empresa. Intenta nuevamente."
+        },
+        "tips": {
+            "title": "Consejos útiles",
+            "tip1": "Proporciona información precisa y completa sobre la empresa",
+            "tip2": "Los beneficios específicos ayudan a otros trabajadores",
+            "tip3": "Revisa la información antes de enviar",
+            "tip4": "Mantén un tono profesional y constructivo"
+        },
+        "contact": {
+            "title": "¿Necesitas ayuda?",
+            "description": "Si tienes dudas sobre cómo completar el formulario, estamos aquí para ayudarte.",
+            "button": "Contactar soporte"
         },
         "messages": {
             "termsRequired": "Debes aceptar las normas de convivencia para continuar",
