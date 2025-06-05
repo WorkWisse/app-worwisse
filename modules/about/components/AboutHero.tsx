@@ -53,7 +53,7 @@ export default function AboutHero() {
             </div>
           </div>
 
-          <div className="relative animate-slide-in-right">
+          <div className="hidden lg:flex relative animate-slide-in-right">
             <div className="relative">
               <img
                 src="/images/about-us.png"
