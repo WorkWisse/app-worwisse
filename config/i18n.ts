@@ -4,6 +4,7 @@ import LanguageDetector from "i18next-browser-languagedetector";
 
 import esTranslations from "../locales/es.json";
 import ptTranslations from "../locales/pt.json";
+import enTranslations from "../locales/en.json";
 
 const resources = {
   es: {
@@ -12,6 +13,9 @@ const resources = {
   pt: {
     translation: ptTranslations,
   },
+  en: {
+    translation: enTranslations,
+  },
 };
 
 i18n
@@ -19,7 +23,7 @@ i18n
   .use(initReactI18next)
   .init({
     resources,
-    lng: "es",
+    lng: "es", // Set default language to Spanish
     fallbackLng: "es",
     debug: false,
 

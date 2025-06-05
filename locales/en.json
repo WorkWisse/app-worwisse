@@ -1,0 +1,495 @@
+{
+    "hero": {
+        "title": "Know the truth about your <1>next job</1> before applying",
+        "description": "Access real employee reviews, actual salary information, and transparent rankings. <1>Make informed career decisions</1> with information that really matters.",
+        "searchPlaceholder": "Search by company name...",
+        "searchButton": "Search",
+        "ctaFeatured": "View featured companies",
+        "trustBadges": {
+            "free": "Free",
+            "verified": "Verified reviews",
+            "anonymous": "100% anonymous"
+        },
+        "notifications": {
+            "success": "Maria found a job she loves",
+            "timeAgo": "2 hours ago",
+            "rating": "4.9/5 stars",
+            "reviews": "+2,500 reviews"
+        }
+    },
+    "about": {
+        "hero": {
+            "title": "We connect <1>workers</1> with <2>good jobs</2>",
+            "description": "We are the platform that helps you know the truth about companies, so you can choose where to work with real information from other workers like you.",
+            "ctaTeam": "Meet our team",
+            "ctaHistory": "Our story"
+        },
+        "mission": {
+            "title": "Our <1>mission</1>",
+            "description1": "That all workers have access to real information about companies, so they can find workplaces where they truly feel valued and respected.",
+            "description2": "We believe that every person deserves to work in a place where they can grow, contribute, and be treated with dignity.",
+            "values": {
+                "transparency": {
+                    "title": "Transparency",
+                    "description": "We believe in showing clear and honest information so you can make the best career decisions."
+                },
+                "simplicity": {
+                    "title": "Simplicity",
+                    "description": "We make it easy to find and understand the information you need about any company."
+                },
+                "community": {
+                    "title": "Community",
+                    "description": "We build a community where workers share their experiences and help each other."
+                },
+                "honesty": {
+                    "title": "Honesty",
+                    "description": "We commit to showing the reality of each company, without filters or manipulated information."
+                }
+            }
+        },
+        "team": {
+            "title": "Meet our <1>team</1>",
+            "description": "We are a group of people who also work and understand how important it is to find a good place for career development.",
+            "members": {
+                "maria": {
+                    "name": "Maria González",
+                    "role": "Founder",
+                    "bio": "Worked many years in human resources and got tired of seeing how information about companies was not transparent. She decided to create WorkWisse to change that."
+                },
+                "carlos": {
+                    "name": "Carlos Rodríguez",
+                    "role": "Technology Lead",
+                    "bio": "Makes sure the platform works well and is easy to use. Believes that technology should serve people."
+                },
+                "ana": {
+                    "name": "Ana Martínez",
+                    "role": "Community Lead",
+                    "bio": "Ensures our community is a safe place where workers can share their experiences without fear."
+                },
+                "diego": {
+                    "name": "Diego López",
+                    "role": "Information Lead",
+                    "bio": "Makes sure all the information we show is accurate and useful to help you make better decisions."
+                }
+            }
+        },
+        "stats": {
+            "title": "What we've <1>achieved</1> together",
+            "description": "These numbers show how we're helping workers have more information before choosing where to work.",
+            "items": {
+                "workers": {
+                    "number": "50K+",
+                    "label": "Workers using us",
+                    "description": "People who already use WorkWisse to know the truth about companies"
+                },
+                "companies": {
+                    "number": "2,500+",
+                    "label": "Companies evaluated",
+                    "description": "Companies with real reviews from workers like you"
+                },
+                "satisfaction": {
+                    "number": "95%",
+                    "label": "People satisfied",
+                    "description": "Of those who use WorkWisse recommend it to other workers"
+                },
+                "availability": {
+                    "number": "24/7",
+                    "label": "Always available",
+                    "description": "You can check company information whenever you need it"
+                }
+            }
+        },
+        "history": {
+            "title": "Our <1>story</1>",
+            "description": "This is how it all started and how we got here, always thinking about making workers' lives easier.",
+            "timeline": {
+                "2020": {
+                    "title": "The idea that changed everything",
+                    "description": "We realized that workers needed real information about companies, especially when everything changed with the pandemic."
+                },
+                "2021": {
+                    "title": "First steps",
+                    "description": "We launched WorkWisse with information from 100 companies and 1,000 workers who dared to share their experiences."
+                },
+                "2022": {
+                    "title": "We grew together",
+                    "description": "We reached 5 Latin American countries and we were already 10,000 workers helping each other."
+                },
+                "2023": {
+                    "title": "We improved the experience",
+                    "description": "We used technology to make it easier to find the information you need about any company."
+                },
+                "2024": {
+                    "title": "We are community",
+                    "description": "We are now more than 50,000 workers sharing real information to help us choose better where to work."
+                }
+            },
+            "future": {
+                "title": "What comes next",
+                "description": "We keep working to make it easier to know the truth about companies. We want all workers to be able to make better decisions with real and honest information.",
+                "tags": {
+                    "countries": "More countries",
+                    "experience": "Better experience",
+                    "information": "More useful information",
+                    "partnerships": "New partnerships"
+                }
+            }
+        },
+        "cta": {
+            "title": "Want to make better <1>career decisions</1>?",
+            "description": "Change starts with an informed decision. Discover what others are already doing to transform their professional future.",
+            "primaryButton": "Start for free",
+            "secondaryButton": "View companies",
+            "benefits": {
+                "improve": {
+                    "title": "Improve your job",
+                    "description": "Find workplaces that really suit you"
+                },
+                "connect": {
+                    "title": "Connect with others",
+                    "description": "Be part of a community of workers who help each other"
+                },
+                "information": {
+                    "title": "Real information",
+                    "description": "Access genuine reviews about companies and jobs"
+                }
+            }
+        }
+    },
+    "features": {
+        "title": "Everything you need to <1>choose better where to work</1>",
+        "description": "We have the information you need to find a job you really like and make informed career decisions.",
+        "items": {
+            "reviews": {
+                "title": "Verified Reviews",
+                "description": "Authentic comments from employees who really worked there",
+                "benefit": "Real and reliable information"
+            },
+            "data": {
+                "title": "Real Data",
+                "description": "Information about salaries, benefits, and work environment",
+                "benefit": "Fact-based decisions"
+            },
+            "rankings": {
+                "title": "Best Employers",
+                "description": "Know which are the best companies to work for",
+                "benefit": "Work in the best places"
+            }
+        },
+        "cta": {
+            "title": "Ready to get started?",
+            "description": "Join thousands of workers who are already using WorkWisse to make better career decisions.",
+            "primary": "View featured companies",
+            "secondary": "Search jobs"
+        }
+    },
+    "testimonials": {
+        "title": "Thousands of workers are already <1>making better decisions</1>",
+        "description": "Listen to what those who already used WorkWisse to find a job they really like have to say.",
+        "stats": {
+            "workers": {
+                "value": "50K+",
+                "label": "Active workers",
+                "description": "Trust our information"
+            },
+            "companies": {
+                "value": "2,500+",
+                "label": "Companies evaluated",
+                "description": "With detailed information"
+            },
+            "satisfaction": {
+                "value": "95%",
+                "label": "Satisfaction",
+                "description": "Of our users"
+            },
+            "availability": {
+                "value": "24/7",
+                "label": "Available",
+                "description": "Always updated information"
+            }
+        },
+        "reviews": {
+            "maria": {
+                "name": "Maria Rodriguez",
+                "role": "Salesperson",
+                "company": "Retail Fashion",
+                "quote": "Thanks to WorkWisse I was able to know the work environment before accepting. Now I know I chose well."
+            },
+            "carlos": {
+                "name": "Carlos Mendoza",
+                "role": "Operator",
+                "company": "Logistics Plus",
+                "quote": "The information about schedules and benefits helped me a lot. I was able to compare and choose where it suited me best."
+            },
+            "ana": {
+                "name": "Ana Silva",
+                "role": "Administrative",
+                "company": "Accounting Services",
+                "quote": "I found my current job reading the reviews. It helped me understand what it was really like to work there."
+            }
+        },
+        "cta": {
+            "title": "Want to be the next to find a job you love?",
+            "description": "Start making smarter career decisions today.",
+            "button": "Explore companies now"
+        }
+    },
+    "faq": {
+        "title": "Frequently <1>asked questions</1>",
+        "description": "Everything you need to know about WorkWisse. If you have any other questions, feel free to contact us.",
+        "items": {
+            "free": {
+                "question": "Is WorkWisse free to use?",
+                "answer": "Yes, WorkWisse is completely free. You can view reviews, search companies, and access salary information at no cost."
+            },
+            "verification": {
+                "question": "How do you know the reviews are real?",
+                "answer": "We verify that people have actually worked at the companies they comment on. We review each opinion before publishing it to ensure it's authentic."
+            },
+            "anonymity": {
+                "question": "Can companies know who wrote the reviews?",
+                "answer": "No, all reviews are completely anonymous. Companies can read the comments but never know who wrote them."
+            },
+            "information": {
+                "question": "What type of information can I find about companies?",
+                "answer": "You'll find information about work environment, salaries, benefits, schedules, bosses, colleagues, and everything you need to know before applying."
+            },
+            "addCompany": {
+                "question": "How can I add my company to the platform?",
+                "answer": "If your company is not on WorkWisse, you can contact us and we'll add it. It's simple and quick."
+            },
+            "salaryData": {
+                "question": "Is the salary information current?",
+                "answer": "Yes, the information is constantly updated with data from current workers. We show real ranges based on recent experiences."
+            }
+        },
+        "cta": {
+            "title": "Have more questions or suggestions?",
+            "description": "Our team is available to help you with any questions you may have.",
+            "primary": "Contact us",
+            "secondary": "View more info"
+        }
+    },
+    "footer": {
+        "description": "The platform that helps you make better career decisions. Real, transparent, and free information for everyone.",
+        "workers": {
+            "title": "For Workers",
+            "links": {
+                "search": "Search companies",
+                "rankings": "Best companies",
+                "reviews": "Write review"
+            }
+        },
+        "companies": {
+            "title": "For Companies",
+            "links": {
+                "add": "Add your company",
+                "services": "Business services",
+                "branding": "Improve image",
+                "analytics": "View statistics"
+            }
+        },
+        "legal": {
+            "copyright": "© {{year}} WorkWisse. All rights reserved.",
+            "tagline": "Helping workers make better career decisions.",
+            "about": "About us",
+            "privacy": "Privacy",
+            "terms": "Terms",
+            "contact": "Contact"
+        }
+    },
+    "header": {
+        "about": "About us",
+        "addCompany": "Add your company",
+        "language": "Language",
+        "contact": "Contact",
+        "theme": "Theme"
+    },
+    "contact": {
+        "hero": {
+            "title": "Get in <1>touch</1>",
+            "description": "We'd love to hear from you. Send us a message and we'll respond as soon as possible.",
+            "email": "Email",
+            "phone": "Phone",
+            "office": "Office",
+            "emailAddress": "hello@worwisse.com",
+            "phoneNumber": "+54 11 1234-5678",
+            "officeAddress": "Av. Corrientes 1234<br />Floor 5, CABA, Argentina"
+        },
+        "form": {
+            "title": "Send us a message",
+            "description": "Have a question or suggestion? We'd love to hear from you. Fill out the form and we'll respond as soon as possible.",
+            "fields": {
+                "name": {
+                    "label": "Full name",
+                    "placeholder": "Enter your full name"
+                },
+                "email": {
+                    "label": "Email address",
+                    "placeholder": "Enter your email"
+                },
+                "subject": {
+                    "label": "Subject",
+                    "placeholder": "What is it about?"
+                },
+                "message": {
+                    "label": "Message",
+                    "placeholder": "Tell us more about your inquiry..."
+                }
+            },
+            "button": {
+                "send": "Send message",
+                "sending": "Sending..."
+            }
+        }
+    },
+    "addCompany": {
+        "title": "Add <1>company</1>",
+        "description": "We need some basic information so you can add the company and rate it.",
+        "form": {
+            "name": {
+                "label": "Company name",
+                "placeholder": "e.g. TechCorp Inc"
+            },
+            "industry": {
+                "label": "Industry or Sector",
+                "placeholder": "Select industry",
+                "options": {
+                    "tech": "Technology",
+                    "finance": "Finance",
+                    "healthcare": "Healthcare",
+                    "education": "Education",
+                    "retail": "Retail",
+                    "manufacturing": "Manufacturing",
+                    "consulting": "Consulting",
+                    "marketing": "Marketing",
+                    "real-estate": "Real Estate",
+                    "logistics": "Logistics",
+                    "other": "Other"
+                }
+            },
+            "website": {
+                "label": "Website",
+                "placeholder": "https://company.com"
+            },
+            "country": {
+                "label": "Company country",
+                "placeholder": "Select country",
+                "options": {
+                    "ar": "Argentina",
+                    "br": "Brazil",
+                    "cl": "Chile",
+                    "co": "Colombia",
+                    "mx": "Mexico",
+                    "pe": "Peru",
+                    "uy": "Uruguay",
+                    "other": "Other"
+                }
+            },
+            "state": {
+                "label": "State/Province",
+                "placeholder": "Select state/province"
+            },
+            "benefits": {
+                "label": "Benefits and work culture",
+                "placeholder": "Type a benefit and press Enter, or select from suggestions...",
+                "help": "Press Enter to add custom benefits, or select from predefined suggestions.",
+                "options": {
+                    "remote": "Remote work",
+                    "flexibleHours": "Flexible hours",
+                    "healthInsurance": "Health insurance",
+                    "dental": "Dental insurance",
+                    "vision": "Vision insurance",
+                    "lifeInsurance": "Life insurance",
+                    "vacation": "Paid vacation",
+                    "paidLeave": "Paid leave",
+                    "training": "Training",
+                    "gym": "Gym",
+                    "freeLunch": "Free lunch",
+                    "transportation": "Transportation subsidy",
+                    "parking": "Parking",
+                    "childcare": "Childcare",
+                    "stockOptions": "Stock options",
+                    "bonus": "Annual bonuses",
+                    "teamEvents": "Team events",
+                    "workFromHome": "Work from home"
+                }
+            },
+            "terms": "I accept the <1>terms and conditions</1> of the platform",
+            "acceptTermsRequired": "You must accept the terms and conditions to continue",
+            "submit": "Add company",
+            "submitting": "Adding company...",
+            "submitSuccess": "Company added successfully!",
+            "submitError": "Error adding company. Please try again."
+        },
+        "tips": {
+            "title": "Helpful tips",
+            "tip1": "Provide accurate and complete information about the company",
+            "tip2": "Specific benefits help other workers",
+            "tip3": "Review the information before submitting",
+            "tip4": "Keep a professional and constructive tone"
+        },
+        "contact": {
+            "title": "Need help?",
+            "description": "If you have questions about how to fill out the form, we're here to help.",
+            "button": "Contact support"
+        },
+        "messages": {
+            "termsRequired": "You must accept the community guidelines to continue",
+            "success": "Company added successfully! It will be reviewed by our team."
+        }
+    },
+    "terms": {
+        "hero": {
+            "badge": "Community guidelines",
+            "title": "Community <1>guidelines</1>",
+            "subtitle": "We build together a respectful, transparent, and collaborative work community where everyone can share their experiences safely.",
+            "lastUpdated": "Last updated: May 2025",
+            "readTime": "Reading time: 5 minutes"
+        },
+        "content": {
+            "mainTitle": "Our community principles",
+            "mainSubtitle": "These rules ensure a safe and constructive space for all WorkWisse users",
+            "purpose": {
+                "title": "Platform purpose",
+                "content": "WorkWisse is a space to share genuine work experiences that help other workers make informed decisions. We seek to create a community where transparency and mutual respect are the fundamental pillars."
+            },
+            "respect": {
+                "title": "Respect and civility",
+                "content": "We treat all community members with respect, regardless of their position, company, or experience. We do not tolerate discrimination based on gender, age, sexual orientation, religion, nationality, race, or any other personal characteristic. Differences of opinion should be expressed constructively and respectfully."
+            },
+            "privacy": {
+                "title": "Privacy and anonymity",
+                "content": "We respect the privacy of all users. Do not reveal full names of specific people (colleagues, bosses, clients). Avoid sharing personally identifiable information, your own or that of third parties. Maintain confidentiality of sensitive company information that could compromise their competitiveness or violate confidentiality agreements."
+            },
+            "accuracy": {
+                "title": "Truthfulness and authenticity",
+                "content": "Share only real and verifiable experiences. Base your opinions on concrete facts and personal experiences. Avoid exaggerations or distortions that could mislead other users. If you share second-hand information, specify it clearly."
+            },
+            "prohibited": {
+                "title": "Prohibited content",
+                "content": "Not allowed: offensive, threatening, or discriminatory language; content that promotes illegal activities; spam, unauthorized advertising, or commercial content; false, defamatory, or malicious information; content that violates copyright or intellectual property rights; harassment, intimidation, or personal attacks."
+            },
+            "consequences": {
+                "title": "Consequences of non-compliance",
+                "content": "Non-compliance with these rules may result in: temporary or permanent removal of content."
+            },
+            "important": {
+                "title": "Important to remember",
+                "content": "These rules are designed to protect the entire community. If you see content that violates these rules, report it immediately. Our team reviews all reports and takes appropriate action."
+            },
+            "contact": {
+                "title": "Questions or inquiries?",
+                "content": "If you have questions about these rules or need to report inappropriate content, don't hesitate to",
+                "link": "contact us"
+            }
+        },
+        "cta": {
+            "title": "Ready to contribute?",
+            "subtitle": "Join our community and help other workers by sharing your experience responsibly and constructively.",
+            "addCompanyButton": "Add company",
+            "backHomeButton": "Back to home",
+            "footer": "By using WorkWisse, you agree to comply with these community guidelines."
+        }
+    }
+}

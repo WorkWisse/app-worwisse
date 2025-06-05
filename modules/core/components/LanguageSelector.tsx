@@ -25,7 +25,7 @@ export const LanguageSelector = () => {
         className="min-w-unit-16 px-2"
         aria-label="Language selector loading"
       >
-        <span className="text-xl">🇪🇸</span>
+        <span className="text-xl">🌐</span>
       </Button>
     );
   }
@@ -37,6 +37,11 @@ export const LanguageSelector = () => {
       key: "es",
       label: "Español",
       flag: "🇪🇸",
+    },
+    {
+      key: "en",
+      label: "English",
+      flag: "🇺🇸",
     },
     {
       key: "pt",

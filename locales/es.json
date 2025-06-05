@@ -302,7 +302,8 @@
         "about": "Sobre nosotros",
         "addCompany": "Sumá tu empresa",
         "language": "Idioma",
-        "contact": "Contacto"
+        "contact": "Contacto",
+        "theme": "Tema"
     },
     "contact": {
         "hero": {
