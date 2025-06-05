@@ -51,7 +51,7 @@ export const LandingHeader = () => {
               <Logo />
               WorkWisse
             </Link>
-            
+
             <nav className="hidden md:flex items-center space-x-6">
               <Link href="/about" className="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-sky-600 dark:hover:text-sky-400 transition-colors duration-300">
                 Sobre nosotros
@@ -65,7 +65,7 @@ export const LandingHeader = () => {
               <ThemeToggle />
               <LanguageSelector />
             </nav>
-            
+
             <button
               className="md:hidden p-2 rounded-lg text-slate-600 dark:text-slate-300 hover:text-slate-800 dark:hover:text-slate-100 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors duration-300"
               onClick={toggleMenu}
