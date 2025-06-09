@@ -490,5 +490,88 @@
             "backHomeButton": "Voltar ao início",
             "footer": "Ao usar o WorkWisse, você concorda em cumprir essas normas de convivência."
         }
+    },
+    "companyDetail": {
+        "founded": "Fundada em",
+        "employees": "funcionários",
+        "website": "Site",
+        "writeReview": "Escrever avaliação",
+        "followCompany": "Seguir empresa",
+        "aboutTitle": "Sobre",
+        "workEnvironmentTitle": "Ambiente de trabalho",
+        "workEnvironmentLabels": {
+            "workLifeBalance": "Equilíbrio vida-trabalho",
+            "careerOpportunities": "Oportunidades de carreira",
+            "compensation": "Compensação",
+            "culture": "Cultura",
+            "management": "Gestão"
+        },
+        "recentReviewsTitle": "Avaliações recentes",
+        "viewAllReviews": "Ver todas as avaliações",
+        "recommends": "Recomenda",
+        "reviewSections": {
+            "pros": "O melhor:",
+            "cons": "A melhorar:",
+            "advice": "Conselho:"
+        },
+        "salaryRangeTitle": "Faixa salarial",
+        "salaryPeriod": "Média mensal",
+        "benefitsTitle": "Benefícios",
+        "quickStatsTitle": "Em números",
+        "quickStats": {
+            "totalReviews": "Total de avaliações",
+            "wouldRecommend": "Recomendariam",
+            "averageRating": "Avaliação média"
+        },
+        "ctaSection": {
+            "title": "Você trabalha aqui?",
+            "description": "Compartilhe sua experiência e ajude outros trabalhadores",
+            "button": "Escrever minha avaliação"
+        }
+    },
+    "reviewForm": {
+        "title": "Compartilhe sua experiência",
+        "viewReviews": "Ver avaliações anteriores",
+        "workInfo": {
+            "title": "Informações do trabalho",
+            "role": "Cargo/Função na empresa",
+            "rolePlaceholder": "Ex: Desenvolvedor Sênior, Analista, etc.",
+            "startDate": "Data de início",
+            "endDate": "Data de término",
+            "currentlyWorking": "Atualmente trabalho nesta empresa"
+        },
+        "ratings": {
+            "title": "Avaliações",
+            "environment": "Ambiente",
+            "codeQuality": "Qualidade do código",
+            "growthPolicies": "Políticas de crescimento",
+            "infrastructure": "Infraestrutura",
+            "benefits": "Benefícios e vantagens",
+            "equipment": "Equipamentos e ferramentas",
+            "salary": "Salário e compensação",
+            "inclusionPolicies": "Políticas de inclusão"
+        },
+        "experience": {
+            "title": "Sua experiência",
+            "pros": "O que é melhor em trabalhar lá?",
+            "prosPlaceholder": "Conte sobre os aspectos positivos, ambiente, oportunidades, etc.",
+            "cons": "Que aspectos poderiam melhorar?",
+            "consPlaceholder": "Mencione os pontos que você considera que a empresa poderia melhorar."
+        },
+        "wouldRecommend": "Você recomendaria este lugar para trabalhar?",
+        "acceptTerms": "Li e aceito as normas de convivência",
+        "acceptTermsPrefix": "Li e aceito as",
+        "acceptTermsLink": "normas de convivência",
+        "mustAcceptTerms": "Você deve aceitar as normas de convivência para continuar",
+        "submit": "Enviar minha opinião",
+        "cancel": "Cancelar",
+        "sidebar": {
+            "title": "Obrigado por compartilhar sua experiência",
+            "description": "Sua opinião é importante para que outras pessoas tomem melhores decisões na hora de buscar trabalho.",
+            "rulesTitle": "Por favor, tenha em mente as normas de convivência:",
+            "rule1": "Não mencione ninguém pelo nome ou cargo específico",
+            "rule2": "Não escreva conteúdo agressivo ou discriminatório",
+            "rule3": "Não compartilhe informações confidenciais"
+        }
     }
 }
