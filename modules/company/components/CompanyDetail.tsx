@@ -76,7 +76,7 @@ export default function CompanyDetail({
                           rel="noopener noreferrer"
                           className="text-sky-600 hover:text-sky-700 dark:text-sky-400 dark:hover:text-sky-300 transition-colors"
                         >
-                          Sitio web
+                          {t("companyDetail.website")}
                         </a>
                       </>
                     )}
@@ -91,7 +91,7 @@ export default function CompanyDetail({
                       {company.rating}
                     </span>
                     <span className="text-slate-600 dark:text-slate-300 text-sm">
-                      ({company.reviewsCount} reseñas)
+                      ({company.reviewsCount} {t("companyDetail.reviews")})
                     </span>
                   </div>
 
@@ -102,7 +102,7 @@ export default function CompanyDetail({
                       router.push(`/company/${router.query.slug}/review`)
                     }
                   >
-                    ✍️ Escribir reseña
+                    {t("companyDetail.writeReview")}
                   </Button>
                 </div>
               </div>
@@ -123,14 +123,14 @@ export default function CompanyDetail({
               <Card className="shadow-lg border-0 bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm">
                 <CardHeader className="flex justify-between items-center pb-4">
                   <h2 className="text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-3">
-                    💬 Opiniones de empleados
+                    {t("companyDetail.recentReviewsTitle")}
                   </h2>
                   <Button
                     color="primary"
                     variant="light"
                     className="text-sky-600 hover:text-sky-700"
                   >
-                    Ver todas las opiniones
+                    {t("companyDetail.viewAllReviews")}
                   </Button>
                 </CardHeader>
                 <CardBody className="pt-0">
@@ -149,7 +149,7 @@ export default function CompanyDetail({
                               </span>
                               {review.wouldRecommend && (
                                 <Chip color="success" size="sm" variant="flat" className="ml-2">
-                                  ✅ Recomienda
+                                  {t("companyDetail.recommends")}
                                 </Chip>
                               )}
                             </div>
@@ -164,7 +164,7 @@ export default function CompanyDetail({
                         <div className="grid md:grid-cols-2 gap-6">
                           <div className="space-y-2">
                             <h4 className="text-sm font-semibold text-green-700 dark:text-green-400 flex items-center gap-2">
-                              ✅ Lo mejor
+                              {t("companyDetail.pros")}
                             </h4>
                             <p className="text-slate-700 dark:text-slate-300 text-sm leading-relaxed bg-green-50/50 dark:bg-green-900/20 p-3 rounded-lg">
                               {review.pros}
@@ -173,7 +173,7 @@ export default function CompanyDetail({
 
                           <div className="space-y-2">
                             <h4 className="text-sm font-semibold text-amber-700 dark:text-amber-400 flex items-center gap-2">
-                              ⚠️ A mejorar
+                              {t("companyDetail.cons")}
                             </h4>
                             <p className="text-slate-700 dark:text-slate-300 text-sm leading-relaxed bg-amber-50/50 dark:bg-amber-900/20 p-3 rounded-lg">
                               {review.cons}
@@ -194,14 +194,14 @@ export default function CompanyDetail({
               <Card className="shadow-lg border-0 bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm">
                 <CardHeader className="pb-4">
                   <h3 className="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
-                    📊 Estadísticas
+                    {t("companyDetail.statistics")}
                   </h3>
                 </CardHeader>
                 <CardBody className="pt-0">
                   <div className="space-y-4">
                     <div className="flex justify-between items-center p-3 bg-slate-50 dark:bg-slate-700 rounded-lg">
                       <span className="text-slate-600 dark:text-slate-400 font-medium">
-                        📝 Total opiniones
+                        {t("companyDetail.totalReviews")}
                       </span>
                       <span className="font-bold text-slate-900 dark:text-white text-lg">
                         {company.reviewsCount}
@@ -209,7 +209,7 @@ export default function CompanyDetail({
                     </div>
                     <div className="flex justify-between items-center p-3 bg-green-50 dark:bg-green-900/20 rounded-lg">
                       <span className="text-slate-600 dark:text-slate-400 font-medium">
-                        👍 Recomendarían
+                        {t("companyDetail.wouldRecommend")}
                       </span>
                       <span className="font-bold text-green-600 dark:text-green-400 text-lg">
                         {Math.round(
@@ -221,7 +221,7 @@ export default function CompanyDetail({
                     </div>
                     <div className="flex justify-between items-center p-3 bg-yellow-50 dark:bg-yellow-900/20 rounded-lg">
                       <span className="text-slate-600 dark:text-slate-400 font-medium">
-                        ⭐ Puntuación
+                        {t("companyDetail.rating")}
                       </span>
                       <span className="font-bold text-yellow-600 dark:text-yellow-400 text-lg">
                         {company.rating}/5
@@ -235,7 +235,7 @@ export default function CompanyDetail({
               <Card className="shadow-lg border-0 bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm">
                 <CardHeader className="pb-4">
                   <h3 className="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
-                    🎁 Beneficios
+                    {t("companyDetail.benefits")}
                   </h3>
                 </CardHeader>
                 <CardBody className="pt-0">
@@ -257,10 +257,10 @@ export default function CompanyDetail({
                 <CardBody className="text-center space-y-4">
                   <div className="text-4xl">🚀</div>
                   <h3 className="text-lg font-bold text-slate-900 dark:text-white">
-                    ¿Trabajas aquí?
+                    {t("companyDetail.ctaTitle")}
                   </h3>
                   <p className="text-slate-600 dark:text-slate-300 text-sm">
-                    Comparte tu experiencia y ayuda a otros profesionales a tomar mejores decisiones.
+                    {t("companyDetail.ctaDescription")}
                   </p>
                   <Button
                     className="bg-sky-600 hover:bg-sky-700 text-white font-semibold w-full"
@@ -268,7 +268,7 @@ export default function CompanyDetail({
                       router.push(`/company/${router.query.slug}/review`)
                     }
                   >
-                    ✍️ Escribir reseña
+                    {t("companyDetail.writeReview")}
                   </Button>
                 </CardBody>
               </Card>

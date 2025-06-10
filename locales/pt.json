@@ -495,39 +495,23 @@
         "founded": "Fundada em",
         "employees": "funcionários",
         "website": "Site",
-        "writeReview": "Escrever avaliação",
+        "writeReview": "✍️ Escrever avaliação",
+        "reviews": "avaliações",
         "followCompany": "Seguir empresa",
         "aboutTitle": "Sobre",
         "workEnvironmentTitle": "Ambiente de trabalho",
-        "workEnvironmentLabels": {
-            "workLifeBalance": "Equilíbrio vida-trabalho",
-            "careerOpportunities": "Oportunidades de carreira",
-            "compensation": "Compensação",
-            "culture": "Cultura",
-            "management": "Gestão"
-        },
-        "recentReviewsTitle": "Avaliações recentes",
+        "recentReviewsTitle": "💬 Avaliações de funcionários",
         "viewAllReviews": "Ver todas as avaliações",
-        "recommends": "Recomenda",
-        "reviewSections": {
-            "pros": "O melhor:",
-            "cons": "A melhorar:",
-            "advice": "Conselho:"
-        },
-        "salaryRangeTitle": "Faixa salarial",
-        "salaryPeriod": "Média mensal",
-        "benefitsTitle": "Benefícios",
-        "quickStatsTitle": "Em números",
-        "quickStats": {
-            "totalReviews": "Total de avaliações",
-            "wouldRecommend": "Recomendariam",
-            "averageRating": "Avaliação média"
-        },
-        "ctaSection": {
-            "title": "Você trabalha aqui?",
-            "description": "Compartilhe sua experiência e ajude outros trabalhadores",
-            "button": "Escrever minha avaliação"
-        }
+        "recommends": "✅ Recomenda",
+        "pros": "✅ O melhor",
+        "cons": "⚠️ A melhorar",
+        "statistics": "📊 Estatísticas",
+        "totalReviews": "📝 Total de avaliações",
+        "wouldRecommend": "👍 Recomendariam",
+        "rating": "⭐ Pontuação",
+        "benefits": "🎁 Benefícios",
+        "ctaTitle": "Você trabalha aqui?",
+        "ctaDescription": "Compartilhe sua experiência e ajude outros profissionais a tomar melhores decisões."
     },
     "reviewForm": {
         "title": "Compartilhe sua experiência",

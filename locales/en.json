@@ -1,4 +1,26 @@
 {
+    "companyDetail": {
+        "founded": "Founded in",
+        "employees": "employees",
+        "website": "Website",
+        "writeReview": "✍️ Write review",
+        "reviews": "reviews",
+        "followCompany": "Follow company",
+        "aboutTitle": "About",
+        "workEnvironmentTitle": "Work environment",
+        "recentReviewsTitle": "💬 Employee reviews",
+        "viewAllReviews": "See all reviews",
+        "recommends": "✅ Recommends",
+        "pros": "✅ The best",
+        "cons": "⚠️ To improve",
+        "statistics": "📊 Statistics",
+        "totalReviews": "📝 Total reviews",
+        "wouldRecommend": "👍 Would recommend",
+        "rating": "⭐ Rating",
+        "benefits": "🎁 Benefits",
+        "ctaTitle": "Do you work here?",
+        "ctaDescription": "Share your experience and help other professionals make better decisions."
+    },
     "reviewForm": {
         "title": "Share your experience",
         "viewReview": "View Ratings",
