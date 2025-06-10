@@ -490,7 +490,8 @@
             "addCompanyButton": "Add company",
             "backHomeButton": "Back to home",
             "footer": "By using WorkWisse, you agree to comply with these community guidelines."
-        },
+        }
+    },
     "companyDetail": {
         "founded": "Founded in",
         "employees": "employees",
@@ -518,6 +519,7 @@
         "viewReview": "View Ratings",
         "workInfo": {
             "title": "Work Information",
+            "description": "Tell us about your work experience at the company",
             "role": "Position/Role at the company",
             "rolePlaceholder": "Ex: Senior Developer, Analyst, etc.",
             "startDate": "Start date",
@@ -586,5 +588,4 @@
             "ratingsRequired": "Please complete at least the main ratings"
         }
     }
-}
 }

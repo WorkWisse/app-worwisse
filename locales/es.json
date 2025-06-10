@@ -298,12 +298,256 @@
             "contact": "Contacto"
         }
     },
+    "addCompany": {
+        "title": "Agregar <1>empresa</1>",
+        "description": "Necesitamos información básica para que puedas agregar la empresa y calificarla.",
+        "form": {
+            "name": {
+                "label": "Nombre de la empresa",
+                "placeholder": "ej. TechCorp Inc"
+            },
+            "industry": {
+                "label": "Industria o Sector",
+                "placeholder": "Seleccionar industria",
+                "options": {
+                    "tech": "Tecnología",
+                    "finance": "Finanzas",
+                    "healthcare": "Salud",
+                    "education": "Educación",
+                    "retail": "Comercio minorista",
+                    "manufacturing": "Manufactura",
+                    "consulting": "Consultoría",
+                    "marketing": "Marketing",
+                    "real-estate": "Inmobiliario",
+                    "logistics": "Logística",
+                    "other": "Otro"
+                }
+            },
+            "website": {
+                "label": "Sitio web",
+                "placeholder": "https://empresa.com"
+            },
+            "country": {
+                "label": "País de la empresa",
+                "placeholder": "Seleccionar país",
+                "options": {
+                    "ar": "Argentina",
+                    "br": "Brasil",
+                    "cl": "Chile",
+                    "co": "Colombia",
+                    "mx": "México",
+                    "pe": "Perú",
+                    "uy": "Uruguay",
+                    "other": "Otro"
+                }
+            },
+            "state": {
+                "label": "Estado/Provincia",
+                "placeholder": "Seleccionar estado/provincia"
+            },
+            "benefits": {
+                "label": "Beneficios y cultura laboral",
+                "placeholder": "Escribí un beneficio y presioná Enter, o seleccioná de las sugerencias...",
+                "help": "Presioná Enter para agregar beneficios personalizados, o seleccioná de las sugerencias predefinidas.",
+                "options": {
+                    "remote": "Trabajo remoto",
+                    "flexibleHours": "Horarios flexibles",
+                    "healthInsurance": "Seguro médico",
+                    "dental": "Seguro dental",
+                    "vision": "Seguro de visión",
+                    "lifeInsurance": "Seguro de vida",
+                    "vacation": "Vacaciones pagas",
+                    "paidLeave": "Licencias pagas",
+                    "training": "Capacitación",
+                    "gym": "Gimnasio",
+                    "freeLunch": "Almuerzo gratis",
+                    "transportation": "Subsidio transporte",
+                    "parking": "Estacionamiento",
+                    "childcare": "Guardería",
+                    "stockOptions": "Opciones de acciones",
+                    "bonus": "Bonos anuales",
+                    "teamEvents": "Eventos de equipo",
+                    "workFromHome": "Trabajo desde casa"
+                }
+            },
+            "terms": "Acepto los <1>términos y condiciones</1> de la plataforma",
+            "acceptTermsRequired": "Debés aceptar los términos y condiciones para continuar",
+            "submit": "Agregar empresa",
+            "submitting": "Agregando empresa...",
+            "submitSuccess": "¡Empresa agregada exitosamente!",
+            "submitError": "Error al agregar empresa. Intentá de nuevo."
+        },
+        "tips": {
+            "title": "Consejos útiles",
+            "tip1": "Proporcioná información precisa y completa sobre la empresa",
+            "tip2": "Los beneficios específicos ayudan a otros trabajadores",
+            "tip3": "Revisá la información antes de enviar",
+            "tip4": "Mantené un tono profesional y constructivo"
+        },
+        "contact": {
+            "title": "¿Necesitás ayuda?",
+            "description": "Si tenés preguntas sobre cómo completar el formulario, estamos acá para ayudarte.",
+            "button": "Contactar soporte"
+        },
+        "messages": {
+            "termsRequired": "Debés aceptar las normas de convivencia para continuar",
+            "success": "¡Empresa agregada exitosamente! Será revisada por nuestro equipo."
+        }
+    },
+    "terms": {
+        "hero": {
+            "badge": "Normas de convivencia",
+            "title": "Normas de <1>convivencia</1>",
+            "subtitle": "Construimos juntos una comunidad laboral respetuosa, transparente y colaborativa donde todos pueden compartir sus experiencias de manera segura.",
+            "lastUpdated": "Última actualización: Mayo 2025",
+            "readTime": "Tiempo de lectura: 5 minutos"
+        },
+        "content": {
+            "mainTitle": "Nuestros principios de comunidad",
+            "mainSubtitle": "Estas reglas aseguran un espacio seguro y constructivo para todos los usuarios de WorkWisse",
+            "purpose": {
+                "title": "Propósito de la plataforma",
+                "content": "WorkWisse es un espacio para compartir experiencias laborales genuinas que ayuden a otros trabajadores a tomar decisiones informadas. Buscamos crear una comunidad donde la transparencia y el respeto mutuo sean los pilares fundamentales."
+            },
+            "respect": {
+                "title": "Respeto y civilidad",
+                "content": "Tratamos a todos los miembros de la comunidad con respeto, independientemente de su posición, empresa o experiencia. No toleramos discriminación basada en género, edad, orientación sexual, religión, nacionalidad, raza o cualquier otra característica personal. Las diferencias de opinión deben expresarse de manera constructiva y respetuosa."
+            },
+            "privacy": {
+                "title": "Privacidad y anonimato",
+                "content": "Respetamos la privacidad de todos los usuarios. No reveles nombres completos de personas específicas (colegas, jefes, clientes). Evitá compartir información de identificación personal, propia o de terceros. Mantené la confidencialidad de información sensible de la empresa que pueda comprometer su competitividad o violar acuerdos de confidencialidad."
+            },
+            "accuracy": {
+                "title": "Veracidad y autenticidad",
+                "content": "Compartí solo experiencias reales y verificables. Basá tus opiniones en hechos concretos y experiencias personales. Evitá exageraciones o distorsiones que puedan inducir a error a otros usuarios. Si compartís información de segunda mano, especificalo claramente."
+            },
+            "prohibited": {
+                "title": "Contenido prohibido",
+                "content": "No está permitido: lenguaje ofensivo, amenazante o discriminatorio; contenido que promueva actividades ilegales; spam, publicidad no autorizada o contenido comercial; información falsa, difamatoria o maliciosa; contenido que viole derechos de autor o propiedad intelectual; acoso, intimidación o ataques personales."
+            },
+            "consequences": {
+                "title": "Consecuencias del incumplimiento",
+                "content": "El incumplimiento de estas reglas puede resultar en: eliminación temporal o permanente del contenido."
+            },
+            "important": {
+                "title": "Importante recordar",
+                "content": "Estas reglas están diseñadas para proteger a toda la comunidad. Si ves contenido que viola estas reglas, reportalo inmediatamente. Nuestro equipo revisa todos los reportes y toma las medidas apropiadas."
+            },
+            "contact": {
+                "title": "¿Preguntas o consultas?",
+                "content": "Si tenés preguntas sobre estas reglas o necesitás reportar contenido inapropiado, no dudes en",
+                "link": "contactarnos"
+            }
+        },
+        "cta": {
+            "title": "¿Listo para contribuir?",
+            "subtitle": "Unite a nuestra comunidad y ayudá a otros trabajadores compartiendo tu experiencia de manera responsable y constructiva.",
+            "addCompanyButton": "Agregar empresa",
+            "backHomeButton": "Volver al inicio",
+            "footer": "Al usar WorkWisse, aceptás cumplir con estas normas de convivencia."
+        }
+    },
+    "companyDetail": {
+        "founded": "Fundada en",
+        "employees": "empleados",
+        "website": "Sitio web",
+        "writeReview": "✍️ Escribir opinión",
+        "reviews": "opiniones",
+        "followCompany": "Seguir empresa",
+        "aboutTitle": "Acerca de",
+        "workEnvironmentTitle": "Ambiente de trabajo",
+        "recentReviewsTitle": "💬 Opiniones de empleados",
+        "viewAllReviews": "Ver todas las opiniones",
+        "recommends": "✅ Recomienda",
+        "pros": "✅ Lo mejor",
+        "cons": "⚠️ A mejorar",
+        "statistics": "📊 Estadísticas",
+        "totalReviews": "📝 Total de opiniones",
+        "wouldRecommend": "👍 Recomendaría",
+        "rating": "⭐ Calificación",
+        "benefits": "🎁 Beneficios",
+        "ctaTitle": "¿Trabajás acá?",
+        "ctaDescription": "Compartí tu experiencia y ayudá a otros profesionales a tomar mejores decisiones."
+    },
+    "reviewForm": {
+        "title": "Compartí tu experiencia",
+        "viewReview": "Ver Calificaciones",
+        "workInfo": {
+            "title": "Información Laboral",
+            "description": "Contanos sobre tu experiencia de trabajo en la empresa",
+            "role": "Posición/Cargo en la empresa",
+            "rolePlaceholder": "Ej: Desarrollador Senior, Analista, etc.",
+            "startDate": "Fecha de inicio",
+            "endDate": "Fecha de fin",
+            "currentlyWorking": "Actualmente trabajo en esta empresa"
+        },
+        "ratings": {
+            "title": "Calificaciones",
+            "description": "Calificá diferentes aspectos de la empresa (1-5 estrellas)",
+            "workEnvironment": "Ambiente de trabajo",
+            "workEnvironmentDesc": "¿Cómo fue el ambiente general de trabajo?",
+            "compensation": "Compensación y salarios",
+            "compensationDesc": "¿La compensación fue competitiva?",
+            "benefits": "Beneficios",
+            "benefitsDesc": "¿Cómo fueron los beneficios y ventajas?",
+            "culture": "Cultura empresarial",
+            "cultureDesc": "¿Te sentiste parte de la cultura?",
+            "communication": "Comunicación interna",
+            "communicationDesc": "¿Cómo fue la comunicación dentro de la empresa?",
+            "careerGrowth": "Crecimiento profesional",
+            "careerGrowthDesc": "¿Hubo oportunidades de crecimiento?",
+            "workLifeBalance": "Equilibrio vida-trabajo",
+            "workLifeBalanceDesc": "¿Pudiste mantener un buen equilibrio?",
+            "overall": "Calificación general",
+            "overallDesc": "¿Cómo calificás la experiencia general?"
+        },
+        "ratingScale": {
+            "1": "Muy malo",
+            "2": "Malo",
+            "3": "Regular",
+            "4": "Bueno",
+            "5": "Excelente",
+            "0": "Sin calificar"
+        },
+        "experience": {
+            "title": "Tu Experiencia",
+            "description": "Compartí los detalles de tu experiencia en la empresa",
+            "pros": "Aspectos positivos",
+            "prosPlaceholder": "¿Qué fue lo mejor de trabajar en esta empresa? (beneficios, ambiente, proyectos, etc.)",
+            "cons": "Áreas de mejora",
+            "consPlaceholder": "¿Qué aspectos pensás que la empresa podría mejorar?"
+        },
+        "wouldRecommend": "Recomendaría esta empresa a un amigo",
+        "acceptTerms": "Acepto las <1>normas de convivencia</1> y confirmo que mi opinión es honesta y basada en mi experiencia real",
+        "acceptTermsPrefix": "Acepto las",
+        "acceptTermsLink": "normas de convivencia",
+        "acceptTermsSuffix": "y confirmo que mi opinión es honesta y basada en mi experiencia real",
+        "mustAcceptTerms": "Debés aceptar las normas de convivencia para continuar",
+        "submit": "Publicar opinión",
+        "submitting": "Publicando opinión...",
+        "cancel": "Cancelar",
+        "hero": {
+            "title": "Escribí una opinión sobre {{companyName}}",
+            "description": "Compartí tu experiencia trabajando en {{companyName}} y ayudá a otros profesionales",
+            "reviews": "opiniones"
+        },
+        "sidebar": {
+            "title": "💡 Consejos para escribir una buena opinión",
+            "tip1": "Sé específico y honesto sobre tu experiencia",
+            "tip2": "Mencioná tanto aspectos positivos como áreas de mejora",
+            "tip3": "Evitá información confidencial o nombres específicos",
+            "tip4": "Tu opinión ayudará a otros profesionales a tomar decisiones informadas"
+        },
+        "validation": {
+            "acceptTermsRequired": "Debés aceptar las normas de convivencia",
+            "ratingsRequired": "Completá al menos las calificaciones principales"
+        }
+    },
     "header": {
         "about": "Sobre nosotros",
         "addCompany": "Sumá tu empresa",
         "language": "Idioma",
-        "contact": "Contacto",
-        "theme": "Tema"
+        "contact": "Contacto"
     },
     "contact": {
         "hero": {
@@ -341,278 +585,6 @@
                 "send": "Enviar mensaje",
                 "sending": "Enviando..."
             }
-        }
-    },
-    "addCompany": {
-        "title": "Agregar <1>empresa</1>",
-        "description": "Necesitamos algunos datos básicos para que puedas agregar la empresa y calificarla.",
-        "form": {
-            "name": {
-                "label": "Nombre de la empresa",
-                "placeholder": "Ej: TechCorp SA"
-            },
-            "industry": {
-                "label": "Industria o Sector",
-                "placeholder": "Seleccionar industria",
-                "options": {
-                    "tech": "Tecnología",
-                    "finance": "Finanzas",
-                    "healthcare": "Salud",
-                    "education": "Educación",
-                    "retail": "Retail",
-                    "manufacturing": "Manufactura",
-                    "consulting": "Consultoría",
-                    "marketing": "Marketing",
-                    "real-estate": "Inmobiliaria",
-                    "logistics": "Logística",
-                    "other": "Otro"
-                }
-            },
-            "website": {
-                "label": "Sitio Web",
-                "placeholder": "https://empresa.com"
-            },
-            "country": {
-                "label": "País de la empresa",
-                "placeholder": "Seleccionar país",
-                "options": {
-                    "ar": "Argentina",
-                    "br": "Brasil",
-                    "cl": "Chile",
-                    "co": "Colombia",
-                    "mx": "México",
-                    "pe": "Perú",
-                    "uy": "Uruguay",
-                    "other": "Otro"
-                }
-            },
-            "state": {
-                "label": "Estado/Provincia",
-                "placeholder": "Seleccionar estado/provincia"
-            },
-            "benefits": {
-                "label": "Beneficios y cultura laboral",
-                "placeholder": "Escribe un beneficio y presiona Enter, o selecciona de las sugerencias...",
-                "help": "Presiona Enter para agregar beneficios personalizados, o selecciona de las sugerencias predefinidas.",
-                "options": {
-                    "remote": "Trabajo remoto",
-                    "flexibleHours": "Horarios flexibles",
-                    "healthInsurance": "Seguro médico",
-                    "dental": "Seguro dental",
-                    "vision": "Seguro de visión",
-                    "lifeInsurance": "Seguro de vida",
-                    "vacation": "Vacaciones pagadas",
-                    "paidLeave": "Licencias pagas",
-                    "training": "Capacitaciones",
-                    "gym": "Gimnasio",
-                    "freeLunch": "Almuerzo gratis",
-                    "transportation": "Subsidio de transporte",
-                    "parking": "Estacionamiento",
-                    "childcare": "Guardería",
-                    "stockOptions": "Opciones de acciones",
-                    "bonus": "Bonos anuales",
-                    "teamEvents": "Eventos de equipo",
-                    "workFromHome": "Trabajo desde casa"
-                }
-            },
-            "terms": "Acepto los <1>términos y condiciones</1> de la plataforma",
-            "acceptTermsRequired": "Debes aceptar los términos y condiciones para continuar",
-            "submit": "Agregar empresa",
-            "submitting": "Agregando empresa...",
-            "submitSuccess": "¡Empresa agregada exitosamente!",
-            "submitError": "Error al agregar la empresa. Intenta nuevamente."
-        },
-        "tips": {
-            "title": "Consejos útiles",
-            "tip1": "Proporciona información precisa y completa sobre la empresa",
-            "tip2": "Los beneficios específicos ayudan a otros trabajadores",
-            "tip3": "Revisa la información antes de enviar",
-            "tip4": "Mantén un tono profesional y constructivo"
-        },
-        "contact": {
-            "title": "¿Necesitas ayuda?",
-            "description": "Si tienes dudas sobre cómo completar el formulario, estamos aquí para ayudarte.",
-            "button": "Contactar soporte"
-        },
-        "messages": {
-            "termsRequired": "Debes aceptar las normas de convivencia para continuar",
-            "success": "¡Empresa agregada exitosamente! Será revisada por nuestro equipo."
-        }
-    },
-    "terms": {
-        "hero": {
-            "badge": "Normas de convivencia",
-            "title": "Normas de <1>convivencia</1>",
-            "subtitle": "Construimos juntos una comunidad laboral respetuosa, transparente y colaborativa donde todos puedan compartir sus experiencias de forma segura.",
-            "lastUpdated": "Última actualización: Mayo 2025",
-            "readTime": "Tiempo de lectura: 5 minutos"
-        },
-        "content": {
-            "mainTitle": "Principios de nuestra comunidad",
-            "mainSubtitle": "Estas normas garantizan un espacio seguro y constructivo para todos los usuarios de WorkWisse",
-            "purpose": {
-                "title": "Propósito de la plataforma",
-                "content": "WorkWisse es un espacio para compartir experiencias laborales genuinas que ayuden a otros trabajadores a tomar decisiones informadas. Buscamos crear una comunidad donde la transparencia y el respeto mutuo sean los pilares fundamentales."
-            },
-            "respect": {
-                "title": "Respeto y civismo",
-                "content": "Tratamos a todos los miembros de la comunidad con respeto, independientemente de su posición, empresa o experiencia. No toleramos discriminación por género, edad, orientación sexual, religión, nacionalidad, raza o cualquier otra característica personal. Las diferencias de opinión deben expresarse de manera constructiva y respetuosa."
-            },
-            "privacy": {
-                "title": "Privacidad y anonimato",
-                "content": "Respetamos la privacidad de todos los usuarios. No reveles nombres completos de personas específicas (compañeros, jefes, clientes). Evita compartir información personal identificable propia o de terceros. Mantén la confidencialidad de información sensible de las empresas que pueda comprometer su competitividad o violar acuerdos de confidencialidad."
-            },
-            "accuracy": {
-                "title": "Veracidad y autenticidad",
-                "content": "Comparte solo experiencias reales y verificables. Basa tus opiniones en hechos concretos y experiencias personales. Evita exageraciones o distorsiones que puedan mislead a otros usuarios. Si compartes información de segunda mano, especifícalo claramente."
-            },
-            "prohibited": {
-                "title": "Contenido prohibido",
-                "content": "No está permitido: lenguaje ofensivo, amenazante o discriminatorio; contenido que promueva actividades ilegales; spam, publicidad no autorizada o contenido comercial; información falsa, difamatoria o malintencionada; contenido que viole derechos de autor o propiedad intelectual; acoso, intimidación o ataques personales."
-            },
-            "consequences": {
-                "title": "Consecuencias del incumplimiento",
-                "content": "El incumplimiento de estas normas puede resultar en: eliminación temporal o permanente de contenido."
-            },
-            "important": {
-                "title": "Importante recordar",
-                "content": "Estas normas están diseñadas para proteger a toda la comunidad. Si ves contenido que viola estas normas, repórtalo inmediatamente. Nuestro equipo revisa todos los reportes y toma acciones apropiadas."
-            },
-            "contact": {
-                "title": "¿Dudas o consultas?",
-                "content": "Si tienes preguntas sobre estas normas o necesitas reportar contenido inapropiado, no dudes en",
-                "link": "contactarnos"
-            }
-        },
-        "cta": {
-            "title": "¿Listo para contribuir?",
-            "subtitle": "Únete a nuestra comunidad y ayuda a otros trabajadores compartiendo tu experiencia de forma responsable y constructiva.",
-            "addCompanyButton": "Agregar empresa",
-            "backHomeButton": "Volver al inicio",
-            "footer": "Al usar WorkWisse, aceptas cumplir con estas normas de convivencia."
-        }
-    },
-    "companyDetail": {
-        "founded": "Fundada en",
-        "employees": "empleados",
-        "website": "Sitio web",
-        "writeReview": "✍️ Escribir reseña",
-        "reviews": "reseñas",
-        "followCompany": "Seguir empresa",
-        "aboutTitle": "Acerca de",
-        "workEnvironmentTitle": "Ambiente de trabajo",
-        "workEnvironmentLabels": {
-            "workLifeBalance": "Balance vida-trabajo",
-            "careerOpportunities": "Oportunidades de carrera",
-            "compensation": "Compensación",
-            "culture": "Cultura",
-            "management": "Gestión"
-        },
-        "recentReviewsTitle": "💬 Opiniones de empleados",
-        "viewAllReviews": "Ver todas las opiniones",
-        "recommends": "✅ Recomienda",
-        "pros": "✅ Lo mejor",
-        "cons": "⚠️ A mejorar",
-        "statistics": "📊 Estadísticas",
-        "totalReviews": "📝 Total opiniones",
-        "wouldRecommend": "👍 Recomendarían",
-        "rating": "⭐ Puntuación",
-        "benefits": "🎁 Beneficios",
-        "ctaTitle": "¿Trabajas aquí?",
-        "ctaDescription": "Comparte tu experiencia y ayuda a otros profesionales a tomar mejores decisiones."
-    },
-        "reviewSections": {
-            "pros": "Lo mejor:",
-            "cons": "A mejorar:",
-            "advice": "Consejo:"
-        },
-        "salaryRangeTitle": "Rango salarial",
-        "salaryPeriod": "Mensual promedio",
-        "benefitsTitle": "Beneficios",
-        "quickStatsTitle": "En números",
-        "quickStats": {
-            "totalReviews": "Total opiniones",
-            "wouldRecommend": "Recomiendan",
-            "averageRating": "Rating promedio"
-        },
-        "ctaSection": {
-            "title": "¿Trabajas aquí?",
-            "description": "Comparte tu experiencia y ayuda a otros trabajadores",
-            "button": "Escribir mi opinión"
-        }
-    },
-    "reviewForm": {
-        "title": "Compartí tu experiencia",
-        "viewReview": "Ver Calificaciones",
-        "workInfo": {
-            "title": "Información Laboral",
-            "description": "Cuéntanos sobre tu experiencia laboral en la empresa",
-            "role": "Puesto de trabajo",
-            "rolePlaceholder": "Ej: Desarrollador Frontend, QA Engineer...",
-            "startDate": "Fecha de inicio",
-            "endDate": "Fecha de fin",
-            "currentlyWorking": "Actualmente trabajo aquí"
-        },
-        "ratings": {
-            "title": "Calificaciones",
-            "description": "Califica diferentes aspectos de la empresa (1-5 estrellas)",
-            "workEnvironment": "Ambiente de trabajo",
-            "workEnvironmentDesc": "¿Cómo era el ambiente laboral general?",
-            "compensation": "Compensación y salarios",
-            "compensationDesc": "¿La compensación era competitiva?",
-            "benefits": "Beneficios",
-            "benefitsDesc": "¿Qué tal los beneficios y prestaciones?",
-            "culture": "Cultura empresarial",
-            "cultureDesc": "¿Te sentiste parte de la cultura?",
-            "communication": "Comunicación interna",
-            "communicationDesc": "¿Cómo era la comunicación en la empresa?",
-            "careerGrowth": "Crecimiento profesional",
-            "careerGrowthDesc": "¿Había oportunidades de crecimiento?",
-            "workLifeBalance": "Balance vida-trabajo",
-            "workLifeBalanceDesc": "¿Podías mantener un buen balance?",
-            "overall": "Calificación general",
-            "overallDesc": "¿Cómo calificas la experiencia general?"
-        },
-        "ratingScale": {
-            "1": "Muy malo",
-            "2": "Malo",
-            "3": "Regular",
-            "4": "Bueno",
-            "5": "Excelente",
-            "0": "Sin calificar"
-        },
-        "experience": {
-            "title": "Tu Experiencia",
-            "description": "Comparte los detalles de tu experiencia en la empresa",
-            "pros": "Aspectos positivos",
-            "prosPlaceholder": "¿Qué fue lo mejor de trabajar en esta empresa? (beneficios, ambiente, proyectos, etc.)",
-            "cons": "Aspectos a mejorar",
-            "consPlaceholder": "¿Qué aspectos crees que la empresa podría mejorar?"
-        },
-        "wouldRecommend": "Recomendaría esta empresa a un amigo",
-        "acceptTerms": "Acepto las <1>normas de convivencia</1> y confirmo que mi reseña es honesta y basada en mi experiencia real",
-        "acceptTermsPrefix": "Acepto las",
-        "acceptTermsLink": "normas de convivencia",
-        "acceptTermsSuffix": "y confirmo que mi reseña es honesta y basada en mi experiencia real",
-        "mustAcceptTerms": "Debes aceptar las normas de convivencia",
-        "submit": "Publicar reseña",
-        "submitting": "Enviando reseña...",
-        "cancel": "Cancelar",
-        "hero": {
-            "title": "Escribe una reseña sobre {{companyName}}",
-            "description": "Comparte tu experiencia trabajando en {{companyName}} y ayuda a otros profesionales",
-            "reviews": "reseñas"
-        },
-        "sidebar": {
-            "title": "💡 Consejos para escribir una buena reseña",
-            "tip1": "Sé específico y honesto sobre tu experiencia",
-            "tip2": "Menciona tanto aspectos positivos como áreas de mejora",
-            "tip3": "Evita información confidencial o nombres específicos",
-            "tip4": "Tu reseña ayudará a otros profesionales a tomar decisiones informadas"
-        },
-        "validation": {
-            "acceptTermsRequired": "Debes aceptar las normas de convivencia",
-            "ratingsRequired": "Por favor completa al menos las calificaciones principales"
         }
     }
 }
