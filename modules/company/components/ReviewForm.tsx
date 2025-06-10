@@ -1,57 +1,100 @@
 import { Button } from "@heroui/button";
-import { Card, CardBody, CardHeader } from "@heroui/card";
+import { Card } from "@heroui/card";
 import { Checkbox } from "@heroui/checkbox";
 import { Input } from "@heroui/input";
-import { Slider } from "@heroui/slider";
-import { Textarea } from "@heroui/input";
 import { useRouter } from "next/router";
 import { useState } from "react";
-import { useTranslation } from "react-i18next";
+import { useTranslation, Trans } from "react-i18next";
 
 import { LandingHeader } from "@/modules/core/components";
 import { mockCompanies } from "@/data/mockCompanies";
 
 interface ReviewFormData {
+  // Información laboral
   role: string;
   startDate: string;
   endDate: string;
   currentlyWorking: boolean;
-  environmentRating: number;
-  codeQualityRating: number;
-  growthPoliciesRating: number;
-  infrastructureRating: number;
+
+  // Calificaciones con sistema de estrellas (1-5)
+  workEnvironmentRating: number;
+  compensationRating: number;
   benefitsRating: number;
-  equipmentRating: number;
-  salaryRating: number;
-  inclusionPoliciesRating: number;
+  cultureRating: number;
+  leadershipRating: number;
+  careerGrowthRating: number;
+  workLifeBalanceRating: number;
+  overallRating: number;
+
+  // Experiencia
   pros: string;
   cons: string;
+
+  // Otros
   wouldRecommend: boolean;
   acceptedTerms: boolean;
 }
 
-export default function ReviewForm() {
+// Componente para el sistema de estrellas
+interface StarRatingProps {
+  rating: number;
+  onRatingChange: (rating: number) => void;
+  label: string;
+  description?: string;
+}
+
+const StarRating = ({ rating, onRatingChange, label, description }: StarRatingProps) => {
+  const [hoverRating, setHoverRating] = useState(0);
   const { t } = useTranslation();
+
+  const getRatingText = (score: number) => {
+    return t(`reviewForm.ratingScale.${score}`);
+  };
+
+  return (
+    <div className="space-y-3">
+      <div className="flex justify-between items-start">
+        <div>
+          <label className="block text-sm font-medium text-slate-700 dark:text-slate-300">
+            {label}
+          </label>
+          {description && (
+            <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
+              {description}
+            </p>
+          )}
+        </div>
+        <span className="text-sm font-medium text-sky-600 dark:text-sky-400">
+          {getRatingText(hoverRating || rating)}
+        </span>
+      </div>
+      <div className="flex gap-2">
+        {[1, 2, 3, 4, 5].map((star) => (
+          <button
+            key={star}
+            type="button"
+            className={`w-10 h-10 transition-all duration-200 hover:scale-110 ${star <= (hoverRating || rating)
+              ? "text-yellow-400 hover:text-yellow-500"
+              : "text-slate-300 dark:text-slate-600 hover:text-yellow-300"
+              }`}
+            onClick={() => onRatingChange(star)}
+            onMouseEnter={() => setHoverRating(star)}
+            onMouseLeave={() => setHoverRating(0)}
+          >
+            <svg className="w-full h-full fill-current" viewBox="0 0 20 20">
+              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+            </svg>
+          </button>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+export default function ReviewForm() {
   const router = useRouter();
   const { slug } = router.query;
-
-  const renderStars = (rating: number) => {
-    return Array.from({ length: 5 }, (_, index) => (
-      <svg
-        key={index}
-        className={`w-5 h-5 ${
-          index < Math.floor(rating)
-            ? "text-yellow-400 fill-current"
-            : index < rating
-              ? "text-yellow-400 fill-current opacity-50"
-              : "text-slate-300 dark:text-slate-600"
-        }`}
-        viewBox="0 0 20 20"
-      >
-        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-      </svg>
-    ));
-  };
+  const { t } = useTranslation();
 
   // Obtener información de la empresa
   const company = mockCompanies.find((c) => c.slug === slug);
@@ -61,519 +104,406 @@ export default function ReviewForm() {
     startDate: "",
     endDate: "",
     currentlyWorking: false,
-    environmentRating: 5,
-    codeQualityRating: 5,
-    growthPoliciesRating: 5,
-    infrastructureRating: 5,
-    benefitsRating: 5,
-    equipmentRating: 5,
-    salaryRating: 5,
-    inclusionPoliciesRating: 5,
+    workEnvironmentRating: 0,
+    compensationRating: 0,
+    benefitsRating: 0,
+    cultureRating: 0,
+    leadershipRating: 0,
+    careerGrowthRating: 0,
+    workLifeBalanceRating: 0,
+    overallRating: 0,
     pros: "",
     cons: "",
     wouldRecommend: false,
     acceptedTerms: false,
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
     if (!formData.acceptedTerms) {
-      alert(t("reviewForm.mustAcceptTerms"));
+      alert(t("reviewForm.validation.acceptTermsRequired"));
       return;
     }
-    // Aquí iría la lógica para enviar la reseña
+
+    // Validar que se hayan completado las calificaciones principales
+    if (formData.overallRating === 0 || formData.workEnvironmentRating === 0) {
+      alert(t("reviewForm.validation.ratingsRequired"));
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    // Simular envío
+    await new Promise((resolve) => setTimeout(resolve, 2000));
+
     console.log("Review submitted:", formData);
+    setIsSubmitting(false);
+
+    // Redirigir a la página de la empresa
     router.push(`/company/${slug}`);
   };
 
-  const currentYear = new Date().getFullYear();
-  const years = Array.from({ length: 20 }, (_, i) => currentYear - i);
-  const months = [
-    "Enero",
-    "Febrero",
-    "Marzo",
-    "Abril",
-    "Mayo",
-    "Junio",
-    "Julio",
-    "Agosto",
-    "Septiembre",
-    "Octubre",
-    "Noviembre",
-    "Diciembre",
-  ];
+  const handleChange = (field: keyof ReviewFormData, value: any) => {
+    setFormData((prev) => ({ ...prev, [field]: value }));
+  };
+
+  const renderStars = (rating: number) => {
+    return Array.from({ length: 5 }, (_, index) => (
+      <svg
+        key={index}
+        className={`w-5 h-5 ${index < Math.floor(rating)
+          ? "text-yellow-400 fill-current"
+          : index < rating
+            ? "text-yellow-400 fill-current opacity-50"
+            : "text-slate-300 dark:text-slate-600"
+          }`}
+        viewBox="0 0 20 20"
+      >
+        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+      </svg>
+    ));
+  };
 
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-900 transition-colors duration-200">
       <LandingHeader />
-      {/* Company Header */}
+
+      {/* Hero Section with Company Info */}
       {company && (
-        <div className="bg-white dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700 transition-colors duration-200">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-            <div className="flex flex-col lg:flex-row gap-6 items-start">
-              {/* Company Logo */}
-              <div className="flex-shrink-0">
+        <section className="bg-white dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700 transition-colors duration-200">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div className="text-center space-y-6">
+              <div className="flex justify-center">
                 <img
                   alt={`Logo de ${company.name}`}
-                  className="w-24 h-24 lg:w-32 lg:h-32 rounded-2xl shadow-lg object-cover"
+                  className="w-20 h-20 rounded-xl shadow-lg object-cover"
                   src={company.logo}
                 />
               </div>
-
-              {/* Company Info */}
-              <div className="flex-1 space-y-4">
-                <div>
-                  <h1 className="text-3xl lg:text-4xl font-bold text-slate-900 dark:text-white">
-                    {company.name}
-                  </h1>
-                  <p className="text-lg text-slate-600 dark:text-slate-300 mt-2">
-                    {company.industry} • {company.location.city},{" "}
-                    {company.location.country}
-                  </p>
-                </div>
-
-                {/* Rating */}
-                <div className="flex items-center gap-4">
-                  <div className="flex items-center gap-2">
-                    <div className="flex">{renderStars(company.rating)}</div>
-                    <span className="text-2xl font-bold text-slate-900 dark:text-white">
-                      {company.rating}
-                    </span>
-                  </div>
-                  <span className="text-slate-600 dark:text-slate-300">
-                    {company.reviewsCount} opiniones
+              <div>
+                <h1 className="text-4xl font-bold text-slate-900 dark:text-white mb-2">
+                  {t("reviewForm.hero.title", { companyName: company.name })}
+                </h1>
+                <p className="text-lg text-slate-600 dark:text-slate-300">
+                  {t("reviewForm.hero.description", { companyName: company.name })}
+                </p>
+              </div>
+              <div className="flex items-center justify-center gap-4">
+                <div className="flex items-center gap-2">
+                  <div className="flex">{renderStars(company.rating)}</div>
+                  <span className="text-xl font-bold text-slate-900 dark:text-white">
+                    {company.rating}
                   </span>
                 </div>
-
-                {/* Quick Stats */}
-                <div className="flex flex-wrap gap-4 text-sm">
-                  {company.website && (
-                    <a
-                      className="flex items-center gap-2 text-sky-600 dark:text-sky-400 hover:text-sky-700 dark:hover:text-sky-300 transition-colors"
-                      href={company.website}
-                      rel="noopener noreferrer"
-                      target="_blank"
-                    >
-                      <svg
-                        className="w-4 h-4"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                        />
-                      </svg>
-                      <span>{t("companyDetail.website")}</span>
-                    </a>
-                  )}
-                </div>
-              </div>
-
-              {/* Actions */}
-              <div className="flex gap-3">
-                <Button
-                  className="bg-sky-600 hover:bg-sky-700"
-                  color="primary"
-                  size="lg"
-                  onPress={() => router.push(`/company/${slug}`)}
-                >
-                  {t("reviewForm.viewReview")}
-                </Button>
+                <span className="text-slate-600 dark:text-slate-300">
+                  {company.reviewsCount} {t("reviewForm.hero.reviews")}
+                </span>
               </div>
             </div>
           </div>
-        </div>
+        </section>
       )}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="grid lg:grid-cols-3 gap-8">
-          {/* Formulario Principal */}
-          <div className="lg:col-span-2">
-            <Card className="shadow-lg border-0">
-              <CardBody>
-                <form onSubmit={handleSubmit} className="space-y-6">
+
+      {/* Main Form Section */}
+      <section className="py-14 px-4 bg-gradient-to-br from-slate-50 via-white to-sky-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 transition-colors duration-200">
+        <div className="max-w-7xl mx-auto">
+          <div className="flex flex-col lg:flex-row gap-8 lg:gap-12">
+            {/* Form Column */}
+            <div className="flex-1">
+              <Card className="p-8 shadow-xl border-0 bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm transition-colors duration-200">
+                <form onSubmit={handleSubmit} className="space-y-8">
                   {/* Información Laboral */}
-                  <div className="space-y-4">
-                    <h2 className="text-xl font-semibold text-slate-900 dark:text-white">
-                      {t("reviewForm.workInfo.title")}
-                    </h2>
-
-                    <Input
-                      label={t("reviewForm.workInfo.role")}
-                      placeholder={t("reviewForm.workInfo.rolePlaceholder")}
-                      value={formData.role}
-                      onChange={(e) =>
-                        setFormData({ ...formData, role: e.target.value })
-                      }
-                      isRequired
-                    />
-
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      <Input
-                        label={t("reviewForm.workInfo.startDate")}
-                        type="month"
-                        value={formData.startDate}
-                        onChange={(e) =>
-                          setFormData({
-                            ...formData,
-                            startDate: e.target.value,
-                          })
-                        }
-                        isRequired
-                      />
-
-                      {!formData.currentlyWorking && (
-                        <Input
-                          label={t("reviewForm.workInfo.endDate")}
-                          type="month"
-                          value={formData.endDate}
-                          onChange={(e) =>
-                            setFormData({
-                              ...formData,
-                              endDate: e.target.value,
-                            })
-                          }
-                          isRequired={!formData.currentlyWorking}
-                        />
-                      )}
+                  <div className="space-y-6">
+                    <div className="text-center border-b border-slate-200 dark:border-slate-700 pb-4">
+                      <h2 className="text-2xl font-bold text-slate-900 dark:text-white">
+                        {t("reviewForm.workInfo.title")}
+                      </h2>
+                      <p className="text-slate-600 dark:text-slate-300 mt-2">
+                        {t("reviewForm.workInfo.description")}
+                      </p>
                     </div>
 
-                    <Checkbox
-                      isSelected={formData.currentlyWorking}
-                      onValueChange={(checked) =>
-                        setFormData({
-                          ...formData,
-                          currentlyWorking: checked,
-                          endDate: checked ? "" : formData.endDate,
-                        })
-                      }
-                    >
-                      {t("reviewForm.workInfo.currentlyWorking")}
-                    </Checkbox>
+                    <div className="space-y-6">
+                      <Input
+                        label={t("reviewForm.workInfo.role")}
+                        placeholder={t("reviewForm.workInfo.rolePlaceholder")}
+                        value={formData.role}
+                        onChange={(e) => handleChange("role", e.target.value)}
+                        isRequired
+                        size="lg"
+                        variant="bordered"
+                        classNames={{
+                          input: "text-slate-900 dark:text-white",
+                          label: "text-slate-700 dark:text-slate-300 font-medium",
+                        }}
+                      />
+
+                      <div className="grid md:grid-cols-2 gap-6">
+                        <Input
+                          label={t("reviewForm.workInfo.startDate")}
+                          type="month"
+                          value={formData.startDate}
+                          onChange={(e) => handleChange("startDate", e.target.value)}
+                          isRequired
+                          size="lg"
+                          variant="bordered"
+                          classNames={{
+                            input: "text-slate-900 dark:text-white",
+                            label: "text-slate-700 dark:text-slate-300 font-medium",
+                          }}
+                        />
+
+                        {!formData.currentlyWorking && (
+                          <Input
+                            label={t("reviewForm.workInfo.endDate")}
+                            type="month"
+                            value={formData.endDate}
+                            onChange={(e) => handleChange("endDate", e.target.value)}
+                            isRequired={!formData.currentlyWorking}
+                            size="lg"
+                            variant="bordered"
+                            classNames={{
+                              input: "text-slate-900 dark:text-white",
+                              label: "text-slate-700 dark:text-slate-300 font-medium",
+                            }}
+                          />
+                        )}
+                      </div>
+
+                      <div className="flex items-center space-x-3">
+                        <Checkbox
+                          isSelected={formData.currentlyWorking}
+                          onValueChange={(checked) => {
+                            handleChange("currentlyWorking", checked);
+                            if (checked) handleChange("endDate", "");
+                          }}
+                          classNames={{
+                            label: "text-slate-700 dark:text-slate-300 font-medium",
+                          }}
+                        >
+                          {t("reviewForm.workInfo.currentlyWorking")}
+                        </Checkbox>
+                      </div>
+                    </div>
                   </div>
 
                   {/* Calificaciones */}
                   <div className="space-y-6">
-                    <h2 className="text-xl font-semibold text-slate-900 dark:text-white">
-                      {t("reviewForm.ratings.title")}
-                    </h2>
+                    <div className="text-center border-b border-slate-200 dark:border-slate-700 pb-4">
+                      <h2 className="text-2xl font-bold text-slate-900 dark:text-white">
+                        {t("reviewForm.ratings.title")}
+                      </h2>
+                      <p className="text-slate-600 dark:text-slate-300 mt-2">
+                        {t("reviewForm.ratings.description")}
+                      </p>
+                    </div>
 
-                    <div className="space-y-4">
-                      <div>
-                        <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
-                          {t("reviewForm.ratings.environment")}:{" "}
-                          {formData.environmentRating}/10
+                    <div className="grid md:grid-cols-2 gap-8">
+                      <StarRating
+                        rating={formData.workEnvironmentRating}
+                        onRatingChange={(rating) => handleChange("workEnvironmentRating", rating)}
+                        label={t("reviewForm.ratings.workEnvironment")}
+                        description={t("reviewForm.ratings.workEnvironmentDesc")}
+                      />
+
+                      <StarRating
+                        rating={formData.compensationRating}
+                        onRatingChange={(rating) => handleChange("compensationRating", rating)}
+                        label={t("reviewForm.ratings.compensation")}
+                        description={t("reviewForm.ratings.compensationDesc")}
+                      />
+
+                      <StarRating
+                        rating={formData.benefitsRating}
+                        onRatingChange={(rating) => handleChange("benefitsRating", rating)}
+                        label={t("reviewForm.ratings.benefits")}
+                        description={t("reviewForm.ratings.benefitsDesc")}
+                      />
+
+                      <StarRating
+                        rating={formData.cultureRating}
+                        onRatingChange={(rating) => handleChange("cultureRating", rating)}
+                        label={t("reviewForm.ratings.culture")}
+                        description={t("reviewForm.ratings.cultureDesc")}
+                      />
+
+                      <StarRating
+                        rating={formData.leadershipRating}
+                        onRatingChange={(rating) => handleChange("leadershipRating", rating)}
+                        label={t("reviewForm.ratings.communication")}
+                        description={t("reviewForm.ratings.communicationDesc")}
+                      />
+
+                      <StarRating
+                        rating={formData.careerGrowthRating}
+                        onRatingChange={(rating) => handleChange("careerGrowthRating", rating)}
+                        label={t("reviewForm.ratings.careerGrowth")}
+                        description={t("reviewForm.ratings.careerGrowthDesc")}
+                      />
+
+                      <StarRating
+                        rating={formData.workLifeBalanceRating}
+                        onRatingChange={(rating) => handleChange("workLifeBalanceRating", rating)}
+                        label={t("reviewForm.ratings.workLifeBalance")}
+                        description={t("reviewForm.ratings.workLifeBalanceDesc")}
+                      />
+
+                      <StarRating
+                        rating={formData.overallRating}
+                        onRatingChange={(rating) => handleChange("overallRating", rating)}
+                        label={t("reviewForm.ratings.overall")}
+                        description={t("reviewForm.ratings.overallDesc")}
+                      />
+                    </div>
+                  </div>
+
+                  {/* Experiencia Detallada */}
+                  <div className="space-y-6">
+                    <div className="text-center border-b border-slate-200 dark:border-slate-700 pb-4">
+                      <h2 className="text-2xl font-bold text-slate-900 dark:text-white">
+                        {t("reviewForm.experience.title")}
+                      </h2>
+                      <p className="text-slate-600 dark:text-slate-300 mt-2">
+                        {t("reviewForm.experience.description")}
+                      </p>
+                    </div>
+
+                    <div className="space-y-6">
+                      <div className="space-y-2">
+                        <label
+                          htmlFor="pros"
+                          className="block text-slate-700 dark:text-slate-300 font-medium text-sm"
+                        >
+                          {t("reviewForm.experience.pros")}
                         </label>
-                        <Slider
-                          size="md"
-                          step={1}
-                          maxValue={10}
-                          minValue={0}
-                          value={formData.environmentRating}
-                          onChange={(value) =>
-                            setFormData({
-                              ...formData,
-                              environmentRating: Array.isArray(value)
-                                ? value[0]
-                                : value,
-                            })
-                          }
-                          className="max-w-md"
+                        <textarea
+                          id="pros"
+                          placeholder={t("reviewForm.experience.prosPlaceholder")}
+                          value={formData.pros}
+                          onChange={(e) => handleChange("pros", e.target.value)}
+                          required
+                          rows={4}
+                          className="w-full px-4 py-3 border-2 border-slate-200 dark:border-slate-600 rounded-lg focus:border-sky-500 dark:focus:border-sky-400 focus:outline-none resize-none text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 bg-white dark:bg-slate-800 transition-colors duration-200"
                         />
                       </div>
 
-                      <div>
-                        <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
-                          {t("reviewForm.ratings.codeQuality")}:{" "}
-                          {formData.codeQualityRating}/10
+                      <div className="space-y-2">
+                        <label
+                          htmlFor="cons"
+                          className="block text-slate-700 dark:text-slate-300 font-medium text-sm"
+                        >
+                          {t("reviewForm.experience.cons")}
                         </label>
-                        <Slider
-                          size="md"
-                          step={1}
-                          maxValue={10}
-                          minValue={0}
-                          value={formData.codeQualityRating}
-                          onChange={(value) =>
-                            setFormData({
-                              ...formData,
-                              codeQualityRating: Array.isArray(value)
-                                ? value[0]
-                                : value,
-                            })
-                          }
-                          className="max-w-md"
-                        />
-                      </div>
-
-                      <div>
-                        <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
-                          {t("reviewForm.ratings.growthPolicies")}:{" "}
-                          {formData.growthPoliciesRating}/10
-                        </label>
-                        <Slider
-                          size="md"
-                          step={1}
-                          maxValue={10}
-                          minValue={0}
-                          value={formData.growthPoliciesRating}
-                          onChange={(value) =>
-                            setFormData({
-                              ...formData,
-                              growthPoliciesRating: Array.isArray(value)
-                                ? value[0]
-                                : value,
-                            })
-                          }
-                          className="max-w-md"
-                        />
-                      </div>
-
-                      <div>
-                        <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
-                          {t("reviewForm.ratings.infrastructure")}:{" "}
-                          {formData.infrastructureRating}/10
-                        </label>
-                        <Slider
-                          size="md"
-                          step={1}
-                          maxValue={10}
-                          minValue={0}
-                          value={formData.infrastructureRating}
-                          onChange={(value) =>
-                            setFormData({
-                              ...formData,
-                              infrastructureRating: Array.isArray(value)
-                                ? value[0]
-                                : value,
-                            })
-                          }
-                          className="max-w-md"
-                        />
-                      </div>
-
-                      <div>
-                        <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
-                          {t("reviewForm.ratings.benefits")}:{" "}
-                          {formData.benefitsRating}/10
-                        </label>
-                        <Slider
-                          size="md"
-                          step={1}
-                          maxValue={10}
-                          minValue={0}
-                          value={formData.benefitsRating}
-                          onChange={(value) =>
-                            setFormData({
-                              ...formData,
-                              benefitsRating: Array.isArray(value)
-                                ? value[0]
-                                : value,
-                            })
-                          }
-                          className="max-w-md"
-                        />
-                      </div>
-
-                      <div>
-                        <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
-                          {t("reviewForm.ratings.equipment")}:{" "}
-                          {formData.equipmentRating}/8
-                        </label>
-                        <Slider
-                          size="md"
-                          step={1}
-                          maxValue={8}
-                          minValue={0}
-                          value={formData.equipmentRating}
-                          onChange={(value) =>
-                            setFormData({
-                              ...formData,
-                              equipmentRating: Array.isArray(value)
-                                ? value[0]
-                                : value,
-                            })
-                          }
-                          className="max-w-md"
-                        />
-                      </div>
-
-                      <div>
-                        <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
-                          {t("reviewForm.ratings.salary")}:{" "}
-                          {formData.salaryRating}/10
-                        </label>
-                        <Slider
-                          size="md"
-                          step={1}
-                          maxValue={10}
-                          minValue={0}
-                          value={formData.salaryRating}
-                          onChange={(value) =>
-                            setFormData({
-                              ...formData,
-                              salaryRating: Array.isArray(value)
-                                ? value[0]
-                                : value,
-                            })
-                          }
-                          className="max-w-md"
-                        />
-                      </div>
-
-                      <div>
-                        <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
-                          {t("reviewForm.ratings.inclusionPolicies")}:{" "}
-                          {formData.inclusionPoliciesRating}/10
-                        </label>
-                        <Slider
-                          size="md"
-                          step={1}
-                          maxValue={10}
-                          minValue={0}
-                          value={formData.inclusionPoliciesRating}
-                          onChange={(value) =>
-                            setFormData({
-                              ...formData,
-                              inclusionPoliciesRating: Array.isArray(value)
-                                ? value[0]
-                                : value,
-                            })
-                          }
-                          className="max-w-md"
+                        <textarea
+                          id="cons"
+                          placeholder={t("reviewForm.experience.consPlaceholder")}
+                          value={formData.cons}
+                          onChange={(e) => handleChange("cons", e.target.value)}
+                          required
+                          rows={4}
+                          className="w-full px-4 py-3 border-2 border-slate-200 dark:border-slate-600 rounded-lg focus:border-sky-500 dark:focus:border-sky-400 focus:outline-none resize-none text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 bg-white dark:bg-slate-800 transition-colors duration-200"
                         />
                       </div>
                     </div>
                   </div>
 
-                  {/* Experiencia */}
-                  <div className="space-y-4">
-                    <h2 className="text-xl font-semibold text-slate-900 dark:text-white">
-                      {t("reviewForm.experience.title")}
-                    </h2>
-
-                    <Textarea
-                      label={t("reviewForm.experience.pros")}
-                      placeholder={t("reviewForm.experience.prosPlaceholder")}
-                      value={formData.pros}
-                      onChange={(e) =>
-                        setFormData({ ...formData, pros: e.target.value })
-                      }
-                      rows={4}
-                      isRequired
-                    />
-
-                    <Textarea
-                      label={t("reviewForm.experience.cons")}
-                      placeholder={t("reviewForm.experience.consPlaceholder")}
-                      value={formData.cons}
-                      onChange={(e) =>
-                        setFormData({ ...formData, cons: e.target.value })
-                      }
-                      rows={4}
-                      isRequired
-                    />
-                  </div>
-
                   {/* Recomendación y Términos */}
-                  <div className="flex flex-col space-y-4">
-                    <Checkbox
-                      isSelected={formData.wouldRecommend}
-                      onValueChange={(checked) =>
-                        setFormData({ ...formData, wouldRecommend: checked })
-                      }
-                    >
-                      {t("reviewForm.wouldRecommend")}
-                    </Checkbox>
+                  <div className="space-y-6 border-t border-slate-200 dark:border-slate-700 pt-6">
+                    <div className="flex items-center space-x-3">
+                      <Checkbox
+                        isSelected={formData.wouldRecommend}
+                        onValueChange={(checked) => handleChange("wouldRecommend", checked)}
+                        classNames={{
+                          label: "text-slate-700 dark:text-slate-300 font-medium",
+                        }}
+                      >
+                        {t("reviewForm.wouldRecommend")}
+                      </Checkbox>
+                    </div>
 
-                    <Checkbox
-                      isSelected={formData.acceptedTerms}
-                      onValueChange={(checked) =>
-                        setFormData({ ...formData, acceptedTerms: checked })
-                      }
-                      isRequired
-                    >
-                      <span>
-                        {t("reviewForm.acceptTermsPrefix")}{" "}
-                        <a
-                          href="/terms"
-                          className="text-sky-600 dark:text-sky-400 hover:text-sky-700 dark:hover:text-sky-300 transition-colors underline"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          {t("reviewForm.acceptTermsLink")}
-                        </a>
-                      </span>
-                    </Checkbox>
+                    <div className="flex items-start space-x-3">
+                      <Checkbox
+                        isSelected={formData.acceptedTerms}
+                        onValueChange={(checked) => handleChange("acceptedTerms", checked)}
+                        isRequired
+                        classNames={{
+                          label: "text-slate-700 dark:text-slate-300",
+                        }}
+                      >
+                        <span className="text-sm">
+                          <Trans
+                            i18nKey="reviewForm.acceptTerms"
+                            components={{
+                              1: <a
+                                href="/terms"
+                                className="text-sky-600 dark:text-sky-400 hover:text-sky-700 dark:hover:text-sky-300 transition-colors underline cursor-pointer"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                onClick={(e) => e.stopPropagation()}
+                              />
+                            }}
+                          />
+                        </span>
+                      </Checkbox>
+                    </div>
                   </div>
 
-                  {/* Botones */}
-                  <div className="flex gap-4 pt-4">
+                  {/* Botones de acción */}
+                  <div className="flex flex-col sm:flex-row gap-4 pt-6">
                     <Button
-                      color="primary"
                       type="submit"
-                      isDisabled={!formData.acceptedTerms}
-                      className="bg-sky-600 hover:bg-sky-700"
+                      size="lg"
+                      disabled={!formData.acceptedTerms || isSubmitting}
+                      className="bg-sky-600 dark:bg-sky-600 text-white hover:bg-sky-700 dark:hover:bg-sky-700 font-semibold px-8 py-3 transition-colors duration-200 flex-1 sm:flex-initial"
                     >
-                      {t("reviewForm.submit")}
+                      {isSubmitting ? t("reviewForm.submitting") : t("reviewForm.submit")}
                     </Button>
                     <Button
-                      variant="light"
+                      variant="bordered"
+                      size="lg"
                       onPress={() => router.push(`/company/${slug}`)}
+                      className="border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 font-medium px-8 py-3 transition-colors duration-200"
                     >
                       {t("reviewForm.cancel")}
                     </Button>
                   </div>
                 </form>
-              </CardBody>
-            </Card>
-          </div>
+              </Card>            </div>
 
-          {/* Sidebar */}
-          <div className="space-y-6">
-            <Card className="shadow-lg border-0">
-              <CardHeader>
-                <h3 className="text-lg font-bold text-slate-900 dark:text-white">
-                  {t("reviewForm.sidebar.title")}
-                </h3>
-              </CardHeader>
-              <CardBody>
-                <p className="text-slate-600 dark:text-slate-300 mb-4">
-                  {t("reviewForm.sidebar.description")}
-                </p>{" "}
-                <div className="space-y-3">
-                  <h4 className="font-semibold text-slate-900 dark:text-white">
-                    <a
-                      href="/terms"
-                      className="text-sky-600 dark:text-sky-400 hover:text-sky-700 dark:hover:text-sky-300 transition-colors underline"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      {t("reviewForm.sidebar.rulesTitle")}
-                    </a>
-                  </h4>
+            {/* Sidebar Information */}
+            <div className="lg:w-72">
+              <Card className="p-5 shadow-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 transition-colors duration-200">
+                <div className="space-y-4">
+                  <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-4 transition-colors duration-200">
+                    {t("reviewForm.sidebar.title")}
+                  </h3>
                   <ul className="space-y-2 text-sm text-slate-600 dark:text-slate-300">
                     <li className="flex items-start gap-2">
-                      <span className="text-sky-600 mt-1">•</span>
-                      {t("reviewForm.sidebar.rule1")}
+                      <span className="w-1.5 h-1.5 bg-sky-500 dark:bg-sky-400 rounded-full mt-2 flex-shrink-0"></span>
+                      {t("reviewForm.sidebar.tip1")}
                     </li>
                     <li className="flex items-start gap-2">
-                      <span className="text-sky-600 mt-1">•</span>
-                      {t("reviewForm.sidebar.rule2")}
+                      <span className="w-1.5 h-1.5 bg-sky-500 dark:bg-sky-400 rounded-full mt-2 flex-shrink-0"></span>
+                      {t("reviewForm.sidebar.tip2")}
                     </li>
                     <li className="flex items-start gap-2">
-                      <span className="text-sky-600 mt-1">•</span>
-                      {t("reviewForm.sidebar.rule3")}
+                      <span className="w-1.5 h-1.5 bg-sky-500 dark:bg-sky-400 rounded-full mt-2 flex-shrink-0"></span>
+                      {t("reviewForm.sidebar.tip3")}
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="w-1.5 h-1.5 bg-sky-500 dark:bg-sky-400 rounded-full mt-2 flex-shrink-0"></span>
+                      {t("reviewForm.sidebar.tip4")}
                     </li>
                   </ul>
                 </div>
-              </CardBody>
-            </Card>
+              </Card>
+            </div>
           </div>
         </div>
-      </div>
+      </section>
     </div>
   );
 }
