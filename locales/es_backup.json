@@ -302,8 +302,7 @@
         "about": "Sobre nosotros",
         "addCompany": "Sumá tu empresa",
         "language": "Idioma",
-        "contact": "Contacto",
-        "theme": "Tema"
+        "contact": "Contacto"
     },
     "contact": {
         "hero": {
@@ -496,8 +495,7 @@
         "founded": "Fundada en",
         "employees": "empleados",
         "website": "Sitio web",
-        "writeReview": "✍️ Escribir reseña",
-        "reviews": "reseñas",
+        "writeReview": "Calificar",
         "followCompany": "Seguir empresa",
         "aboutTitle": "Acerca de",
         "workEnvironmentTitle": "Ambiente de trabajo",
@@ -508,19 +506,9 @@
             "culture": "Cultura",
             "management": "Gestión"
         },
-        "recentReviewsTitle": "💬 Opiniones de empleados",
+        "recentReviewsTitle": "Opiniones recientes",
         "viewAllReviews": "Ver todas las opiniones",
-        "recommends": "✅ Recomienda",
-        "pros": "✅ Lo mejor",
-        "cons": "⚠️ A mejorar",
-        "statistics": "📊 Estadísticas",
-        "totalReviews": "📝 Total opiniones",
-        "wouldRecommend": "👍 Recomendarían",
-        "rating": "⭐ Puntuación",
-        "benefits": "🎁 Beneficios",
-        "ctaTitle": "¿Trabajas aquí?",
-        "ctaDescription": "Comparte tu experiencia y ayuda a otros profesionales a tomar mejores decisiones."
-    },
+        "recommends": "Recomienda",
         "reviewSections": {
             "pros": "Lo mejor:",
             "cons": "A mejorar:",
@@ -593,14 +581,13 @@
         "acceptTerms": "Acepto las <1>normas de convivencia</1> y confirmo que mi reseña es honesta y basada en mi experiencia real",
         "acceptTermsPrefix": "Acepto las",
         "acceptTermsLink": "normas de convivencia",
-        "acceptTermsSuffix": "y confirmo que mi reseña es honesta y basada en mi experiencia real",
         "mustAcceptTerms": "Debes aceptar las normas de convivencia",
         "submit": "Publicar reseña",
         "submitting": "Enviando reseña...",
         "cancel": "Cancelar",
         "hero": {
-            "title": "Escribe una reseña sobre {{companyName}}",
-            "description": "Comparte tu experiencia trabajando en {{companyName}} y ayuda a otros profesionales",
+            "title": "Escribe una reseña sobre {companyName}",
+            "description": "Comparte tu experiencia trabajando en {companyName} y ayuda a otros profesionales",
             "reviews": "reseñas"
         },
         "sidebar": {

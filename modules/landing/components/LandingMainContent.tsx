@@ -4,49 +4,17 @@ import { Card, CardBody, CardHeader } from "@heroui/card";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-// Placeholder data - ideally fetched from an API
-const topCompaniesData = [
-  {
-    rank: 1,
-    name: "Tech Solutions Inc.",
-    logo: "https://picsum.photos/seed/tsicon/60/60",
-    rating: 4.8,
-    reviews: 152,
-    href: "/company/tech-solutions-inc",
-  },
-  {
-    rank: 2,
-    name: "Innovate Hub",
-    logo: "https://picsum.photos/seed/ihicon/60/60",
-    rating: 4.7,
-    reviews: 98,
-    href: "/company/innovate-hub",
-  },
-  {
-    rank: 3,
-    name: "GreenTech Global",
-    logo: "https://picsum.photos/seed/gtgicon/60/60",
-    rating: 4.6,
-    reviews: 75,
-    href: "/company/greentech-global",
-  },
-  {
-    rank: 4,
-    name: "NextGen Dynamics",
-    logo: "https://picsum.photos/seed/ngdicon/60/60",
-    rating: 4.5,
-    reviews: 110,
-    href: "/company/nextgen-dynamics",
-  },
-  {
-    rank: 5,
-    name: "QuantumLeap AI",
-    logo: "https://picsum.photos/seed/qlaicon/60/60",
-    rating: 4.5,
-    reviews: 60,
-    href: "/company/quantumleap-ai",
-  },
-];
+import { getTopCompanies } from "../../../data/mockCompanies";
+
+// Get top companies data
+const topCompaniesData = getTopCompanies(5).map((company, index) => ({
+  href: company.href,
+  logo: company.logo.replace("200/200", "60/60"), // Adjust logo size for this view
+  name: company.name,
+  rank: index + 1,
+  rating: company.rating,
+  reviews: company.reviewsCount,
+}));
 
 const latestReviewsData = [
   {
@@ -96,38 +64,38 @@ const latestReviewsData = [
   },
 ];
 
-interface IconProps extends React.SVGProps<SVGSVGElement> { }
+interface IconProps extends React.SVGProps<SVGSVGElement> {}
 
 const ChevronLeftIcon = (props: IconProps) => (
   <svg
     {...props}
+    aria-hidden="true"
     fill="none"
-    viewBox="0 0 24 24"
     stroke="currentColor"
     strokeWidth={2}
-    aria-hidden="true"
+    viewBox="0 0 24 24"
   >
     <title>Previous</title>
-    <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+    <path d="M15 19l-7-7 7-7" strokeLinecap="round" strokeLinejoin="round" />
   </svg>
 );
 
 const ChevronRightIcon = (props: IconProps) => (
   <svg
     {...props}
+    aria-hidden="true"
     fill="none"
-    viewBox="0 0 24 24"
     stroke="currentColor"
     strokeWidth={2}
-    aria-hidden="true"
+    viewBox="0 0 24 24"
   >
     <title>Next</title>
-    <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+    <path d="M9 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" />
   </svg>
 );
 
 const StarIcon = (props: IconProps) => (
-  <svg {...props} fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+  <svg {...props} aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">
     <title>Star</title>
     <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
   </svg>
@@ -140,11 +108,13 @@ export const LandingMainContent = () => {
 
   const paginate = (newDirection: number) => {
     let newIndex = currentReviewIndex + newDirection;
+
     if (newIndex < 0) {
       newIndex = latestReviewsData.length - 1;
     } else if (newIndex >= latestReviewsData.length) {
       newIndex = 0;
     }
+
     setCurrentReviewState([newIndex, newDirection]);
   };
 
@@ -178,8 +148,8 @@ export const LandingMainContent = () => {
                 Empresas Destacadas
               </h2>
               <Link
-                href="/rankings"
                 className="text-sm font-medium text-sky-600 dark:text-sky-400 hover:text-sky-700 dark:hover:text-sky-300 flex items-center transition-colors duration-300"
+                href="/rankings"
               >
                 Ver Todas
                 <ChevronRightIcon className="h-4 w-4 ml-1" />
@@ -188,10 +158,10 @@ export const LandingMainContent = () => {
             {topCompaniesData.map((company) => (
               <Card
                 key={company.rank}
-                as={Link}
-                href={company.href}
                 isPressable
+                as={Link}
                 className="shadow-lg hover:shadow-xl transition-all duration-300 ease-out transform hover:-translate-y-1 bg-white dark:bg-slate-800 rounded-xl overflow-hidden w-full group"
+                href={company.href}
               >
                 <CardBody className="p-5">
                   <div className="flex items-center space-x-4">
@@ -199,9 +169,9 @@ export const LandingMainContent = () => {
                       {company.rank}.
                     </span>
                     <img
-                      src={company.logo}
                       alt={`${company.name} logo placeholder`}
                       className="h-10 w-10 rounded-full object-cover flex-shrink-0"
+                      src={company.logo}
                     />
                     <div className="flex-grow min-w-0">
                       <h3
@@ -234,18 +204,18 @@ export const LandingMainContent = () => {
                 <div className="flex items-center gap-3">
                   <Button
                     isIconOnly
-                    variant="ghost"
-                    className="rounded-full border-slate-300 dark:border-slate-600 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 hover:border-slate-400 dark:hover:border-slate-500 transition-colors duration-200"
                     aria-label="Anterior"
+                    className="rounded-full border-slate-300 dark:border-slate-600 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 hover:border-slate-400 dark:hover:border-slate-500 transition-colors duration-200"
+                    variant="ghost"
                     onClick={() => paginate(-1)}
                   >
                     <ChevronLeftIcon className="h-5 w-5" />
                   </Button>
                   <Button
                     isIconOnly
-                    variant="ghost"
-                    className="rounded-full border-slate-300 dark:border-slate-600 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 hover:border-slate-400 dark:hover:border-slate-500 transition-colors duration-200"
                     aria-label="Siguiente"
+                    className="rounded-full border-slate-300 dark:border-slate-600 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 hover:border-slate-400 dark:hover:border-slate-500 transition-colors duration-200"
+                    variant="ghost"
                     onClick={() => paginate(1)}
                   >
                     <ChevronRightIcon className="h-5 w-5" />
@@ -254,35 +224,35 @@ export const LandingMainContent = () => {
               )}
             </div>
             <div className="relative min-h-[500px] overflow-x-hidden">
-              <AnimatePresence initial={false} custom={direction} mode="wait">
+              <AnimatePresence custom={direction} initial={false} mode="wait">
                 {currentReview && (
                   <motion.div
                     key={currentReview.id}
-                    custom={direction}
-                    variants={slideVariants}
-                    initial="enter"
                     animate="center"
+                    className="w-full absolute top-0 left-0"
+                    custom={direction}
                     exit="exit"
+                    initial="enter"
+                    style={{ position: "absolute" }}
                     transition={{
                       x: { type: "spring", stiffness: 300, damping: 30 },
                       opacity: { duration: 0.2 },
                     }}
-                    className="w-full absolute top-0 left-0"
-                    style={{ position: "absolute" }}
+                    variants={slideVariants}
                   >
                     <Card className="shadow-lg bg-white dark:bg-slate-800 rounded-xl overflow-hidden transition-colors duration-200">
                       <CardHeader className="p-5 pb-3 border-b border-slate-100 dark:border-slate-700 transition-colors duration-200">
                         <div className="flex items-start justify-between">
                           <div className="flex items-center space-x-4">
                             <img
-                              src={currentReview.company.logo}
                               alt={`${currentReview.company.name} logo placeholder`}
                               className="h-12 w-12 rounded-full object-cover flex-shrink-0"
+                              src={currentReview.company.logo}
                             />
                             <div>
                               <Link
-                                href={currentReview.company.href}
                                 className="hover:underline"
+                                href={currentReview.company.href}
                               >
                                 <h3 className="text-lg font-semibold text-slate-800 dark:text-slate-200 hover:text-sky-600 dark:hover:text-sky-400 transition-colors">
                                   {currentReview.company.name}
@@ -331,8 +301,8 @@ export const LandingMainContent = () => {
                         </div>
                         <div className="pt-1">
                           <Link
-                            href={currentReview.reviewLink}
                             className="text-sm font-medium text-sky-600 dark:text-sky-400 hover:text-sky-700 dark:hover:text-sky-300 transition-colors duration-300 flex items-center group/link"
+                            href={currentReview.reviewLink}
                           >
                             Leer opinión completa
                             <ChevronRightIcon className="h-4 w-4 ml-1 opacity-0 group-hover/link:opacity-100 transition-opacity duration-300 transform group-hover/link:translate-x-1" />

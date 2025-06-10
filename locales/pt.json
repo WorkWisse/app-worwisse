@@ -491,5 +491,101 @@
             "backHomeButton": "Voltar ao início",
             "footer": "Ao usar o WorkWisse, você concorda em cumprir essas normas de convivência."
         }
+    },
+    "companyDetail": {
+        "founded": "Fundada em",
+        "employees": "funcionários",
+        "website": "Site",
+        "writeReview": "✍️ Escrever avaliação",
+        "reviews": "avaliações",
+        "followCompany": "Seguir empresa",
+        "aboutTitle": "Sobre",
+        "workEnvironmentTitle": "Ambiente de trabalho",
+        "recentReviewsTitle": "💬 Avaliações de funcionários",
+        "viewAllReviews": "Ver todas as avaliações",
+        "recommends": "✅ Recomenda",
+        "pros": "✅ O melhor",
+        "cons": "⚠️ A melhorar",
+        "statistics": "📊 Estatísticas",
+        "totalReviews": "📝 Total de avaliações",
+        "wouldRecommend": "👍 Recomendariam",
+        "rating": "⭐ Pontuação",
+        "benefits": "🎁 Benefícios",
+        "ctaTitle": "Você trabalha aqui?",
+        "ctaDescription": "Compartilhe sua experiência e ajude outros profissionais a tomar melhores decisões."
+    },
+    "reviewForm": {
+        "title": "Compartilhe sua experiência",
+        "viewReview": "Ver Avaliações",
+        "workInfo": {
+            "title": "Informações do Trabalho",
+            "description": "Conte sobre sua experiência profissional na empresa",
+            "role": "Cargo na empresa",
+            "rolePlaceholder": "Ex: Desenvolvedor Frontend, QA Engineer...",
+            "startDate": "Data de início",
+            "endDate": "Data de término",
+            "currentlyWorking": "Atualmente trabalho aqui"
+        },
+        "ratings": {
+            "title": "Avaliações",
+            "description": "Avalie diferentes aspectos da empresa (1-5 estrelas)",
+            "workEnvironment": "Ambiente de trabalho",
+            "workEnvironmentDesc": "Como era o ambiente de trabalho geral?",
+            "compensation": "Compensação e salários",
+            "compensationDesc": "A compensação era competitiva?",
+            "benefits": "Benefícios",
+            "benefitsDesc": "Como eram os benefícios e vantagens?",
+            "culture": "Cultura empresarial",
+            "cultureDesc": "Você se sentiu parte da cultura?",
+            "communication": "Comunicação interna",
+            "communicationDesc": "Como era a comunicação na empresa?",
+            "careerGrowth": "Crescimento profissional",
+            "careerGrowthDesc": "Havia oportunidades de crescimento?",
+            "workLifeBalance": "Equilíbrio vida-trabalho",
+            "workLifeBalanceDesc": "Conseguia manter um bom equilíbrio?",
+            "overall": "Avaliação geral",
+            "overallDesc": "Como avalia a experiência geral?"
+        },
+        "ratingScale": {
+            "1": "Muito ruim",
+            "2": "Ruim",
+            "3": "Regular",
+            "4": "Bom",
+            "5": "Excelente",
+            "0": "Não avaliado"
+        },
+        "experience": {
+            "title": "Sua Experiência",
+            "description": "Compartilhe os detalhes da sua experiência na empresa",
+            "pros": "Aspectos positivos",
+            "prosPlaceholder": "O que foi melhor ao trabalhar nesta empresa? (benefícios, ambiente, projetos, etc.)",
+            "cons": "Aspectos a melhorar",
+            "consPlaceholder": "Que aspectos você acha que a empresa poderia melhorar?"
+        },
+        "wouldRecommend": "Recomendaria esta empresa a um amigo",
+        "acceptTerms": "Aceito as <1>normas de convivência</1> e confirmo que minha avaliação é honesta e baseada na minha experiência real",
+        "acceptTermsPrefix": "Aceito as",
+        "acceptTermsLink": "normas de convivência",
+        "acceptTermsSuffix": "e confirmo que minha avaliação é honesta e baseada na minha experiência real",
+        "mustAcceptTerms": "Você deve aceitar as normas de convivência",
+        "submit": "Publicar avaliação",
+        "submitting": "Publicando avaliação...",
+        "cancel": "Cancelar",
+        "hero": {
+            "title": "Escreva uma avaliação sobre {{companyName}}",
+            "description": "Compartilhe sua experiência trabalhando na {{companyName}} e ajude outros profissionais",
+            "reviews": "avaliações"
+        },
+        "sidebar": {
+            "title": "💡 Dicas para escrever uma boa avaliação",
+            "tip1": "Seja específico e honesto sobre sua experiência",
+            "tip2": "Mencione tanto aspectos positivos quanto áreas de melhoria",
+            "tip3": "Evite informações confidenciais ou nomes específicos",
+            "tip4": "Sua avaliação ajudará outros profissionais a tomar decisões informadas"
+        },
+        "validation": {
+            "acceptTermsRequired": "Você deve aceitar as normas de convivência",
+            "ratingsRequired": "Por favor, complete pelo menos as avaliações principais"
+        }
     }
 }

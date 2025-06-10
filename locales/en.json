@@ -490,6 +490,101 @@
             "addCompanyButton": "Add company",
             "backHomeButton": "Back to home",
             "footer": "By using WorkWisse, you agree to comply with these community guidelines."
+        },
+    "companyDetail": {
+        "founded": "Founded in",
+        "employees": "employees",
+        "website": "Website",
+        "writeReview": "✍️ Write review",
+        "reviews": "reviews",
+        "followCompany": "Follow company",
+        "aboutTitle": "About",
+        "workEnvironmentTitle": "Work environment",
+        "recentReviewsTitle": "💬 Employee reviews",
+        "viewAllReviews": "See all reviews",
+        "recommends": "✅ Recommends",
+        "pros": "✅ The best",
+        "cons": "⚠️ To improve",
+        "statistics": "📊 Statistics",
+        "totalReviews": "📝 Total reviews",
+        "wouldRecommend": "👍 Would recommend",
+        "rating": "⭐ Rating",
+        "benefits": "🎁 Benefits",
+        "ctaTitle": "Do you work here?",
+        "ctaDescription": "Share your experience and help other professionals make better decisions."
+    },
+    "reviewForm": {
+        "title": "Share your experience",
+        "viewReview": "View Ratings",
+        "workInfo": {
+            "title": "Work Information",
+            "role": "Position/Role at the company",
+            "rolePlaceholder": "Ex: Senior Developer, Analyst, etc.",
+            "startDate": "Start date",
+            "endDate": "End date",
+            "currentlyWorking": "I currently work at this company"
+        },
+        "ratings": {
+            "title": "Ratings",
+            "description": "Rate different aspects of the company (1-5 stars)",
+            "workEnvironment": "Work environment",
+            "workEnvironmentDesc": "How was the general work environment?",
+            "compensation": "Compensation and salaries",
+            "compensationDesc": "Was the compensation competitive?",
+            "benefits": "Benefits",
+            "benefitsDesc": "How were the benefits and perks?",
+            "culture": "Company culture",
+            "cultureDesc": "Did you feel part of the culture?",
+            "communication": "Internal communication",
+            "communicationDesc": "How was communication within the company?",
+            "careerGrowth": "Professional growth",
+            "careerGrowthDesc": "Were there growth opportunities?",
+            "workLifeBalance": "Work-life balance",
+            "workLifeBalanceDesc": "Could you maintain a good balance?",
+            "overall": "Overall rating",
+            "overallDesc": "How do you rate the overall experience?"
+        },
+        "ratingScale": {
+            "1": "Very bad",
+            "2": "Bad",
+            "3": "Regular",
+            "4": "Good",
+            "5": "Excellent",
+            "0": "Not rated"
+        },
+        "experience": {
+            "title": "Your Experience",
+            "description": "Share the details of your experience at the company",
+            "pros": "Positive aspects",
+            "prosPlaceholder": "What was the best thing about working at this company? (benefits, environment, projects, etc.)",
+            "cons": "Areas for improvement",
+            "consPlaceholder": "What aspects do you think the company could improve?"
+        },
+        "wouldRecommend": "I would recommend this company to a friend",
+        "acceptTerms": "I accept the <1>community guidelines</1> and confirm that my review is honest and based on my real experience",
+        "acceptTermsPrefix": "I accept the",
+        "acceptTermsLink": "community guidelines",
+        "acceptTermsSuffix": "and confirm that my review is honest and based on my real experience",
+        "mustAcceptTerms": "You must accept the community guidelines to continue",
+        "submit": "Publish review",
+        "submitting": "Publishing review...",
+        "cancel": "Cancel",
+        "hero": {
+            "title": "Write a review about {{companyName}}",
+            "description": "Share your experience working at {{companyName}} and help other professionals",
+            "reviews": "reviews"
+        },
+        "sidebar": {
+            "title": "💡 Tips for writing a good review",
+            "tip1": "Be specific and honest about your experience",
+            "tip2": "Mention both positive aspects and areas for improvement",
+            "tip3": "Avoid confidential information or specific names",
+            "tip4": "Your review will help other professionals make informed decisions"
+        },
+        "validation": {
+            "acceptTermsRequired": "You must accept the community guidelines",
+            "ratingsRequired": "Please complete at least the main ratings"
         }
     }
+}
 }
