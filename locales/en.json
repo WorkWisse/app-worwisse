@@ -1,7 +1,7 @@
 {
     "hero": {
         "title": "Know the truth about your <1>next job</1> before applying",
-        "description": "Access real employee reviews, actual salary information, and transparent rankings. <1>Make informed career decisions</1> with information that really matters.",
+        "description": "Access real employee reviews. Companies are no longer chosen solely for salary—people seek purpose, a positive environment, inclusion, and real growth opportunities. Make informed career decisions with information that truly matters.",
         "searchPlaceholder": "Search by company name...",
         "searchButton": "Search",
         "ctaFeatured": "View featured companies",
@@ -20,7 +20,7 @@
     "about": {
         "hero": {
             "title": "We connect <1>workers</1> with <2>good jobs</2>",
-            "description": "We are the platform that helps you know the truth about companies, so you can choose where to work with real information from other workers like you.",
+            "description": "Workwisse is a platform where workers share their job experiences to help others make informed decisions and to enable companies to improve based on that feedback.",
             "ctaTeam": "Meet our team",
             "ctaHistory": "Our story"
         },
@@ -157,8 +157,8 @@
         }
     },
     "features": {
-        "title": "Everything you need to <1>choose better where to work</1>",
-        "description": "We have the information you need to find a job you really like and make informed career decisions.",
+        "title": "Discover what no one tells you <1>before accepting a job</1>",
+        "description": "The most valuable information about a company isn't on its website. It's with its employees. Workwisse brings it to you. Access real experiences, unfiltered salaries, and honest rankings. The new way to choose a job.",
         "items": {
             "reviews": {
                 "title": "Verified Reviews",

@@ -1,7 +1,7 @@
 {
     "hero": {
         "title": "Conocé la verdad sobre tu <1>próximo trabajo</1> antes de postularte",
-        "description": "Accedé a opiniones reales de empleados, información salarial real y rankings transparentes. <1>Tomá decisiones laborales informadas</1> con información que realmente importa.",
+        "description": "Accede a opiniones reales de empleados. Las empresas ya no se eligen solo por salario, las personas buscan propósito, buen ambiente, inclusión y oportunidades reales de crecimiento. Tomá decisiones laborales informadas con información que realmente importa.",
         "searchPlaceholder": "Buscar por nombre de empresa...",
         "searchButton": "Buscar",
         "ctaFeatured": "Ver empresas destacadas",
@@ -20,7 +20,7 @@
     "about": {
         "hero": {
             "title": "Conectamos <1>trabajadores</1> con <2>buenos empleos</2>",
-            "description": "Somos la plataforma que te ayuda a conocer la verdad sobre las empresas, para que puedas elegir dónde trabajar con información real de otros trabajadores como vos.",
+            "description": "Workwisse es una plataforma donde los trabajadores comparten sus experiencias laborales para ayudar a otros a tomar decisiones informadas y permitir que las empresas mejoren a partir de esas opiniones.",
             "ctaTeam": "Conocé nuestro equipo",
             "ctaHistory": "Nuestra historia"
         },
@@ -157,8 +157,8 @@
         }
     },
     "features": {
-        "title": "Todo lo que necesitás para <1>elegir mejor dónde trabajar</1>",
-        "description": "Tenemos la información que necesitás para encontrar un trabajo que realmente te guste y tomar decisiones laborales informadas.",
+        "title": "Descubrí lo que nadie te cuenta <1>antes de aceptar un trabajo</1>",
+        "description": "La información más valiosa de una empresa no está en su web, está en sus empleados. Workwisse te la muestra. Accede a experiencias reales, sueldos sin maquillaje y rankings honestos. La nueva forma de elegir trabajo.",
         "items": {
             "reviews": {
                 "title": "Opiniones Verificadas",

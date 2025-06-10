@@ -1,7 +1,7 @@
 {
     "hero": {
         "title": "Conheça a verdade sobre seu <1>próximo trabalho</1> antes de se candidatar",
-        "description": "Acesse opiniões reais de funcionários, informações salariais reais e rankings transparentes. <1>Tome decisões profissionais informadas</1> com informações que realmente importam.",
+        "description": "Acesse opiniões reais de funcionários. As empresas não são mais escolhidas apenas pelo salário, pois as pessoas buscam propósito, um bom ambiente, inclusão e oportunidades reais de crescimento. Tome decisões profissionais bem informadas com informações que realmente importam.",
         "searchPlaceholder": "Buscar por nome da empresa...",
         "searchButton": "Buscar",
         "ctaFeatured": "Ver empresas em destaque",
@@ -20,7 +20,7 @@
     "about": {
         "hero": {
             "title": "Conectamos <1>trabalhadores</1> com <2>bons empregos</2>",
-            "description": "Somos a plataforma que ajuda você a conhecer a verdade sobre as empresas, para que possa escolher onde trabalhar com informações reais de outros trabalhadores como você.",
+            "description": "A Workwisse é uma plataforma onde os trabalhadores compartilham suas experiências profissionais para ajudar outras pessoas a tomar decisões informadas e permitir que as empresas melhorem a partir desses relatos.",
             "ctaTeam": "Conheça nossa equipe",
             "ctaHistory": "Nossa história"
         },
@@ -157,8 +157,8 @@
         }
     },
     "features": {
-        "title": "Tudo o que você precisa para <1>escolher melhor onde trabalhar</1>",
-        "description": "Temos as informações que você precisa para encontrar um trabalho que realmente goste e tomar decisões profissionais informadas.",
+        "title": "Descubra o que ninguém te conta <1>antes de aceitar um trabalho</1>",
+        "description": "As informações mais valiosas sobre uma empresa não estão no site. Estão com os funcionários. A Workwisse te mostra. Acesse experiências reais, salários sem maquiagem e rankings honestos. A nova forma de escolher um trabalho.",
         "items": {
             "reviews": {
                 "title": "Opiniões Verificadas",
