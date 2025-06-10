@@ -56,8 +56,8 @@
         "submitting": "Publishing review...",
         "cancel": "Cancel",
         "hero": {
-            "title": "Write a review about {companyName}",
-            "description": "Share your experience working at {companyName} and help other professionals",
+            "title": "Write a review about {{companyName}}",
+            "description": "Share your experience working at {{companyName}} and help other professionals",
             "reviews": "reviews"
         },
         "sidebar": {

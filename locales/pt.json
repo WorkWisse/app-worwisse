@@ -587,8 +587,8 @@
         "submitting": "Publicando avaliação...",
         "cancel": "Cancelar",
         "hero": {
-            "title": "Escreva uma avaliação sobre {companyName}",
-            "description": "Compartilhe sua experiência trabalhando na {companyName} e ajude outros profissionais",
+            "title": "Escreva uma avaliação sobre {{companyName}}",
+            "description": "Compartilhe sua experiência trabalhando na {{companyName}} e ajude outros profissionais",
             "reviews": "avaliações"
         },
         "sidebar": {

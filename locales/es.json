@@ -587,8 +587,8 @@
         "submitting": "Enviando reseña...",
         "cancel": "Cancelar",
         "hero": {
-            "title": "Escribe una reseña sobre {companyName}",
-            "description": "Comparte tu experiencia trabajando en {companyName} y ayuda a otros profesionales",
+            "title": "Escribe una reseña sobre {{companyName}}",
+            "description": "Comparte tu experiencia trabajando en {{companyName}} y ayuda a otros profesionales",
             "reviews": "reseñas"
         },
         "sidebar": {
