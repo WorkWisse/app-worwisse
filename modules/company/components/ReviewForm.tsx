@@ -24,6 +24,7 @@ interface ReviewFormData {
   leadershipRating: number;
   careerGrowthRating: number;
   workLifeBalanceRating: number;
+  inclusionRating: number;
   overallRating: number;
 
   // Experiencia
@@ -111,6 +112,7 @@ export default function ReviewForm() {
     leadershipRating: 0,
     careerGrowthRating: 0,
     workLifeBalanceRating: 0,
+    inclusionRating: 0,
     overallRating: 0,
     pros: "",
     cons: "",
@@ -388,6 +390,13 @@ export default function ReviewForm() {
                         onRatingChange={(rating) => handleChange("workLifeBalanceRating", rating)}
                         label={t("reviewForm.ratings.workLifeBalance")}
                         description={t("reviewForm.ratings.workLifeBalanceDesc")}
+                      />
+
+                      <StarRating
+                        rating={formData.inclusionRating}
+                        onRatingChange={(rating) => handleChange("inclusionRating", rating)}
+                        label={t("reviewForm.ratings.inclusion")}
+                        description={t("reviewForm.ratings.inclusionDesc")}
                       />
 
                       <StarRating

@@ -543,6 +543,8 @@
             "careerGrowthDesc": "Were there growth opportunities?",
             "workLifeBalance": "Work-life balance",
             "workLifeBalanceDesc": "Could you maintain a good balance?",
+            "inclusion": "Workplace inclusion",
+            "inclusionDesc": "Did the company promote diversity and inclusion?",
             "overall": "Overall rating",
             "overallDesc": "How do you rate the overall experience?"
         },

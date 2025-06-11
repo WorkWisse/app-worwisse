@@ -498,6 +498,8 @@
             "careerGrowthDesc": "¿Hubo oportunidades de crecimiento?",
             "workLifeBalance": "Equilibrio vida-trabajo",
             "workLifeBalanceDesc": "¿Pudiste mantener un buen equilibrio?",
+            "inclusion": "Inclusión laboral",
+            "inclusionDesc": "¿La empresa promovía la diversidad e inclusión?",
             "overall": "Calificación general",
             "overallDesc": "¿Cómo calificás la experiencia general?"
         },
