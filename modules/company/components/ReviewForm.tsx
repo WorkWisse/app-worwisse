@@ -169,8 +169,6 @@ export default function ReviewForm() {
 
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-900 transition-colors duration-200">
-      <LandingHeader />
-
       {/* Hero Section with Company Info */}
       {company && (
         <section className="bg-white dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700 transition-colors duration-200">
