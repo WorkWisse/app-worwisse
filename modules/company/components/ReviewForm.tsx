@@ -168,37 +168,78 @@ export default function ReviewForm() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-slate-900 transition-colors duration-200">
-      {/* Hero Section with Company Info */}
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-sky-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 transition-colors duration-200">
+      {/* Compact Company Header - Identical to CompanyDetail */}
       {company && (
-        <section className="bg-white dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700 transition-colors duration-200">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-            <div className="text-center space-y-6">
-              <div className="flex justify-center">
-                <img
-                  alt={`Logo de ${company.name}`}
-                  className="w-20 h-20 rounded-xl shadow-lg object-cover"
-                  src={company.logo}
-                />
+        <section className="bg-white dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <div className="flex items-center justify-between w-full">
+              {/* Back Button positioned at far left */}
+              <div className="flex-shrink-0">
+                <Button
+                  className="bg-slate-600 hover:bg-slate-700 text-white font-semibold px-4 py-2"
+                  size="md"
+                  onPress={() => router.push(`/company/${slug}`)}
+                >
+                  ← Volver
+                </Button>
               </div>
-              <div>
-                <h1 className="text-4xl font-bold text-slate-900 dark:text-white mb-2">
-                  {t("reviewForm.hero.title", { companyName: company.name })}
-                </h1>
-                <p className="text-lg text-slate-600 dark:text-slate-300">
-                  {t("reviewForm.hero.description", { companyName: company.name })}
-                </p>
-              </div>
-              <div className="flex items-center justify-center gap-4">
-                <div className="flex items-center gap-2">
-                  <div className="flex">{renderStars(company.rating)}</div>
-                  <span className="text-xl font-bold text-slate-900 dark:text-white">
-                    {company.rating}
-                  </span>
+
+              {/* Company content section */}
+              <div className="flex flex-col md:flex-row items-start md:items-center gap-6 flex-1 ml-8">
+                {/* Company Logo */}
+                <div className="flex-shrink-0">
+                  <button
+                    onClick={() => router.push(`/company/${slug}`)}
+                    className="block hover:opacity-80 transition-opacity"
+                  >
+                    <img
+                      alt={`Logo de ${company.name}`}
+                      className="w-16 h-16 md:w-20 md:h-20 rounded-lg shadow-md object-cover"
+                      src={company.logo}
+                    />
+                  </button>
                 </div>
-                <span className="text-slate-600 dark:text-slate-300">
-                  {company.reviewsCount} {t("reviewForm.hero.reviews")}
-                </span>
+
+                {/* Company Info */}
+                <div className="flex-1 min-w-0">
+                  <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                    <div>
+                      <h1 className="text-2xl md:text-3xl font-bold text-slate-900 dark:text-white mb-2">
+                        {company.name}
+                      </h1>
+                      <div className="flex flex-wrap items-center gap-4 text-slate-600 dark:text-slate-300">
+                        <span className="font-medium">{company.industry}</span>
+                        <span className="text-slate-400">•</span>
+                        <span>{company.location.city}, {company.location.country}</span>
+                        {company.website && (
+                          <>
+                            <span className="text-slate-400">•</span>
+                            <a
+                              href={company.website}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="text-sky-600 hover:text-sky-700 dark:text-sky-400 dark:hover:text-sky-300 transition-colors"
+                            >
+                              {t("companyDetail.website")}
+                            </a>
+                          </>
+                        )}
+                      </div>
+                    </div>
+
+                    {/* Rating */}
+                    <div className="flex items-center gap-3">
+                      <div className="flex">{renderStars(company.rating)}</div>
+                      <span className="text-xl font-bold text-slate-900 dark:text-white">
+                        {company.rating}
+                      </span>
+                      <span className="text-slate-600 dark:text-slate-300 text-sm">
+                        ({company.reviewsCount} {t("reviewForm.hero.reviews")})
+                      </span>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -206,7 +247,7 @@ export default function ReviewForm() {
       )}
 
       {/* Main Form Section */}
-      <section className="py-14 px-4 bg-gradient-to-br from-slate-50 via-white to-sky-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 transition-colors duration-200">
+      <section className="py-14 px-4 transition-colors duration-200">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col lg:flex-row gap-8 lg:gap-12">
             {/* Form Column */}
