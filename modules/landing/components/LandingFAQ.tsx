@@ -110,8 +110,8 @@ export const LandingFAQ = () => {
         </div>
 
         <div className="text-center mt-16">
-          <div className="bg-gradient-to-r from-slate-50 to-sky-50 dark:from-slate-800 dark:to-slate-700 rounded-2xl p-8 border border-sky-100 dark:border-slate-600 transition-colors duration-200">
-            <h3 className="text-2xl font-bold text-slate-900 dark:text-slate-100 mb-4 transition-colors duration-200">
+          <div className="bg-gradient-to-r from-slate-50 to-sky-50 dark:from-slate-700 dark:to-slate-600 rounded-2xl p-8 border border-sky-100 dark:border-slate-500 transition-colors duration-200">
+            <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-4 transition-colors duration-200">
               {t("faq.cta.title")}
             </h3>
             <p className="text-slate-600 dark:text-slate-300 mb-6 transition-colors duration-200">{t("faq.cta.description")}</p>
@@ -119,7 +119,7 @@ export const LandingFAQ = () => {
               <Button
                 as={Link}
                 href="/contact"
-                className="bg-sky-600 dark:bg-sky-500 text-white px-6 py-3 rounded-lg font-semibold hover:bg-sky-700 dark:hover:bg-sky-600 transition-colors"
+                className="bg-sky-600 dark:bg-sky-500 text-white px-6 py-3 rounded-lg font-semibold hover:bg-sky-700 dark:hover:bg-sky-600 transition-colors duration-200"
               >
                 {t("faq.cta.primary")}
               </Button>
