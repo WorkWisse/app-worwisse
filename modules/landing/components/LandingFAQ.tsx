@@ -48,7 +48,7 @@ export const LandingFAQ = () => {
   };
 
   return (
-    <section className="py-20 sm:py-28 bg-white dark:bg-slate-900 transition-colors duration-200">
+    <section className="py-20 sm:py-28 bg-white dark:bg-slate-800 transition-colors duration-200">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl">
         <div className="text-center mb-16 animate-fade-in-up">
           <h2 className="text-4xl lg:text-5xl font-bold text-slate-900 dark:text-slate-100 mb-6 transition-colors duration-200">
