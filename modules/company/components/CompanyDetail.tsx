@@ -161,113 +161,156 @@ export default function CompanyDetail({
             {/* Left Column - Main Content */}
             <div className="lg:col-span-2 space-y-8">
 
-              {/* Ratings Breakdown */}
+              {/* Mobile: Company Stats (First on mobile) */}
+              <Card className="shadow-lg border-0 bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm lg:hidden">
+                <CardHeader className="pb-4">
+                  <h3 className="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                    {t("companyDetail.statistics")}
+                  </h3>
+                </CardHeader>
+                <CardBody className="pt-0">
+                  <div className="space-y-4">
+                    <div className="flex justify-between items-center p-3 bg-slate-50 dark:bg-slate-700 rounded-lg">
+                      <span className="text-slate-600 dark:text-slate-400 font-medium">
+                        {t("companyDetail.totalReviews")}
+                      </span>
+                      <span className="font-bold text-slate-900 dark:text-white text-lg">
+                        {company.reviewsCount}
+                      </span>
+                    </div>
+                    <div className="flex justify-between items-center p-3 bg-green-50 dark:bg-green-900/20 rounded-lg">
+                      <span className="text-slate-600 dark:text-slate-400 font-medium">
+                        {t("companyDetail.wouldRecommend")}
+                      </span>
+                      <span className="font-bold text-green-600 dark:text-green-400 text-lg">
+                        {Math.round(
+                          (reviews.filter((r) => r.wouldRecommend).length /
+                            reviews.length) *
+                          100,
+                        )}%
+                      </span>
+                    </div>
+                  </div>
+                </CardBody>
+              </Card>
+
+              {/* Ratings Breakdown (Second on mobile) */}
               {ratingAverages && (
                 <Card className="shadow-lg border-0 bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm">
                   <CardHeader className="pb-4">
-                    <h2 className="text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
-                      {t("companyDetail.ratingsBreakdown")}
-                    </h2>
-                    <p className="text-slate-600 dark:text-slate-400">
-                      {t("companyDetail.ratingsBreakdownDesc")}
-                    </p>
+                    <div className="flex flex-col">
+                      <h2 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white">
+                        {t("companyDetail.ratingsBreakdown")}
+                      </h2>
+                      <p className="text-slate-600 dark:text-slate-400 text-sm sm:text-base mt-1">
+                        {t("companyDetail.ratingsBreakdownDesc")}
+                      </p>
+                    </div>
                   </CardHeader>
                   <CardBody className="pt-0">
-                    <div className="grid md:grid-cols-2 gap-6">
-                      <div className="space-y-4">
-                        <div className="flex justify-between items-center p-3 bg-slate-50 dark:bg-slate-700 rounded-lg">
-                          <span className="text-slate-600 dark:text-slate-400 font-medium">
-                            {t("companyDetail.ratingWorkEnvironment")}
+                    <div className="grid md:grid-cols-2 gap-3 md:gap-6">
+                      <div className="space-y-3 md:space-y-4">
+                        <div className="flex justify-between items-center p-2 md:p-3 bg-slate-50 dark:bg-slate-700 rounded-lg">
+                          <span className="text-slate-600 dark:text-slate-400 font-medium text-sm md:text-base">
+                            <span className="md:hidden">{t("companyDetail.ratingWorkEnvironmentShort")}</span>
+                            <span className="hidden md:inline">{t("companyDetail.ratingWorkEnvironment")}</span>
                           </span>
-                          <div className="flex items-center gap-2">
-                            <div className="flex">{renderStars(ratingAverages.workEnvironment)}</div>
-                            <span className="font-bold text-slate-900 dark:text-white min-w-[2rem]">
+                          <div className="flex items-center gap-1 md:gap-2">
+                            <div className="flex text-xs md:text-sm">{renderStars(ratingAverages.workEnvironment)}</div>
+                            <span className="font-bold text-slate-900 dark:text-white min-w-[1.5rem] md:min-w-[2rem] text-sm md:text-base">
                               {ratingAverages.workEnvironment}
                             </span>
                           </div>
                         </div>
 
-                        <div className="flex justify-between items-center p-3 bg-slate-50 dark:bg-slate-700 rounded-lg">
-                          <span className="text-slate-600 dark:text-slate-400 font-medium">
-                            {t("companyDetail.ratingCompensation")}
+                        <div className="flex justify-between items-center p-2 md:p-3 bg-slate-50 dark:bg-slate-700 rounded-lg">
+                          <span className="text-slate-600 dark:text-slate-400 font-medium text-sm md:text-base">
+                            <span className="md:hidden">{t("companyDetail.ratingCompensationShort")}</span>
+                            <span className="hidden md:inline">{t("companyDetail.ratingCompensation")}</span>
                           </span>
-                          <div className="flex items-center gap-2">
-                            <div className="flex">{renderStars(ratingAverages.compensation)}</div>
-                            <span className="font-bold text-slate-900 dark:text-white min-w-[2rem]">
+                          <div className="flex items-center gap-1 md:gap-2">
+                            <div className="flex text-xs md:text-sm">{renderStars(ratingAverages.compensation)}</div>
+                            <span className="font-bold text-slate-900 dark:text-white min-w-[1.5rem] md:min-w-[2rem] text-sm md:text-base">
                               {ratingAverages.compensation}
                             </span>
                           </div>
                         </div>
 
-                        <div className="flex justify-between items-center p-3 bg-slate-50 dark:bg-slate-700 rounded-lg">
-                          <span className="text-slate-600 dark:text-slate-400 font-medium">
-                            {t("companyDetail.ratingBenefits")}
+                        <div className="flex justify-between items-center p-2 md:p-3 bg-slate-50 dark:bg-slate-700 rounded-lg">
+                          <span className="text-slate-600 dark:text-slate-400 font-medium text-sm md:text-base">
+                            <span className="md:hidden">{t("companyDetail.ratingBenefitsShort")}</span>
+                            <span className="hidden md:inline">{t("companyDetail.ratingBenefits")}</span>
                           </span>
-                          <div className="flex items-center gap-2">
-                            <div className="flex">{renderStars(ratingAverages.benefits)}</div>
-                            <span className="font-bold text-slate-900 dark:text-white min-w-[2rem]">
+                          <div className="flex items-center gap-1 md:gap-2">
+                            <div className="flex text-xs md:text-sm">{renderStars(ratingAverages.benefits)}</div>
+                            <span className="font-bold text-slate-900 dark:text-white min-w-[1.5rem] md:min-w-[2rem] text-sm md:text-base">
                               {ratingAverages.benefits}
                             </span>
                           </div>
                         </div>
 
-                        <div className="flex justify-between items-center p-3 bg-slate-50 dark:bg-slate-700 rounded-lg">
-                          <span className="text-slate-600 dark:text-slate-400 font-medium">
-                            {t("companyDetail.ratingCulture")}
+                        <div className="flex justify-between items-center p-2 md:p-3 bg-slate-50 dark:bg-slate-700 rounded-lg">
+                          <span className="text-slate-600 dark:text-slate-400 font-medium text-sm md:text-base">
+                            <span className="md:hidden">{t("companyDetail.ratingCultureShort")}</span>
+                            <span className="hidden md:inline">{t("companyDetail.ratingCulture")}</span>
                           </span>
-                          <div className="flex items-center gap-2">
-                            <div className="flex">{renderStars(ratingAverages.culture)}</div>
-                            <span className="font-bold text-slate-900 dark:text-white min-w-[2rem]">
+                          <div className="flex items-center gap-1 md:gap-2">
+                            <div className="flex text-xs md:text-sm">{renderStars(ratingAverages.culture)}</div>
+                            <span className="font-bold text-slate-900 dark:text-white min-w-[1.5rem] md:min-w-[2rem] text-sm md:text-base">
                               {ratingAverages.culture}
                             </span>
                           </div>
                         </div>
                       </div>
 
-                      <div className="space-y-4">
-                        <div className="flex justify-between items-center p-3 bg-slate-50 dark:bg-slate-700 rounded-lg">
-                          <span className="text-slate-600 dark:text-slate-400 font-medium">
-                            {t("companyDetail.ratingCommunication")}
+                      <div className="space-y-3 md:space-y-4">
+                        <div className="flex justify-between items-center p-2 md:p-3 bg-slate-50 dark:bg-slate-700 rounded-lg">
+                          <span className="text-slate-600 dark:text-slate-400 font-medium text-sm md:text-base">
+                            <span className="md:hidden">{t("companyDetail.ratingCommunicationShort")}</span>
+                            <span className="hidden md:inline">{t("companyDetail.ratingCommunication")}</span>
                           </span>
-                          <div className="flex items-center gap-2">
-                            <div className="flex">{renderStars(ratingAverages.communication)}</div>
-                            <span className="font-bold text-slate-900 dark:text-white min-w-[2rem]">
+                          <div className="flex items-center gap-1 md:gap-2">
+                            <div className="flex text-xs md:text-sm">{renderStars(ratingAverages.communication)}</div>
+                            <span className="font-bold text-slate-900 dark:text-white min-w-[1.5rem] md:min-w-[2rem] text-sm md:text-base">
                               {ratingAverages.communication}
                             </span>
                           </div>
                         </div>
 
-                        <div className="flex justify-between items-center p-3 bg-slate-50 dark:bg-slate-700 rounded-lg">
-                          <span className="text-slate-600 dark:text-slate-400 font-medium">
-                            {t("companyDetail.ratingCareerGrowth")}
+                        <div className="flex justify-between items-center p-2 md:p-3 bg-slate-50 dark:bg-slate-700 rounded-lg">
+                          <span className="text-slate-600 dark:text-slate-400 font-medium text-sm md:text-base">
+                            <span className="md:hidden">{t("companyDetail.ratingCareerGrowthShort")}</span>
+                            <span className="hidden md:inline">{t("companyDetail.ratingCareerGrowth")}</span>
                           </span>
-                          <div className="flex items-center gap-2">
-                            <div className="flex">{renderStars(ratingAverages.careerGrowth)}</div>
-                            <span className="font-bold text-slate-900 dark:text-white min-w-[2rem]">
+                          <div className="flex items-center gap-1 md:gap-2">
+                            <div className="flex text-xs md:text-sm">{renderStars(ratingAverages.careerGrowth)}</div>
+                            <span className="font-bold text-slate-900 dark:text-white min-w-[1.5rem] md:min-w-[2rem] text-sm md:text-base">
                               {ratingAverages.careerGrowth}
                             </span>
                           </div>
                         </div>
 
-                        <div className="flex justify-between items-center p-3 bg-slate-50 dark:bg-slate-700 rounded-lg">
-                          <span className="text-slate-600 dark:text-slate-400 font-medium">
-                            {t("companyDetail.ratingWorkLifeBalance")}
+                        <div className="flex justify-between items-center p-2 md:p-3 bg-slate-50 dark:bg-slate-700 rounded-lg">
+                          <span className="text-slate-600 dark:text-slate-400 font-medium text-sm md:text-base">
+                            <span className="md:hidden">{t("companyDetail.ratingWorkLifeBalanceShort")}</span>
+                            <span className="hidden md:inline">{t("companyDetail.ratingWorkLifeBalance")}</span>
                           </span>
-                          <div className="flex items-center gap-2">
-                            <div className="flex">{renderStars(ratingAverages.workLifeBalance)}</div>
-                            <span className="font-bold text-slate-900 dark:text-white min-w-[2rem]">
+                          <div className="flex items-center gap-1 md:gap-2">
+                            <div className="flex text-xs md:text-sm">{renderStars(ratingAverages.workLifeBalance)}</div>
+                            <span className="font-bold text-slate-900 dark:text-white min-w-[1.5rem] md:min-w-[2rem] text-sm md:text-base">
                               {ratingAverages.workLifeBalance}
                             </span>
                           </div>
                         </div>
 
-                        <div className="flex justify-between items-center p-3 bg-slate-50 dark:bg-slate-700 rounded-lg">
-                          <span className="text-slate-600 dark:text-slate-400 font-medium">
-                            {t("companyDetail.ratingInclusion")}
+                        <div className="flex justify-between items-center p-2 md:p-3 bg-slate-50 dark:bg-slate-700 rounded-lg">
+                          <span className="text-slate-600 dark:text-slate-400 font-medium text-sm md:text-base">
+                            <span className="md:hidden">{t("companyDetail.ratingInclusionShort")}</span>
+                            <span className="hidden md:inline">{t("companyDetail.ratingInclusion")}</span>
                           </span>
-                          <div className="flex items-center gap-2">
-                            <div className="flex">{renderStars(ratingAverages.inclusion)}</div>
-                            <span className="font-bold text-slate-900 dark:text-white min-w-[2rem]">
+                          <div className="flex items-center gap-1 md:gap-2">
+                            <div className="flex text-xs md:text-sm">{renderStars(ratingAverages.inclusion)}</div>
+                            <span className="font-bold text-slate-900 dark:text-white min-w-[1.5rem] md:min-w-[2rem] text-sm md:text-base">
                               {ratingAverages.inclusion}
                             </span>
                           </div>
@@ -278,18 +321,41 @@ export default function CompanyDetail({
                 </Card>
               )}
 
+              {/* Mobile: Benefits & Perks (Third on mobile) */}
+              <Card className="shadow-lg border-0 bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm lg:hidden">
+                <CardHeader className="pb-4">
+                  <h3 className="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                    {t("companyDetail.benefits")}
+                  </h3>
+                </CardHeader>
+                <CardBody className="pt-0">
+                  <div className="space-y-3">
+                    {company.benefits.map((benefit, index) => (
+                      <div key={index} className="flex items-center gap-3 p-2 bg-slate-50 dark:bg-slate-700 rounded-lg">
+                        <span className="text-sky-500">✓</span>
+                        <span className="text-slate-700 dark:text-slate-300 text-sm">
+                          {benefit}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                </CardBody>
+              </Card>
+
               {/* Employee Reviews Section */}
               <Card className="shadow-lg border-0 bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm">
-                <CardHeader className="flex justify-between items-center pb-4">
-                  <h2 className="text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-3">
+                <CardHeader className="flex flex-col sm:flex-row sm:justify-between sm:items-center pb-4 gap-3">
+                  <h2 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-3">
                     {t("companyDetail.recentReviewsTitle")}
                   </h2>
                   <Button
                     color="primary"
                     variant="light"
-                    className="text-sky-600 hover:text-sky-700"
+                    className="text-sky-600 hover:text-sky-700 self-start sm:self-auto text-sm sm:text-base px-3 py-1.5 sm:px-4 sm:py-2 h-auto min-h-0"
+                    size="sm"
                   >
-                    {t("companyDetail.viewAllReviews")}
+                    <span className="sm:hidden">{t("companyDetail.viewAllReviewsShort")}</span>
+                    <span className="hidden sm:inline">{t("companyDetail.viewAllReviews")}</span>
                   </Button>
                 </CardHeader>
                 <CardBody className="pt-0">
@@ -349,8 +415,8 @@ export default function CompanyDetail({
             {/* Right Column - Sidebar */}
             <div className="space-y-6">
 
-              {/* Company Stats */}
-              <Card className="shadow-lg border-0 bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm">
+              {/* Company Stats - Hidden on mobile */}
+              <Card className="shadow-lg border-0 bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm hidden lg:block">
                 <CardHeader className="pb-4">
                   <h3 className="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
                     {t("companyDetail.statistics")}
@@ -382,8 +448,8 @@ export default function CompanyDetail({
                 </CardBody>
               </Card>
 
-              {/* Benefits & Perks */}
-              <Card className="shadow-lg border-0 bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm">
+              {/* Benefits & Perks - Hidden on mobile */}
+              <Card className="shadow-lg border-0 bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm hidden lg:block">
                 <CardHeader className="pb-4">
                   <h3 className="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
                     {t("companyDetail.benefits")}
