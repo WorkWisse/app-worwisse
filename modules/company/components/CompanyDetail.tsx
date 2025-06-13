@@ -37,6 +37,53 @@ export default function CompanyDetail({
     ));
   };
 
+  // Calcular promedios de calificaciones específicas
+  const calculateRatingAverages = () => {
+    const reviewsWithRatings = reviews.filter(review => review.ratings);
+
+    if (reviewsWithRatings.length === 0) {
+      return null;
+    }
+
+    const totals = {
+      workEnvironment: 0,
+      compensation: 0,
+      benefits: 0,
+      culture: 0,
+      communication: 0,
+      careerGrowth: 0,
+      workLifeBalance: 0,
+      inclusion: 0,
+    };
+
+    reviewsWithRatings.forEach(review => {
+      if (review.ratings) {
+        totals.workEnvironment += review.ratings.workEnvironment;
+        totals.compensation += review.ratings.compensation;
+        totals.benefits += review.ratings.benefits;
+        totals.culture += review.ratings.culture;
+        totals.communication += review.ratings.communication;
+        totals.careerGrowth += review.ratings.careerGrowth;
+        totals.workLifeBalance += review.ratings.workLifeBalance;
+        totals.inclusion += review.ratings.inclusion;
+      }
+    });
+
+    const count = reviewsWithRatings.length;
+
+    return {
+      workEnvironment: Number((totals.workEnvironment / count).toFixed(1)),
+      compensation: Number((totals.compensation / count).toFixed(1)),
+      benefits: Number((totals.benefits / count).toFixed(1)),
+      culture: Number((totals.culture / count).toFixed(1)),
+      communication: Number((totals.communication / count).toFixed(1)),
+      careerGrowth: Number((totals.careerGrowth / count).toFixed(1)),
+      workLifeBalance: Number((totals.workLifeBalance / count).toFixed(1)),
+      inclusion: Number((totals.inclusion / count).toFixed(1)),
+    };
+  };
+
+  const ratingAverages = calculateRatingAverages();
   const recentReviews = reviews.slice(0, 3);
 
   return (
@@ -116,6 +163,123 @@ export default function CompanyDetail({
 
             {/* Left Column - Main Content */}
             <div className="lg:col-span-2 space-y-8">
+
+              {/* Ratings Breakdown */}
+              {ratingAverages && (
+                <Card className="shadow-lg border-0 bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm">
+                  <CardHeader className="pb-4">
+                    <h2 className="text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                      {t("companyDetail.ratingsBreakdown")}
+                    </h2>
+                    <p className="text-slate-600 dark:text-slate-400">
+                      {t("companyDetail.ratingsBreakdownDesc")}
+                    </p>
+                  </CardHeader>
+                  <CardBody className="pt-0">
+                    <div className="grid md:grid-cols-2 gap-6">
+                      <div className="space-y-4">
+                        <div className="flex justify-between items-center p-3 bg-slate-50 dark:bg-slate-700 rounded-lg">
+                          <span className="text-slate-600 dark:text-slate-400 font-medium">
+                            {t("companyDetail.ratingWorkEnvironment")}
+                          </span>
+                          <div className="flex items-center gap-2">
+                            <div className="flex">{renderStars(ratingAverages.workEnvironment)}</div>
+                            <span className="font-bold text-slate-900 dark:text-white min-w-[2rem]">
+                              {ratingAverages.workEnvironment}
+                            </span>
+                          </div>
+                        </div>
+
+                        <div className="flex justify-between items-center p-3 bg-slate-50 dark:bg-slate-700 rounded-lg">
+                          <span className="text-slate-600 dark:text-slate-400 font-medium">
+                            {t("companyDetail.ratingCompensation")}
+                          </span>
+                          <div className="flex items-center gap-2">
+                            <div className="flex">{renderStars(ratingAverages.compensation)}</div>
+                            <span className="font-bold text-slate-900 dark:text-white min-w-[2rem]">
+                              {ratingAverages.compensation}
+                            </span>
+                          </div>
+                        </div>
+
+                        <div className="flex justify-between items-center p-3 bg-slate-50 dark:bg-slate-700 rounded-lg">
+                          <span className="text-slate-600 dark:text-slate-400 font-medium">
+                            {t("companyDetail.ratingBenefits")}
+                          </span>
+                          <div className="flex items-center gap-2">
+                            <div className="flex">{renderStars(ratingAverages.benefits)}</div>
+                            <span className="font-bold text-slate-900 dark:text-white min-w-[2rem]">
+                              {ratingAverages.benefits}
+                            </span>
+                          </div>
+                        </div>
+
+                        <div className="flex justify-between items-center p-3 bg-slate-50 dark:bg-slate-700 rounded-lg">
+                          <span className="text-slate-600 dark:text-slate-400 font-medium">
+                            {t("companyDetail.ratingCulture")}
+                          </span>
+                          <div className="flex items-center gap-2">
+                            <div className="flex">{renderStars(ratingAverages.culture)}</div>
+                            <span className="font-bold text-slate-900 dark:text-white min-w-[2rem]">
+                              {ratingAverages.culture}
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="space-y-4">
+                        <div className="flex justify-between items-center p-3 bg-slate-50 dark:bg-slate-700 rounded-lg">
+                          <span className="text-slate-600 dark:text-slate-400 font-medium">
+                            {t("companyDetail.ratingCommunication")}
+                          </span>
+                          <div className="flex items-center gap-2">
+                            <div className="flex">{renderStars(ratingAverages.communication)}</div>
+                            <span className="font-bold text-slate-900 dark:text-white min-w-[2rem]">
+                              {ratingAverages.communication}
+                            </span>
+                          </div>
+                        </div>
+
+                        <div className="flex justify-between items-center p-3 bg-slate-50 dark:bg-slate-700 rounded-lg">
+                          <span className="text-slate-600 dark:text-slate-400 font-medium">
+                            {t("companyDetail.ratingCareerGrowth")}
+                          </span>
+                          <div className="flex items-center gap-2">
+                            <div className="flex">{renderStars(ratingAverages.careerGrowth)}</div>
+                            <span className="font-bold text-slate-900 dark:text-white min-w-[2rem]">
+                              {ratingAverages.careerGrowth}
+                            </span>
+                          </div>
+                        </div>
+
+                        <div className="flex justify-between items-center p-3 bg-slate-50 dark:bg-slate-700 rounded-lg">
+                          <span className="text-slate-600 dark:text-slate-400 font-medium">
+                            {t("companyDetail.ratingWorkLifeBalance")}
+                          </span>
+                          <div className="flex items-center gap-2">
+                            <div className="flex">{renderStars(ratingAverages.workLifeBalance)}</div>
+                            <span className="font-bold text-slate-900 dark:text-white min-w-[2rem]">
+                              {ratingAverages.workLifeBalance}
+                            </span>
+                          </div>
+                        </div>
+
+                        <div className="flex justify-between items-center p-3 bg-slate-50 dark:bg-slate-700 rounded-lg">
+                          <span className="text-slate-600 dark:text-slate-400 font-medium">
+                            {t("companyDetail.ratingInclusion")}
+                          </span>
+                          <div className="flex items-center gap-2">
+                            <div className="flex">{renderStars(ratingAverages.inclusion)}</div>
+                            <span className="font-bold text-slate-900 dark:text-white min-w-[2rem]">
+                              {ratingAverages.inclusion}
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </CardBody>
+                </Card>
+              )}
 
               {/* Employee Reviews Section */}
               <Card className="shadow-lg border-0 bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm">
@@ -215,14 +379,6 @@ export default function CompanyDetail({
                             reviews.length) *
                           100,
                         )}%
-                      </span>
-                    </div>
-                    <div className="flex justify-between items-center p-3 bg-yellow-50 dark:bg-yellow-900/20 rounded-lg">
-                      <span className="text-slate-600 dark:text-slate-400 font-medium">
-                        {t("companyDetail.rating")}
-                      </span>
-                      <span className="font-bold text-yellow-600 dark:text-yellow-400 text-lg">
-                        {company.rating}/5
                       </span>
                     </div>
                   </div>

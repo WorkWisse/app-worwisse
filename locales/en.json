@@ -512,7 +512,17 @@
         "rating": "⭐ Rating",
         "benefits": "🎁 Benefits",
         "ctaTitle": "Do you work here?",
-        "ctaDescription": "Share your experience and help other professionals make better decisions."
+        "ctaDescription": "Share your experience and help other professionals make better decisions.",
+        "ratingsBreakdown": "📊 Ratings breakdown",
+        "ratingsBreakdownDesc": "Average ratings from employees",
+        "ratingWorkEnvironment": "Work environment",
+        "ratingCompensation": "Compensation",
+        "ratingBenefits": "Benefits",
+        "ratingCulture": "Company culture",
+        "ratingCommunication": "Communication",
+        "ratingCareerGrowth": "Career growth",
+        "ratingWorkLifeBalance": "Work-life balance",
+        "ratingInclusion": "Workplace inclusion"
     },
     "reviewForm": {
         "title": "Share your experience",

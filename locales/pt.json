@@ -512,7 +512,17 @@
         "rating": "⭐ Pontuação",
         "benefits": "🎁 Benefícios",
         "ctaTitle": "Você trabalha aqui?",
-        "ctaDescription": "Compartilhe sua experiência e ajude outros profissionais a tomar melhores decisões."
+        "ctaDescription": "Compartilhe sua experiência e ajude outros profissionais a tomar melhores decisões.",
+        "ratingsBreakdown": "📊 Avaliações por aspecto",
+        "ratingsBreakdownDesc": "Média das avaliações dos funcionários",
+        "ratingWorkEnvironment": "Ambiente de trabalho",
+        "ratingCompensation": "Compensação",
+        "ratingBenefits": "Benefícios",
+        "ratingCulture": "Cultura empresarial",
+        "ratingCommunication": "Comunicação",
+        "ratingCareerGrowth": "Crescimento profissional",
+        "ratingWorkLifeBalance": "Equilíbrio vida-trabalho",
+        "ratingInclusion": "Inclusão laboral"
     },
     "reviewForm": {
         "title": "Compartilhe sua experiência",

@@ -53,6 +53,17 @@ export interface Review {
   wouldRecommend: boolean;
   isAnonymous: boolean;
   isVerified: boolean;
+  // Calificaciones específicas
+  ratings?: {
+    workEnvironment: number;
+    compensation: number;
+    benefits: number;
+    culture: number;
+    communication: number;
+    careerGrowth: number;
+    workLifeBalance: number;
+    inclusion: number;
+  };
 }
 
 export interface JobPosition {

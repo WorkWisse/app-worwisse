@@ -339,7 +339,17 @@ export const mockReviews: Review[] = [
     advice: "Si buscas un lugar donde crecer profesionalmente y trabajar en proyectos innovadores, esta es una excelente opción. Prepárate para aprender mucho.",
     wouldRecommend: true,
     isAnonymous: true,
-    isVerified: true
+    isVerified: true,
+    ratings: {
+      workEnvironment: 5,
+      compensation: 4,
+      benefits: 4,
+      culture: 5,
+      communication: 4,
+      careerGrowth: 5,
+      workLifeBalance: 3,
+      inclusion: 4
+    }
   },
   {
     id: "review-2",
@@ -355,7 +365,17 @@ export const mockReviews: Review[] = [
     advice: "Ideal para PMs que quieren tener impacto real en el producto. La empresa valora mucho la iniciativa y la proactividad.",
     wouldRecommend: true,
     isAnonymous: true,
-    isVerified: true
+    isVerified: true,
+    ratings: {
+      workEnvironment: 4,
+      compensation: 5,
+      benefits: 4,
+      culture: 4,
+      communication: 3,
+      careerGrowth: 4,
+      workLifeBalance: 2,
+      inclusion: 4
+    }
   },
   {
     id: "review-3",
@@ -371,7 +391,17 @@ export const mockReviews: Review[] = [
     advice: "Perfecto para diseñadores que quieren estar en una empresa innovadora y en crecimiento. Prepárate para adaptarte rápido a los cambios.",
     wouldRecommend: true,
     isAnonymous: true,
-    isVerified: true
+    isVerified: true,
+    ratings: {
+      workEnvironment: 5,
+      compensation: 4,
+      benefits: 5,
+      culture: 5,
+      communication: 4,
+      careerGrowth: 5,
+      workLifeBalance: 4,
+      inclusion: 5
+    }
   },
   {
     id: "review-4",
@@ -387,7 +417,17 @@ export const mockReviews: Review[] = [
     advice: "Si te interesa contribuir a un mundo más sostenible y no te importa que el crecimiento salarial sea gradual, es una excelente opción.",
     wouldRecommend: true,
     isAnonymous: true,
-    isVerified: true
+    isVerified: true,
+    ratings: {
+      workEnvironment: 4,
+      compensation: 3,
+      benefits: 4,
+      culture: 5,
+      communication: 4,
+      careerGrowth: 3,
+      workLifeBalance: 5,
+      inclusion: 4
+    }
   },
   {
     id: "review-5",
