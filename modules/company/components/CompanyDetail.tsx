@@ -90,67 +90,64 @@ export default function CompanyDetail({
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-sky-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 transition-colors duration-200">
       {/* Compact Company Header */}
       <section className="bg-white dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <div className="flex flex-col md:flex-row items-start md:items-center gap-6">
-            {/* Company Logo */}
-            <div className="flex-shrink-0">
-              <img
-                alt={`Logo de ${company.name}`}
-                className="w-16 h-16 md:w-20 md:h-20 rounded-lg shadow-md object-cover"
-                src={company.logo}
-              />
-            </div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
+            {/* Company Logo and Basic Info */}
+            <div className="flex items-center gap-4 flex-1 min-w-0">
+              <div className="flex-shrink-0">
+                <img
+                  alt={`Logo de ${company.name}`}
+                  className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-lg shadow-md object-cover"
+                  src={company.logo}
+                />
+              </div>
 
-            {/* Company Info */}
-            <div className="flex-1 min-w-0">
-              <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-                <div>
-                  <h1 className="text-2xl md:text-3xl font-bold text-slate-900 dark:text-white mb-2">
-                    {company.name}
-                  </h1>
-                  <div className="flex flex-wrap items-center gap-4 text-slate-600 dark:text-slate-300">
-                    <span className="font-medium">{company.industry}</span>
-                    <span className="text-slate-400">•</span>
-                    <span>{company.location.city}, {company.location.country}</span>
-                    {company.website && (
-                      <>
-                        <span className="text-slate-400">•</span>
-                        <a
-                          href={company.website}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-sky-600 hover:text-sky-700 dark:text-sky-400 dark:hover:text-sky-300 transition-colors"
-                        >
-                          {t("companyDetail.website")}
-                        </a>
-                      </>
-                    )}
-                  </div>
-                </div>
-
-                {/* Rating and Action */}
-                <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
-                  <div className="flex items-center gap-3">
-                    <div className="flex">{renderStars(company.rating)}</div>
-                    <span className="text-xl font-bold text-slate-900 dark:text-white">
-                      {company.rating}
-                    </span>
-                    <span className="text-slate-600 dark:text-slate-300 text-sm">
-                      ({company.reviewsCount} {t("companyDetail.reviews")})
-                    </span>
-                  </div>
-
-                  <Button
-                    className="bg-sky-600 hover:bg-sky-700 text-white font-semibold px-6 py-2"
-                    size="md"
-                    onPress={() =>
-                      router.push(`/company/${router.query.slug}/review`)
-                    }
-                  >
-                    {t("companyDetail.writeReview")}
-                  </Button>
+              <div className="flex-1 min-w-0">
+                <h1 className="text-lg sm:text-xl md:text-2xl font-bold text-slate-900 dark:text-white mb-1">
+                  {company.name}
+                </h1>
+                <div className="flex flex-wrap items-center gap-2 sm:gap-3 text-sm text-slate-600 dark:text-slate-300">
+                  <span className="font-medium">{company.industry}</span>
+                  <span className="text-slate-400 hidden sm:inline">•</span>
+                  <span className="truncate">{company.location.city}, {company.location.country}</span>
+                  {company.website && (
+                    <>
+                      <span className="text-slate-400 hidden md:inline">•</span>
+                      <a
+                        href={company.website}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-sky-600 hover:text-sky-700 dark:text-sky-400 dark:hover:text-sky-300 transition-colors hidden md:inline"
+                      >
+                        {t("companyDetail.website")}
+                      </a>
+                    </>
+                  )}
                 </div>
               </div>
+            </div>
+
+            {/* Rating and Action */}
+            <div className="flex flex-col xs:flex-row items-start xs:items-center gap-3 w-full sm:w-auto">
+              <div className="flex items-center gap-2 sm:gap-3">
+                <div className="flex scale-75 sm:scale-100">{renderStars(company.rating)}</div>
+                <span className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white">
+                  {company.rating}
+                </span>
+                <span className="text-slate-600 dark:text-slate-300 text-xs sm:text-sm">
+                  ({company.reviewsCount} {t("companyDetail.reviews")})
+                </span>
+              </div>
+
+              <Button
+                className="bg-sky-600 hover:bg-sky-700 text-white font-semibold px-4 sm:px-6 py-2 text-sm sm:text-base w-full xs:w-auto"
+                size="sm"
+                onPress={() =>
+                  router.push(`/company/${router.query.slug}/review`)
+                }
+              >
+                {t("companyDetail.writeReview")}
+              </Button>
             </div>
           </div>
         </div>
