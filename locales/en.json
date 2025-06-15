@@ -26,7 +26,7 @@
         },
         "mission": {
             "title": "Our <1>mission</1>",
-            "description1": "That all workers have access to real information about companies, so they can find workplaces where they truly feel valued and respected.",
+            "description1": "Giving a voice to workers to build a fairer work world, where companies are spaces of growth, respect, and purpose. We believe real information empowers people, and that everyone deserves a place where they can fully thrive.",
             "description2": "We believe that every person deserves to work in a place where they can grow, contribute, and be treated with dignity.",
             "values": {
                 "transparency": {
@@ -158,7 +158,7 @@
     },
     "features": {
         "title": "Discover what no one tells you <1>before accepting a job</1>",
-        "description": "The most valuable information about a company isn't on its website. It's with its employees. Workwisse brings it to you. Access real experiences, unfiltered salaries, and honest rankings. The new way to choose a job.",
+        "description": "The most valuable information about a company isn't on its website. It's with its employees. Workwisse brings it to you. Access real experiences and honest rankings. The new way to choose a job.",
         "items": {
             "reviews": {
                 "title": "Verified Reviews",
@@ -503,6 +503,7 @@
         "workEnvironmentTitle": "Work environment",
         "recentReviewsTitle": "💬 Employee reviews",
         "viewAllReviews": "See all reviews",
+        "viewAllReviewsShort": "See all",
         "recommends": "✅ Recommends",
         "pros": "✅ The best",
         "cons": "⚠️ To improve",
@@ -512,7 +513,25 @@
         "rating": "⭐ Rating",
         "benefits": "🎁 Benefits",
         "ctaTitle": "Do you work here?",
-        "ctaDescription": "Share your experience and help other professionals make better decisions."
+        "ctaDescription": "Share your experience and help other professionals make better decisions.",
+        "ratingsBreakdown": "📊 Ratings breakdown",
+        "ratingsBreakdownDesc": "Average ratings from employees",
+        "ratingWorkEnvironment": "Work environment",
+        "ratingWorkEnvironmentShort": "Environment",
+        "ratingCompensation": "Compensation",
+        "ratingCompensationShort": "Compensation",
+        "ratingBenefits": "Benefits",
+        "ratingBenefitsShort": "Benefits",
+        "ratingCulture": "Company culture",
+        "ratingCultureShort": "Culture",
+        "ratingCommunication": "Communication",
+        "ratingCommunicationShort": "Communication",
+        "ratingCareerGrowth": "Career growth",
+        "ratingCareerGrowthShort": "Career",
+        "ratingWorkLifeBalance": "Work-life balance",
+        "ratingWorkLifeBalanceShort": "Balance",
+        "ratingInclusion": "Workplace inclusion",
+        "ratingInclusionShort": "Inclusion"
     },
     "reviewForm": {
         "title": "Share your experience",
@@ -543,6 +562,8 @@
             "careerGrowthDesc": "Were there growth opportunities?",
             "workLifeBalance": "Work-life balance",
             "workLifeBalanceDesc": "Could you maintain a good balance?",
+            "inclusion": "Workplace inclusion",
+            "inclusionDesc": "Did the company promote diversity and inclusion?",
             "overall": "Overall rating",
             "overallDesc": "How do you rate the overall experience?"
         },

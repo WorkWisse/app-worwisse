@@ -26,7 +26,7 @@
         },
         "mission": {
             "title": "Nuestra <1>misión</1>",
-            "description1": "Que todos los trabajadores tengan acceso a información real sobre las empresas, para que puedan encontrar lugares de trabajo donde realmente se sientan valorados y respetados.",
+            "description1": "Dar voz a los trabajadores para construir un mundo laboral más justo, donde las empresas sean espacios de crecimiento, respeto y propósito. Creemos que la información real empodera y que toda persona merece un lugar donde pueda desarrollarse plenamente.",
             "description2": "Creemos que toda persona merece trabajar en un lugar donde pueda crecer, aportar y ser tratada con dignidad.",
             "values": {
                 "transparency": {
@@ -158,7 +158,7 @@
     },
     "features": {
         "title": "Descubrí lo que nadie te cuenta <1>antes de aceptar un trabajo</1>",
-        "description": "La información más valiosa de una empresa no está en su web, está en sus empleados. Workwisse te la muestra. Accede a experiencias reales, sueldos sin maquillaje y rankings honestos. La nueva forma de elegir trabajo.",
+        "description": "La información más valiosa de una empresa no está en su web, está en sus empleados. Workwisse te la muestra. Accede a experiencias reales y rankings honestos. La nueva forma de elegir trabajo.",
         "items": {
             "reviews": {
                 "title": "Opiniones Verificadas",
@@ -458,6 +458,7 @@
         "workEnvironmentTitle": "Ambiente de trabajo",
         "recentReviewsTitle": "💬 Opiniones de empleados",
         "viewAllReviews": "Ver todas las opiniones",
+        "viewAllReviewsShort": "Ver todas",
         "recommends": "✅ Recomienda",
         "pros": "✅ Lo mejor",
         "cons": "⚠️ A mejorar",
@@ -467,7 +468,25 @@
         "rating": "⭐ Calificación",
         "benefits": "🎁 Beneficios",
         "ctaTitle": "¿Trabajás acá?",
-        "ctaDescription": "Compartí tu experiencia y ayudá a otros profesionales a tomar mejores decisiones."
+        "ctaDescription": "Compartí tu experiencia y ayudá a otros profesionales a tomar mejores decisiones.",
+        "ratingsBreakdown": "📊 Calificaciones por aspecto",
+        "ratingsBreakdownDesc": "Promedio de las calificaciones de empleados",
+        "ratingWorkEnvironment": "Ambiente de trabajo",
+        "ratingWorkEnvironmentShort": "Ambiente",
+        "ratingCompensation": "Compensación",
+        "ratingCompensationShort": "Compensación",
+        "ratingBenefits": "Beneficios",
+        "ratingBenefitsShort": "Beneficios",
+        "ratingCulture": "Cultura empresarial",
+        "ratingCultureShort": "Cultura",
+        "ratingCommunication": "Comunicación",
+        "ratingCommunicationShort": "Comunicación",
+        "ratingCareerGrowth": "Crecimiento profesional",
+        "ratingCareerGrowthShort": "Crecimiento",
+        "ratingWorkLifeBalance": "Equilibrio vida-trabajo",
+        "ratingWorkLifeBalanceShort": "Equilibrio",
+        "ratingInclusion": "Inclusión laboral",
+        "ratingInclusionShort": "Inclusión"
     },
     "reviewForm": {
         "title": "Compartí tu experiencia",
@@ -498,6 +517,8 @@
             "careerGrowthDesc": "¿Hubo oportunidades de crecimiento?",
             "workLifeBalance": "Equilibrio vida-trabajo",
             "workLifeBalanceDesc": "¿Pudiste mantener un buen equilibrio?",
+            "inclusion": "Inclusión laboral",
+            "inclusionDesc": "¿La empresa promovía la diversidad e inclusión?",
             "overall": "Calificación general",
             "overallDesc": "¿Cómo calificás la experiencia general?"
         },

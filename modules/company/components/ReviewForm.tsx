@@ -24,6 +24,7 @@ interface ReviewFormData {
   leadershipRating: number;
   careerGrowthRating: number;
   workLifeBalanceRating: number;
+  inclusionRating: number;
   overallRating: number;
 
   // Experiencia
@@ -111,6 +112,7 @@ export default function ReviewForm() {
     leadershipRating: 0,
     careerGrowthRating: 0,
     workLifeBalanceRating: 0,
+    inclusionRating: 0,
     overallRating: 0,
     pros: "",
     cons: "",
@@ -168,36 +170,73 @@ export default function ReviewForm() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-slate-900 transition-colors duration-200">
-      {/* Hero Section with Company Info */}
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-sky-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 transition-colors duration-200">
+      {/* Compact Company Header - Identical to CompanyDetail */}
       {company && (
-        <section className="bg-white dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700 transition-colors duration-200">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-            <div className="text-center space-y-6">
-              <div className="flex justify-center">
-                <img
-                  alt={`Logo de ${company.name}`}
-                  className="w-20 h-20 rounded-xl shadow-lg object-cover"
-                  src={company.logo}
-                />
-              </div>
-              <div>
-                <h1 className="text-4xl font-bold text-slate-900 dark:text-white mb-2">
-                  {t("reviewForm.hero.title", { companyName: company.name })}
-                </h1>
-                <p className="text-lg text-slate-600 dark:text-slate-300">
-                  {t("reviewForm.hero.description", { companyName: company.name })}
-                </p>
-              </div>
-              <div className="flex items-center justify-center gap-4">
-                <div className="flex items-center gap-2">
-                  <div className="flex">{renderStars(company.rating)}</div>
-                  <span className="text-xl font-bold text-slate-900 dark:text-white">
-                    {company.rating}
-                  </span>
+        <section className="bg-white dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
+              {/* Back Button and Company Logo and Basic Info */}
+              <div className="flex items-center gap-4 flex-1 min-w-0">
+                {/* Back Button */}
+                <div className="flex-shrink-0">
+                  <Button
+                    className="bg-slate-600 hover:bg-slate-700 text-white font-semibold px-3 sm:px-4 py-2 text-sm sm:text-base"
+                    size="sm"
+                    onPress={() => router.push(`/company/${slug}`)}
+                  >
+                    ← Volver
+                  </Button>
                 </div>
-                <span className="text-slate-600 dark:text-slate-300">
-                  {company.reviewsCount} {t("reviewForm.hero.reviews")}
+
+                {/* Company Logo */}
+                <div className="flex-shrink-0">
+                  <button
+                    onClick={() => router.push(`/company/${slug}`)}
+                    className="block hover:opacity-80 transition-opacity"
+                  >
+                    <img
+                      alt={`Logo de ${company.name}`}
+                      className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-lg shadow-md object-cover"
+                      src={company.logo}
+                    />
+                  </button>
+                </div>
+
+                {/* Company Info */}
+                <div className="flex-1 min-w-0">
+                  <h1 className="text-lg sm:text-xl md:text-2xl font-bold text-slate-900 dark:text-white mb-1">
+                    {company.name}
+                  </h1>
+                  <div className="flex flex-wrap items-center gap-2 sm:gap-3 text-sm text-slate-600 dark:text-slate-300">
+                    <span className="font-medium">{company.industry}</span>
+                    <span className="text-slate-400 hidden sm:inline">•</span>
+                    <span className="truncate">{company.location.city}, {company.location.country}</span>
+                    {company.website && (
+                      <>
+                        <span className="text-slate-400 hidden md:inline">•</span>
+                        <a
+                          href={company.website}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-sky-600 hover:text-sky-700 dark:text-sky-400 dark:hover:text-sky-300 transition-colors hidden md:inline"
+                        >
+                          {t("companyDetail.website")}
+                        </a>
+                      </>
+                    )}
+                  </div>
+                </div>
+              </div>
+
+              {/* Rating */}
+              <div className="flex items-center gap-2 sm:gap-3 w-full sm:w-auto justify-start sm:justify-end">
+                <div className="flex scale-75 sm:scale-100">{renderStars(company.rating)}</div>
+                <span className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white">
+                  {company.rating}
+                </span>
+                <span className="text-slate-600 dark:text-slate-300 text-xs sm:text-sm">
+                  ({company.reviewsCount} {t("reviewForm.hero.reviews")})
                 </span>
               </div>
             </div>
@@ -206,7 +245,7 @@ export default function ReviewForm() {
       )}
 
       {/* Main Form Section */}
-      <section className="py-14 px-4 bg-gradient-to-br from-slate-50 via-white to-sky-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 transition-colors duration-200">
+      <section className="py-14 px-4 transition-colors duration-200">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col lg:flex-row gap-8 lg:gap-12">
             {/* Form Column */}
@@ -347,6 +386,13 @@ export default function ReviewForm() {
                         onRatingChange={(rating) => handleChange("workLifeBalanceRating", rating)}
                         label={t("reviewForm.ratings.workLifeBalance")}
                         description={t("reviewForm.ratings.workLifeBalanceDesc")}
+                      />
+
+                      <StarRating
+                        rating={formData.inclusionRating}
+                        onRatingChange={(rating) => handleChange("inclusionRating", rating)}
+                        label={t("reviewForm.ratings.inclusion")}
+                        description={t("reviewForm.ratings.inclusionDesc")}
                       />
 
                       <StarRating

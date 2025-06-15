@@ -4,6 +4,24 @@
         "description": "Acesse opiniões reais de funcionários. As empresas não são mais escolhidas apenas pelo salário, pois as pessoas buscam propósito, um bom ambiente, inclusão e oportunidades reais de crescimento. Tome decisões profissionais bem informadas com informações que realmente importam.",
         "searchPlaceholder": "Buscar por nome da empresa...",
         "searchButton": "Buscar",
+             "ratingsBreakdown": "📊 Avaliações detalhadas",
+        "ratingsBreakdownDesc": "Média das avaliações dos funcionários",
+        "ratingWorkEnvironment": "Ambiente de trabalho",
+        "ratingWorkEnvironmentShort": "Ambiente",
+        "ratingCompensation": "Compensação",
+        "ratingCompensationShort": "Compensação",
+        "ratingBenefits": "Benefícios",
+        "ratingBenefitsShort": "Benefícios",
+        "ratingCulture": "Cultura empresarial",
+        "ratingCultureShort": "Cultura",
+        "ratingCommunication": "Comunicação",
+        "ratingCommunicationShort": "Comunicação",
+        "ratingCareerGrowth": "Crescimento profissional",
+        "ratingCareerGrowthShort": "Crescimento",
+        "ratingWorkLifeBalance": "Equilíbrio vida-trabalho",
+        "ratingWorkLifeBalanceShort": "Equilíbrio",
+        "ratingInclusion": "Inclusão no trabalho",
+        "ratingInclusionShort": "Inclusão",
         "ctaFeatured": "Ver empresas em destaque",
         "trustBadges": {
             "free": "Grátis",
@@ -26,7 +44,7 @@
         },
         "mission": {
             "title": "Nossa <1>missão</1>",
-            "description1": "Que todos os trabalhadores tenham acesso a informações reais sobre as empresas, para que possam encontrar locais de trabalho onde realmente se sintam valorizados e respeitados.",
+            "description1": "Dar voz aos trabalhadores para construir um mundo do trabalho mais justo, onde as empresas sejam espaços de crescimento, respeito e propósito. Acreditamos que a informação real empodera e que toda pessoa merece um lugar onde possa se desenvolver plenamente.",
             "description2": "Acreditamos que toda pessoa merece trabalhar em um lugar onde possa crescer, contribuir e ser tratada com dignidade.",
             "values": {
                 "transparency": {
@@ -158,7 +176,7 @@
     },
     "features": {
         "title": "Descubra o que ninguém te conta <1>antes de aceitar um trabalho</1>",
-        "description": "As informações mais valiosas sobre uma empresa não estão no site. Estão com os funcionários. A Workwisse te mostra. Acesse experiências reais, salários sem maquiagem e rankings honestos. A nova forma de escolher um trabalho.",
+        "description": "As informações mais valiosas sobre uma empresa não estão no site. Estão com os funcionários. A Workwisse te mostra. Acesse experiências reais e rankings honestos. A nova forma de escolher um trabalho.",
         "items": {
             "reviews": {
                 "title": "Opiniões Verificadas",
@@ -503,6 +521,7 @@
         "workEnvironmentTitle": "Ambiente de trabalho",
         "recentReviewsTitle": "💬 Avaliações de funcionários",
         "viewAllReviews": "Ver todas as avaliações",
+        "viewAllReviewsShort": "Ver todas",
         "recommends": "✅ Recomenda",
         "pros": "✅ O melhor",
         "cons": "⚠️ A melhorar",
@@ -512,7 +531,25 @@
         "rating": "⭐ Pontuação",
         "benefits": "🎁 Benefícios",
         "ctaTitle": "Você trabalha aqui?",
-        "ctaDescription": "Compartilhe sua experiência e ajude outros profissionais a tomar melhores decisões."
+        "ctaDescription": "Compartilhe sua experiência e ajude outros profissionais a tomar melhores decisões.",
+        "ratingsBreakdown": "📊 Avaliações por aspecto",
+        "ratingsBreakdownDesc": "Média das avaliações dos funcionários",
+        "ratingWorkEnvironment": "Ambiente de trabalho",
+        "ratingWorkEnvironmentShort": "Ambiente",
+        "ratingCompensation": "Compensação",
+        "ratingCompensationShort": "Compensação",
+        "ratingBenefits": "Benefícios",
+        "ratingBenefitsShort": "Benefícios",
+        "ratingCulture": "Cultura empresarial",
+        "ratingCultureShort": "Cultura",
+        "ratingCommunication": "Comunicação",
+        "ratingCommunicationShort": "Comunicação",
+        "ratingCareerGrowth": "Crescimento profissional",
+        "ratingCareerGrowthShort": "Crescimento",
+        "ratingWorkLifeBalance": "Equilíbrio vida-trabalho",
+        "ratingWorkLifeBalanceShort": "Equilíbrio",
+        "ratingInclusion": "Inclusão laboral",
+        "ratingInclusionShort": "Inclusão"
     },
     "reviewForm": {
         "title": "Compartilhe sua experiência",
@@ -543,6 +580,8 @@
             "careerGrowthDesc": "Havia oportunidades de crescimento?",
             "workLifeBalance": "Equilíbrio vida-trabalho",
             "workLifeBalanceDesc": "Conseguia manter um bom equilíbrio?",
+            "inclusion": "Inclusão laboral",
+            "inclusionDesc": "A empresa promovia diversidade e inclusão?",
             "overall": "Avaliação geral",
             "overallDesc": "Como avalia a experiência geral?"
         },
