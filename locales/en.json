@@ -417,10 +417,13 @@
             },
             "terms": "I accept the <1>terms and conditions</1> of the platform",
             "acceptTermsRequired": "You must accept the terms and conditions to continue",
+            "pleaseAcceptTerms": "Please review and accept our terms and conditions.",
             "submit": "Add company",
             "submitting": "Adding company...",
             "submitSuccess": "Company added successfully!",
-            "submitError": "Error adding company. Please try again."
+            "companyAdded": "The company has been added to our database and is now available for reviews.",
+            "submitError": "Error adding company. Please try again.",
+            "tryAgainLater": "There was an error processing your request. Please try again later."
         },
         "tips": {
             "title": "Helpful tips",

@@ -8,8 +8,6 @@ export type IconSvgProps = SVGProps<SVGSVGElement> & {
 export interface Company {
   id: string;
   name: string;
-  slug: string;
-  logo: string;
   industry: string;
   location: {
     country: string;
@@ -17,16 +15,6 @@ export interface Company {
     city?: string;
   };
   website?: string;
-  founded?: number;
-  employees?: string;
-  description: string;
-  rating: number;
-  reviewsCount: number;
-  salaryRange?: {
-    min: number;
-    max: number;
-    currency: string;
-  };
   benefits: string[];
   workEnvironment: {
     workLifeBalance: number;
@@ -35,7 +23,6 @@ export interface Company {
     culture: number;
     management: number;
   };
-  href: string;
 }
 
 export interface Review {
@@ -83,4 +70,65 @@ export interface JobPosition {
   benefits: string[];
   isActive: boolean;
   postedDate: string;
+}
+
+// Firebase specific types
+export interface FirebaseDocument {
+  id?: string;
+  createdAt?: Date | any; // Firebase Timestamp
+  updatedAt?: Date | any; // Firebase Timestamp
+}
+
+// Extended Company type for Firebase
+export interface CompanyDocument extends Omit<Company, 'id'>, FirebaseDocument {
+  // Additional fields for Firebase storage
+  isVerified?: boolean;
+  status?: 'pending' | 'approved' | 'rejected';
+  submittedBy?: string; // User ID who submitted the company
+}
+
+// Extended Review type for Firebase
+export interface ReviewDocument extends Omit<Review, 'id' | 'timeAgo'>, FirebaseDocument {
+  // Additional fields for Firebase storage
+  userId?: string; // User ID who submitted the review
+  status?: 'pending' | 'approved' | 'rejected';
+  moderationNotes?: string;
+  ipAddress?: string; // For spam prevention
+  userAgent?: string; // For spam prevention
+}
+
+// User type for authentication
+export interface User {
+  id: string;
+  email: string;
+  displayName?: string;
+  photoURL?: string;
+  isAnonymous?: boolean;
+  createdAt?: Date | any;
+  updatedAt?: Date | any;
+}
+
+// Search/Filter types
+export interface CompanyFilters {
+  industry?: string[];
+  location?: {
+    country?: string;
+    state?: string;
+    city?: string;
+  };
+  rating?: {
+    min?: number;
+    max?: number;
+  };
+  employees?: string[];
+  benefits?: string[];
+}
+
+export interface SearchParams {
+  query?: string;
+  filters?: CompanyFilters;
+  sortBy?: 'rating' | 'reviewsCount' | 'name' | 'createdAt';
+  sortOrder?: 'asc' | 'desc';
+  limit?: number;
+  offset?: number;
 }

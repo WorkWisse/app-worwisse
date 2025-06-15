@@ -44,7 +44,12 @@ interface StarRatingProps {
   description?: string;
 }
 
-const StarRating = ({ rating, onRatingChange, label, description }: StarRatingProps) => {
+const StarRating = ({
+  rating,
+  onRatingChange,
+  label,
+  description,
+}: StarRatingProps) => {
   const [hoverRating, setHoverRating] = useState(0);
   const { t } = useTranslation();
 
@@ -74,10 +79,11 @@ const StarRating = ({ rating, onRatingChange, label, description }: StarRatingPr
           <button
             key={star}
             type="button"
-            className={`w-10 h-10 transition-all duration-200 hover:scale-110 ${star <= (hoverRating || rating)
-              ? "text-yellow-400 hover:text-yellow-500"
-              : "text-slate-300 dark:text-slate-600 hover:text-yellow-300"
-              }`}
+            className={`w-10 h-10 transition-all duration-200 hover:scale-110 ${
+              star <= (hoverRating || rating)
+                ? "text-yellow-400 hover:text-yellow-500"
+                : "text-slate-300 dark:text-slate-600 hover:text-yellow-300"
+            }`}
             onClick={() => onRatingChange(star)}
             onMouseEnter={() => setHoverRating(star)}
             onMouseLeave={() => setHoverRating(0)}
@@ -156,12 +162,13 @@ export default function ReviewForm() {
     return Array.from({ length: 5 }, (_, index) => (
       <svg
         key={index}
-        className={`w-5 h-5 ${index < Math.floor(rating)
-          ? "text-yellow-400 fill-current"
-          : index < rating
-            ? "text-yellow-400 fill-current opacity-50"
-            : "text-slate-300 dark:text-slate-600"
-          }`}
+        className={`w-5 h-5 ${
+          index < Math.floor(rating)
+            ? "text-yellow-400 fill-current"
+            : index < rating
+              ? "text-yellow-400 fill-current opacity-50"
+              : "text-slate-300 dark:text-slate-600"
+        }`}
         viewBox="0 0 20 20"
       >
         <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
@@ -211,10 +218,14 @@ export default function ReviewForm() {
                   <div className="flex flex-wrap items-center gap-2 sm:gap-3 text-sm text-slate-600 dark:text-slate-300">
                     <span className="font-medium">{company.industry}</span>
                     <span className="text-slate-400 hidden sm:inline">•</span>
-                    <span className="truncate">{company.location.city}, {company.location.country}</span>
+                    <span className="truncate">
+                      {company.location.city}, {company.location.country}
+                    </span>
                     {company.website && (
                       <>
-                        <span className="text-slate-400 hidden md:inline">•</span>
+                        <span className="text-slate-400 hidden md:inline">
+                          •
+                        </span>
                         <a
                           href={company.website}
                           target="_blank"
@@ -231,7 +242,9 @@ export default function ReviewForm() {
 
               {/* Rating */}
               <div className="flex items-center gap-2 sm:gap-3 w-full sm:w-auto justify-start sm:justify-end">
-                <div className="flex scale-75 sm:scale-100">{renderStars(company.rating)}</div>
+                <div className="flex scale-75 sm:scale-100">
+                  {renderStars(company.rating)}
+                </div>
                 <span className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white">
                   {company.rating}
                 </span>
@@ -274,7 +287,8 @@ export default function ReviewForm() {
                         variant="bordered"
                         classNames={{
                           input: "text-slate-900 dark:text-white",
-                          label: "text-slate-700 dark:text-slate-300 font-medium",
+                          label:
+                            "text-slate-700 dark:text-slate-300 font-medium",
                         }}
                       />
 
@@ -283,13 +297,16 @@ export default function ReviewForm() {
                           label={t("reviewForm.workInfo.startDate")}
                           type="month"
                           value={formData.startDate}
-                          onChange={(e) => handleChange("startDate", e.target.value)}
+                          onChange={(e) =>
+                            handleChange("startDate", e.target.value)
+                          }
                           isRequired
                           size="lg"
                           variant="bordered"
                           classNames={{
                             input: "text-slate-900 dark:text-white",
-                            label: "text-slate-700 dark:text-slate-300 font-medium",
+                            label:
+                              "text-slate-700 dark:text-slate-300 font-medium",
                           }}
                         />
 
@@ -298,13 +315,16 @@ export default function ReviewForm() {
                             label={t("reviewForm.workInfo.endDate")}
                             type="month"
                             value={formData.endDate}
-                            onChange={(e) => handleChange("endDate", e.target.value)}
+                            onChange={(e) =>
+                              handleChange("endDate", e.target.value)
+                            }
                             isRequired={!formData.currentlyWorking}
                             size="lg"
                             variant="bordered"
                             classNames={{
                               input: "text-slate-900 dark:text-white",
-                              label: "text-slate-700 dark:text-slate-300 font-medium",
+                              label:
+                                "text-slate-700 dark:text-slate-300 font-medium",
                             }}
                           />
                         )}
@@ -318,7 +338,8 @@ export default function ReviewForm() {
                             if (checked) handleChange("endDate", "");
                           }}
                           classNames={{
-                            label: "text-slate-700 dark:text-slate-300 font-medium",
+                            label:
+                              "text-slate-700 dark:text-slate-300 font-medium",
                           }}
                         >
                           {t("reviewForm.workInfo.currentlyWorking")}
@@ -341,63 +362,85 @@ export default function ReviewForm() {
                     <div className="grid md:grid-cols-2 gap-8">
                       <StarRating
                         rating={formData.workEnvironmentRating}
-                        onRatingChange={(rating) => handleChange("workEnvironmentRating", rating)}
+                        onRatingChange={(rating) =>
+                          handleChange("workEnvironmentRating", rating)
+                        }
                         label={t("reviewForm.ratings.workEnvironment")}
-                        description={t("reviewForm.ratings.workEnvironmentDesc")}
+                        description={t(
+                          "reviewForm.ratings.workEnvironmentDesc"
+                        )}
                       />
 
                       <StarRating
                         rating={formData.compensationRating}
-                        onRatingChange={(rating) => handleChange("compensationRating", rating)}
+                        onRatingChange={(rating) =>
+                          handleChange("compensationRating", rating)
+                        }
                         label={t("reviewForm.ratings.compensation")}
                         description={t("reviewForm.ratings.compensationDesc")}
                       />
 
                       <StarRating
                         rating={formData.benefitsRating}
-                        onRatingChange={(rating) => handleChange("benefitsRating", rating)}
+                        onRatingChange={(rating) =>
+                          handleChange("benefitsRating", rating)
+                        }
                         label={t("reviewForm.ratings.benefits")}
                         description={t("reviewForm.ratings.benefitsDesc")}
                       />
 
                       <StarRating
                         rating={formData.cultureRating}
-                        onRatingChange={(rating) => handleChange("cultureRating", rating)}
+                        onRatingChange={(rating) =>
+                          handleChange("cultureRating", rating)
+                        }
                         label={t("reviewForm.ratings.culture")}
                         description={t("reviewForm.ratings.cultureDesc")}
                       />
 
                       <StarRating
                         rating={formData.leadershipRating}
-                        onRatingChange={(rating) => handleChange("leadershipRating", rating)}
+                        onRatingChange={(rating) =>
+                          handleChange("leadershipRating", rating)
+                        }
                         label={t("reviewForm.ratings.communication")}
                         description={t("reviewForm.ratings.communicationDesc")}
                       />
 
                       <StarRating
                         rating={formData.careerGrowthRating}
-                        onRatingChange={(rating) => handleChange("careerGrowthRating", rating)}
+                        onRatingChange={(rating) =>
+                          handleChange("careerGrowthRating", rating)
+                        }
                         label={t("reviewForm.ratings.careerGrowth")}
                         description={t("reviewForm.ratings.careerGrowthDesc")}
                       />
 
                       <StarRating
                         rating={formData.workLifeBalanceRating}
-                        onRatingChange={(rating) => handleChange("workLifeBalanceRating", rating)}
+                        onRatingChange={(rating) =>
+                          handleChange("workLifeBalanceRating", rating)
+                        }
                         label={t("reviewForm.ratings.workLifeBalance")}
-                        description={t("reviewForm.ratings.workLifeBalanceDesc")}
+                        description={t(
+                          "reviewForm.ratings.workLifeBalanceDesc"
+                        )}
                       />
 
                       <StarRating
                         rating={formData.inclusionRating}
-                        onRatingChange={(rating) => handleChange("inclusionRating", rating)}
+                        onRatingChange={(rating) =>
+                          handleChange("inclusionRating", rating)
+                        }
                         label={t("reviewForm.ratings.inclusion")}
                         description={t("reviewForm.ratings.inclusionDesc")}
                       />
 
                       <StarRating
                         rating={formData.overallRating}
-                        onRatingChange={(rating) => handleChange("overallRating", rating)}
+                        onRatingChange={(rating) =>
+                          handleChange("overallRating", rating)
+                        }
                         label={t("reviewForm.ratings.overall")}
                         description={t("reviewForm.ratings.overallDesc")}
                       />
@@ -425,7 +468,9 @@ export default function ReviewForm() {
                         </label>
                         <textarea
                           id="pros"
-                          placeholder={t("reviewForm.experience.prosPlaceholder")}
+                          placeholder={t(
+                            "reviewForm.experience.prosPlaceholder"
+                          )}
                           value={formData.pros}
                           onChange={(e) => handleChange("pros", e.target.value)}
                           required
@@ -443,7 +488,9 @@ export default function ReviewForm() {
                         </label>
                         <textarea
                           id="cons"
-                          placeholder={t("reviewForm.experience.consPlaceholder")}
+                          placeholder={t(
+                            "reviewForm.experience.consPlaceholder"
+                          )}
                           value={formData.cons}
                           onChange={(e) => handleChange("cons", e.target.value)}
                           required
@@ -459,9 +506,12 @@ export default function ReviewForm() {
                     <div className="flex items-center space-x-3">
                       <Checkbox
                         isSelected={formData.wouldRecommend}
-                        onValueChange={(checked) => handleChange("wouldRecommend", checked)}
+                        onValueChange={(checked) =>
+                          handleChange("wouldRecommend", checked)
+                        }
                         classNames={{
-                          label: "text-slate-700 dark:text-slate-300 font-medium",
+                          label:
+                            "text-slate-700 dark:text-slate-300 font-medium",
                         }}
                       >
                         {t("reviewForm.wouldRecommend")}
@@ -471,7 +521,9 @@ export default function ReviewForm() {
                     <div className="flex items-start space-x-3">
                       <Checkbox
                         isSelected={formData.acceptedTerms}
-                        onValueChange={(checked) => handleChange("acceptedTerms", checked)}
+                        onValueChange={(checked) =>
+                          handleChange("acceptedTerms", checked)
+                        }
                         isRequired
                         classNames={{
                           label: "text-slate-700 dark:text-slate-300",
@@ -481,13 +533,15 @@ export default function ReviewForm() {
                           <Trans
                             i18nKey="reviewForm.acceptTerms"
                             components={{
-                              1: <a
-                                href="/terms"
-                                className="text-sky-600 dark:text-sky-400 hover:text-sky-700 dark:hover:text-sky-300 transition-colors underline cursor-pointer"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                onClick={(e) => e.stopPropagation()}
-                              />
+                              1: (
+                                <a
+                                  href="/terms"
+                                  className="text-sky-600 dark:text-sky-400 hover:text-sky-700 dark:hover:text-sky-300 transition-colors underline cursor-pointer"
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  onClick={(e) => e.stopPropagation()}
+                                />
+                              ),
                             }}
                           />
                         </span>
@@ -503,7 +557,9 @@ export default function ReviewForm() {
                       disabled={!formData.acceptedTerms || isSubmitting}
                       className="bg-sky-600 dark:bg-sky-600 text-white hover:bg-sky-700 dark:hover:bg-sky-700 font-semibold px-8 py-3 transition-colors duration-200 flex-1 sm:flex-initial"
                     >
-                      {isSubmitting ? t("reviewForm.submitting") : t("reviewForm.submit")}
+                      {isSubmitting
+                        ? t("reviewForm.submitting")
+                        : t("reviewForm.submit")}
                     </Button>
                     <Button
                       variant="bordered"
@@ -515,7 +571,8 @@ export default function ReviewForm() {
                     </Button>
                   </div>
                 </form>
-              </Card>            </div>
+              </Card>{" "}
+            </div>
 
             {/* Sidebar Information */}
             <div className="lg:w-72">

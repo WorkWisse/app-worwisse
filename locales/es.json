@@ -372,10 +372,13 @@
             },
             "terms": "Acepto los <1>términos y condiciones</1> de la plataforma",
             "acceptTermsRequired": "Debés aceptar los términos y condiciones para continuar",
+            "pleaseAcceptTerms": "Por favor, revisá y aceptá nuestros términos y condiciones.",
             "submit": "Agregar empresa",
             "submitting": "Agregando empresa...",
             "submitSuccess": "¡Empresa agregada exitosamente!",
-            "submitError": "Error al agregar empresa. Intentá de nuevo."
+            "companyAdded": "La empresa ha sido agregada a nuestra base de datos y ya está disponible para reseñas.",
+            "submitError": "Error al agregar empresa. Intentá de nuevo.",
+            "tryAgainLater": "Hubo un error procesando tu solicitud. Por favor, intentá de nuevo más tarde."
         },
         "tips": {
             "title": "Consejos útiles",
