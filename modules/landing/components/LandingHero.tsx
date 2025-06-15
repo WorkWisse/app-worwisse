@@ -1,9 +1,10 @@
-import { Input } from "@heroui/input";
-import { Button } from "@heroui/button";
 import { useTranslation, Trans } from "react-i18next";
+import { useRouter } from "next/router";
+import { SearchBar } from "@/modules/core/components/SearchBar";
 
 export const LandingHero = () => {
   const { t } = useTranslation();
+  const router = useRouter();
 
   return (
     <section className="bg-gradient-to-br from-slate-50 to-sky-100 dark:from-slate-900 dark:to-slate-800 py-20 sm:py-28 overflow-hidden transition-colors duration-200">
@@ -24,49 +25,14 @@ export const LandingHero = () => {
               />
             </p>
 
-            <form className="max-w-lg mb-8">
-              <div className="flex items-center gap-2">
-                <Input
-                  type="search"
-                  placeholder={t("hero.searchPlaceholder")}
-                  aria-label="Buscar empresa"
-                  fullWidth
-                  size="lg"
-                  className="shadow-md hover:shadow-lg transition-shadow duration-300 rounded-lg"
-                  classNames={{
-                    inputWrapper:
-                      "bg-white dark:bg-slate-800 border-slate-300 dark:border-slate-600 focus-within:border-sky-500 focus-within:ring-sky-500 transition-colors duration-200",
-                    input: "text-slate-700 dark:text-slate-200 placeholder-slate-400 dark:placeholder-slate-500 text-base",
-                  }}
-                  startContent={
-                    <svg
-                      className="h-5 w-5 text-slate-400 dark:text-slate-500 pointer-events-none transition-colors duration-200"
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      aria-hidden="true"
-                    >
-                      <title>Search Icon</title>
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                      />
-                    </svg>
-                  }
-                />
-                <Button
-                  type="submit"
-                  color="primary"
-                  size="lg"
-                  className="bg-sky-600 hover:bg-sky-700 text-white font-semibold shadow-md hover:shadow-lg transition-all duration-300 transform hover:scale-105 rounded-lg whitespace-nowrap px-8"
-                >
-                  {t("hero.searchButton")}
-                </Button>
-              </div>
-            </form>
+            <div className="mb-8">
+              <SearchBar 
+                variant="hero"
+                onSubmit={(query) => {
+                  router.push(`/companies?search=${encodeURIComponent(query)}`);
+                }}
+              />
+            </div>
 
             <div className="flex items-center gap-6 text-sm text-slate-500 dark:text-slate-400 transition-colors duration-200">
               <div className="flex items-center gap-2">
