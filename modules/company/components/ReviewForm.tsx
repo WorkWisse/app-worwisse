@@ -468,30 +468,22 @@ export default function ReviewForm() {
                       </Checkbox>
                     </div>
 
-                    <div className="flex items-start space-x-3">
-                      <Checkbox
-                        isSelected={formData.acceptedTerms}
-                        onValueChange={(checked) => handleChange("acceptedTerms", checked)}
-                        isRequired
-                        classNames={{
-                          label: "text-slate-700 dark:text-slate-300",
-                        }}
-                      >
-                        <span className="text-sm">
-                          <Trans
-                            i18nKey="reviewForm.acceptTerms"
-                            components={{
-                              1: <a
-                                href="/terms"
-                                className="text-sky-600 dark:text-sky-400 hover:text-sky-700 dark:hover:text-sky-300 transition-colors underline cursor-pointer"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                onClick={(e) => e.stopPropagation()}
-                              />
-                            }}
-                          />
-                        </span>
-                      </Checkbox>
+                    <div className="flex items-start gap-3 p-4 bg-slate-50 dark:bg-slate-700 rounded-lg border border-slate-200 dark:border-slate-600 transition-colors duration-200">
+                      <input
+                        type="checkbox"
+                        id="terms"
+                        checked={formData.acceptedTerms}
+                        onChange={(e) => handleChange("acceptedTerms", e.target.checked)}
+                        className="mt-1 w-4 h-4 text-sky-600 dark:text-sky-400 bg-white dark:bg-slate-600 border-slate-300 dark:border-slate-500 rounded focus:ring-sky-500 dark:focus:ring-sky-400 focus:ring-2"
+                      />
+                      <label htmlFor="terms" className="text-sm text-slate-700 dark:text-slate-300 leading-relaxed cursor-pointer">
+                        <Trans
+                          i18nKey="addCompany.form.terms"
+                          components={{
+                            1: <a href="/terms" className="text-sky-600 dark:text-sky-400 hover:text-sky-700 dark:hover:text-sky-300 underline" target="_blank" rel="noopener noreferrer" />
+                          }}
+                        />
+                      </label>
                     </div>
                   </div>
 
