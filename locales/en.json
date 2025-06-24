@@ -597,13 +597,6 @@
             "description": "Share your experience working at {{companyName}} and help other professionals",
             "reviews": "reviews"
         },
-        "sidebar": {
-            "title": "💡 Tips for writing a good review",
-            "tip1": "Be specific and honest about your experience",
-            "tip2": "Mention both positive aspects and areas for improvement",
-            "tip3": "Avoid confidential information or specific names",
-            "tip4": "Your review will help other professionals make informed decisions"
-        },
         "validation": {
             "acceptTermsRequired": "You must accept the community guidelines",
             "ratingsRequired": "Please complete at least the main ratings"

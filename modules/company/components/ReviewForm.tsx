@@ -522,27 +522,44 @@ export default function ReviewForm() {
               <Card className="p-5 shadow-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 transition-colors duration-200">
                 <div className="space-y-4">
                   <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-4 transition-colors duration-200">
-                    {t("reviewForm.sidebar.title")}
+                    {t("addCompany.tips.title")}
                   </h3>
                   <ul className="space-y-2 text-sm text-slate-600 dark:text-slate-300">
                     <li className="flex items-start gap-2">
                       <span className="w-1.5 h-1.5 bg-sky-500 dark:bg-sky-400 rounded-full mt-2 flex-shrink-0"></span>
-                      {t("reviewForm.sidebar.tip1")}
+                      {t("addCompany.tips.tip1")}
                     </li>
                     <li className="flex items-start gap-2">
                       <span className="w-1.5 h-1.5 bg-sky-500 dark:bg-sky-400 rounded-full mt-2 flex-shrink-0"></span>
-                      {t("reviewForm.sidebar.tip2")}
+                      {t("addCompany.tips.tip2")}
                     </li>
                     <li className="flex items-start gap-2">
                       <span className="w-1.5 h-1.5 bg-sky-500 dark:bg-sky-400 rounded-full mt-2 flex-shrink-0"></span>
-                      {t("reviewForm.sidebar.tip3")}
+                      {t("addCompany.tips.tip3")}
                     </li>
                     <li className="flex items-start gap-2">
                       <span className="w-1.5 h-1.5 bg-sky-500 dark:bg-sky-400 rounded-full mt-2 flex-shrink-0"></span>
-                      {t("reviewForm.sidebar.tip4")}
+                      {t("addCompany.tips.tip4")}
                     </li>
                   </ul>
                 </div>
+              </Card>
+
+              {/* Contact Card */}
+              <Card className="p-5 shadow-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 transition-colors duration-200 mt-6">
+                <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-4 transition-colors duration-200">
+                  {t("addCompany.contact.title")}
+                </h3>
+                <p className="text-sm text-slate-600 dark:text-slate-300 mb-4">
+                  {t("addCompany.contact.description")}
+                </p>
+                <Button
+                  variant="bordered"
+                  size="sm"
+                  className="w-full border-sky-200 dark:border-sky-700 text-sky-700 dark:text-sky-300 hover:bg-sky-50 dark:hover:bg-sky-900/20 transition-colors duration-200"
+                >
+                  {t("addCompany.contact.button")}
+                </Button>
               </Card>
             </div>
           </div>

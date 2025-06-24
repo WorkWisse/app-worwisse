@@ -615,13 +615,6 @@
             "description": "Compartilhe sua experiência trabalhando na {{companyName}} e ajude outros profissionais",
             "reviews": "avaliações"
         },
-        "sidebar": {
-            "title": "💡 Dicas para escrever uma boa avaliação",
-            "tip1": "Seja específico e honesto sobre sua experiência",
-            "tip2": "Mencione tanto aspectos positivos quanto áreas de melhoria",
-            "tip3": "Evite informações confidenciais ou nomes específicos",
-            "tip4": "Sua avaliação ajudará outros profissionais a tomar decisões informadas"
-        },
         "validation": {
             "acceptTermsRequired": "Você deve aceitar as normas de convivência",
             "ratingsRequired": "Por favor, complete pelo menos as avaliações principais"
