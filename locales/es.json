@@ -672,7 +672,9 @@
             "benefits": "Beneficios",
             "culture": "Cultura",
             "balance": "Balance",
-            "growth": "Crecimiento"
+            "growth": "Crecimiento",
+            "communication": "Comunicación",
+            "inclusion": "Inclusión"
         },
         "cta": {
             "description": "¿No encuentras tu empresa? Agrégala y ayuda a otros profesionales.",
