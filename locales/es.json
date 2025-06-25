@@ -560,13 +560,6 @@
             "description": "Compartí tu experiencia trabajando en {{companyName}} y ayudá a otros profesionales",
             "reviews": "opiniones"
         },
-        "sidebar": {
-            "title": "💡 Consejos para escribir una buena opinión",
-            "tip1": "Sé específico y honesto sobre tu experiencia",
-            "tip2": "Mencioná tanto aspectos positivos como áreas de mejora",
-            "tip3": "Evitá información confidencial o nombres específicos",
-            "tip4": "Tu opinión ayudará a otros profesionales a tomar decisiones informadas"
-        },
         "validation": {
             "acceptTermsRequired": "Debés aceptar las normas de convivencia",
             "ratingsRequired": "Completá al menos las calificaciones principales"

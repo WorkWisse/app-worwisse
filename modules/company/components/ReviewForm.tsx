@@ -548,34 +548,34 @@ export default function ReviewForm({ company }: { company: any }) {
                       </Checkbox>
                     </div>
 
-                    <div className="flex items-start space-x-3">
-                      <Checkbox
-                        isSelected={formData.acceptedTerms}
-                        onValueChange={(checked) =>
-                          handleChange("acceptedTerms", checked)
+                    <div className="flex items-start gap-3 p-4 bg-slate-50 dark:bg-slate-700 rounded-lg border border-slate-200 dark:border-slate-600 transition-colors duration-200">
+                      <input
+                        type="checkbox"
+                        id="terms"
+                        checked={formData.acceptedTerms}
+                        onChange={(e) =>
+                          handleChange("acceptedTerms", e.target.checked)
                         }
-                        isRequired
-                        classNames={{
-                          label: "text-slate-700 dark:text-slate-300",
-                        }}
+                        className="mt-1 w-4 h-4 text-sky-600 dark:text-sky-400 bg-white dark:bg-slate-600 border-slate-300 dark:border-slate-500 rounded focus:ring-sky-500 dark:focus:ring-sky-400 focus:ring-2"
+                      />
+                      <label
+                        htmlFor="terms"
+                        className="text-sm text-slate-700 dark:text-slate-300 leading-relaxed cursor-pointer"
                       >
-                        <span className="text-sm">
-                          <Trans
-                            i18nKey="reviewForm.acceptTerms"
-                            components={{
-                              1: (
-                                <a
-                                  href="/terms"
-                                  className="text-sky-600 dark:text-sky-400 hover:text-sky-700 dark:hover:text-sky-300 transition-colors underline cursor-pointer"
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                  onClick={(e) => e.stopPropagation()}
-                                />
-                              ),
-                            }}
-                          />
-                        </span>
-                      </Checkbox>
+                        <Trans
+                          components={{
+                            1: (
+                              <a
+                                className="text-sky-600 dark:text-sky-400 hover:text-sky-700 dark:hover:text-sky-300 underline"
+                                href="/terms"
+                                rel="noopener noreferrer"
+                                target="_blank"
+                              />
+                            ),
+                          }}
+                          i18nKey="addCompany.form.terms"
+                        />
+                      </label>
                     </div>
                   </div>
 
@@ -609,27 +609,44 @@ export default function ReviewForm({ company }: { company: any }) {
               <Card className="p-5 shadow-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 transition-colors duration-200">
                 <div className="space-y-4">
                   <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-4 transition-colors duration-200">
-                    {t("reviewForm.sidebar.title")}
+                    {t("addCompany.tips.title")}
                   </h3>
                   <ul className="space-y-2 text-sm text-slate-600 dark:text-slate-300">
                     <li className="flex items-start gap-2">
                       <span className="w-1.5 h-1.5 bg-sky-500 dark:bg-sky-400 rounded-full mt-2 flex-shrink-0"></span>
-                      {t("reviewForm.sidebar.tip1")}
+                      {t("addCompany.tips.tip1")}
                     </li>
                     <li className="flex items-start gap-2">
                       <span className="w-1.5 h-1.5 bg-sky-500 dark:bg-sky-400 rounded-full mt-2 flex-shrink-0"></span>
-                      {t("reviewForm.sidebar.tip2")}
+                      {t("addCompany.tips.tip2")}
                     </li>
                     <li className="flex items-start gap-2">
                       <span className="w-1.5 h-1.5 bg-sky-500 dark:bg-sky-400 rounded-full mt-2 flex-shrink-0"></span>
-                      {t("reviewForm.sidebar.tip3")}
+                      {t("addCompany.tips.tip3")}
                     </li>
                     <li className="flex items-start gap-2">
                       <span className="w-1.5 h-1.5 bg-sky-500 dark:bg-sky-400 rounded-full mt-2 flex-shrink-0"></span>
-                      {t("reviewForm.sidebar.tip4")}
+                      {t("addCompany.tips.tip4")}
                     </li>
                   </ul>
                 </div>
+              </Card>
+
+              {/* Contact Card */}
+              <Card className="p-5 shadow-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 transition-colors duration-200 mt-6">
+                <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-4 transition-colors duration-200">
+                  {t("addCompany.contact.title")}
+                </h3>
+                <p className="text-sm text-slate-600 dark:text-slate-300 mb-4">
+                  {t("addCompany.contact.description")}
+                </p>
+                <Button
+                  variant="bordered"
+                  size="sm"
+                  className="w-full border-sky-200 dark:border-sky-700 text-sky-700 dark:text-sky-300 hover:bg-sky-50 dark:hover:bg-sky-900/20 transition-colors duration-200"
+                >
+                  {t("addCompany.contact.button")}
+                </Button>
               </Card>
             </div>
           </div>
