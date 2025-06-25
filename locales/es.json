@@ -372,10 +372,13 @@
             },
             "terms": "Acepto los <1>términos y condiciones</1> de la plataforma",
             "acceptTermsRequired": "Debés aceptar los términos y condiciones para continuar",
+            "pleaseAcceptTerms": "Por favor, revisá y aceptá nuestros términos y condiciones.",
             "submit": "Agregar empresa",
             "submitting": "Agregando empresa...",
             "submitSuccess": "¡Empresa agregada exitosamente!",
-            "submitError": "Error al agregar empresa. Intentá de nuevo."
+            "companyAdded": "La empresa ha sido agregada a nuestra base de datos y ya está disponible para reseñas.",
+            "submitError": "Error al agregar empresa. Intentá de nuevo.",
+            "tryAgainLater": "Hubo un error procesando tu solicitud. Por favor, intentá de nuevo más tarde."
         },
         "tips": {
             "title": "Consejos útiles",
@@ -449,6 +452,11 @@
     },
     "companyDetail": {
         "founded": "Fundada en",
+        "noReviews": "No hay opiniones aún",
+        "recentReviews": "Opiniones recientes",
+        "viewAll": "Ver todas las opiniones",
+        "quickStats": "Estadísticas rápidas",
+        "overallRating": "Calificación general",
         "employees": "empleados",
         "website": "Sitio web",
         "writeReview": "✍️ Escribir opinión",
@@ -469,7 +477,7 @@
         "benefits": "🎁 Beneficios",
         "ctaTitle": "¿Trabajás acá?",
         "ctaDescription": "Compartí tu experiencia y ayudá a otros profesionales a tomar mejores decisiones.",
-        "ratingsBreakdown": "📊 Calificaciones por aspecto",
+        "ratingBreakdown": "📊 Calificaciones por aspecto",
         "ratingsBreakdownDesc": "Promedio de las calificaciones de empleados",
         "ratingWorkEnvironment": "Ambiente de trabajo",
         "ratingWorkEnvironmentShort": "Ambiente",
@@ -555,6 +563,12 @@
         "validation": {
             "acceptTermsRequired": "Debés aceptar las normas de convivencia",
             "ratingsRequired": "Completá al menos las calificaciones principales"
+        },
+        "success": {
+            "message": "¡Tu opinión fue enviada con éxito! Será revisada y publicada pronto."
+        },
+        "error": {
+            "message": "Hubo un error al enviar tu opinión. Por favor, intentá de nuevo."
         }
     },
     "header": {
@@ -599,6 +613,46 @@
                 "send": "Enviar mensaje",
                 "sending": "Enviando..."
             }
+        }
+    },
+    "search": {
+        "resultsFor": "Resultados de búsqueda para",
+        "allCompanies": "Todas las empresas",
+        "noResults": "No se encontraron empresas",
+        "foundResults": "{{count}} empresas encontradas",
+        "searching": "Buscando empresas...",
+        "review": "reseña",
+        "reviews": "reseñas",
+        "noResultsTitle": "No se encontraron empresas",
+        "noResultsDescription": "No pudimos encontrar empresas que coincidan con \"{{query}}\". Probá con otro término de búsqueda o agregá la empresa vos mismo.",
+        "noResultsFound": "No se encontraron empresas que coincidan con \"{{query}}\"",
+        "addCompany": "Agregar empresa",
+        "backHome": "Volver al inicio"
+    },
+    "landing": {
+        "featuredCompanies": {
+            "title": "Empresas Destacadas",
+            "viewAll": "Ver Todas",
+            "noCompanies": "No hay empresas para mostrar.",
+            "reviews": "reseñas"
+        },
+        "latestReviews": {
+            "title": "Últimas Opiniones",
+            "previous": "Anterior",
+            "next": "Siguiente",
+            "positiveAspects": "Lo bueno:",
+            "areasForImprovement": "A mejorar:",
+            "readFullReview": "Leer opinión completa",
+            "noReviews": "No hay opiniones recientes para mostrar."
+        },
+        "timeAgo": {
+            "today": "Hoy",
+            "oneDay": "Hace 1 día",
+            "days": "Hace {{count}} días",
+            "oneWeek": "Hace 1 semana",
+            "weeks": "Hace {{count}} semanas",
+            "oneMonth": "Hace 1 mes",
+            "months": "Hace {{count}} meses"
         }
     }
 }

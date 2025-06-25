@@ -1,68 +1,70 @@
 import { Button } from "@heroui/button";
 import { Link } from "@heroui/link";
 import { Card, CardBody, CardHeader } from "@heroui/card";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useTranslation } from "react-i18next";
 
-import { getTopCompanies } from "../../../data/mockCompanies";
+import { CompanyService, ReviewService } from "@/services";
+import { CompanyDocument, ReviewDocument } from "@/types";
 
-// Get top companies data
-const topCompaniesData = getTopCompanies(5).map((company, index) => ({
-  href: company.href,
-  logo: company.logo.replace("200/200", "60/60"), // Adjust logo size for this view
-  name: company.name,
-  rank: index + 1,
-  rating: company.rating,
-  reviews: company.reviewsCount,
-}));
+interface TopCompany {
+  id: string;
+  companyName: string;
+  logoUrl: string;
+  rating: number;
+  reviewsCount: number;
+  industry: string;
+  slug?: string;
+  rank: number;
+}
 
-const latestReviewsData = [
-  {
-    id: "review1",
-    company: {
-      name: "Alpha Corp",
-      logo: "https://picsum.photos/seed/acicon/80/80",
-      industry: "Software Development",
-      href: "/company/alpha-corp",
-    },
-    rating: 4,
-    role: "Senior Developer",
-    timeAgo: "Hace 3 días",
-    pros: "Excelente ambiente laboral, proyectos desafiantes y oportunidades de crecimiento. El equipo es muy colaborativo.",
-    cons: "El salario podría ser más competitivo en comparación con otras empresas del sector. A veces hay picos de trabajo intenso.",
-    reviewLink: "/review/alpha-corp-dev-456",
-  },
-  {
-    id: "review2",
-    company: {
-      name: "Beta Solutions",
-      logo: "https://picsum.photos/seed/bsicon/80/80",
-      industry: "Fintech",
-      href: "/company/beta-solutions",
-    },
-    rating: 5,
-    role: "Product Manager",
-    timeAgo: "Hace 1 semana",
-    pros: "Cultura innovadora y abierta a nuevas ideas. Horarios flexibles y buen balance vida-trabajo.",
-    cons: "Algunos procesos internos podrían ser más ágiles. La cafetería necesita más opciones vegetarianas.",
-    reviewLink: "/review/beta-solutions-pm-789",
-  },
-  {
-    id: "review3",
-    company: {
-      name: "Gamma Creative",
-      logo: "https://picsum.photos/seed/gcicon/80/80",
-      industry: "Agencia Digital",
-      href: "/company/gamma-creative",
-    },
-    rating: 3,
-    role: "Diseñador Gráfico Jr.",
-    timeAgo: "Hace 2 semanas",
-    pros: "Se aprende mucho y rápido. Los proyectos son variados y para clientes importantes.",
-    cons: "Mucha presión y horas extra no siempre compensadas. Alta rotación de personal en algunos equipos.",
-    reviewLink: "/review/gamma-creative-design-012",
-  },
-];
+interface LatestReview {
+  id: string;
+  companyId: string;
+  companyName: string;
+  companySlug: string;
+  companyLogoUrl: string;
+  companyIndustry: string;
+  role: string;
+  overallRating: number;
+  positiveAspects: string;
+  areasForImprovement: string;
+  creationDate: string;
+  recommend: boolean;
+  timeAgo: string;
+}
+
+// Helper function to calculate time ago
+const getTimeAgo = (
+  creationDate: string,
+  t: (key: string) => string
+): string => {
+  const now = new Date();
+  const reviewDate = new Date(creationDate);
+  const diffInMs = now.getTime() - reviewDate.getTime();
+  const diffInDays = Math.floor(diffInMs / (1000 * 60 * 60 * 24));
+
+  if (diffInDays === 0) {
+    return t("landing.timeAgo.today");
+  } else if (diffInDays === 1) {
+    return t("landing.timeAgo.oneDay");
+  } else if (diffInDays < 7) {
+    return t("landing.timeAgo.days", { count: diffInDays });
+  } else if (diffInDays < 30) {
+    const weeks = Math.floor(diffInDays / 7);
+
+    return weeks === 1
+      ? t("landing.timeAgo.oneWeek")
+      : t("landing.timeAgo.weeks", { count: weeks });
+  } else {
+    const months = Math.floor(diffInDays / 30);
+
+    return months === 1
+      ? t("landing.timeAgo.oneMonth")
+      : t("landing.timeAgo.months", { count: months });
+  }
+};
 
 interface IconProps extends React.SVGProps<SVGSVGElement> {}
 
@@ -102,23 +104,142 @@ const StarIcon = (props: IconProps) => (
 );
 
 export const LandingMainContent = () => {
+  const { t } = useTranslation();
+  // States for loading data from Firebase
+  const [featuredCompanies, setFeaturedCompanies] = useState<TopCompany[]>([]);
+  const [latestReviews, setLatestReviews] = useState<LatestReview[]>([]);
+  const [isLoadingCompanies, setIsLoadingCompanies] = useState(true);
+  const [isLoadingReviews, setIsLoadingReviews] = useState(true);
+
   const [[currentReviewIndex, direction], setCurrentReviewState] = useState([
     0, 0,
   ]);
+
+  // Load featured companies from Firebase
+  useEffect(() => {
+    const loadFeaturedCompanies = async () => {
+      try {
+        setIsLoadingCompanies(true);
+        // Get companies sorted by rating, limited to 5
+        const companies = await CompanyService.getCompanies({
+          sortBy: "rating",
+          sortOrder: "desc",
+          limit: 5,
+        });
+        console.log("Featured companies loaded:", companies);
+
+        const mappedCompanies: TopCompany[] = companies.map(
+          (company: CompanyDocument, index: number) => ({
+            id: company.id || "",
+            companyName: company.companyName || "",
+            logoUrl: company.logoUrl,
+            rating: company.rating || 0,
+            reviewsCount: company.reviewsCount || 0,
+            industry: company.industry || "",
+            slug:
+              company.slug ||
+              company.companyName
+                ?.toLowerCase()
+                .replace(/[^a-z0-9]+/g, "-")
+                .replace(/^-+|-+$/g, "") ||
+              "",
+            rank: index + 1,
+          })
+        );
+
+        setFeaturedCompanies(mappedCompanies);
+      } catch (error) {
+        // eslint-disable-next-line no-console
+        console.error("Error loading featured companies:", error);
+        setFeaturedCompanies([]);
+      } finally {
+        setIsLoadingCompanies(false);
+      }
+    };
+
+    loadFeaturedCompanies();
+  }, []);
+
+  // Load latest reviews from Firebase
+  useEffect(() => {
+    const loadLatestReviews = async () => {
+      try {
+        setIsLoadingReviews(true);
+        const reviews = await ReviewService.getLatestReviews(5);
+
+        // Get company data for each review to get the real logo
+        const mappedReviews: LatestReview[] = await Promise.all(
+          reviews.map(async (review: ReviewDocument) => {
+            let companyLogoUrl = `https://ui-avatars.com/api/?name=${encodeURIComponent(review.companyName || "")}&background=0D8ABC&color=fff&size=80`;
+            let companyIndustry = "Tecnología";
+            let companySlug = review.companyName
+              ?.toLowerCase()
+              .replace(/[^a-z0-9]+/g, "-")
+              .replace(/^-+|-+$/g, "") || "";
+
+            // Try to get company data if we have a companyId
+            if (review.companyId) {
+              try {
+                const companyData = await CompanyService.getCompanyById(review.companyId);
+                if (companyData) {
+                  companyLogoUrl = companyData.logoUrl || companyLogoUrl;
+                  companyIndustry = companyData.industry || companyIndustry;
+                  companySlug = companyData.slug || companySlug;
+                }
+              } catch (companyError) {
+                // eslint-disable-next-line no-console
+                console.warn(`Could not fetch company data for review ${review.id}:`, companyError);
+                // Keep the fallback values
+              }
+            }
+
+            return {
+              id: review.id || "",
+              companyId: review.companyId || "",
+              companyName: review.companyName || "",
+              companySlug,
+              companyLogoUrl,
+              companyIndustry,
+              role: review.role || "",
+              overallRating: review.overallRating || 0,
+              positiveAspects: review.positiveAspects || "",
+              areasForImprovement: review.areasForImprovement || "",
+              creationDate: review.creationDate || new Date().toISOString(),
+              recommend: review.recommend || false,
+              timeAgo: getTimeAgo(
+                review.creationDate || new Date().toISOString(),
+                t,
+              ),
+            };
+          }),
+        );
+
+        setLatestReviews(mappedReviews);
+      } catch (error) {
+        // eslint-disable-next-line no-console
+        console.error("Error loading latest reviews:", error);
+        setLatestReviews([]);
+      } finally {
+        setIsLoadingReviews(false);
+      }
+    };
+
+    loadLatestReviews();
+  }, []);
 
   const paginate = (newDirection: number) => {
     let newIndex = currentReviewIndex + newDirection;
 
     if (newIndex < 0) {
-      newIndex = latestReviewsData.length - 1;
-    } else if (newIndex >= latestReviewsData.length) {
+      newIndex = latestReviews.length - 1;
+    } else if (newIndex >= latestReviews.length) {
       newIndex = 0;
     }
 
     setCurrentReviewState([newIndex, newDirection]);
   };
 
-  const currentReview = latestReviewsData[currentReviewIndex];
+  const currentReview = latestReviews[currentReviewIndex];
 
   const slideVariants = {
     enter: (direction: number) => ({
@@ -145,66 +266,93 @@ export const LandingMainContent = () => {
           <div className="lg:col-span-1 space-y-6 animate-fade-in-up delay-300">
             <div className="flex justify-between items-center">
               <h2 className="text-3xl font-bold text-slate-800 dark:text-slate-200 tracking-tight transition-colors duration-200">
-                Empresas Destacadas
+                {t("landing.featuredCompanies.title")}
               </h2>
               <Link
                 className="text-sm font-medium text-sky-600 dark:text-sky-400 hover:text-sky-700 dark:hover:text-sky-300 flex items-center transition-colors duration-300"
                 href="/rankings"
               >
-                Ver Todas
+                {t("landing.featuredCompanies.viewAll")}
                 <ChevronRightIcon className="h-4 w-4 ml-1" />
               </Link>
             </div>
-            {topCompaniesData.map((company) => (
-              <Card
-                key={company.rank}
-                isPressable
-                as={Link}
-                className="shadow-lg hover:shadow-xl transition-all duration-300 ease-out transform hover:-translate-y-1 bg-white dark:bg-slate-800 rounded-xl overflow-hidden w-full group"
-                href={company.href}
-              >
-                <CardBody className="p-5">
-                  <div className="flex items-center space-x-4">
-                    <span className="text-xl font-semibold text-slate-400 dark:text-slate-500 w-5 text-center transition-colors duration-200">
-                      {company.rank}.
-                    </span>
-                    <img
-                      alt={`${company.name} logo placeholder`}
-                      className="h-10 w-10 rounded-full object-cover flex-shrink-0"
-                      src={company.logo}
-                    />
-                    <div className="flex-grow min-w-0">
-                      <h3
-                        className="font-semibold text-slate-800 dark:text-slate-200 truncate group-hover:text-sky-600 dark:group-hover:text-sky-400 transition-colors"
-                        title={company.name}
-                      >
-                        {company.name}
-                      </h3>
-                      <div className="flex items-center text-sm text-slate-500 dark:text-slate-400 transition-colors duration-200">
-                        <StarIcon className="h-4 w-4 text-yellow-400 mr-1" />
-                        <span>
-                          {company.rating.toFixed(1)} ({company.reviews}{" "}
-                          reseñas)
-                        </span>
+            {isLoadingCompanies ? (
+              // Loading state for companies
+              Array.from({ length: 5 }).map((_, index) => (
+                <Card
+                  key={`loading-${index}`}
+                  className="shadow-lg bg-white dark:bg-slate-800 rounded-xl overflow-hidden w-full animate-pulse"
+                >
+                  <CardBody className="p-5">
+                    <div className="flex items-center space-x-4">
+                      <span className="text-xl font-semibold text-slate-400 dark:text-slate-500 w-5 text-center">
+                        {index + 1}.
+                      </span>
+                      <div className="h-10 w-10 rounded-full bg-slate-300 dark:bg-slate-600 flex-shrink-0" />
+                      <div className="flex-grow min-w-0">
+                        <div className="h-4 bg-slate-300 dark:bg-slate-600 rounded w-3/4 mb-2" />
+                        <div className="h-3 bg-slate-300 dark:bg-slate-600 rounded w-1/2" />
                       </div>
                     </div>
-                  </div>
-                </CardBody>
-              </Card>
-            ))}
+                  </CardBody>
+                </Card>
+              ))
+            ) : featuredCompanies.length === 0 ? (
+              <p className="text-slate-500 dark:text-slate-400 text-center py-4">
+                {t("landing.featuredCompanies.noCompanies")}
+              </p>
+            ) : (
+              featuredCompanies.map((company) => (
+                <Card
+                  key={company.id}
+                  isPressable
+                  as={Link}
+                  className="shadow-lg hover:shadow-xl transition-all duration-300 ease-out transform hover:-translate-y-1 bg-white dark:bg-slate-800 rounded-xl overflow-hidden w-full group"
+                  href={`/company/${company.id}`}
+                >
+                  <CardBody className="p-5">
+                    <div className="flex items-center space-x-4">
+                      <span className="text-xl font-semibold text-slate-400 dark:text-slate-500 w-5 text-center transition-colors duration-200">
+                        {company.rank}.
+                      </span>
+                      <img
+                        alt={`${company.companyName} logo`}
+                        className="h-10 w-10 rounded-full object-cover flex-shrink-0"
+                        src={company.logoUrl}
+                      />
+                      <div className="flex-grow min-w-0">
+                        <h3
+                          className="font-semibold text-slate-800 dark:text-slate-200 truncate group-hover:text-sky-600 dark:group-hover:text-sky-400 transition-colors"
+                          title={company.companyName}
+                        >
+                          {company.companyName}
+                        </h3>
+                        <div className="flex items-center text-sm text-slate-500 dark:text-slate-400 transition-colors duration-200">
+                          <StarIcon className="h-4 w-4 text-yellow-400 mr-1" />
+                          <span>
+                            {company.rating.toFixed(1)} ({company.reviewsCount}{" "}
+                            {t("landing.featuredCompanies.reviews")})
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </CardBody>
+                </Card>
+              ))
+            )}
           </div>
 
           {/* Latest Reviews */}
           <div className="lg:col-span-2 space-y-8 animate-fade-in-up delay-500 overflow-x-hidden">
             <div className="flex justify-between items-center">
               <h2 className="text-3xl font-bold text-slate-800 dark:text-slate-200 tracking-tight transition-colors duration-200">
-                Últimas Opiniones
+                {t("landing.latestReviews.title")}
               </h2>
-              {latestReviewsData.length > 1 && (
+              {latestReviews.length > 1 && (
                 <div className="flex items-center gap-3">
                   <Button
                     isIconOnly
-                    aria-label="Anterior"
+                    aria-label={t("landing.latestReviews.previous")}
                     className="rounded-full border-slate-300 dark:border-slate-600 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 hover:border-slate-400 dark:hover:border-slate-500 transition-colors duration-200"
                     variant="ghost"
                     onClick={() => paginate(-1)}
@@ -213,7 +361,7 @@ export const LandingMainContent = () => {
                   </Button>
                   <Button
                     isIconOnly
-                    aria-label="Siguiente"
+                    aria-label={t("landing.latestReviews.next")}
                     className="rounded-full border-slate-300 dark:border-slate-600 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 hover:border-slate-400 dark:hover:border-slate-500 transition-colors duration-200"
                     variant="ghost"
                     onClick={() => paginate(1)}
@@ -224,99 +372,135 @@ export const LandingMainContent = () => {
               )}
             </div>
             <div className="relative min-h-[500px] overflow-x-hidden">
-              <AnimatePresence custom={direction} initial={false} mode="wait">
-                {currentReview && (
-                  <motion.div
-                    key={currentReview.id}
-                    animate="center"
-                    className="w-full absolute top-0 left-0"
-                    custom={direction}
-                    exit="exit"
-                    initial="enter"
-                    style={{ position: "absolute" }}
-                    transition={{
-                      x: { type: "spring", stiffness: 300, damping: 30 },
-                      opacity: { duration: 0.2 },
-                    }}
-                    variants={slideVariants}
-                  >
-                    <Card className="shadow-lg bg-white dark:bg-slate-800 rounded-xl overflow-hidden transition-colors duration-200">
-                      <CardHeader className="p-5 pb-3 border-b border-slate-100 dark:border-slate-700 transition-colors duration-200">
-                        <div className="flex items-start justify-between">
-                          <div className="flex items-center space-x-4">
-                            <img
-                              alt={`${currentReview.company.name} logo placeholder`}
-                              className="h-12 w-12 rounded-full object-cover flex-shrink-0"
-                              src={currentReview.company.logo}
-                            />
-                            <div>
-                              <Link
-                                className="hover:underline"
-                                href={currentReview.company.href}
-                              >
-                                <h3 className="text-lg font-semibold text-slate-800 dark:text-slate-200 hover:text-sky-600 dark:hover:text-sky-400 transition-colors">
-                                  {currentReview.company.name}
-                                </h3>
-                              </Link>
-                              <p className="text-sm text-slate-500 dark:text-slate-400 transition-colors duration-200">
-                                {currentReview.company.industry}
+              {isLoadingReviews ? (
+                // Loading state for reviews
+                <div className="w-full">
+                  <Card className="shadow-lg bg-white dark:bg-slate-800 rounded-xl overflow-hidden animate-pulse">
+                    <CardHeader className="p-5 pb-3 border-b border-slate-100 dark:border-slate-700">
+                      <div className="flex items-start justify-between">
+                        <div className="flex items-center space-x-4">
+                          <div className="h-12 w-12 rounded-full bg-slate-300 dark:bg-slate-600 flex-shrink-0" />
+                          <div>
+                            <div className="h-4 bg-slate-300 dark:bg-slate-600 rounded w-32 mb-2" />
+                            <div className="h-3 bg-slate-300 dark:bg-slate-600 rounded w-24" />
+                          </div>
+                        </div>
+                        <div className="text-right flex-shrink-0">
+                          <div className="h-4 bg-slate-300 dark:bg-slate-600 rounded w-16 mb-1" />
+                          <div className="h-3 bg-slate-300 dark:bg-slate-600 rounded w-12" />
+                        </div>
+                      </div>
+                    </CardHeader>
+                    <CardBody className="p-5 space-y-3">
+                      <div className="h-3 bg-slate-300 dark:bg-slate-600 rounded w-24" />
+                      <div className="space-y-2">
+                        <div className="h-3 bg-slate-300 dark:bg-slate-600 rounded w-16" />
+                        <div className="h-3 bg-slate-300 dark:bg-slate-600 rounded w-full" />
+                        <div className="h-3 bg-slate-300 dark:bg-slate-600 rounded w-3/4" />
+                      </div>
+                      <div className="space-y-2">
+                        <div className="h-3 bg-slate-300 dark:bg-slate-600 rounded w-20" />
+                        <div className="h-3 bg-slate-300 dark:bg-slate-600 rounded w-full" />
+                        <div className="h-3 bg-slate-300 dark:bg-slate-600 rounded w-2/3" />
+                      </div>
+                    </CardBody>
+                  </Card>
+                </div>
+              ) : (
+                <AnimatePresence custom={direction} initial={false} mode="wait">
+                  {currentReview && (
+                    <motion.div
+                      key={currentReview.id}
+                      animate="center"
+                      className="w-full absolute top-0 left-0"
+                      custom={direction}
+                      exit="exit"
+                      initial="enter"
+                      style={{ position: "absolute" }}
+                      transition={{
+                        x: { type: "spring", stiffness: 300, damping: 30 },
+                        opacity: { duration: 0.2 },
+                      }}
+                      variants={slideVariants}
+                    >
+                      <Card className="shadow-lg bg-white dark:bg-slate-800 rounded-xl overflow-hidden transition-colors duration-200">
+                        <CardHeader className="p-5 pb-3 border-b border-slate-100 dark:border-slate-700 transition-colors duration-200">
+                          <div className="flex items-start justify-between">
+                            <div className="flex items-center space-x-4">
+                              <img
+                                alt={`${currentReview.companyName} logo`}
+                                className="h-12 w-12 rounded-full object-cover flex-shrink-0"
+                                src={currentReview.companyLogoUrl}
+                              />
+                              <div>
+                                <Link
+                                  className="hover:underline"
+                                  href={`/company/${currentReview.companyId}`}
+                                >
+                                  <h3 className="text-lg font-semibold text-slate-800 dark:text-slate-200 hover:text-sky-600 dark:hover:text-sky-400 transition-colors">
+                                    {currentReview.companyName}
+                                  </h3>
+                                </Link>
+                                <p className="text-sm text-slate-500 dark:text-slate-400 transition-colors duration-200">
+                                  {currentReview.companyIndustry}
+                                </p>
+                              </div>
+                            </div>
+                            <div className="text-right flex-shrink-0">
+                              <div className="flex items-center text-lg font-bold text-sky-600">
+                                <StarIcon className="h-5 w-5 text-yellow-400 mr-1" />
+                                {currentReview.overallRating.toFixed(1)}
+                                <span className="text-sm text-slate-400 dark:text-slate-500 font-normal ml-0.5 transition-colors duration-200">
+                                  /5
+                                </span>
+                              </div>
+                              <p className="text-xs text-slate-400 dark:text-slate-500 mt-0.5 transition-colors duration-200">
+                                {currentReview.timeAgo}
                               </p>
                             </div>
                           </div>
-                          <div className="text-right flex-shrink-0">
-                            <div className="flex items-center text-lg font-bold text-sky-600">
-                              <StarIcon className="h-5 w-5 text-yellow-400 mr-1" />
-                              {currentReview.rating.toFixed(1)}
-                              <span className="text-sm text-slate-400 dark:text-slate-500 font-normal ml-0.5 transition-colors duration-200">
-                                /5
-                              </span>
-                            </div>
-                            <p className="text-xs text-slate-400 dark:text-slate-500 mt-0.5 transition-colors duration-200">
-                              {currentReview.timeAgo}
+                        </CardHeader>
+                        <CardBody className="p-5 space-y-3">
+                          <p className="text-sm text-slate-600 dark:text-slate-300 transition-colors duration-200">
+                            <span className="font-semibold text-slate-700 dark:text-slate-200 transition-colors duration-200">
+                              {currentReview.role}
+                            </span>
+                          </p>
+                          <div>
+                            <h4 className="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-1 transition-colors duration-200">
+                              {t("landing.latestReviews.positiveAspects")}
+                            </h4>
+                            <p className="text-sm text-slate-700 dark:text-slate-300 leading-relaxed line-clamp-2 group-hover:line-clamp-none transition-all duration-300 ease-in-out">
+                              {currentReview.positiveAspects}
                             </p>
                           </div>
-                        </div>
-                      </CardHeader>
-                      <CardBody className="p-5 space-y-3">
-                        <p className="text-sm text-slate-600 dark:text-slate-300 transition-colors duration-200">
-                          <span className="font-semibold text-slate-700 dark:text-slate-200 transition-colors duration-200">
-                            {currentReview.role}
-                          </span>
-                        </p>
-                        <div>
-                          <h4 className="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-1 transition-colors duration-200">
-                            Lo bueno:
-                          </h4>
-                          <p className="text-sm text-slate-700 dark:text-slate-300 leading-relaxed line-clamp-2 group-hover:line-clamp-none transition-all duration-300 ease-in-out">
-                            {currentReview.pros}
-                          </p>
-                        </div>
-                        <div>
-                          <h4 className="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-1 transition-colors duration-200">
-                            A mejorar:
-                          </h4>
-                          <p className="text-sm text-slate-700 dark:text-slate-300 leading-relaxed line-clamp-2 group-hover:line-clamp-none transition-all duration-300 ease-in-out">
-                            {currentReview.cons}
-                          </p>
-                        </div>
-                        <div className="pt-1">
-                          <Link
-                            className="text-sm font-medium text-sky-600 dark:text-sky-400 hover:text-sky-700 dark:hover:text-sky-300 transition-colors duration-300 flex items-center group/link"
-                            href={currentReview.reviewLink}
-                          >
-                            Leer opinión completa
-                            <ChevronRightIcon className="h-4 w-4 ml-1 opacity-0 group-hover/link:opacity-100 transition-opacity duration-300 transform group-hover/link:translate-x-1" />
-                          </Link>
-                        </div>
-                      </CardBody>
-                    </Card>
-                  </motion.div>
-                )}
-              </AnimatePresence>
+                          <div>
+                            <h4 className="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-1 transition-colors duration-200">
+                              {t("landing.latestReviews.areasForImprovement")}
+                            </h4>
+                            <p className="text-sm text-slate-700 dark:text-slate-300 leading-relaxed line-clamp-2 group-hover:line-clamp-none transition-all duration-300 ease-in-out">
+                              {currentReview.areasForImprovement}
+                            </p>
+                          </div>
+                          <div className="pt-1">
+                            <Link
+                              className="text-sm font-medium text-sky-600 dark:text-sky-400 hover:text-sky-700 dark:hover:text-sky-300 transition-colors duration-300 flex items-center group/link"
+                              href={`/company/${currentReview.id}/review`}
+                            >
+                              {t("landing.latestReviews.readFullReview")}
+                              <ChevronRightIcon className="h-4 w-4 ml-1 opacity-0 group-hover/link:opacity-100 transition-opacity duration-300 transform group-hover/link:translate-x-1" />
+                            </Link>
+                          </div>
+                        </CardBody>
+                      </Card>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              )}
             </div>
-            {latestReviewsData.length === 0 && (
+            {latestReviews.length === 0 && !isLoadingReviews && (
               <p className="text-slate-500 dark:text-slate-400 text-center py-10 transition-colors duration-200">
-                No hay opiniones recientes para mostrar.
+                {t("landing.latestReviews.noReviews")}
               </p>
             )}
           </div>

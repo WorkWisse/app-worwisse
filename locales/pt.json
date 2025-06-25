@@ -435,10 +435,13 @@
             },
             "terms": "Aceito os <1>termos e condições</1> da plataforma",
             "acceptTermsRequired": "Você deve aceitar os termos e condições para continuar",
+            "pleaseAcceptTerms": "Por favor, revise e aceite nossos termos e condições.",
             "submit": "Adicionar empresa",
             "submitting": "Adicionando empresa...",
             "submitSuccess": "Empresa adicionada com sucesso!",
-            "submitError": "Erro ao adicionar a empresa. Tente novamente."
+            "companyAdded": "A empresa foi adicionada ao nosso banco de dados e já está disponível para avaliações.",
+            "submitError": "Erro ao adicionar a empresa. Tente novamente.",
+            "tryAgainLater": "Houve um erro ao processar sua solicitação. Por favor, tente novamente mais tarde."
         },
         "tips": {
             "title": "Dicas úteis",
@@ -513,6 +516,11 @@
     "companyDetail": {
         "founded": "Fundada em",
         "employees": "funcionários",
+        "noReviews": "Ainda não há avaliações para esta empresa",
+        "recentReviews": "Avaliações recentes",
+        "viewAll": "Ver todas as avaliações",
+        "quickStats": "Estatísticas rápidas",
+        "overallRating": "Avaliação geral",
         "website": "Site",
         "writeReview": "✍️ Escrever avaliação",
         "reviews": "avaliações",
@@ -618,6 +626,46 @@
         "validation": {
             "acceptTermsRequired": "Você deve aceitar as normas de convivência",
             "ratingsRequired": "Por favor, complete pelo menos as avaliações principais"
+        }
+    },
+    "search": {
+        "resultsFor": "Resultados de busca para",
+        "allCompanies": "Todas as empresas",
+        "noResults": "Nenhuma empresa encontrada",
+        "foundResults": "{{count}} empresas encontradas",
+        "searching": "Procurando empresas...",
+        "review": "avaliação",
+        "reviews": "avaliações",
+        "noResultsTitle": "Nenhuma empresa encontrada",
+        "noResultsDescription": "Não conseguimos encontrar empresas que correspondam a \"{{query}}\". Tente um termo de busca diferente ou adicione a empresa você mesmo.",
+        "noResultsFound": "Nenhuma empresa encontrada que corresponda a \"{{query}}\"",
+        "addCompany": "Adicionar empresa",
+        "backHome": "Voltar ao início"
+    },
+    "landing": {
+        "featuredCompanies": {
+            "title": "Empresas em Destaque",
+            "viewAll": "Ver Todas",
+            "noCompanies": "Não há empresas para mostrar.",
+            "reviews": "opiniões"
+        },
+        "latestReviews": {
+            "title": "Últimas Opiniões",
+            "previous": "Anterior",
+            "next": "Próximo",
+            "positiveAspects": "O bom:",
+            "areasForImprovement": "A melhorar:",
+            "readFullReview": "Ler opinião completa",
+            "noReviews": "Não há opiniões recentes para mostrar."
+        },
+        "timeAgo": {
+            "today": "Hoje",
+            "oneDay": "Há 1 dia",
+            "days": "Há {{count}} dias",
+            "oneWeek": "Há 1 semana",
+            "weeks": "Há {{count}} semanas",
+            "oneMonth": "Há 1 mês",
+            "months": "Há {{count}} meses"
         }
     }
 }

@@ -4,13 +4,23 @@ import { Chip } from "@heroui/chip";
 import { useTranslation } from "react-i18next";
 import { useRouter } from "next/router";
 
-import { Company, Review } from "../../../types";
-
-import { LandingHeader } from "@/modules/core/components";
+import { CompanyDocument, ReviewDocument } from "../../../types";
 
 interface CompanyDetailProps {
-  company: Company;
-  reviews: Review[];
+  company: CompanyDocument;
+  reviews: ReviewDocument[];
+}
+
+// Helper interface for standardized review ratings
+interface StandardizedRatings {
+  workEnvironment: number;
+  compensation: number;
+  benefits: number;
+  culture: number;
+  communication: number;
+  careerGrowth: number;
+  workLifeBalance: number;
+  inclusion: number;
 }
 
 export default function CompanyDetail({
@@ -20,16 +30,99 @@ export default function CompanyDetail({
   const { t } = useTranslation();
   const router = useRouter();
 
+  // Map CompanyDocument properties to expected format
+  const mappedCompany = {
+    name: company.companyName || "Unknown Company",
+    logo: company.logoUrl || "/default-company-logo.png",
+    industry: company.industry || "Unknown Industry",
+    location: {
+      city: company.state || "Unknown City",
+      country: company.country || "Unknown Country",
+    },
+    website: company.website,
+    rating: company.rating || 0,
+    reviewsCount: company.reviewsCount || reviews.length || 0,
+    benefits:
+      typeof company.benefits === "string"
+        ? company.benefits.split(", ").filter(Boolean)
+        : [],
+  };
+
+  // Función para calcular tiempo transcurrido
+  const getTimeAgo = (date: Date | any) => {
+    if (!date) return "Hace tiempo";
+
+    const now = new Date();
+    const reviewDate =
+      date instanceof Date
+        ? date
+        : date.toDate
+          ? date.toDate()
+          : new Date(date);
+    const diffInSeconds = Math.floor(
+      (now.getTime() - reviewDate.getTime()) / 1000,
+    );
+
+    if (diffInSeconds < 60) return "Hace menos de un minuto";
+
+    if (diffInSeconds < 3600)
+      return `Hace ${Math.floor(diffInSeconds / 60)} minutos`;
+
+    if (diffInSeconds < 86400)
+      return `Hace ${Math.floor(diffInSeconds / 3600)} horas`;
+
+    if (diffInSeconds < 2592000)
+      return `Hace ${Math.floor(diffInSeconds / 86400)} días`;
+
+    return `Hace ${Math.floor(diffInSeconds / 2592000)} meses`;
+  };
+
+  // Map ReviewDocument to standardized ratings
+  const mapReviewToStandardRatings = (
+    review: ReviewDocument,
+  ): StandardizedRatings | null => {
+    // If review has the ratings object, use it
+    if (review.ratings) {
+      return {
+        workEnvironment: review.ratings.workEnvironment,
+        compensation: review.ratings.compensation,
+        benefits: review.ratings.benefits,
+        culture: review.ratings.culture,
+        communication: review.ratings.communication,
+        careerGrowth: review.ratings.careerGrowth,
+        workLifeBalance: review.ratings.workLifeBalance,
+        inclusion: review.ratings.inclusion,
+      };
+    }
+
+    // Map from individual rating properties if they exist
+    if (typeof review.workEnvironment === "number") {
+      return {
+        workEnvironment: review.workEnvironment,
+        compensation: review.salary || 0,
+        benefits: review.benefits || 0,
+        culture: review.companyCulture || 0,
+        communication: review.internalCommunication || 0,
+        careerGrowth: review.professionalGrowth || 0,
+        workLifeBalance: review.workLifeBalance || 0,
+        inclusion: review.workInclusion || 0,
+      };
+    }
+
+    return null;
+  };
+
   const renderStars = (rating: number) => {
     return Array.from({ length: 5 }, (_, index) => (
       <svg
         key={index}
-        className={`w-5 h-5 ${index < Math.floor(rating)
-          ? "text-yellow-400 fill-current"
-          : index < rating
-            ? "text-yellow-400 fill-current opacity-50"
-            : "text-slate-300 dark:text-slate-600"
-          }`}
+        className={`w-5 h-5 ${
+          index < Math.floor(rating)
+            ? "text-yellow-400 fill-current"
+            : index < rating
+              ? "text-yellow-400 fill-current opacity-50"
+              : "text-slate-300 dark:text-slate-600"
+        }`}
         viewBox="0 0 20 20"
       >
         <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
@@ -39,7 +132,9 @@ export default function CompanyDetail({
 
   // Calcular promedios de calificaciones específicas
   const calculateRatingAverages = () => {
-    const reviewsWithRatings = reviews.filter(review => review.ratings);
+    const reviewsWithRatings = reviews
+      .map((review) => mapReviewToStandardRatings(review))
+      .filter((ratings) => ratings !== null) as StandardizedRatings[];
 
     if (reviewsWithRatings.length === 0) {
       return null;
@@ -56,17 +151,15 @@ export default function CompanyDetail({
       inclusion: 0,
     };
 
-    reviewsWithRatings.forEach(review => {
-      if (review.ratings) {
-        totals.workEnvironment += review.ratings.workEnvironment;
-        totals.compensation += review.ratings.compensation;
-        totals.benefits += review.ratings.benefits;
-        totals.culture += review.ratings.culture;
-        totals.communication += review.ratings.communication;
-        totals.careerGrowth += review.ratings.careerGrowth;
-        totals.workLifeBalance += review.ratings.workLifeBalance;
-        totals.inclusion += review.ratings.inclusion;
-      }
+    reviewsWithRatings.forEach((ratings) => {
+      totals.workEnvironment += ratings.workEnvironment;
+      totals.compensation += ratings.compensation;
+      totals.benefits += ratings.benefits;
+      totals.culture += ratings.culture;
+      totals.communication += ratings.communication;
+      totals.careerGrowth += ratings.careerGrowth;
+      totals.workLifeBalance += ratings.workLifeBalance;
+      totals.inclusion += ratings.inclusion;
     });
 
     const count = reviewsWithRatings.length;
@@ -96,28 +189,32 @@ export default function CompanyDetail({
             <div className="flex items-center gap-4 flex-1 min-w-0">
               <div className="flex-shrink-0">
                 <img
-                  alt={`Logo de ${company.name}`}
+                  alt={`Logo de ${mappedCompany.name}`}
                   className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-lg shadow-md object-cover"
-                  src={company.logo}
+                  src={mappedCompany.logo}
                 />
               </div>
 
               <div className="flex-1 min-w-0">
                 <h1 className="text-lg sm:text-xl md:text-2xl font-bold text-slate-900 dark:text-white mb-1">
-                  {company.name}
+                  {mappedCompany.name}
                 </h1>
                 <div className="flex flex-wrap items-center gap-2 sm:gap-3 text-sm text-slate-600 dark:text-slate-300">
-                  <span className="font-medium">{company.industry}</span>
+                  <span className="font-medium">{mappedCompany.industry}</span>
                   <span className="text-slate-400 hidden sm:inline">•</span>
-                  <span className="truncate">{company.location.city}, {company.location.country}</span>
-                  {company.website && (
+                  <span className="truncate">
+                    {mappedCompany.location.city}
+                    {", "}
+                    {mappedCompany.location.country}
+                  </span>
+                  {mappedCompany.website && (
                     <>
                       <span className="text-slate-400 hidden md:inline">•</span>
                       <a
-                        href={company.website}
-                        target="_blank"
-                        rel="noopener noreferrer"
                         className="text-sky-600 hover:text-sky-700 dark:text-sky-400 dark:hover:text-sky-300 transition-colors hidden md:inline"
+                        href={mappedCompany.website}
+                        rel="noopener noreferrer"
+                        target="_blank"
                       >
                         {t("companyDetail.website")}
                       </a>
@@ -128,22 +225,27 @@ export default function CompanyDetail({
             </div>
 
             {/* Rating and Action */}
-            <div className="flex flex-col xs:flex-row items-start xs:items-center gap-3 w-full sm:w-auto">
-              <div className="flex items-center gap-2 sm:gap-3">
-                <div className="flex scale-75 sm:scale-100">{renderStars(company.rating)}</div>
-                <span className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white">
-                  {company.rating}
-                </span>
-                <span className="text-slate-600 dark:text-slate-300 text-xs sm:text-sm">
-                  ({company.reviewsCount} {t("companyDetail.reviews")})
-                </span>
+            <div className="flex xs:flex-row items-start xs:items-center gap-3 w-full sm:w-auto">
+              <div className="flex flex-col items-center gap-2 sm:gap-3">
+                <div className="flex scale-75 sm:scale-100">
+                  {renderStars(mappedCompany.rating)}
+                </div>
+                <div className="flex text-xs xs:text-sm gap-2">
+                  <div className="font-semibold text-slate-900 dark:text-white">
+                    {mappedCompany.rating.toFixed(1)}
+                  </div>
+                  <div className="text-slate-500 dark:text-slate-400">
+                    {mappedCompany.reviewsCount}{" "}
+                    {mappedCompany.reviewsCount === 1 ? "reseña" : "reseñas"}
+                  </div>
+                </div>
               </div>
 
               <Button
-                className="bg-sky-600 hover:bg-sky-700 text-white font-semibold px-4 sm:px-6 py-2 text-sm sm:text-base w-full xs:w-auto"
-                size="sm"
+                className="w-full xs:w-auto text-xs sm:text-sm px-3 py-2 sm:px-4 sm:py-2"
+                color="primary"
                 onPress={() =>
-                  router.push(`/company/${router.query.slug}/review`)
+                  router.push(`/company/${company.slug || company.id}/review`)
                 }
               >
                 {t("companyDetail.writeReview")}
@@ -153,346 +255,205 @@ export default function CompanyDetail({
         </div>
       </section>
 
-      {/* Main Content Section */}
-      <section className="py-16 px-4">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid lg:grid-cols-3 gap-8">
-
-            {/* Left Column - Main Content */}
-            <div className="lg:col-span-2 space-y-8">
-
-              {/* Mobile: Company Stats (First on mobile) */}
-              <Card className="shadow-lg border-0 bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm lg:hidden">
-                <CardHeader className="pb-4">
-                  <h3 className="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
-                    {t("companyDetail.statistics")}
-                  </h3>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 lg:py-8">
+        <div className="grid lg:grid-cols-3 gap-6 lg:gap-8">
+          {/* Main Content */}
+          <div className="lg:col-span-2 space-y-6">
+            {/* Rating Breakdown */}
+            {ratingAverages && (
+              <Card className="shadow-sm">
+                <CardHeader className="pb-3">
+                  <h2 className="text-xl font-bold text-slate-900 dark:text-white">
+                    {t("companyDetail.ratingBreakdown")}
+                  </h2>
                 </CardHeader>
-                <CardBody className="pt-0">
-                  <div className="space-y-4">
-                    <div className="flex justify-between items-center p-3 bg-slate-50 dark:bg-slate-700 rounded-lg">
-                      <span className="text-slate-600 dark:text-slate-400 font-medium">
-                        {t("companyDetail.totalReviews")}
-                      </span>
-                      <span className="font-bold text-slate-900 dark:text-white text-lg">
-                        {company.reviewsCount}
-                      </span>
-                    </div>
-                    <div className="flex justify-between items-center p-3 bg-green-50 dark:bg-green-900/20 rounded-lg">
-                      <span className="text-slate-600 dark:text-slate-400 font-medium">
-                        {t("companyDetail.wouldRecommend")}
-                      </span>
-                      <span className="font-bold text-green-600 dark:text-green-400 text-lg">
-                        {Math.round(
-                          (reviews.filter((r) => r.wouldRecommend).length /
-                            reviews.length) *
-                          100,
-                        )}%
-                      </span>
-                    </div>
-                  </div>
-                </CardBody>
-              </Card>
-
-              {/* Ratings Breakdown (Second on mobile) */}
-              {ratingAverages && (
-                <Card className="shadow-lg border-0 bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm">
-                  <CardHeader className="pb-4">
-                    <div className="flex flex-col">
-                      <h2 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white">
-                        {t("companyDetail.ratingsBreakdown")}
-                      </h2>
-                      <p className="text-slate-600 dark:text-slate-400 text-sm sm:text-base mt-1">
-                        {t("companyDetail.ratingsBreakdownDesc")}
-                      </p>
-                    </div>
-                  </CardHeader>
-                  <CardBody className="pt-0">
-                    <div className="grid md:grid-cols-2 gap-3 md:gap-6">
-                      <div className="space-y-3 md:space-y-4">
-                        <div className="flex justify-between items-center p-2 md:p-3 bg-slate-50 dark:bg-slate-700 rounded-lg">
-                          <span className="text-slate-600 dark:text-slate-400 font-medium text-sm md:text-base">
-                            <span className="md:hidden">{t("companyDetail.ratingWorkEnvironmentShort")}</span>
-                            <span className="hidden md:inline">{t("companyDetail.ratingWorkEnvironment")}</span>
-                          </span>
-                          <div className="flex items-center gap-1 md:gap-2">
-                            <div className="flex text-xs md:text-sm">{renderStars(ratingAverages.workEnvironment)}</div>
-                            <span className="font-bold text-slate-900 dark:text-white min-w-[1.5rem] md:min-w-[2rem] text-sm md:text-base">
-                              {ratingAverages.workEnvironment}
-                            </span>
-                          </div>
-                        </div>
-
-                        <div className="flex justify-between items-center p-2 md:p-3 bg-slate-50 dark:bg-slate-700 rounded-lg">
-                          <span className="text-slate-600 dark:text-slate-400 font-medium text-sm md:text-base">
-                            <span className="md:hidden">{t("companyDetail.ratingCompensationShort")}</span>
-                            <span className="hidden md:inline">{t("companyDetail.ratingCompensation")}</span>
-                          </span>
-                          <div className="flex items-center gap-1 md:gap-2">
-                            <div className="flex text-xs md:text-sm">{renderStars(ratingAverages.compensation)}</div>
-                            <span className="font-bold text-slate-900 dark:text-white min-w-[1.5rem] md:min-w-[2rem] text-sm md:text-base">
-                              {ratingAverages.compensation}
-                            </span>
-                          </div>
-                        </div>
-
-                        <div className="flex justify-between items-center p-2 md:p-3 bg-slate-50 dark:bg-slate-700 rounded-lg">
-                          <span className="text-slate-600 dark:text-slate-400 font-medium text-sm md:text-base">
-                            <span className="md:hidden">{t("companyDetail.ratingBenefitsShort")}</span>
-                            <span className="hidden md:inline">{t("companyDetail.ratingBenefits")}</span>
-                          </span>
-                          <div className="flex items-center gap-1 md:gap-2">
-                            <div className="flex text-xs md:text-sm">{renderStars(ratingAverages.benefits)}</div>
-                            <span className="font-bold text-slate-900 dark:text-white min-w-[1.5rem] md:min-w-[2rem] text-sm md:text-base">
-                              {ratingAverages.benefits}
-                            </span>
-                          </div>
-                        </div>
-
-                        <div className="flex justify-between items-center p-2 md:p-3 bg-slate-50 dark:bg-slate-700 rounded-lg">
-                          <span className="text-slate-600 dark:text-slate-400 font-medium text-sm md:text-base">
-                            <span className="md:hidden">{t("companyDetail.ratingCultureShort")}</span>
-                            <span className="hidden md:inline">{t("companyDetail.ratingCulture")}</span>
-                          </span>
-                          <div className="flex items-center gap-1 md:gap-2">
-                            <div className="flex text-xs md:text-sm">{renderStars(ratingAverages.culture)}</div>
-                            <span className="font-bold text-slate-900 dark:text-white min-w-[1.5rem] md:min-w-[2rem] text-sm md:text-base">
-                              {ratingAverages.culture}
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div className="space-y-3 md:space-y-4">
-                        <div className="flex justify-between items-center p-2 md:p-3 bg-slate-50 dark:bg-slate-700 rounded-lg">
-                          <span className="text-slate-600 dark:text-slate-400 font-medium text-sm md:text-base">
-                            <span className="md:hidden">{t("companyDetail.ratingCommunicationShort")}</span>
-                            <span className="hidden md:inline">{t("companyDetail.ratingCommunication")}</span>
-                          </span>
-                          <div className="flex items-center gap-1 md:gap-2">
-                            <div className="flex text-xs md:text-sm">{renderStars(ratingAverages.communication)}</div>
-                            <span className="font-bold text-slate-900 dark:text-white min-w-[1.5rem] md:min-w-[2rem] text-sm md:text-base">
-                              {ratingAverages.communication}
-                            </span>
-                          </div>
-                        </div>
-
-                        <div className="flex justify-between items-center p-2 md:p-3 bg-slate-50 dark:bg-slate-700 rounded-lg">
-                          <span className="text-slate-600 dark:text-slate-400 font-medium text-sm md:text-base">
-                            <span className="md:hidden">{t("companyDetail.ratingCareerGrowthShort")}</span>
-                            <span className="hidden md:inline">{t("companyDetail.ratingCareerGrowth")}</span>
-                          </span>
-                          <div className="flex items-center gap-1 md:gap-2">
-                            <div className="flex text-xs md:text-sm">{renderStars(ratingAverages.careerGrowth)}</div>
-                            <span className="font-bold text-slate-900 dark:text-white min-w-[1.5rem] md:min-w-[2rem] text-sm md:text-base">
-                              {ratingAverages.careerGrowth}
-                            </span>
-                          </div>
-                        </div>
-
-                        <div className="flex justify-between items-center p-2 md:p-3 bg-slate-50 dark:bg-slate-700 rounded-lg">
-                          <span className="text-slate-600 dark:text-slate-400 font-medium text-sm md:text-base">
-                            <span className="md:hidden">{t("companyDetail.ratingWorkLifeBalanceShort")}</span>
-                            <span className="hidden md:inline">{t("companyDetail.ratingWorkLifeBalance")}</span>
-                          </span>
-                          <div className="flex items-center gap-1 md:gap-2">
-                            <div className="flex text-xs md:text-sm">{renderStars(ratingAverages.workLifeBalance)}</div>
-                            <span className="font-bold text-slate-900 dark:text-white min-w-[1.5rem] md:min-w-[2rem] text-sm md:text-base">
-                              {ratingAverages.workLifeBalance}
-                            </span>
-                          </div>
-                        </div>
-
-                        <div className="flex justify-between items-center p-2 md:p-3 bg-slate-50 dark:bg-slate-700 rounded-lg">
-                          <span className="text-slate-600 dark:text-slate-400 font-medium text-sm md:text-base">
-                            <span className="md:hidden">{t("companyDetail.ratingInclusionShort")}</span>
-                            <span className="hidden md:inline">{t("companyDetail.ratingInclusion")}</span>
-                          </span>
-                          <div className="flex items-center gap-1 md:gap-2">
-                            <div className="flex text-xs md:text-sm">{renderStars(ratingAverages.inclusion)}</div>
-                            <span className="font-bold text-slate-900 dark:text-white min-w-[1.5rem] md:min-w-[2rem] text-sm md:text-base">
-                              {ratingAverages.inclusion}
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </CardBody>
-                </Card>
-              )}
-
-              {/* Mobile: Benefits & Perks (Third on mobile) */}
-              <Card className="shadow-lg border-0 bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm lg:hidden">
-                <CardHeader className="pb-4">
-                  <h3 className="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
-                    {t("companyDetail.benefits")}
-                  </h3>
-                </CardHeader>
-                <CardBody className="pt-0">
-                  <div className="space-y-3">
-                    {company.benefits.map((benefit, index) => (
-                      <div key={index} className="flex items-center gap-3 p-2 bg-slate-50 dark:bg-slate-700 rounded-lg">
-                        <span className="text-sky-500">✓</span>
-                        <span className="text-slate-700 dark:text-slate-300 text-sm">
-                          {benefit}
+                <CardBody className="space-y-4">
+                  <div className="grid sm:grid-cols-2 gap-4">
+                    {Object.entries(ratingAverages).map(([key, value]) => (
+                      <div
+                        key={key}
+                        className="flex items-center justify-between"
+                      >
+                        <span className="text-sm text-slate-700 dark:text-slate-300">
+                          {t(`reviewForm.ratings.${key}`)}
                         </span>
+                        <div className="flex items-center gap-2">
+                          <div className="flex scale-75">
+                            {renderStars(value)}
+                          </div>
+                          <span className="text-sm font-medium text-slate-900 dark:text-white min-w-[2rem]">
+                            {value}
+                          </span>
+                        </div>
                       </div>
                     ))}
                   </div>
                 </CardBody>
               </Card>
+            )}
 
-              {/* Employee Reviews Section */}
-              <Card className="shadow-lg border-0 bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm">
-                <CardHeader className="flex flex-col sm:flex-row sm:justify-between sm:items-center pb-4 gap-3">
-                  <h2 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-3">
-                    {t("companyDetail.recentReviewsTitle")}
+            {/* Recent Reviews */}
+            <Card className="shadow-sm">
+              <CardHeader className="pb-3">
+                <div className="flex items-center justify-between">
+                  <h2 className="text-xl font-bold text-slate-900 dark:text-white">
+                    {t("companyDetail.recentReviews")}
                   </h2>
-                  <Button
-                    color="primary"
-                    variant="light"
-                    className="text-sky-600 hover:text-sky-700 self-start sm:self-auto text-sm sm:text-base px-3 py-1.5 sm:px-4 sm:py-2 h-auto min-h-0"
-                    size="sm"
-                  >
-                    <span className="sm:hidden">{t("companyDetail.viewAllReviewsShort")}</span>
-                    <span className="hidden sm:inline">{t("companyDetail.viewAllReviews")}</span>
+                  <Button size="sm" variant="light">
+                    {t("companyDetail.viewAll")}
                   </Button>
-                </CardHeader>
-                <CardBody className="pt-0">
-                  <div className="space-y-8">
-                    {recentReviews.map((review) => (
-                      <div
-                        key={review.id}
-                        className="border border-slate-200 dark:border-slate-700 rounded-xl p-6 bg-slate-50/50 dark:bg-slate-700/50 hover:shadow-md transition-all duration-200"
-                      >
-                        <div className="flex items-start justify-between mb-4">
-                          <div className="flex-1">
-                            <div className="flex items-center gap-3 mb-2">
-                              <div className="flex">{renderStars(review.rating)}</div>
-                              <span className="font-bold text-slate-900 dark:text-white text-lg">
-                                {review.rating}/5
-                              </span>
-                              {review.wouldRecommend && (
-                                <Chip color="success" size="sm" variant="flat" className="ml-2">
-                                  {t("companyDetail.recommends")}
-                                </Chip>
+                </div>
+              </CardHeader>
+              <CardBody className="space-y-6">
+                {recentReviews.length > 0 ? (
+                  recentReviews.map((review) => (
+                    <div
+                      key={review.id}
+                      className="border-b border-slate-200 dark:border-slate-700 last:border-0 pb-6 last:pb-0"
+                    >
+                      <div className="flex items-start gap-4">
+                        <div className="flex-1">
+                          <div className="flex items-center gap-3 mb-2">
+                            <div className="flex scale-75">
+                              {renderStars(
+                                review.rating || review.overallRating || 0
                               )}
                             </div>
-                            <div className="flex items-center gap-2 text-slate-600 dark:text-slate-400">
+                            <span className="text-sm font-medium text-slate-900 dark:text-white">
+                              {review.rating || review.overallRating || 0}/5
+                            </span>
+                            {(review.wouldRecommend || review.recommend) && (
+                              <Chip
+                                className="ml-2"
+                                color="success"
+                                size="sm"
+                                variant="flat"
+                              >
+                                {t("companyDetail.recommends")}
+                              </Chip>
+                            )}
+                          </div>
+                          <div className="mb-3">
+                            <p className="text-sm text-slate-600 dark:text-slate-400 mb-1">
                               <span className="font-medium">{review.role}</span>
-                              <span>•</span>
-                              <span>{review.timeAgo}</span>
+                              {" • "}
+                              <span>
+                                {review.timeAgo || getTimeAgo(review.createdAt)}
+                              </span>
+                            </p>
+                          </div>
+                          <div className="space-y-2">
+                            <div>
+                              <h4 className="text-sm font-medium text-slate-900 dark:text-white mb-1">
+                                {t("companyDetail.pros")}
+                              </h4>
+                              <p className="text-sm text-slate-700 dark:text-slate-300">
+                                {review.pros ||
+                                  review.positiveAspects ||
+                                  "No disponible"}
+                              </p>
+                            </div>
+                            <div>
+                              <h4 className="text-sm font-medium text-slate-900 dark:text-white mb-1">
+                                {t("companyDetail.cons")}
+                              </h4>
+                              <p className="text-sm text-slate-700 dark:text-slate-300">
+                                {review.cons ||
+                                  review.areasForImprovement ||
+                                  "No disponible"}
+                              </p>
                             </div>
                           </div>
                         </div>
-
-                        <div className="grid md:grid-cols-2 gap-6">
-                          <div className="space-y-2">
-                            <h4 className="text-sm font-semibold text-green-700 dark:text-green-400 flex items-center gap-2">
-                              {t("companyDetail.pros")}
-                            </h4>
-                            <p className="text-slate-700 dark:text-slate-300 text-sm leading-relaxed bg-green-50/50 dark:bg-green-900/20 p-3 rounded-lg">
-                              {review.pros}
-                            </p>
-                          </div>
-
-                          <div className="space-y-2">
-                            <h4 className="text-sm font-semibold text-amber-700 dark:text-amber-400 flex items-center gap-2">
-                              {t("companyDetail.cons")}
-                            </h4>
-                            <p className="text-slate-700 dark:text-slate-300 text-sm leading-relaxed bg-amber-50/50 dark:bg-amber-900/20 p-3 rounded-lg">
-                              {review.cons}
-                            </p>
-                          </div>
-                        </div>
                       </div>
-                    ))}
-                  </div>
-                </CardBody>
-              </Card>
-            </div>
-
-            {/* Right Column - Sidebar */}
-            <div className="space-y-6">
-
-              {/* Company Stats - Hidden on mobile */}
-              <Card className="shadow-lg border-0 bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm hidden lg:block">
-                <CardHeader className="pb-4">
-                  <h3 className="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
-                    {t("companyDetail.statistics")}
-                  </h3>
-                </CardHeader>
-                <CardBody className="pt-0">
-                  <div className="space-y-4">
-                    <div className="flex justify-between items-center p-3 bg-slate-50 dark:bg-slate-700 rounded-lg">
-                      <span className="text-slate-600 dark:text-slate-400 font-medium">
-                        {t("companyDetail.totalReviews")}
-                      </span>
-                      <span className="font-bold text-slate-900 dark:text-white text-lg">
-                        {company.reviewsCount}
-                      </span>
                     </div>
-                    <div className="flex justify-between items-center p-3 bg-green-50 dark:bg-green-900/20 rounded-lg">
-                      <span className="text-slate-600 dark:text-slate-400 font-medium">
-                        {t("companyDetail.wouldRecommend")}
-                      </span>
-                      <span className="font-bold text-green-600 dark:text-green-400 text-lg">
-                        {Math.round(
-                          (reviews.filter((r) => r.wouldRecommend).length /
-                            reviews.length) *
-                          100,
-                        )}%
-                      </span>
-                    </div>
+                  ))
+                ) : (
+                  <div className="text-center py-8">
+                    <p className="text-slate-500 dark:text-slate-400">
+                      {t("companyDetail.noReviews")}
+                    </p>
                   </div>
-                </CardBody>
-              </Card>
+                )}
+              </CardBody>
+            </Card>
+          </div>
 
-              {/* Benefits & Perks - Hidden on mobile */}
-              <Card className="shadow-lg border-0 bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm hidden lg:block">
-                <CardHeader className="pb-4">
-                  <h3 className="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
+          {/* Sidebar */}
+          <div className="space-y-6">
+            {/* Quick Stats */}
+            <Card className="shadow-sm">
+              <CardHeader className="pb-3">
+                <h3 className="font-semibold text-slate-900 dark:text-white">
+                  {t("companyDetail.quickStats")}
+                </h3>
+              </CardHeader>
+              <CardBody className="space-y-3">
+                <div className="flex justify-between items-center">
+                  <span className="text-sm text-slate-600 dark:text-slate-400">
+                    {t("companyDetail.overallRating")}
+                  </span>
+                  <div className="flex items-center gap-2">
+                    <div className="flex scale-75">
+                      {renderStars(mappedCompany.rating)}
+                    </div>
+                    <span className="text-sm font-medium">
+                      {mappedCompany.rating.toFixed(1)}
+                    </span>
+                  </div>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span className="text-sm text-slate-600 dark:text-slate-400">
+                    {t("companyDetail.totalReviews")}
+                  </span>
+                  <span className="text-sm font-medium">
+                    {mappedCompany.reviewsCount}
+                  </span>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span className="text-sm text-slate-600 dark:text-slate-400">
+                    {t("companyDetail.wouldRecommend")}
+                  </span>
+                  <span className="text-sm font-medium">
+                    {Math.round(
+                      (reviews.filter((r) => r.wouldRecommend || r.recommend)
+                        .length /
+                        Math.max(reviews.length, 1)) *
+                        100
+                    )}
+                    %
+                  </span>
+                </div>
+              </CardBody>
+            </Card>
+
+            {/* Benefits */}
+            {mappedCompany.benefits.length > 0 && (
+              <Card className="shadow-sm">
+                <CardHeader className="pb-3">
+                  <h3 className="font-semibold text-slate-900 dark:text-white">
                     {t("companyDetail.benefits")}
                   </h3>
                 </CardHeader>
-                <CardBody className="pt-0">
-                  <div className="space-y-3">
-                    {company.benefits.map((benefit, index) => (
-                      <div key={index} className="flex items-center gap-3 p-2 bg-slate-50 dark:bg-slate-700 rounded-lg">
-                        <span className="text-sky-500">✓</span>
-                        <span className="text-slate-700 dark:text-slate-300 text-sm">
-                          {benefit}
-                        </span>
-                      </div>
+                <CardBody>
+                  <div className="flex flex-wrap gap-2">
+                    {mappedCompany.benefits.map((benefit, index) => (
+                      <Chip
+                        key={index}
+                        color="primary"
+                        size="sm"
+                        variant="flat"
+                      >
+                        {benefit}
+                      </Chip>
                     ))}
                   </div>
                 </CardBody>
               </Card>
-
-              {/* Call to Action */}
-              <Card className="shadow-lg border-0 bg-gradient-to-br from-sky-50 to-blue-50 dark:from-sky-900/20 dark:to-blue-900/20">
-                <CardBody className="text-center space-y-4">
-                  <div className="text-4xl">🚀</div>
-                  <h3 className="text-lg font-bold text-slate-900 dark:text-white">
-                    {t("companyDetail.ctaTitle")}
-                  </h3>
-                  <p className="text-slate-600 dark:text-slate-300 text-sm">
-                    {t("companyDetail.ctaDescription")}
-                  </p>
-                  <Button
-                    className="bg-sky-600 hover:bg-sky-700 text-white font-semibold w-full"
-                    onPress={() =>
-                      router.push(`/company/${router.query.slug}/review`)
-                    }
-                  >
-                    {t("companyDetail.writeReview")}
-                  </Button>
-                </CardBody>
-              </Card>
-            </div>
+            )}
           </div>
         </div>
-      </section>
+      </div>
     </div>
   );
 }
