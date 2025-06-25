@@ -622,7 +622,7 @@
     "landing": {
         "featuredCompanies": {
             "title": "Featured Companies",
-            "viewAll": "View All",
+            "viewAll": "View Ranking",
             "noCompanies": "No companies to display.",
             "reviews": "reviews"
         },

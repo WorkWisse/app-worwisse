@@ -645,7 +645,7 @@
     "landing": {
         "featuredCompanies": {
             "title": "Empresas em Destaque",
-            "viewAll": "Ver Todas",
+            "viewAll": "Ver classificação",
             "noCompanies": "Não há empresas para mostrar.",
             "reviews": "opiniões"
         },
