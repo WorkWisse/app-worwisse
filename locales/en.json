@@ -647,11 +647,23 @@
         }
     },
     "rankings": {
-        "title": "Company Rankings",
+        "title": "Company <1>Rankings</1>",
         "description": "Discover the best-rated companies by their employees. Rankings based on real and verified reviews.",
         "backHome": "Back to home",
         "reviews": "reviews",
         "noCompanies": "No companies to show in the ranking.",
+        "table": {
+            "company": "Company",
+            "industry": "Industry",
+            "rating": "Rating",
+            "reviews": "Reviews",
+            "workEnv": "Work Env.",
+            "salary": "Salary",
+            "benefits": "Benefits",
+            "culture": "Culture",
+            "balance": "Balance",
+            "growth": "Growth"
+        },
         "cta": {
             "description": "Can't find your company? Add it and help other professionals.",
             "addCompany": "Add company"

@@ -657,11 +657,23 @@
         }
     },
     "rankings": {
-        "title": "Clasificación de Empresas",
+        "title": "Clasificación de <1>Empresas</1>",
         "description": "Descubre las empresas mejor valoradas por sus empleados. Ranking basado en opiniones reales y verificadas.",
         "backHome": "Volver al inicio",
         "reviews": "opiniones",
         "noCompanies": "No hay empresas para mostrar en el ranking.",
+        "table": {
+            "company": "Empresa",
+            "industry": "Industria",
+            "rating": "Calificación",
+            "reviews": "Opiniones",
+            "workEnv": "Ambiente",
+            "salary": "Salario",
+            "benefits": "Beneficios",
+            "culture": "Cultura",
+            "balance": "Balance",
+            "growth": "Crecimiento"
+        },
         "cta": {
             "description": "¿No encuentras tu empresa? Agrégala y ayuda a otros profesionales.",
             "addCompany": "Agregar empresa"

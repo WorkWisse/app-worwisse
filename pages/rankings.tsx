@@ -1,12 +1,13 @@
 import { useState, useEffect } from "react";
-import { useTranslation } from "react-i18next";
+import { Trans, useTranslation } from "react-i18next";
 import Link from "next/link";
 import { Card, CardBody } from "@heroui/card";
 import { Button } from "@heroui/button";
 
 import { LandingHeader } from "@/modules/core/components";
 import { CompanyService } from "@/services";
-import { CompanyDocument } from "@/types";
+import { ReviewService } from "@/services/reviewService";
+import { CompanyDocument, ReviewDocument } from "@/types";
 
 interface RankingCompany {
     id: string;
@@ -17,6 +18,13 @@ interface RankingCompany {
     industry: string;
     slug?: string;
     rank: number;
+    // Promedios de categorías de reviews
+    workEnvironment?: number;
+    salary?: number;
+    benefits?: number;
+    companyCulture?: number;
+    workLifeBalance?: number;
+    professionalGrowth?: number;
 }
 
 interface IconProps extends React.SVGProps<SVGSVGElement> { }
@@ -58,22 +66,62 @@ export default function RankingsPage() {
                     limit: 15,
                 });
 
-                const mappedCompanies: RankingCompany[] = companiesData.map(
-                    (company: CompanyDocument, index: number) => ({
-                        id: company.id || "",
-                        companyName: company.companyName || "",
-                        logoUrl: company.logoUrl,
-                        rating: company.rating || 0,
-                        reviewsCount: company.reviewsCount || 0,
-                        industry: company.industry || "",
-                        slug:
-                            company.slug ||
-                            company.companyName
-                                ?.toLowerCase()
-                                .replace(/[^a-z0-9]+/g, "-")
-                                .replace(/^-+|-+$/g, "") ||
-                            "",
-                        rank: index + 1,
+                const mappedCompanies: RankingCompany[] = await Promise.all(
+                    companiesData.map(async (company: CompanyDocument, index: number) => {
+                        // Obtener reviews de la empresa para calcular promedios
+                        let reviewAverages = {};
+                        try {
+                            const reviewsData = await ReviewService.getCompanyReviews(company.id || "", 50);
+                            const reviews = reviewsData.reviews;
+
+                            if (reviews.length > 0) {
+                                // Calcular promedios de cada categoría
+                                const totals = reviews.reduce((acc, review: ReviewDocument) => ({
+                                    workEnvironment: acc.workEnvironment + (review.workEnvironment || 0),
+                                    salary: acc.salary + (review.salary || 0),
+                                    benefits: acc.benefits + (review.benefits || 0),
+                                    companyCulture: acc.companyCulture + (review.companyCulture || 0),
+                                    workLifeBalance: acc.workLifeBalance + (review.workLifeBalance || 0),
+                                    professionalGrowth: acc.professionalGrowth + (review.professionalGrowth || 0),
+                                }), {
+                                    workEnvironment: 0,
+                                    salary: 0,
+                                    benefits: 0,
+                                    companyCulture: 0,
+                                    workLifeBalance: 0,
+                                    professionalGrowth: 0,
+                                });
+
+                                reviewAverages = {
+                                    workEnvironment: Number((totals.workEnvironment / reviews.length).toFixed(1)),
+                                    salary: Number((totals.salary / reviews.length).toFixed(1)),
+                                    benefits: Number((totals.benefits / reviews.length).toFixed(1)),
+                                    companyCulture: Number((totals.companyCulture / reviews.length).toFixed(1)),
+                                    workLifeBalance: Number((totals.workLifeBalance / reviews.length).toFixed(1)),
+                                    professionalGrowth: Number((totals.professionalGrowth / reviews.length).toFixed(1)),
+                                };
+                            }
+                        } catch (reviewError) {
+                            console.warn(`Error fetching reviews for company ${company.id}:`, reviewError);
+                        }
+
+                        return {
+                            id: company.id || "",
+                            companyName: company.companyName || "",
+                            logoUrl: company.logoUrl,
+                            rating: company.rating || 0,
+                            reviewsCount: company.reviewsCount || 0,
+                            industry: company.industry || "",
+                            slug:
+                                company.slug ||
+                                company.companyName
+                                    ?.toLowerCase()
+                                    .replace(/[^a-z0-9]+/g, "-")
+                                    .replace(/^-+|-+$/g, "") ||
+                                "",
+                            rank: index + 1,
+                            ...reviewAverages,
+                        };
                     })
                 );
 
@@ -107,130 +155,225 @@ export default function RankingsPage() {
                             {t("rankings.backHome")}
                         </Button>
                     </div>
-                    
-                    <div className="text-center">
-                        <h1 className="text-4xl lg:text-6xl font-bold text-slate-900 dark:text-white mb-4 leading-tight">
-                            {t("rankings.title")}
+
+                    <div className="mb-6 lg:mb-8">
+                        <h1 className="text-center text-3xl lg:text-5xl font-bold text-slate-900 dark:text-white mb-3 lg:mb-4 leading-tight transition-colors duration-200">
+                            <Trans
+                                components={{
+                                    1: <span className="text-sky-600 dark:text-sky-400" />,
+                                }}
+                                i18nKey="rankings.title"
+                            />
                         </h1>
-                        <p className="text-lg text-slate-600 dark:text-slate-300 max-w-2xl mx-auto leading-relaxed">
+                        <p className="text-center text-base lg:text-lg text-slate-600 dark:text-slate-300 leading-relaxed transition-colors duration-200">
                             {t("rankings.description")}
                         </p>
                     </div>
                 </div>
 
                 {/* Rankings Table */}
-                <div className="max-w-4xl mx-auto">
+                <div className="max-w-7xl mx-auto">
                     <Card className="shadow-xl border-0 bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm">
                         <CardBody className="p-0">
-                            {isLoading ? (
-                                // Loading state
-                                <div className="space-y-0">
-                                    {Array.from({ length: 15 }).map((_, index) => (
-                                        <div
-                                            key={`loading-${index}`}
-                                            className="flex items-center p-6 border-b border-slate-100 dark:border-slate-700 last:border-b-0 animate-pulse"
-                                        >
-                                            <div className="w-12 text-center mr-6">
-                                                <div className="h-6 w-6 bg-slate-300 dark:bg-slate-600 rounded mx-auto" />
-                                            </div>
-                                            <div className="h-12 w-12 rounded-full bg-slate-300 dark:bg-slate-600 mr-4 flex-shrink-0" />
-                                            <div className="flex-1 min-w-0 mr-4">
-                                                <div className="h-5 bg-slate-300 dark:bg-slate-600 rounded w-48 mb-2" />
-                                                <div className="h-3 bg-slate-300 dark:bg-slate-600 rounded w-24" />
-                                            </div>
-                                            <div className="text-right">
-                                                <div className="h-5 bg-slate-300 dark:bg-slate-600 rounded w-16 mb-1" />
-                                                <div className="h-3 bg-slate-300 dark:bg-slate-600 rounded w-20" />
-                                            </div>
-                                        </div>
-                                    ))}
-                                </div>
-                            ) : companies.length === 0 ? (
-                                <div className="text-center py-16">
-                                    <p className="text-slate-500 dark:text-slate-400">
-                                        {t("rankings.noCompanies")}
-                                    </p>
-                                </div>
-                            ) : (
-                                <div className="space-y-0">
-                                    {companies.map((company) => (
-                                        <div
-                                            key={company.id}
-                                            className="flex items-center p-6 border-b border-slate-100 dark:border-slate-700 last:border-b-0 hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors duration-200 group"
-                                        >
-                                            {/* Rank */}
-                                            <div className="w-12 text-center mr-6 flex-shrink-0">
-                                                <span
-                                                    className={`text-2xl font-bold transition-colors duration-200 ${company.rank === 1
-                                                        ? "text-yellow-500"
-                                                        : company.rank === 2
-                                                            ? "text-slate-400"
-                                                            : company.rank === 3
-                                                                ? "text-amber-600"
-                                                                : "text-slate-500 dark:text-slate-400"
-                                                        }`}
+                            <div className="overflow-x-auto">
+                                <table className="w-full text-sm">
+                                    <thead>
+                                        <tr className="bg-slate-50 dark:bg-slate-800/50 border-b border-slate-200 dark:border-slate-700">
+                                            <th className="px-3 py-3 text-left text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider">
+                                                #
+                                            </th>
+                                            <th className="px-3 py-3 text-left text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider">
+                                                {t("rankings.table.company")}
+                                            </th>
+                                            <th className="px-3 py-3 text-left text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider">
+                                                {t("rankings.table.industry")}
+                                            </th>
+                                            <th className="px-3 py-3 text-center text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider">
+                                                {t("rankings.table.rating")}
+                                            </th>
+                                            <th className="px-3 py-3 text-center text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider">
+                                                {t("rankings.table.reviews")}
+                                            </th>
+                                            <th className="px-2 py-3 text-center text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider">
+                                                {t("rankings.table.workEnv")}
+                                            </th>
+                                            <th className="px-2 py-3 text-center text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider">
+                                                {t("rankings.table.salary")}
+                                            </th>
+                                            <th className="px-2 py-3 text-center text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider">
+                                                {t("rankings.table.benefits")}
+                                            </th>
+                                            <th className="px-2 py-3 text-center text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider">
+                                                {t("rankings.table.culture")}
+                                            </th>
+                                            <th className="px-2 py-3 text-center text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider">
+                                                {t("rankings.table.balance")}
+                                            </th>
+                                            <th className="px-2 py-3 text-center text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider">
+                                                {t("rankings.table.growth")}
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody className="bg-white dark:bg-slate-900 divide-y divide-slate-200 dark:divide-slate-700">
+                                        {isLoading ? (
+                                            // Loading state
+                                            Array.from({ length: 15 }).map((_, index) => (
+                                                <tr key={`loading-${index}`} className="animate-pulse">
+                                                    <td className="px-3 py-3 whitespace-nowrap">
+                                                        <div className="h-4 w-4 bg-slate-300 dark:bg-slate-600 rounded"></div>
+                                                    </td>
+                                                    <td className="px-3 py-3 whitespace-nowrap">
+                                                        <div className="flex items-center">
+                                                            <div className="h-8 w-8 bg-slate-300 dark:bg-slate-600 rounded-full mr-2"></div>
+                                                            <div className="h-4 w-24 bg-slate-300 dark:bg-slate-600 rounded"></div>
+                                                        </div>
+                                                    </td>
+                                                    <td className="px-3 py-3 whitespace-nowrap">
+                                                        <div className="h-4 w-20 bg-slate-300 dark:bg-slate-600 rounded"></div>
+                                                    </td>
+                                                    <td className="px-3 py-3 whitespace-nowrap text-center">
+                                                        <div className="h-4 w-8 bg-slate-300 dark:bg-slate-600 rounded mx-auto"></div>
+                                                    </td>
+                                                    <td className="px-3 py-3 whitespace-nowrap text-center">
+                                                        <div className="h-4 w-6 bg-slate-300 dark:bg-slate-600 rounded mx-auto"></div>
+                                                    </td>
+                                                    {Array.from({ length: 6 }).map((_, i) => (
+                                                        <td key={i} className="px-2 py-3 whitespace-nowrap text-center">
+                                                            <div className="h-4 w-6 bg-slate-300 dark:bg-slate-600 rounded mx-auto"></div>
+                                                        </td>
+                                                    ))}
+                                                </tr>
+                                            ))
+                                        ) : companies.length === 0 ? (
+                                            <tr>
+                                                <td colSpan={11} className="text-center py-16">
+                                                    <p className="text-slate-500 dark:text-slate-400">
+                                                        {t("rankings.noCompanies")}
+                                                    </p>
+                                                </td>
+                                            </tr>
+                                        ) : (
+                                            companies.map((company) => (
+                                                <tr
+                                                    key={company.id}
+                                                    className="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors duration-200"
                                                 >
-                                                    {company.rank}
-                                                </span>
-                                            </div>
+                                                    {/* Rank */}
+                                                    <td className="px-3 py-3 whitespace-nowrap">
+                                                        <span
+                                                            className={`text-lg font-bold ${company.rank === 1
+                                                                ? "text-yellow-500"
+                                                                : company.rank === 2
+                                                                    ? "text-slate-400"
+                                                                    : company.rank === 3
+                                                                        ? "text-amber-600"
+                                                                        : "text-slate-500 dark:text-slate-400"
+                                                                }`}
+                                                        >
+                                                            {company.rank}
+                                                            {company.rank <= 3 && (
+                                                                <span className="ml-1 text-xs">
+                                                                    {company.rank === 1 ? "🏆" : company.rank === 2 ? "🥈" : "🥉"}
+                                                                </span>
+                                                            )}
+                                                        </span>
+                                                    </td>
 
-                                            {/* Company Logo */}
-                                            <img
-                                                alt={`${company.companyName} logo`}
-                                                className="h-12 w-12 rounded-full object-cover mr-4 flex-shrink-0"
-                                                src={company.logoUrl}
-                                            />
+                                                    {/* Company */}
+                                                    <td className="px-3 py-3 whitespace-nowrap">
+                                                        <div className="flex items-center">
+                                                            <img
+                                                                alt={`${company.companyName} logo`}
+                                                                className="h-8 w-8 rounded-full object-cover mr-2 flex-shrink-0"
+                                                                src={company.logoUrl}
+                                                            />
+                                                            <Link
+                                                                href={`/company/${company.id}`}
+                                                                className="hover:underline"
+                                                            >
+                                                                <span className="text-sm font-medium text-slate-800 dark:text-slate-200 hover:text-sky-600 dark:hover:text-sky-400 transition-colors">
+                                                                    {company.companyName}
+                                                                </span>
+                                                            </Link>
+                                                        </div>
+                                                    </td>
 
-                                            {/* Company Info */}
-                                            <div className="flex-1 min-w-0 mr-4">
-                                                <Link
-                                                    href={`/company/${company.id}`}
-                                                    className="hover:underline"
-                                                >
-                                                    <h3 className="text-lg font-semibold text-slate-800 dark:text-slate-200 truncate group-hover:text-sky-600 dark:group-hover:text-sky-400 transition-colors">
-                                                        {company.companyName}
-                                                    </h3>
-                                                </Link>
-                                                <p className="text-sm text-slate-500 dark:text-slate-400 truncate">
-                                                    {company.industry}
-                                                </p>
-                                            </div>
+                                                    {/* Industry */}
+                                                    <td className="px-3 py-3 whitespace-nowrap">
+                                                        <span className="text-xs text-slate-500 dark:text-slate-400">
+                                                            {company.industry}
+                                                        </span>
+                                                    </td>
 
-                                            {/* Rating Info */}
-                                            <div className="text-right flex-shrink-0">
-                                                <div className="flex items-center justify-end text-lg font-bold text-sky-600 mb-1">
-                                                    <StarIcon className="h-5 w-5 text-yellow-400 mr-1" />
-                                                    {company.rating.toFixed(1)}
-                                                    <span className="text-sm text-slate-400 dark:text-slate-500 font-normal ml-0.5">
-                                                        /5
-                                                    </span>
-                                                </div>
-                                                <p className="text-xs text-slate-500 dark:text-slate-400">
-                                                    {company.reviewsCount} {t("rankings.reviews")}
-                                                </p>
-                                            </div>
-                                        </div>
-                                    ))}
-                                </div>
-                            )}
+                                                    {/* Rating */}
+                                                    <td className="px-3 py-3 whitespace-nowrap text-center">
+                                                        <div className="flex items-center justify-center">
+                                                            <StarIcon className="h-3 w-3 text-yellow-400 mr-1" />
+                                                            <span className="text-sm font-bold text-sky-600">
+                                                                {company.rating.toFixed(1)}
+                                                            </span>
+                                                        </div>
+                                                    </td>
+
+                                                    {/* Reviews Count */}
+                                                    <td className="px-3 py-3 whitespace-nowrap text-center">
+                                                        <span className="text-xs text-slate-500 dark:text-slate-400">
+                                                            {company.reviewsCount}
+                                                        </span>
+                                                    </td>
+
+                                                    {/* Work Environment */}
+                                                    <td className="px-2 py-3 whitespace-nowrap text-center">
+                                                        <span className={`text-xs font-medium ${company.workEnvironment ? 'text-slate-700 dark:text-slate-300' : 'text-slate-400'}`}>
+                                                            {company.workEnvironment ? company.workEnvironment.toFixed(1) : '-'}
+                                                        </span>
+                                                    </td>
+
+                                                    {/* Salary */}
+                                                    <td className="px-2 py-3 whitespace-nowrap text-center">
+                                                        <span className={`text-xs font-medium ${company.salary ? 'text-slate-700 dark:text-slate-300' : 'text-slate-400'}`}>
+                                                            {company.salary ? company.salary.toFixed(1) : '-'}
+                                                        </span>
+                                                    </td>
+
+                                                    {/* Benefits */}
+                                                    <td className="px-2 py-3 whitespace-nowrap text-center">
+                                                        <span className={`text-xs font-medium ${company.benefits ? 'text-slate-700 dark:text-slate-300' : 'text-slate-400'}`}>
+                                                            {company.benefits ? company.benefits.toFixed(1) : '-'}
+                                                        </span>
+                                                    </td>
+
+                                                    {/* Company Culture */}
+                                                    <td className="px-2 py-3 whitespace-nowrap text-center">
+                                                        <span className={`text-xs font-medium ${company.companyCulture ? 'text-slate-700 dark:text-slate-300' : 'text-slate-400'}`}>
+                                                            {company.companyCulture ? company.companyCulture.toFixed(1) : '-'}
+                                                        </span>
+                                                    </td>
+
+                                                    {/* Work Life Balance */}
+                                                    <td className="px-2 py-3 whitespace-nowrap text-center">
+                                                        <span className={`text-xs font-medium ${company.workLifeBalance ? 'text-slate-700 dark:text-slate-300' : 'text-slate-400'}`}>
+                                                            {company.workLifeBalance ? company.workLifeBalance.toFixed(1) : '-'}
+                                                        </span>
+                                                    </td>
+
+                                                    {/* Professional Growth */}
+                                                    <td className="px-2 py-3 whitespace-nowrap text-center">
+                                                        <span className={`text-xs font-medium ${company.professionalGrowth ? 'text-slate-700 dark:text-slate-300' : 'text-slate-400'}`}>
+                                                            {company.professionalGrowth ? company.professionalGrowth.toFixed(1) : '-'}
+                                                        </span>
+                                                    </td>
+                                                </tr>
+                                            ))
+                                        )}
+                                    </tbody>
+                                </table>
+                            </div>
                         </CardBody>
                     </Card>
 
-                    {/* CTA Section */}
-                    <div className="text-center mt-12">
-                        <p className="text-slate-600 dark:text-slate-300 mb-6">
-                            {t("rankings.cta.description")}
-                        </p>
-                        <Button
-                            as={Link}
-                            href="/company/add"
-                            color="primary"
-                            size="lg"
-                            className="bg-gradient-to-r from-sky-600 to-blue-600 dark:from-sky-500 dark:to-blue-500 hover:from-sky-700 hover:to-blue-700 dark:hover:from-sky-600 dark:hover:to-blue-600 text-white font-semibold"
-                        >
-                            {t("rankings.cta.addCompany")}
-                        </Button>
-                    </div>
+
+
                 </div>
             </main>
         </div>
