@@ -633,7 +633,8 @@
             "positiveAspects": "The good:",
             "areasForImprovement": "To improve:",
             "readFullReview": "Read full review",
-            "noReviews": "No recent reviews to display."
+            "noReviews": "No recent reviews to display.",
+            "role": "Position/Role:"
         },
         "timeAgo": {
             "today": "Today",
@@ -643,6 +644,17 @@
             "weeks": "{{count}} weeks ago",
             "oneMonth": "1 month ago",
             "months": "{{count}} months ago"
+        }
+    },
+    "rankings": {
+        "title": "Company Rankings",
+        "description": "Discover the best-rated companies by their employees. Rankings based on real and verified reviews.",
+        "backHome": "Back to home",
+        "reviews": "reviews",
+        "noCompanies": "No companies to show in the ranking.",
+        "cta": {
+            "description": "Can't find your company? Add it and help other professionals.",
+            "addCompany": "Add company"
         }
     }
 }

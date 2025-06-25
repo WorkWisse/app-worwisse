@@ -42,7 +42,12 @@ const getTimeAgo = (
 ): string => {
   const now = new Date();
   const reviewDate = new Date(creationDate);
-  const diffInMs = now.getTime() - reviewDate.getTime();
+
+  // Reset hours, minutes, seconds, and milliseconds to compare only dates
+  const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  const reviewDay = new Date(reviewDate.getFullYear(), reviewDate.getMonth(), reviewDate.getDate());
+
+  const diffInMs = today.getTime() - reviewDay.getTime();
   const diffInDays = Math.floor(diffInMs / (1000 * 60 * 60 * 24));
 
   if (diffInDays === 0) {
@@ -66,7 +71,7 @@ const getTimeAgo = (
   }
 };
 
-interface IconProps extends React.SVGProps<SVGSVGElement> {}
+interface IconProps extends React.SVGProps<SVGSVGElement> { }
 
 const ChevronLeftIcon = (props: IconProps) => (
   <svg
@@ -425,14 +430,14 @@ export const LandingMainContent = () => {
                     >
                       <Card className="shadow-lg bg-white dark:bg-slate-800 rounded-xl overflow-hidden transition-colors duration-200">
                         <CardHeader className="p-5 pb-3 border-b border-slate-100 dark:border-slate-700 transition-colors duration-200">
-                          <div className="flex items-start justify-between">
-                            <div className="flex items-center space-x-4">
+                          <div className="flex items-start justify-between w-full">
+                            <div className="flex items-center space-x-4 flex-1">
                               <img
                                 alt={`${currentReview.companyName} logo`}
                                 className="h-12 w-12 rounded-full object-cover flex-shrink-0"
                                 src={currentReview.companyLogoUrl}
                               />
-                              <div>
+                              <div className="min-w-0">
                                 <Link
                                   className="hover:underline"
                                   href={`/company/${currentReview.companyId}`}
@@ -446,50 +451,51 @@ export const LandingMainContent = () => {
                                 </p>
                               </div>
                             </div>
-                            <div className="text-right flex-shrink-0">
-                              <div className="flex items-center text-lg font-bold text-sky-600">
+                            <div className="flex flex-col items-end justify-start ml-4 flex-shrink-0">
+                              <div className="flex items-center text-lg font-bold text-sky-600 mb-1">
                                 <StarIcon className="h-5 w-5 text-yellow-400 mr-1" />
                                 {currentReview.overallRating.toFixed(1)}
                                 <span className="text-sm text-slate-400 dark:text-slate-500 font-normal ml-0.5 transition-colors duration-200">
                                   /5
                                 </span>
                               </div>
-                              <p className="text-xs text-slate-400 dark:text-slate-500 mt-0.5 transition-colors duration-200">
+                              <p className="text-xs text-slate-400 dark:text-slate-500 transition-colors duration-200 whitespace-nowrap">
                                 {currentReview.timeAgo}
                               </p>
                             </div>
                           </div>
                         </CardHeader>
-                        <CardBody className="p-5 space-y-3">
-                          <p className="text-sm text-slate-600 dark:text-slate-300 transition-colors duration-200">
-                            <span className="font-semibold text-slate-700 dark:text-slate-200 transition-colors duration-200">
+                        <CardBody className="p-5 space-y-4">
+                          {/* Rol/Puesto */}
+                          <div className="bg-slate-50 dark:bg-slate-700/50 rounded-lg px-3 py-2 inline-block">
+                            <span className="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wide mr-2">
+                              {t("landing.latestReviews.role")}
+                            </span>
+                            <span className="text-sm font-semibold text-slate-700 dark:text-slate-200 transition-colors duration-200">
                               {currentReview.role}
                             </span>
-                          </p>
-                          <div>
-                            <h4 className="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-1 transition-colors duration-200">
+                          </div>
+
+                          {/* Aspectos Positivos */}
+                          <div className="space-y-2">
+                            <h4 className="text-sm font-bold text-green-600 dark:text-green-400 uppercase tracking-wide flex items-center">
+                              <span className="inline-block w-2 h-2 bg-green-500 rounded-full mr-2"></span>
                               {t("landing.latestReviews.positiveAspects")}
                             </h4>
-                            <p className="text-sm text-slate-700 dark:text-slate-300 leading-relaxed line-clamp-2 group-hover:line-clamp-none transition-all duration-300 ease-in-out">
+                            <p className="text-sm text-slate-700 dark:text-slate-300 leading-relaxed pl-4 border-l-2 border-green-200 dark:border-green-800">
                               {currentReview.positiveAspects}
                             </p>
                           </div>
-                          <div>
-                            <h4 className="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-1 transition-colors duration-200">
+
+                          {/* Aspectos a Mejorar */}
+                          <div className="space-y-2">
+                            <h4 className="text-sm font-bold text-orange-600 dark:text-orange-400 uppercase tracking-wide flex items-center">
+                              <span className="inline-block w-2 h-2 bg-orange-500 rounded-full mr-2"></span>
                               {t("landing.latestReviews.areasForImprovement")}
                             </h4>
-                            <p className="text-sm text-slate-700 dark:text-slate-300 leading-relaxed line-clamp-2 group-hover:line-clamp-none transition-all duration-300 ease-in-out">
+                            <p className="text-sm text-slate-700 dark:text-slate-300 leading-relaxed pl-4 border-l-2 border-orange-200 dark:border-orange-800">
                               {currentReview.areasForImprovement}
                             </p>
-                          </div>
-                          <div className="pt-1">
-                            <Link
-                              className="text-sm font-medium text-sky-600 dark:text-sky-400 hover:text-sky-700 dark:hover:text-sky-300 transition-colors duration-300 flex items-center group/link"
-                              href={`/company/${currentReview.id}/review`}
-                            >
-                              {t("landing.latestReviews.readFullReview")}
-                              <ChevronRightIcon className="h-4 w-4 ml-1 opacity-0 group-hover/link:opacity-100 transition-opacity duration-300 transform group-hover/link:translate-x-1" />
-                            </Link>
                           </div>
                         </CardBody>
                       </Card>
