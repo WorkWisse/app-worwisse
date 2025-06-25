@@ -2,16 +2,18 @@ import { GetStaticPaths, GetStaticProps } from "next";
 import Head from "next/head";
 
 import ReviewForm from "@/modules/company/components/ReviewForm";
-import { mockCompanies } from "@/data/mockCompanies";
 import DefaultLayout from "@/layouts/default";
+import { CompanyService } from "@/services";
 
 interface ReviewPageProps {
-  companySlug: string;
+  company: {
+    id: string;
+    companyName: string;
+    // Add other necessary fields from the company object
+  } | null;
 }
 
-export default function ReviewPage({ companySlug }: ReviewPageProps) {
-  const company = mockCompanies.find((c) => c.slug === companySlug);
-
+export default function ReviewPage({ company }: ReviewPageProps) {
   if (!company) {
     return <div>Company not found</div>;
   }
@@ -20,21 +22,23 @@ export default function ReviewPage({ companySlug }: ReviewPageProps) {
     <>
       <DefaultLayout>
         <Head>
-          <title>Calificar {company.name} - WorkWisse</title>
+          <title>Calificar {company.companyName} - WorkWisse</title>
           <meta
             name="description"
-            content={`Comparte tu experiencia trabajando en ${company.name}. Tu opinión es importante para que otras personas tomen mejores decisiones.`}
+            content={`Comparte tu experiencia trabajando en ${company.companyName}. Tu opinión es importante para que otras personas tomen mejores decisiones.`}
           />
         </Head>
-        <ReviewForm />
+        <ReviewForm company={company} />
       </DefaultLayout>
     </>
   );
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const paths = mockCompanies.map((company) => ({
-    params: { slug: company.slug, page: "review" },
+  const companies = await CompanyService.getCompanies();
+
+  const paths = companies.map((company: { id?: string }) => ({
+    params: { slug: company.id ?? "" },
   }));
 
   return {
@@ -44,11 +48,32 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
+  console.log("params:", params);
+
   const companySlug = params?.slug as string;
+
+  let company = null;
+
+  try {
+    const fetchedCompany = await CompanyService.getCompanyById(companySlug);
+
+    // Serializar fechas si existen
+    if (fetchedCompany) {
+      company = {
+        ...fetchedCompany,
+        createdAt: fetchedCompany.createdAt?.toDate?.().toISOString?.() ?? null,
+        updatedAt: fetchedCompany.updatedAt?.toDate?.().toISOString?.() ?? null,
+      };
+    }
+    console.log("Fetched company:", company);
+  } catch (error) {
+    console.error("Error fetching company:", error);
+  }
 
   return {
     props: {
       companySlug,
+      company: company || null,
     },
   };
 };

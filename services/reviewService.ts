@@ -31,7 +31,7 @@ export class ReviewService {
       let q = collection(db, REVIEWS_COLLECTION);
       const constraints = [
         where("companyId", "==", companyId),
-        where("status", "==", "approved"),
+        where("approved", "==", true),
         orderBy("createdAt", "desc"),
         limit(pageSize),
       ];
@@ -105,7 +105,7 @@ export class ReviewService {
       const reviewRef = doc(collection(db, REVIEWS_COLLECTION));
       batch.set(reviewRef, {
         ...reviewData,
-        status: "pending",
+        status: "approved", // Auto-approve for now - change to "pending" if manual moderation is needed
         createdAt: new Date(),
         updatedAt: new Date(),
       });
@@ -190,51 +190,32 @@ export class ReviewService {
         return;
       }
 
-      // Calculate new rating and stats
+      // Calculate new average rating using overallRating
       const totalRating = reviews.reduce(
-        (sum, review) => sum + review.rating,
+        (sum, review) => sum + (review.overallRating || 0),
         0
       );
       const averageRating =
-        Math.round((totalRating / reviews.length) * 10) / 10; // Round to 1 decimal
+        Math.round((totalRating / reviews.length) * 10) / 10;
 
-      // Calculate work environment stats if available
-      const workEnvironmentRatings = reviews
-        .filter((review) => review.ratings?.workEnvironment)
-        .map((review) => review.ratings!.workEnvironment);
+      // Calculate recommendation rate
+      const recommendations = reviews.filter((review) => review.recommend);
+      const recommendationRate = Math.round(
+        (recommendations.length / reviews.length) * 100
+      );
 
-      const compensationRatings = reviews
-        .filter((review) => review.ratings?.compensation)
-        .map((review) => review.ratings!.compensation);
-
-      // Update company document
+      // Update company document with new stats
       const companyRef = doc(db, COMPANIES_COLLECTION, companyId);
-      const updateData: any = {
+      await updateDoc(companyRef, {
         rating: averageRating,
         reviewsCount: reviews.length,
+        recommendationRate: recommendationRate,
         updatedAt: new Date(),
-      };
+      });
 
-      // Add work environment averages if we have data
-      if (workEnvironmentRatings.length > 0) {
-        updateData["workEnvironment.workLifeBalance"] =
-          Math.round(
-            (workEnvironmentRatings.reduce((sum, rating) => sum + rating, 0) /
-              workEnvironmentRatings.length) *
-              10
-          ) / 10;
-      }
-
-      if (compensationRatings.length > 0) {
-        updateData["workEnvironment.compensation"] =
-          Math.round(
-            (compensationRatings.reduce((sum, rating) => sum + rating, 0) /
-              compensationRatings.length) *
-              10
-          ) / 10;
-      }
-
-      await updateDoc(companyRef, updateData);
+      console.log(
+        `Updated company ${companyId}: ${reviews.length} reviews, ${averageRating} rating`
+      );
     } catch (error) {
       console.error("Error updating company stats:", error);
       throw error;
@@ -264,26 +245,36 @@ export class ReviewService {
         };
       }
 
-      // Calculate rating distribution
+      // Calculate rating distribution using overallRating
       const ratingDistribution = { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 };
+
       reviews.forEach((review) => {
         const rating = Math.round(
-          review.rating
+          review.overallRating || 0
         ) as keyof typeof ratingDistribution;
-        ratingDistribution[rating]++;
+
+        if (rating >= 1 && rating <= 5) {
+          ratingDistribution[rating]++;
+        }
       });
 
-      // Calculate recommendation rate
-      const recommendations = reviews.filter((review) => review.wouldRecommend);
+      // Calculate recommendation rate using recommend field
+      const recommendations = reviews.filter((review) => review.recommend);
       const recommendationRate = Math.round(
         (recommendations.length / reviews.length) * 100
       );
 
+      // Calculate average rating using overallRating
+      const totalRating = reviews.reduce(
+        (sum, review) => sum + (review.overallRating || 0),
+        0
+      );
+      const averageRating =
+        Math.round((totalRating / reviews.length) * 10) / 10;
+
       return {
         totalReviews: reviews.length,
-        averageRating:
-          reviews.reduce((sum, review) => sum + review.rating, 0) /
-          reviews.length,
+        averageRating,
         ratingDistribution,
         recommendationRate,
       };

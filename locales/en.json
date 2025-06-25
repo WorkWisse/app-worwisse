@@ -611,5 +611,45 @@
             "acceptTermsRequired": "You must accept the community guidelines",
             "ratingsRequired": "Please complete at least the main ratings"
         }
+    },
+    "search": {
+        "resultsFor": "Search results for",
+        "allCompanies": "All companies",
+        "noResults": "No companies found",
+        "foundResults": "{{count}} companies found",
+        "searching": "Searching companies...",
+        "review": "review",
+        "reviews": "reviews",
+        "noResultsTitle": "No companies found",
+        "noResultsDescription": "We couldn't find any companies matching \"{{query}}\". Try a different search term or add the company yourself.",
+        "noResultsFound": "No companies found matching \"{{query}}\"",
+        "addCompany": "Add company",
+        "backHome": "Back to home"
+    },
+    "landing": {
+        "featuredCompanies": {
+            "title": "Featured Companies",
+            "viewAll": "View All",
+            "noCompanies": "No companies to display.",
+            "reviews": "reviews"
+        },
+        "latestReviews": {
+            "title": "Latest Reviews",
+            "previous": "Previous",
+            "next": "Next",
+            "positiveAspects": "The good:",
+            "areasForImprovement": "To improve:",
+            "readFullReview": "Read full review",
+            "noReviews": "No recent reviews to display."
+        },
+        "timeAgo": {
+            "today": "Today",
+            "oneDay": "1 day ago",
+            "days": "{{count}} days ago",
+            "oneWeek": "1 week ago",
+            "weeks": "{{count}} weeks ago",
+            "oneMonth": "1 month ago",
+            "months": "{{count}} months ago"
+        }
     }
 }

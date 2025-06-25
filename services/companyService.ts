@@ -18,7 +18,6 @@ import { db } from "@/config/firebase";
 import { CompanyDocument, SearchParams } from "@/types";
 
 const COMPANIES_COLLECTION = "companies";
-const REVIEWS_COLLECTION = "reviews";
 
 export class CompanyService {
   // Get all companies with optional filters and pagination
@@ -28,14 +27,14 @@ export class CompanyService {
       const constraints = [];
 
       // Add status filter (only approved companies)
-      constraints.push(where("status", "==", "approved"));
+      constraints.push(where("approved", "==", true));
 
       // Add search query
       if (params.query) {
         // Note: Firestore doesn't support full-text search natively
         // You might want to use Algolia or implement a more complex search
-        constraints.push(where("name", ">=", params.query));
-        constraints.push(where("name", "<=", params.query + "\uf8ff"));
+        constraints.push(where("companyName", ">=", params.query));
+        constraints.push(where("companyName", "<=", params.query + "\uf8ff"));
       }
 
       // Add filters
@@ -45,13 +44,13 @@ export class CompanyService {
 
       if (params.filters?.location?.country) {
         constraints.push(
-          where("location.country", "==", params.filters.location.country)
+          where("location.country", "==", params.filters.location.country),
         );
       }
 
       if (params.filters?.location?.state) {
         constraints.push(
-          where("location.state", "==", params.filters.location.state)
+          where("location.state", "==", params.filters.location.state),
         );
       }
 
@@ -139,6 +138,7 @@ export class CompanyService {
   static async updateCompany(id: string, updates: Partial<CompanyDocument>) {
     try {
       const docRef = doc(db, COMPANIES_COLLECTION, id);
+
       await updateDoc(docRef, {
         ...updates,
         updatedAt: new Date(),

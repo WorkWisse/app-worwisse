@@ -1,5 +1,6 @@
 import { useTranslation, Trans } from "react-i18next";
 import { useRouter } from "next/router";
+
 import { SearchBar } from "@/modules/core/components/SearchBar";
 
 export const LandingHero = () => {
@@ -26,10 +27,11 @@ export const LandingHero = () => {
             </p>
 
             <div className="mb-8">
-              <SearchBar 
+              <SearchBar
                 variant="hero"
-                onSubmit={(query) => {
-                  router.push(`/companies?search=${encodeURIComponent(query)}`);
+                onSuggestionSelect={(suggestion) => {
+                  // Si selecciona una sugerencia específica, va directo a la empresa
+                  router.push(`/company/${suggestion.id}`);
                 }}
               />
             </div>

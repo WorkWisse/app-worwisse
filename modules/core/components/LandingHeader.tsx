@@ -112,9 +112,9 @@ export const LandingHeader = () => {
   return (
     <>
       <header className="py-5 bg-white dark:bg-slate-900 shadow-sm sticky top-0 z-50 transition-colors duration-200">
-        <div>
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           {/* Desktop and Mobile Header */}
-          <div className="flex justify-between w-screen px-3">
+          <div className="flex justify-between items-center">
             {/* Logo */}
             <Link
               href="/"
@@ -125,21 +125,21 @@ export const LandingHeader = () => {
               WorkWisse
             </Link>
 
-            <div>
-              {shouldShowSearch && (
-                <div className="flex-1">
-                  <SearchBar
-                    variant="header"
-                    onSubmit={(query) => {
-                      router.push(
-                        `/companies?search=${encodeURIComponent(query)}`
-                      );
-                    }}
-                    showButton={false}
-                  />
-                </div>
-              )}
-            </div>
+            {/* Center - Search Bar */}
+            {shouldShowSearch && (
+              <div className="flex-1 max-w-md mx-4 hidden md:block">
+                <SearchBar
+                  variant="header"
+                  onSubmit={(query) => {
+                    router.push(`/companies?search=${encodeURIComponent(query)}`);
+                  }}
+                  onSuggestionSelect={(suggestion) => {
+                    router.push(`/company/${suggestion.id}`);
+                  }}
+                  showButton={false}
+                />
+              </div>
+            )}
 
             {/* Desktop Navigation */}
             <nav className="hidden md:flex items-center space-x-6">
@@ -199,9 +199,11 @@ export const LandingHeader = () => {
                     <SearchBar
                       variant="header"
                       onSubmit={(query) => {
-                        router.push(
-                          `/companies?search=${encodeURIComponent(query)}`
-                        );
+                        router.push(`/companies?search=${encodeURIComponent(query)}`);
+                        closeMenu();
+                      }}
+                      onSuggestionSelect={(suggestion) => {
+                        router.push(`/company/${suggestion.id}`);
                         closeMenu();
                       }}
                     />

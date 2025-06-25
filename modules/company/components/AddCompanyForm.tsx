@@ -17,6 +17,7 @@ export default function AddCompanyForm() {
     country: "",
     state: "",
     website: "",
+    terms: false,
     benefits: [] as string[], // Cambiar a array de strings
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -201,6 +202,7 @@ export default function AddCompanyForm() {
 
   const addBenefit = (benefit: string) => {
     const trimmedBenefit = benefit.trim();
+
     if (trimmedBenefit && !formData.benefits.includes(trimmedBenefit)) {
       setFormData((prev) => ({
         ...prev,
@@ -245,7 +247,6 @@ export default function AddCompanyForm() {
 
     setIsSubmitting(true);
     try {
-
       // Get the industry and country labels for display
       const industryLabel =
         industries.find((i) => i.key === formData.industry)?.label ||
@@ -262,14 +263,19 @@ export default function AddCompanyForm() {
         CompanyDocument,
         "id" | "createdAt" | "updatedAt"
       > = {
-        name: formData.name,
+        companyName: formData.name, // Use the correct property name from CompanyDocument
+        nameLowerCase: formData.name.toLowerCase(),
+        reviewsCount: 0,
+        rating: 0,
         industry: industryLabel,
-        location: {
-          country: countryLabel,
-          state: stateLabel,
-        },
-        website: formData.website || undefined,
-        benefits: formData.benefits,
+        logoUrl: `https://picsum.photos/seed/${formData.name}/200/200`, // Temporary logo
+        country: countryLabel,
+        state: stateLabel,
+        website: formData.website,
+        benefits: formData.benefits.join(", "),
+        terms: formData.terms,
+        creationDate: new Date().toISOString(),
+        approved: false,
       };
 
       // Save to Firebase
@@ -277,7 +283,7 @@ export default function AddCompanyForm() {
 
       showSuccess(
         t("addCompany.form.submitSuccess"),
-        t("addCompany.form.companyAdded")
+        t("addCompany.form.companyAdded"),
       );
 
       // Reset form
@@ -287,6 +293,7 @@ export default function AddCompanyForm() {
         country: "",
         state: "",
         website: "",
+        terms: false,
         benefits: [],
       });
       setAcceptedTerms(false);
@@ -295,7 +302,7 @@ export default function AddCompanyForm() {
       console.error("Error adding company:", error);
       showError(
         t("addCompany.form.submitError"),
-        t("addCompany.form.tryAgainLater")
+        t("addCompany.form.tryAgainLater"),
       );
     } finally {
       setIsSubmitting(false);
@@ -315,10 +322,10 @@ export default function AddCompanyForm() {
             <div className="mb-6 lg:mb-8">
               <h1 className="text-center text-3xl lg:text-5xl font-bold text-slate-900 dark:text-white mb-3 lg:mb-4 leading-tight transition-colors duration-200">
                 <Trans
-                  i18nKey="addCompany.title"
                   components={{
                     1: <span className="text-sky-600 dark:text-sky-400" />,
                   }}
+                  i18nKey="addCompany.title"
                 />
               </h1>
               <p className="text-center text-base lg:text-lg text-slate-600 dark:text-slate-300 leading-relaxed transition-colors duration-200">
@@ -333,41 +340,42 @@ export default function AddCompanyForm() {
                   {/* Company Name */}
                   <div>
                     <Input
-                      type="text"
-                      label={t("addCompany.form.name.label")}
-                      placeholder={t("addCompany.form.name.placeholder")}
-                      value={formData.name}
-                      onValueChange={(value) =>
-                        handleInputChange("name", value)
-                      }
                       isRequired
-                      size="lg"
-                      variant="bordered"
                       classNames={{
                         input: "text-slate-900 dark:text-white",
                         label: "text-slate-700 dark:text-slate-300 font-medium",
                       }}
+                      label={t("addCompany.form.name.label")}
+                      placeholder={t("addCompany.form.name.placeholder")}
+                      size="lg"
+                      type="text"
+                      value={formData.name}
+                      variant="bordered"
+                      onValueChange={(value) =>
+                        handleInputChange("name", value)
+                      }
                     />
                   </div>
 
                   {/* Industry */}
                   <div>
                     <Select
+                      isRequired
+                      classNames={{
+                        value: "text-slate-900 dark:text-white",
+                        label: "text-slate-700 dark:text-slate-300 font-medium",
+                      }}
                       label={t("addCompany.form.industry.label")}
                       placeholder={t("addCompany.form.industry.placeholder")}
                       selectedKeys={
                         formData.industry ? [formData.industry] : []
                       }
-                      onSelectionChange={(keys) => {
-                        const selectedKey = Array.from(keys)[0] as string;
-                        handleInputChange("industry", selectedKey);
-                      }}
-                      isRequired
                       size="lg"
                       variant="bordered"
-                      classNames={{
-                        value: "text-slate-900 dark:text-white",
-                        label: "text-slate-700 dark:text-slate-300 font-medium",
+                      onSelectionChange={(keys) => {
+                        const selectedKey = Array.from(keys)[0] as string;
+
+                        handleInputChange("industry", selectedKey);
                       }}
                     >
                       {industries.map((industry) => (
@@ -387,19 +395,20 @@ export default function AddCompanyForm() {
                   {/* Country */}
                   <div>
                     <Select
-                      label={t("addCompany.form.country.label")}
-                      placeholder={t("addCompany.form.country.placeholder")}
-                      selectedKeys={formData.country ? [formData.country] : []}
-                      onSelectionChange={(keys) => {
-                        const selectedKey = Array.from(keys)[0] as string;
-                        handleInputChange("country", selectedKey);
-                      }}
                       isRequired
-                      size="lg"
-                      variant="bordered"
                       classNames={{
                         value: "text-slate-900 dark:text-white",
                         label: "text-slate-700 dark:text-slate-300 font-medium",
+                      }}
+                      label={t("addCompany.form.country.label")}
+                      placeholder={t("addCompany.form.country.placeholder")}
+                      selectedKeys={formData.country ? [formData.country] : []}
+                      size="lg"
+                      variant="bordered"
+                      onSelectionChange={(keys) => {
+                        const selectedKey = Array.from(keys)[0] as string;
+
+                        handleInputChange("country", selectedKey);
                       }}
                     >
                       {countries.map((country) => (
@@ -416,22 +425,23 @@ export default function AddCompanyForm() {
                   {/* State/Province */}
                   <div>
                     <Select
-                      label={t("addCompany.form.state.label")}
-                      placeholder={t("addCompany.form.state.placeholder")}
-                      selectedKeys={formData.state ? [formData.state] : []}
-                      onSelectionChange={(keys) => {
-                        const selectedKey = Array.from(keys)[0] as string;
-                        handleInputChange("state", selectedKey);
+                      isRequired
+                      classNames={{
+                        value: "text-slate-900 dark:text-white",
+                        label: "text-slate-700 dark:text-slate-300 font-medium",
                       }}
                       isDisabled={
                         !formData.country || currentRegions.length === 0
                       }
-                      isRequired
+                      label={t("addCompany.form.state.label")}
+                      placeholder={t("addCompany.form.state.placeholder")}
+                      selectedKeys={formData.state ? [formData.state] : []}
                       size="lg"
                       variant="bordered"
-                      classNames={{
-                        value: "text-slate-900 dark:text-white",
-                        label: "text-slate-700 dark:text-slate-300 font-medium",
+                      onSelectionChange={(keys) => {
+                        const selectedKey = Array.from(keys)[0] as string;
+
+                        handleInputChange("state", selectedKey);
                       }}
                     >
                       {currentRegions.map((region) => (
@@ -450,19 +460,19 @@ export default function AddCompanyForm() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                   <div>
                     <Input
-                      type="url"
-                      label={t("addCompany.form.website.label")}
-                      placeholder={t("addCompany.form.website.placeholder")}
-                      value={formData.website}
-                      onValueChange={(value) =>
-                        handleInputChange("website", value)
-                      }
-                      size="lg"
-                      variant="bordered"
                       classNames={{
                         input: "text-slate-900 dark:text-white",
                         label: "text-slate-700 dark:text-slate-300 font-medium",
                       }}
+                      label={t("addCompany.form.website.label")}
+                      placeholder={t("addCompany.form.website.placeholder")}
+                      size="lg"
+                      type="url"
+                      value={formData.website}
+                      variant="bordered"
+                      onValueChange={(value) =>
+                        handleInputChange("website", value)
+                      }
                     />
                   </div>
                 </div>
@@ -486,9 +496,9 @@ export default function AddCompanyForm() {
                         >
                           <span>{benefit}</span>
                           <button
+                            className="ml-1 text-sky-600 dark:text-sky-400 hover:text-sky-800 dark:hover:text-sky-200 transition-colors"
                             type="button"
                             onClick={() => removeBenefit(benefit)}
-                            className="ml-1 text-sky-600 dark:text-sky-400 hover:text-sky-800 dark:hover:text-sky-200 transition-colors"
                           >
                             <svg
                               className="w-4 h-4"
@@ -497,10 +507,10 @@ export default function AddCompanyForm() {
                               viewBox="0 0 24 24"
                             >
                               <path
+                                d="M6 18L18 6M6 6l12 12"
                                 strokeLinecap="round"
                                 strokeLinejoin="round"
                                 strokeWidth={2}
-                                d="M6 18L18 6M6 6l12 12"
                               />
                             </svg>
                           </button>
@@ -512,21 +522,21 @@ export default function AddCompanyForm() {
                   {/* Benefits input with autocomplete */}
                   <div className="relative">
                     <input
+                      className="w-full px-4 py-3 border-2 border-slate-200 dark:border-slate-600 rounded-lg focus:border-sky-500 dark:focus:border-sky-400 focus:outline-none text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 bg-white dark:bg-slate-800 transition-colors duration-200"
                       id="benefits"
-                      type="text"
                       placeholder={t("addCompany.form.benefits.placeholder")}
+                      type="text"
                       value={benefitsInput}
-                      onChange={(e) =>
-                        handleBenefitsInputChange(e.target.value)
-                      }
-                      onKeyDown={handleBenefitsKeyDown}
-                      onFocus={() =>
-                        setShowBenefitsSuggestions(benefitsInput.length > 0)
-                      }
                       onBlur={() =>
                         setTimeout(() => setShowBenefitsSuggestions(false), 200)
                       }
-                      className="w-full px-4 py-3 border-2 border-slate-200 dark:border-slate-600 rounded-lg focus:border-sky-500 dark:focus:border-sky-400 focus:outline-none text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 bg-white dark:bg-slate-800 transition-colors duration-200"
+                      onChange={(e) =>
+                        handleBenefitsInputChange(e.target.value)
+                      }
+                      onFocus={() =>
+                        setShowBenefitsSuggestions(benefitsInput.length > 0)
+                      }
+                      onKeyDown={handleBenefitsKeyDown}
                     />
 
                     {/* Autocomplete suggestions */}
@@ -554,11 +564,11 @@ export default function AddCompanyForm() {
                 {/* Row 5: Terms and Conditions */}
                 <div className="flex items-start gap-3 p-4 bg-slate-50 dark:bg-slate-700 rounded-lg border border-slate-200 dark:border-slate-600 transition-colors duration-200">
                   <input
-                    type="checkbox"
-                    id="terms"
                     checked={acceptedTerms}
-                    onChange={(e) => setAcceptedTerms(e.target.checked)}
                     className="mt-1 w-4 h-4 text-sky-600 dark:text-sky-400 bg-white dark:bg-slate-600 border-slate-300 dark:border-slate-500 rounded focus:ring-sky-500 dark:focus:ring-sky-400 focus:ring-2"
+                    id="terms"
+                    type="checkbox"
+                    onChange={(e) => setAcceptedTerms(e.target.checked)}
                   />
                   <label
                     htmlFor="terms"

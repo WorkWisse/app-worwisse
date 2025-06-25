@@ -5,9 +5,8 @@ import { Input } from "@heroui/input";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { useTranslation, Trans } from "react-i18next";
-
-import { LandingHeader } from "@/modules/core/components";
-import { mockCompanies } from "@/data/mockCompanies";
+import { ReviewService } from "@/services";
+import { ReviewDocument } from "@/types";
 
 interface ReviewFormData {
   // Información laboral
@@ -98,13 +97,10 @@ const StarRating = ({
   );
 };
 
-export default function ReviewForm() {
+export default function ReviewForm({ company }: { company: any }) {
   const router = useRouter();
   const { slug } = router.query;
   const { t } = useTranslation();
-
-  // Obtener información de la empresa
-  const company = mockCompanies.find((c) => c.slug === slug);
 
   const [formData, setFormData] = useState<ReviewFormData>({
     role: "",
@@ -133,25 +129,59 @@ export default function ReviewForm() {
 
     if (!formData.acceptedTerms) {
       alert(t("reviewForm.validation.acceptTermsRequired"));
+
       return;
     }
 
     // Validar que se hayan completado las calificaciones principales
     if (formData.overallRating === 0 || formData.workEnvironmentRating === 0) {
       alert(t("reviewForm.validation.ratingsRequired"));
+
       return;
     }
 
     setIsSubmitting(true);
 
-    // Simular envío
-    await new Promise((resolve) => setTimeout(resolve, 2000));
+    try {
+      // Preparar los datos para Firebase
+      const reviewData: Omit<ReviewDocument, "id" | "createdAt" | "updatedAt"> =
+        {
+          companyId: company.id,
+          companyName: company.companyName,
+          creationDate: new Date().toISOString(),
+          role: formData.role,
+          startDate: formData.startDate,
+          endDate: formData.currentlyWorking ? null : formData.endDate,
+          workEnvironment: formData.workEnvironmentRating,
+          salary: formData.compensationRating,
+          benefits: formData.benefitsRating,
+          companyCulture: formData.cultureRating,
+          internalCommunication: formData.leadershipRating,
+          professionalGrowth: formData.careerGrowthRating,
+          workLifeBalance: formData.workLifeBalanceRating,
+          overallRating: formData.overallRating,
+          workInclusion: formData.inclusionRating,
+          positiveAspects: formData.pros,
+          areasForImprovement: formData.cons,
+          recommend: formData.wouldRecommend,
+          terms: formData.acceptedTerms,
+          approved: false,
+        };
 
-    console.log("Review submitted:", formData);
-    setIsSubmitting(false);
+      // Enviar a Firebase
+      await ReviewService.addReview(reviewData);
 
-    // Redirigir a la página de la empresa
-    router.push(`/company/${slug}`);
+      // Mostrar mensaje de éxito
+      alert(t("reviewForm.success.message"));
+
+      // Redirigir a la página de la empresa
+      router.push(`/company/${slug}`);
+    } catch (error) {
+      console.error("Error submitting review:", error);
+      alert(t("reviewForm.error.message"));
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (field: keyof ReviewFormData, value: any) => {
@@ -205,7 +235,7 @@ export default function ReviewForm() {
                     <img
                       alt={`Logo de ${company.name}`}
                       className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-lg shadow-md object-cover"
-                      src={company.logo}
+                      src={company.logoUrl}
                     />
                   </button>
                 </div>
@@ -219,7 +249,7 @@ export default function ReviewForm() {
                     <span className="font-medium">{company.industry}</span>
                     <span className="text-slate-400 hidden sm:inline">•</span>
                     <span className="truncate">
-                      {company.location.city}, {company.location.country}
+                      {company.state}, {company.country}
                     </span>
                     {company.website && (
                       <>

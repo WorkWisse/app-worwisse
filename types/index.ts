@@ -7,50 +7,45 @@ export type IconSvgProps = SVGProps<SVGSVGElement> & {
 // Company related types
 export interface Company {
   id: string;
-  name: string;
+  creationDate: string; // ISO date string
+  companyName: string;
+  nameLowerCase: string; // Lowercase version of companyName for case-insensitive search
+  reviewsCount: number; // Total number of reviews
+  rating: number; // Average rating from reviews
+  logoUrl: string; // URL to the company logo
   industry: string;
-  location: {
-    country: string;
-    state: string;
-    city?: string;
-  };
-  website?: string;
-  benefits: string[];
-  workEnvironment: {
-    workLifeBalance: number;
-    careerOpportunities: number;
-    compensation: number;
-    culture: number;
-    management: number;
-  };
+  country: string;
+  state: string;
+  website: string;
+  benefits: string; // Description of benefits
+  terms: boolean;
+  approved: boolean;
+  approvalDate?: string | null; // ISO date string or null
 }
 
 export interface Review {
   id: string;
-  companyId: string;
-  rating: number;
+  companyId: string; // Reference to the company being reviewed
+  companyName?: string; // Optional, can be used for display purposes
+  creationDate: string; // ISO date string
   role: string;
-  department?: string;
-  employmentType?: 'full-time' | 'part-time' | 'contract' | 'internship';
-  timeWorked?: string;
-  timeAgo: string;
-  pros: string;
-  cons: string;
-  advice?: string;
-  wouldRecommend: boolean;
-  isAnonymous: boolean;
-  isVerified: boolean;
-  // Calificaciones específicas
-  ratings?: {
-    workEnvironment: number;
-    compensation: number;
-    benefits: number;
-    culture: number;
-    communication: number;
-    careerGrowth: number;
-    workLifeBalance: number;
-    inclusion: number;
-  };
+  startDate: string; // ISO date string
+  endDate: string | null; // ISO date string or null
+  workEnvironment: number;
+  salary: number;
+  benefits: number;
+  companyCulture: number;
+  internalCommunication: number;
+  professionalGrowth: number;
+  workLifeBalance: number;
+  overallRating: number;
+  workInclusion: number;
+  positiveAspects: string;
+  areasForImprovement: string;
+  recommend: boolean;
+  terms: boolean;
+  approved: boolean;
+  approvalDate?: string | null; // ISO date string or null
 }
 
 export interface JobPosition {
@@ -59,7 +54,7 @@ export interface JobPosition {
   title: string;
   department: string;
   location: string;
-  type: 'full-time' | 'part-time' | 'contract' | 'internship';
+  type: "full-time" | "part-time" | "contract" | "internship";
   salaryRange?: {
     min: number;
     max: number;
@@ -80,21 +75,47 @@ export interface FirebaseDocument {
 }
 
 // Extended Company type for Firebase
-export interface CompanyDocument extends Omit<Company, 'id'>, FirebaseDocument {
+export interface CompanyDocument
+  extends Omit<Company, "id" | "reviewsCount" | "rating">,
+    FirebaseDocument {
   // Additional fields for Firebase storage
   isVerified?: boolean;
-  status?: 'pending' | 'approved' | 'rejected';
+  status?: "pending" | "approved" | "rejected";
   submittedBy?: string; // User ID who submitted the company
+  // Statistics
+  rating?: number; // Average rating from reviews
+  reviewsCount?: number; // Total number of reviews (optional in Firebase)
+  recommendationRate?: number; // Percentage of employees who would recommend (0-100)
+  slug?: string; // URL-friendly identifier
 }
 
 // Extended Review type for Firebase
-export interface ReviewDocument extends Omit<Review, 'id' | 'timeAgo'>, FirebaseDocument {
+export interface ReviewDocument extends Omit<Review, "id">, FirebaseDocument {
   // Additional fields for Firebase storage
   userId?: string; // User ID who submitted the review
-  status?: 'pending' | 'approved' | 'rejected';
+  companyName?: string; // Name of the company being reviewed
   moderationNotes?: string;
   ipAddress?: string; // For spam prevention
   userAgent?: string; // For spam prevention
+
+  // Compatibility fields for UI components
+  rating?: number; // Overall rating (alias for overallRating)
+  timeAgo?: string; // Human-readable time ago
+  pros?: string; // Alias for positiveAspects
+  cons?: string; // Alias for areasForImprovement
+  wouldRecommend?: boolean; // Alias for recommend
+
+  // Optional structured ratings object for advanced rating systems
+  ratings?: {
+    workEnvironment: number;
+    compensation: number;
+    benefits: number;
+    culture: number;
+    communication: number;
+    careerGrowth: number;
+    workLifeBalance: number;
+    inclusion: number;
+  };
 }
 
 // User type for authentication
@@ -127,8 +148,8 @@ export interface CompanyFilters {
 export interface SearchParams {
   query?: string;
   filters?: CompanyFilters;
-  sortBy?: 'rating' | 'reviewsCount' | 'name' | 'createdAt';
-  sortOrder?: 'asc' | 'desc';
+  sortBy?: "rating" | "reviewsCount" | "name" | "createdAt";
+  sortOrder?: "asc" | "desc";
   limit?: number;
   offset?: number;
 }
