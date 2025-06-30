@@ -622,7 +622,7 @@
     "landing": {
         "featuredCompanies": {
             "title": "Featured Companies",
-            "viewAll": "View All",
+            "viewAll": "View Ranking",
             "noCompanies": "No companies to display.",
             "reviews": "reviews"
         },
@@ -633,7 +633,8 @@
             "positiveAspects": "The good:",
             "areasForImprovement": "To improve:",
             "readFullReview": "Read full review",
-            "noReviews": "No recent reviews to display."
+            "noReviews": "No recent reviews to display.",
+            "role": "Position/Role:"
         },
         "timeAgo": {
             "today": "Today",
@@ -643,6 +644,31 @@
             "weeks": "{{count}} weeks ago",
             "oneMonth": "1 month ago",
             "months": "{{count}} months ago"
+        }
+    },
+    "rankings": {
+        "title": "Company <1>Rankings</1>",
+        "description": "Discover the best-rated companies by their employees. Rankings based on real and verified reviews.",
+        "backHome": "Back to home",
+        "reviews": "reviews",
+        "noCompanies": "No companies to show in the ranking.",
+        "table": {
+            "company": "Company",
+            "industry": "Industry",
+            "rating": "Rating",
+            "reviews": "Reviews",
+            "workEnv": "Work Env.",
+            "salary": "Salary",
+            "benefits": "Benefits",
+            "culture": "Culture",
+            "balance": "Balance",
+            "growth": "Growth",
+            "communication": "Communication",
+            "inclusion": "Inclusion"
+        },
+        "cta": {
+            "description": "Can't find your company? Add it and help other professionals.",
+            "addCompany": "Add company"
         }
     }
 }

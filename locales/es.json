@@ -632,7 +632,7 @@
     "landing": {
         "featuredCompanies": {
             "title": "Empresas Destacadas",
-            "viewAll": "Ver Todas",
+            "viewAll": "Ver clasificación",
             "noCompanies": "No hay empresas para mostrar.",
             "reviews": "reseñas"
         },
@@ -643,7 +643,8 @@
             "positiveAspects": "Lo bueno:",
             "areasForImprovement": "A mejorar:",
             "readFullReview": "Leer opinión completa",
-            "noReviews": "No hay opiniones recientes para mostrar."
+            "noReviews": "No hay opiniones recientes para mostrar.",
+            "role": "Cargo/Puesto:"
         },
         "timeAgo": {
             "today": "Hoy",
@@ -653,6 +654,31 @@
             "weeks": "Hace {{count}} semanas",
             "oneMonth": "Hace 1 mes",
             "months": "Hace {{count}} meses"
+        }
+    },
+    "rankings": {
+        "title": "Clasificación de <1>Empresas</1>",
+        "description": "Descubre las empresas mejor valoradas por sus empleados. Ranking basado en opiniones reales y verificadas.",
+        "backHome": "Volver al inicio",
+        "reviews": "opiniones",
+        "noCompanies": "No hay empresas para mostrar en el ranking.",
+        "table": {
+            "company": "Empresa",
+            "industry": "Industria",
+            "rating": "Calificación",
+            "reviews": "Opiniones",
+            "workEnv": "Ambiente",
+            "salary": "Salario",
+            "benefits": "Beneficios",
+            "culture": "Cultura",
+            "balance": "Balance",
+            "growth": "Crecimiento",
+            "communication": "Comunicación",
+            "inclusion": "Inclusión"
+        },
+        "cta": {
+            "description": "¿No encuentras tu empresa? Agrégala y ayuda a otros profesionales.",
+            "addCompany": "Agregar empresa"
         }
     }
 }

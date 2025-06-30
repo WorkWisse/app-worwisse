@@ -645,7 +645,7 @@
     "landing": {
         "featuredCompanies": {
             "title": "Empresas em Destaque",
-            "viewAll": "Ver Todas",
+            "viewAll": "Ver classificação",
             "noCompanies": "Não há empresas para mostrar.",
             "reviews": "opiniões"
         },
@@ -656,7 +656,8 @@
             "positiveAspects": "O bom:",
             "areasForImprovement": "A melhorar:",
             "readFullReview": "Ler opinião completa",
-            "noReviews": "Não há opiniões recentes para mostrar."
+            "noReviews": "Não há opiniões recentes para mostrar.",
+            "role": "Cargo/Função:"
         },
         "timeAgo": {
             "today": "Hoje",
@@ -666,6 +667,31 @@
             "weeks": "Há {{count}} semanas",
             "oneMonth": "Há 1 mês",
             "months": "Há {{count}} meses"
+        }
+    },
+    "rankings": {
+        "title": "Classificação de <1>Empresas</1>",
+        "description": "Descubra as empresas mais bem avaliadas por seus funcionários. Classificação baseada em opiniões reais e verificadas.",
+        "backHome": "Voltar ao início",
+        "reviews": "opiniões",
+        "noCompanies": "Não há empresas para mostrar na classificação.",
+        "table": {
+            "company": "Empresa",
+            "industry": "Indústria",
+            "rating": "Avaliação",
+            "reviews": "Opiniões",
+            "workEnv": "Ambiente",
+            "salary": "Salário",
+            "benefits": "Benefícios",
+            "culture": "Cultura",
+            "balance": "Equilíbrio",
+            "growth": "Crescimento",
+            "communication": "Comunicação",
+            "inclusion": "Inclusão"
+        },
+        "cta": {
+            "description": "Não encontra sua empresa? Adicione-a e ajude outros profissionais.",
+            "addCompany": "Adicionar empresa"
         }
     }
 }
