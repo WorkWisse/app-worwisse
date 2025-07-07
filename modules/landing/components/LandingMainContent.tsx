@@ -45,7 +45,11 @@ const getTimeAgo = (
 
   // Reset hours, minutes, seconds, and milliseconds to compare only dates
   const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-  const reviewDay = new Date(reviewDate.getFullYear(), reviewDate.getMonth(), reviewDate.getDate());
+  const reviewDay = new Date(
+    reviewDate.getFullYear(),
+    reviewDate.getMonth(),
+    reviewDate.getDate()
+  );
 
   const diffInMs = today.getTime() - reviewDay.getTime();
   const diffInDays = Math.floor(diffInMs / (1000 * 60 * 60 * 24));
@@ -71,7 +75,7 @@ const getTimeAgo = (
   }
 };
 
-interface IconProps extends React.SVGProps<SVGSVGElement> { }
+interface IconProps extends React.SVGProps<SVGSVGElement> {}
 
 const ChevronLeftIcon = (props: IconProps) => (
   <svg
@@ -171,21 +175,27 @@ export const LandingMainContent = () => {
       try {
         setIsLoadingReviews(true);
         const reviews = await ReviewService.getLatestReviews(5);
+        console.log("Latest reviews loaded:", reviews);
+        
 
         // Get company data for each review to get the real logo
         const mappedReviews: LatestReview[] = await Promise.all(
           reviews.map(async (review: ReviewDocument) => {
             let companyLogoUrl = `https://ui-avatars.com/api/?name=${encodeURIComponent(review.companyName || "")}&background=0D8ABC&color=fff&size=80`;
             let companyIndustry = "Tecnología";
-            let companySlug = review.companyName
-              ?.toLowerCase()
-              .replace(/[^a-z0-9]+/g, "-")
-              .replace(/^-+|-+$/g, "") || "";
+            let companySlug =
+              review.companyName
+                ?.toLowerCase()
+                .replace(/[^a-z0-9]+/g, "-")
+                .replace(/^-+|-+$/g, "") || "";
 
             // Try to get company data if we have a companyId
             if (review.companyId) {
               try {
-                const companyData = await CompanyService.getCompanyById(review.companyId);
+                const companyData = await CompanyService.getCompanyById(
+                  review.companyId
+                );
+
                 if (companyData) {
                   companyLogoUrl = companyData.logoUrl || companyLogoUrl;
                   companyIndustry = companyData.industry || companyIndustry;
@@ -193,7 +203,10 @@ export const LandingMainContent = () => {
                 }
               } catch (companyError) {
                 // eslint-disable-next-line no-console
-                console.warn(`Could not fetch company data for review ${review.id}:`, companyError);
+                console.warn(
+                  `Could not fetch company data for review ${review.id}:`,
+                  companyError,
+                );
                 // Keep the fallback values
               }
             }
