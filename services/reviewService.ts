@@ -61,9 +61,9 @@ export class ReviewService {
     try {
       const q = query(
         collection(db, REVIEWS_COLLECTION),
-        where("status", "==", "approved"),
+        where("approved", "==", true),
         orderBy("createdAt", "desc"),
-        limit(pageSize)
+        limit(pageSize),
       );
 
       const querySnapshot = await getDocs(q);

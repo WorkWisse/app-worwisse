@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { useTranslation, Trans } from "react-i18next";
 
 interface Feature {
@@ -25,7 +26,7 @@ const features: Feature[] = [
     titleKey: "features.items.rankings.title",
     descriptionKey: "features.items.rankings.description",
     benefitKey: "features.items.rankings.benefit",
-  }
+  },
 ];
 
 export const LandingFeatures = () => {
@@ -81,10 +82,12 @@ export const LandingFeatures = () => {
               {t("features.cta.description")}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="bg-sky-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-sky-700 transition-colors shadow-md hover:shadow-lg">
+              <Link
+                href="/rankings"
+                className="bg-sky-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-sky-700 transition-colors shadow-md hover:shadow-lg"
+              >
                 {t("features.cta.primary")}
-              </button>
-
+              </Link>
             </div>
           </div>
         </div>
