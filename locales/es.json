@@ -612,6 +612,10 @@
             "button": {
                 "send": "Enviar mensaje",
                 "sending": "Enviando..."
+            },
+            "messages": {
+                "success": "¡Mensaje enviado exitosamente! Te responderemos pronto.",
+                "error": "Error al enviar el mensaje. Por favor, intentá nuevamente."
             }
         }
     },

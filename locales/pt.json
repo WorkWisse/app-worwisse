@@ -358,6 +358,10 @@
             "button": {
                 "send": "Enviar mensagem",
                 "sending": "Enviando..."
+            },
+            "messages": {
+                "success": "Mensagem enviada com sucesso! Responderemos em breve.",
+                "error": "Erro ao enviar mensagem. Tente novamente."
             }
         }        
     },
