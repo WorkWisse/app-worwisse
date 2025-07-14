@@ -96,9 +96,8 @@ export default async function handler(
           </div>
         </div>
       `,
-      // También incluir versión de texto plano
       text: `
-Nuevo mensaje de contacto - WorkWisse
+Nuevo mensaje  WorkWisse
 
 Datos del contacto:
 - Nombre: ${name}
