@@ -10,10 +10,10 @@ export default function ContactHero() {
           <div className="space-y-4">
             <h1 className="text-5xl lg:text-6xl font-bold text-slate-900 dark:text-slate-100 leading-tight transition-colors duration-200">
               <Trans
-                i18nKey="contact.hero.title"
                 components={{
                   1: <span className="text-sky-600 dark:text-sky-400" />,
                 }}
+                i18nKey="contact.hero.title"
               />
             </h1>
             <p className="text-xl text-slate-600 dark:text-slate-300 leading-relaxed max-w-3xl mx-auto transition-colors duration-200">

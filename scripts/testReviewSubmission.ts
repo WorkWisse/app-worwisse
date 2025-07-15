@@ -27,22 +27,13 @@ async function testReviewSubmission() {
       approved: false,
     };
 
-    console.log("Adding new review...");
     const reviewId = await ReviewService.addReview(testReview);
-    console.log(`Review added with ID: ${reviewId}`);
 
     // Wait a moment for the stats to update
     await new Promise(resolve => setTimeout(resolve, 1000));
 
     // Get updated company data
-    const company = await CompanyService.getCompanyById(testReview.companyId);
-    console.log("Updated company stats:", {
-      id: company?.id,
-      companyName: company?.companyName,
-      rating: company?.rating,
-      reviewsCount: company?.reviewsCount,
-      recommendationRate: company?.recommendationRate,
-    });
+    await CompanyService.getCompanyById(testReview.companyId);
 
   } catch (error) {
     console.error("Test failed:", error);

@@ -29,15 +29,18 @@ export default function AboutTeam() {
   const { t } = useTranslation();
 
   return (
-    <section id="team" className="py-20 px-4 bg-slate-50 dark:bg-slate-800 transition-colors duration-200">
+    <section
+      className="py-20 px-4 bg-slate-50 dark:bg-slate-800 transition-colors duration-200"
+      id="team"
+    >
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16 animate-fade-in-up">
           <h2 className="text-4xl lg:text-5xl font-bold text-slate-900 dark:text-white mb-6">
             <Trans
-              i18nKey="about.team.title"
               components={{
                 1: <span className="text-sky-600 dark:text-sky-400" />,
               }}
+              i18nKey="about.team.title"
             />
           </h2>
           <p className="text-xl text-slate-600 dark:text-slate-300 max-w-3xl mx-auto leading-relaxed">
@@ -55,9 +58,9 @@ export default function AboutTeam() {
               <CardBody className="p-6 text-center space-y-4">
                 <div className="relative mx-auto w-24 h-24 mb-4">
                   <img
-                    src={`https://picsum.photos/seed/${member.imageId}/200/200`}
                     alt={t(`about.team.members.${member.key}.name`)}
                     className="w-full h-full rounded-full object-cover"
+                    src={`https://picsum.photos/seed/${member.imageId}/200/200`}
                   />
                   <div className="absolute inset-0 rounded-full bg-gradient-to-t from-sky-600/20 to-transparent" />
                 </div>

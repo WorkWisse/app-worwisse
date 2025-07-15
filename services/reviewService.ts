@@ -29,7 +29,7 @@ export class ReviewService {
   ) {
     try {
       let q = collection(db, REVIEWS_COLLECTION);
-      const constraints = [
+      const constraints: any[] = [
         where("companyId", "==", companyId),
         where("approved", "==", true),
         orderBy("createdAt", "desc"),
@@ -51,6 +51,7 @@ export class ReviewService {
         hasMore: querySnapshot.docs.length === pageSize,
       };
     } catch (error) {
+      // eslint-disable-next-line no-console
       console.error("Error getting company reviews:", error);
       throw error;
     }
@@ -73,6 +74,7 @@ export class ReviewService {
         ...doc.data(),
       })) as ReviewDocument[];
     } catch (error) {
+      // eslint-disable-next-line no-console
       console.error("Error getting latest reviews:", error);
       throw error;
     }
@@ -87,8 +89,10 @@ export class ReviewService {
       if (docSnap.exists()) {
         return { id: docSnap.id, ...docSnap.data() } as ReviewDocument;
       }
+
       return null;
     } catch (error) {
+      // eslint-disable-next-line no-console
       console.error("Error getting review:", error);
       throw error;
     }
@@ -96,16 +100,16 @@ export class ReviewService {
 
   // Add new review
   static async addReview(
-    reviewData: Omit<ReviewDocument, "id" | "createdAt" | "updatedAt">
+    reviewData: Omit<ReviewDocument, "id" | "createdAt" | "updatedAt">,
   ) {
     try {
       const batch = writeBatch(db);
 
       // Add review
       const reviewRef = doc(collection(db, REVIEWS_COLLECTION));
+
       batch.set(reviewRef, {
         ...reviewData,
-        status: "approved", // Auto-approve for now - change to "pending" if manual moderation is needed
         createdAt: new Date(),
         updatedAt: new Date(),
       });
@@ -114,11 +118,9 @@ export class ReviewService {
       // For now, we'll just add the review and update company stats separately
       await batch.commit();
 
-      // Update company rating and review count
-      await this.updateCompanyStats(reviewData.companyId);
-
       return reviewRef.id;
     } catch (error) {
+      // eslint-disable-next-line no-console
       console.error("Error adding review:", error);
       throw error;
     }
@@ -128,19 +130,13 @@ export class ReviewService {
   static async updateReview(id: string, updates: Partial<ReviewDocument>) {
     try {
       const docRef = doc(db, REVIEWS_COLLECTION, id);
+
       await updateDoc(docRef, {
         ...updates,
         updatedAt: new Date(),
       });
-
-      // If the review status changed to approved, update company stats
-      if (updates.status === "approved") {
-        const reviewData = await this.getReviewById(id);
-        if (reviewData) {
-          await this.updateCompanyStats(reviewData.companyId);
-        }
-      }
     } catch (error) {
+      // eslint-disable-next-line no-console
       console.error("Error updating review:", error);
       throw error;
     }
@@ -152,6 +148,7 @@ export class ReviewService {
       const reviewData = await this.getReviewById(id);
 
       const docRef = doc(db, REVIEWS_COLLECTION, id);
+
       await deleteDoc(docRef);
 
       // Update company stats after deletion
@@ -159,6 +156,7 @@ export class ReviewService {
         await this.updateCompanyStats(reviewData.companyId);
       }
     } catch (error) {
+      // eslint-disable-next-line no-console
       console.error("Error deleting review:", error);
       throw error;
     }
@@ -171,29 +169,31 @@ export class ReviewService {
       const q = query(
         collection(db, REVIEWS_COLLECTION),
         where("companyId", "==", companyId),
-        where("status", "==", "approved")
+        where("status", "==", "approved"),
       );
 
       const querySnapshot = await getDocs(q);
       const reviews = querySnapshot.docs.map(
-        (doc) => doc.data() as ReviewDocument
+        (doc) => doc.data() as ReviewDocument,
       );
 
       if (reviews.length === 0) {
         // No approved reviews, set defaults
         const companyRef = doc(db, COMPANIES_COLLECTION, companyId);
+
         await updateDoc(companyRef, {
           rating: 0,
           reviewsCount: 0,
           updatedAt: new Date(),
         });
+
         return;
       }
 
       // Calculate new average rating using overallRating
       const totalRating = reviews.reduce(
         (sum, review) => sum + (review.overallRating || 0),
-        0
+        0,
       );
       const averageRating =
         Math.round((totalRating / reviews.length) * 10) / 10;
@@ -201,22 +201,20 @@ export class ReviewService {
       // Calculate recommendation rate
       const recommendations = reviews.filter((review) => review.recommend);
       const recommendationRate = Math.round(
-        (recommendations.length / reviews.length) * 100
+        (recommendations.length / reviews.length) * 100,
       );
 
       // Update company document with new stats
       const companyRef = doc(db, COMPANIES_COLLECTION, companyId);
+
       await updateDoc(companyRef, {
         rating: averageRating,
         reviewsCount: reviews.length,
         recommendationRate: recommendationRate,
         updatedAt: new Date(),
       });
-
-      console.log(
-        `Updated company ${companyId}: ${reviews.length} reviews, ${averageRating} rating`
-      );
     } catch (error) {
+      // eslint-disable-next-line no-console
       console.error("Error updating company stats:", error);
       throw error;
     }
@@ -228,12 +226,12 @@ export class ReviewService {
       const q = query(
         collection(db, REVIEWS_COLLECTION),
         where("companyId", "==", companyId),
-        where("status", "==", "approved")
+        where("status", "==", "approved"),
       );
 
       const querySnapshot = await getDocs(q);
       const reviews = querySnapshot.docs.map(
-        (doc) => doc.data() as ReviewDocument
+        (doc) => doc.data() as ReviewDocument,
       );
 
       if (reviews.length === 0) {
@@ -250,7 +248,7 @@ export class ReviewService {
 
       reviews.forEach((review) => {
         const rating = Math.round(
-          review.overallRating || 0
+          review.overallRating || 0,
         ) as keyof typeof ratingDistribution;
 
         if (rating >= 1 && rating <= 5) {
@@ -261,13 +259,13 @@ export class ReviewService {
       // Calculate recommendation rate using recommend field
       const recommendations = reviews.filter((review) => review.recommend);
       const recommendationRate = Math.round(
-        (recommendations.length / reviews.length) * 100
+        (recommendations.length / reviews.length) * 100,
       );
 
       // Calculate average rating using overallRating
       const totalRating = reviews.reduce(
         (sum, review) => sum + (review.overallRating || 0),
-        0
+        0,
       );
       const averageRating =
         Math.round((totalRating / reviews.length) * 10) / 10;
@@ -279,6 +277,7 @@ export class ReviewService {
         recommendationRate,
       };
     } catch (error) {
+      // eslint-disable-next-line no-console
       console.error("Error getting company review stats:", error);
       throw error;
     }

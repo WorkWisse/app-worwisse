@@ -23,38 +23,38 @@ const CardBody = ({
 // Placeholder for icons, replace with actual icon components if available
 const ChevronLeftIcon = () => (
   <svg
+    aria-labelledby="chevLeftTitle"
     className="w-6 h-6"
     fill="none"
     stroke="currentColor"
     viewBox="0 0 24 24"
     xmlns="http://www.w3.org/2000/svg"
-    aria-labelledby="chevLeftTitle"
   >
     <title id="chevLeftTitle">Previous</title>
     <path
+      d="M15 19l-7-7 7-7"
       strokeLinecap="round"
       strokeLinejoin="round"
       strokeWidth="2"
-      d="M15 19l-7-7 7-7"
     />
   </svg>
 );
 
 const ChevronRightIcon = () => (
   <svg
+    aria-labelledby="chevRightTitle"
     className="w-6 h-6"
     fill="none"
     stroke="currentColor"
     viewBox="0 0 24 24"
     xmlns="http://www.w3.org/2000/svg"
-    aria-labelledby="chevRightTitle"
   >
     <title id="chevRightTitle">Next</title>
     <path
+      d="M9 5l7 7-7 7"
       strokeLinecap="round"
       strokeLinejoin="round"
       strokeWidth="2"
-      d="M9 5l7 7-7 7"
     />
   </svg>
 );
@@ -98,15 +98,15 @@ export const LandingLastReviews = () => {
           <div className="space-x-2">
             <Button
               isIconOnly
-              variant="flat"
               className="bg-gray-200 hover:bg-gray-300"
+              variant="flat"
             >
               <ChevronLeftIcon />
             </Button>
             <Button
               isIconOnly
-              variant="flat"
               className="bg-gray-200 hover:bg-gray-300"
+              variant="flat"
             >
               <ChevronRightIcon />
             </Button>
@@ -140,8 +140,8 @@ export const LandingLastReviews = () => {
                 <h4 className="font-semibold text-gray-700 mb-1">Cons:</h4>
                 <p className="text-gray-600 mb-3 text-sm">{review.cons}</p>
                 <Link
-                  href={`/reviews/${review.id}`}
                   className="text-purple-600 hover:text-purple-800 font-semibold text-sm"
+                  href={`/reviews/${review.id}`}
                 >
                   Ver más
                 </Link>

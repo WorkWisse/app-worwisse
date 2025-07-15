@@ -316,7 +316,7 @@ export default function CompanyDetail({
                           <div className="flex items-center gap-3 mb-2">
                             <div className="flex scale-75">
                               {renderStars(
-                                review.rating || review.overallRating || 0
+                                review.rating || review.overallRating || 0,
                               )}
                             </div>
                             <span className="text-sm font-medium text-slate-900 dark:text-white">
@@ -419,7 +419,7 @@ export default function CompanyDetail({
                       (reviews.filter((r) => r.wouldRecommend || r.recommend)
                         .length /
                         Math.max(reviews.length, 1)) *
-                        100
+                        100,
                     )}
                     %
                   </span>

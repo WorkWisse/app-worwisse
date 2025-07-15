@@ -26,15 +26,18 @@ export default function AboutHistory() {
   const { t } = useTranslation();
 
   return (
-    <section id="history" className="py-20 px-4 bg-white dark:bg-slate-900 transition-colors duration-200">
+    <section
+      className="py-20 px-4 bg-white dark:bg-slate-900 transition-colors duration-200"
+      id="history"
+    >
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16 animate-fade-in-up">
           <h2 className="text-4xl lg:text-5xl font-bold text-slate-900 dark:text-white mb-6">
             <Trans
-              i18nKey="about.history.title"
               components={{
                 1: <span className="text-sky-600 dark:text-sky-400" />,
               }}
+              i18nKey="about.history.title"
             />
           </h2>
           <p className="text-xl text-slate-600 dark:text-slate-300 max-w-3xl mx-auto leading-relaxed">
@@ -49,8 +52,9 @@ export default function AboutHistory() {
             {timeline.map((event, index) => (
               <div
                 key={event.year}
-                className={`flex flex-col lg:flex-row items-center gap-8 animate-fade-in-up ${index % 2 === 0 ? "lg:flex-row" : "lg:flex-row-reverse"
-                  }`}
+                className={`flex flex-col lg:flex-row items-center gap-8 animate-fade-in-up ${
+                  index % 2 === 0 ? "lg:flex-row" : "lg:flex-row-reverse"
+                }`}
                 style={{ animationDelay: `${index * 0.2}s` }}
               >
                 <div className="flex-1 text-center lg:text-left">

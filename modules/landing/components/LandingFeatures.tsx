@@ -38,8 +38,8 @@ export const LandingFeatures = () => {
         <div className="text-center mb-16 animate-fade-in-up">
           <h2 className="text-4xl lg:text-5xl font-bold text-slate-900 dark:text-slate-100 mb-6 transition-colors duration-200">
             <Trans
-              i18nKey="features.title"
               components={{ 1: <span className="text-sky-600" /> }}
+              i18nKey="features.title"
             />
           </h2>
           <p className="text-xl text-slate-600 dark:text-slate-300 max-w-3xl mx-auto leading-relaxed transition-colors duration-200">
@@ -83,8 +83,8 @@ export const LandingFeatures = () => {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
-                href="/rankings"
                 className="bg-sky-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-sky-700 transition-colors shadow-md hover:shadow-lg"
+                href="/rankings"
               >
                 {t("features.cta.primary")}
               </Link>
