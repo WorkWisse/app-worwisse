@@ -20,7 +20,6 @@ export default function ContactForm() {
 
     await new Promise((resolve) => setTimeout(resolve, 1000));
 
-    console.log("Form submitted:", formData);
     setIsSubmitting(false);
     setFormData({ name: "", email: "", subject: "", message: "" });
   };
@@ -42,75 +41,75 @@ export default function ContactForm() {
         </div> */}
 
         <Card className="p-8 shadow-xl bg-white dark:bg-slate-800 border dark:border-slate-700">
-          <form onSubmit={handleSubmit} className="space-y-6">
+          <form className="space-y-6" onSubmit={handleSubmit}>
             <div className="grid md:grid-cols-2 gap-6">
               <Input
+                required
+                classNames={{
+                  input: "text-slate-900 dark:text-white",
+                  label: "text-slate-700 dark:text-slate-300 font-medium",
+                }}
                 label={t("contact.form.fields.name.label")}
                 placeholder={t("contact.form.fields.name.placeholder")}
-                value={formData.name}
-                onChange={(e) => handleChange("name", e.target.value)}
-                required
                 size="lg"
+                value={formData.name}
                 variant="bordered"
-                classNames={{
-                  input: "text-slate-900 dark:text-white",
-                  label: "text-slate-700 dark:text-slate-300 font-medium",
-                }}
+                onChange={(e) => handleChange("name", e.target.value)}
               />
               <Input
-                label={t("contact.form.fields.email.label")}
-                placeholder={t("contact.form.fields.email.placeholder")}
-                type="email"
-                value={formData.email}
-                onChange={(e) => handleChange("email", e.target.value)}
                 required
-                size="lg"
-                variant="bordered"
                 classNames={{
                   input: "text-slate-900 dark:text-white",
                   label: "text-slate-700 dark:text-slate-300 font-medium",
                 }}
+                label={t("contact.form.fields.email.label")}
+                placeholder={t("contact.form.fields.email.placeholder")}
+                size="lg"
+                type="email"
+                value={formData.email}
+                variant="bordered"
+                onChange={(e) => handleChange("email", e.target.value)}
               />
             </div>
 
             <Input
-              label={t("contact.form.fields.subject.label")}
-              placeholder={t("contact.form.fields.subject.placeholder")}
-              value={formData.subject}
-              onChange={(e) => handleChange("subject", e.target.value)}
               required
-              size="lg"
-              variant="bordered"
               classNames={{
                 input: "text-slate-900 dark:text-white",
                 label: "text-slate-700 dark:text-slate-300 font-medium",
               }}
+              label={t("contact.form.fields.subject.label")}
+              placeholder={t("contact.form.fields.subject.placeholder")}
+              size="lg"
+              value={formData.subject}
+              variant="bordered"
+              onChange={(e) => handleChange("subject", e.target.value)}
             />
 
             <div className="space-y-2">
               <label
-                htmlFor="message"
                 className="block text-slate-700 dark:text-slate-300 font-medium text-sm"
+                htmlFor="message"
               >
                 {t("contact.form.fields.message.label")}
               </label>
               <textarea
+                required
+                className="w-full px-4 py-3 border-2 border-slate-200 dark:border-slate-600 rounded-lg focus:border-sky-500 dark:focus:border-sky-400 focus:outline-none resize-none text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 bg-white dark:bg-slate-800 transition-colors duration-200"
                 id="message"
                 placeholder={t("contact.form.fields.message.placeholder")}
+                rows={6}
                 value={formData.message}
                 onChange={(e) => handleChange("message", e.target.value)}
-                required
-                rows={6}
-                className="w-full px-4 py-3 border-2 border-slate-200 dark:border-slate-600 rounded-lg focus:border-sky-500 dark:focus:border-sky-400 focus:outline-none resize-none text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 bg-white dark:bg-slate-800 transition-colors duration-200"
               />
             </div>
 
             <div className="flex justify-center pt-4">
               <Button
-                type="submit"
-                size="lg"
                 className="bg-sky-600 dark:bg-sky-600 text-white hover:bg-sky-700 dark:hover:bg-sky-700 font-semibold px-12 py-3 transition-colors duration-200"
                 disabled={isSubmitting}
+                size="lg"
+                type="submit"
               >
                 {isSubmitting
                   ? t("contact.form.button.sending")

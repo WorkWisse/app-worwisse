@@ -24,8 +24,8 @@ export default function ReviewPage({ company }: ReviewPageProps) {
         <Head>
           <title>Calificar {company.companyName} - WorkWisse</title>
           <meta
-            name="description"
             content={`Comparte tu experiencia trabajando en ${company.companyName}. Tu opinión es importante para que otras personas tomen mejores decisiones.`}
+            name="description"
           />
         </Head>
         <ReviewForm company={company} />
@@ -48,8 +48,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  console.log("params:", params);
-
   const companySlug = params?.slug as string;
 
   let company = null;
@@ -65,8 +63,8 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
         updatedAt: fetchedCompany.updatedAt?.toDate?.().toISOString?.() ?? null,
       };
     }
-    console.log("Fetched company:", company);
   } catch (error) {
+    // eslint-disable-next-line no-console
     console.error("Error fetching company:", error);
   }
 

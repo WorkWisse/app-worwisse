@@ -43,7 +43,7 @@ export const LandingFAQ = () => {
     setOpenItems((prev) =>
       prev.includes(index)
         ? prev.filter((item) => item !== index)
-        : [...prev, index]
+        : [...prev, index],
     );
   };
 
@@ -53,8 +53,10 @@ export const LandingFAQ = () => {
         <div className="text-center mb-16 animate-fade-in-up">
           <h2 className="text-4xl lg:text-5xl font-bold text-slate-900 dark:text-slate-100 mb-6 transition-colors duration-200">
             <Trans
+              components={{
+                1: <span className="text-sky-600 dark:text-sky-400" />,
+              }}
               i18nKey="faq.title"
-              components={{ 1: <span className="text-sky-600 dark:text-sky-400" /> }}
             />
           </h2>
           <p className="text-xl text-slate-600 dark:text-slate-300 leading-relaxed transition-colors duration-200">
@@ -70,27 +72,28 @@ export const LandingFAQ = () => {
               style={{ animationDelay: `${index * 0.1}s` }}
             >
               <button
+                aria-expanded={openItems.includes(index)}
                 className="w-full px-6 py-6 text-left flex justify-between items-center focus:outline-none focus:ring-2 focus:ring-sky-500 dark:focus:ring-sky-400 focus:ring-inset rounded-xl"
                 onClick={() => toggleItem(index)}
-                aria-expanded={openItems.includes(index)}
               >
                 <h3 className="text-lg font-semibold text-slate-900 dark:text-slate-100 pr-4 transition-colors duration-200">
                   {t(faq.questionKey)}
                 </h3>
                 <div className="flex-shrink-0">
                   <svg
-                    className={`w-6 h-6 text-slate-500 dark:text-slate-400 transition-all duration-300 ${openItems.includes(index) ? "rotate-180" : ""
-                      }`}
+                    className={`w-6 h-6 text-slate-500 dark:text-slate-400 transition-all duration-300 ${
+                      openItems.includes(index) ? "rotate-180" : ""
+                    }`}
                     fill="none"
-                    viewBox="0 0 24 24"
                     stroke="currentColor"
+                    viewBox="0 0 24 24"
                   >
                     <title>Toggle FAQ</title>
                     <path
+                      d="M19 9l-7 7-7-7"
                       strokeLinecap="round"
                       strokeLinejoin="round"
                       strokeWidth={2}
-                      d="M19 9l-7 7-7-7"
                     />
                   </svg>
                 </div>
@@ -114,12 +117,14 @@ export const LandingFAQ = () => {
             <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-4 transition-colors duration-200">
               {t("faq.cta.title")}
             </h3>
-            <p className="text-slate-600 dark:text-slate-300 mb-6 transition-colors duration-200">{t("faq.cta.description")}</p>
+            <p className="text-slate-600 dark:text-slate-300 mb-6 transition-colors duration-200">
+              {t("faq.cta.description")}
+            </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button
                 as={Link}
-                href="/contact"
                 className="bg-sky-600 dark:bg-sky-500 text-white px-6 py-3 rounded-lg font-semibold hover:bg-sky-700 dark:hover:bg-sky-600 transition-colors duration-200"
+                href="/contact"
               >
                 {t("faq.cta.primary")}
               </Button>

@@ -57,6 +57,7 @@ export class CompanyService {
       // Add sorting
       const sortField = params.sortBy || "rating";
       const sortDirection = params.sortOrder || "desc";
+
       constraints.push(orderBy(sortField, sortDirection));
 
       // Add limit
@@ -71,6 +72,7 @@ export class CompanyService {
         ...doc.data(),
       })) as CompanyDocument[];
     } catch (error) {
+      // eslint-disable-next-line no-console
       console.error("Error getting companies:", error);
       throw error;
     }
@@ -85,8 +87,10 @@ export class CompanyService {
       if (docSnap.exists()) {
         return { id: docSnap.id, ...docSnap.data() } as CompanyDocument;
       }
+
       return null;
     } catch (error) {
+      // eslint-disable-next-line no-console
       console.error("Error getting company:", error);
       throw error;
     }
@@ -99,17 +103,20 @@ export class CompanyService {
         collection(db, COMPANIES_COLLECTION),
         where("slug", "==", slug),
         where("status", "==", "approved"),
-        limit(1)
+        limit(1),
       );
 
       const querySnapshot = await getDocs(q);
 
       if (!querySnapshot.empty) {
         const doc = querySnapshot.docs[0];
+
         return { id: doc.id, ...doc.data() } as CompanyDocument;
       }
+
       return null;
     } catch (error) {
+      // eslint-disable-next-line no-console
       console.error("Error getting company by slug:", error);
       throw error;
     }
@@ -117,7 +124,7 @@ export class CompanyService {
 
   // Add new company
   static async addCompany(
-    companyData: Omit<CompanyDocument, "id" | "createdAt" | "updatedAt">
+    companyData: Omit<CompanyDocument, "id" | "createdAt" | "updatedAt">,
   ) {
     try {
       const docRef = await addDoc(collection(db, COMPANIES_COLLECTION), {
@@ -129,6 +136,7 @@ export class CompanyService {
 
       return docRef.id;
     } catch (error) {
+      // eslint-disable-next-line no-console
       console.error("Error adding company:", error);
       throw error;
     }
@@ -144,6 +152,7 @@ export class CompanyService {
         updatedAt: new Date(),
       });
     } catch (error) {
+      // eslint-disable-next-line no-console
       console.error("Error updating company:", error);
       throw error;
     }
@@ -153,8 +162,10 @@ export class CompanyService {
   static async deleteCompany(id: string) {
     try {
       const docRef = doc(db, COMPANIES_COLLECTION, id);
+
       await deleteDoc(docRef);
     } catch (error) {
+      // eslint-disable-next-line no-console
       console.error("Error deleting company:", error);
       throw error;
     }
@@ -164,7 +175,7 @@ export class CompanyService {
   static async getCompaniesPaginated(
     pageSize: number = 10,
     lastDoc?: DocumentSnapshot,
-    filters: SearchParams = {}
+    filters: SearchParams = {},
   ) {
     try {
       let q = collection(db, COMPANIES_COLLECTION);
@@ -172,7 +183,7 @@ export class CompanyService {
 
       constraints.push(where("status", "==", "approved"));
       constraints.push(
-        orderBy(filters.sortBy || "rating", filters.sortOrder || "desc")
+        orderBy(filters.sortBy || "rating", filters.sortOrder || "desc"),
       );
       constraints.push(limit(pageSize));
 
@@ -191,6 +202,7 @@ export class CompanyService {
         hasMore: querySnapshot.docs.length === pageSize,
       };
     } catch (error) {
+      // eslint-disable-next-line no-console
       console.error("Error getting paginated companies:", error);
       throw error;
     }

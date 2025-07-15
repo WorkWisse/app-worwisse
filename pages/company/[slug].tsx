@@ -129,6 +129,7 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
     };
   } catch (error) {
     if (process.env.NODE_ENV === "development") {
+      // eslint-disable-next-line no-console
       console.error("Error fetching company data:", error);
     }
 

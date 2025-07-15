@@ -80,13 +80,28 @@ export interface CompanyDocument
     FirebaseDocument {
   // Additional fields for Firebase storage
   isVerified?: boolean;
-  status?: "pending" | "approved" | "rejected";
   submittedBy?: string; // User ID who submitted the company
   // Statistics
   rating?: number; // Average rating from reviews
   reviewsCount?: number; // Total number of reviews (optional in Firebase)
   recommendationRate?: number; // Percentage of employees who would recommend (0-100)
   slug?: string; // URL-friendly identifier
+  name: string; // Company name
+  logo: string; // URL to the company logo
+  location: {
+    country: string;
+    state: string;
+    city?: string; // Optional city field
+  };
+  description?: string; // Company description
+  workEnvironment?: {
+    workLifeBalance: number;
+    careerOpportunities: number;
+    compensation: number;
+    culture: number;
+    management: number;
+  };
+  href?: string; // URL to the company page
 }
 
 // Extended Review type for Firebase

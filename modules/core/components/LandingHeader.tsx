@@ -10,9 +10,9 @@ import { ThemeToggle } from "./ThemeToggle";
 // Consider using an actual SVG or a dedicated Icon component if you have one in HeroUI
 const Logo = () => (
   <img
-    src="https://picsum.photos/seed/workwisselogo/40/40" // Seeded for consistency
     alt="WorkWisse Logo Placeholder"
     className="h-8 w-8 mr-2 rounded-full group-hover:opacity-90 transition-opacity duration-300"
+    src="https://picsum.photos/seed/workwisselogo/40/40" // Seeded for consistency
   />
 );
 
@@ -51,9 +51,9 @@ export const LandingHeader = () => {
         <div className="container mx-auto">
           <div className="flex justify-between items-center">
             <Link
-              href="/"
-              className="flex items-center text-2xl font-semibold text-slate-800 dark:text-slate-200 group transition-opacity duration-300 hover:opacity-80"
               aria-label="WorkWisse Home"
+              className="flex items-center text-2xl font-semibold text-slate-800 dark:text-slate-200 group transition-opacity duration-300 hover:opacity-80"
+              href="/"
             >
               <Logo />
               WorkWisse
@@ -61,20 +61,20 @@ export const LandingHeader = () => {
 
             <nav className="hidden md:flex items-center space-x-6">
               <Link
-                href="/about"
                 className="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-sky-600 dark:hover:text-sky-400 transition-colors duration-300"
+                href="/about"
               >
                 Sobre nosotros
               </Link>
               <Link
-                href="/contact"
                 className="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-sky-600 dark:hover:text-sky-400 transition-colors duration-300"
+                href="/contact"
               >
                 Contacto
               </Link>
               <Link
-                href="/company/add"
                 className="bg-sky-600 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-sky-700 transition-all duration-300 shadow-sm hover:shadow-md"
+                href="/company/add"
               >
                 Sumá tu empresa
               </Link>
@@ -83,10 +83,10 @@ export const LandingHeader = () => {
             </nav>
 
             <button
+              aria-expanded={isMenuOpen}
+              aria-label="Toggle menu"
               className="md:hidden p-2 rounded-lg text-slate-600 dark:text-slate-300 hover:text-slate-800 dark:hover:text-slate-100 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors duration-300"
               onClick={toggleMenu}
-              aria-label="Toggle menu"
-              aria-expanded={isMenuOpen}
             >
               <svg
                 className="w-6 h-6"
@@ -96,10 +96,10 @@ export const LandingHeader = () => {
               >
                 <title>Menu Icon</title>
                 <path
+                  d="M4 6h16M4 12h16M4 18h16"
                   strokeLinecap="round"
                   strokeLinejoin="round"
                   strokeWidth={2}
-                  d="M4 6h16M4 12h16M4 18h16"
                 />
               </svg>
             </button>
@@ -117,9 +117,9 @@ export const LandingHeader = () => {
           <div className="flex justify-between items-center">
             {/* Logo */}
             <Link
-              href="/"
-              className="flex items-center text-2xl font-semibold text-slate-800 dark:text-slate-200 group transition-opacity duration-300 hover:opacity-80"
               aria-label="WorkWisse Home"
+              className="flex items-center text-2xl font-semibold text-slate-800 dark:text-slate-200 group transition-opacity duration-300 hover:opacity-80"
+              href="/"
             >
               <Logo />
               WorkWisse
@@ -129,14 +129,16 @@ export const LandingHeader = () => {
             {shouldShowSearch && (
               <div className="flex-1 max-w-md mx-4 hidden md:block">
                 <SearchBar
+                  showButton={false}
                   variant="header"
                   onSubmit={(query) => {
-                    router.push(`/companies?search=${encodeURIComponent(query)}`);
+                    router.push(
+                      `/companies?search=${encodeURIComponent(query)}`,
+                    );
                   }}
                   onSuggestionSelect={(suggestion) => {
                     router.push(`/company/${suggestion.id}`);
                   }}
-                  showButton={false}
                 />
               </div>
             )}
@@ -144,8 +146,8 @@ export const LandingHeader = () => {
             {/* Desktop Navigation */}
             <nav className="hidden md:flex items-center space-x-6">
               <Link
-                href="/company/add"
                 className="bg-sky-600 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-sky-700 transition-all duration-300 shadow-sm hover:shadow-md"
+                href="/company/add"
               >
                 {t("header.addCompany")}
               </Link>
@@ -155,10 +157,10 @@ export const LandingHeader = () => {
 
             {/* Mobile Hamburger Button */}
             <button
+              aria-expanded={isMenuOpen}
+              aria-label="Toggle menu"
               className="md:hidden p-2 rounded-lg text-slate-600 dark:text-slate-300 hover:text-slate-800 dark:hover:text-slate-100 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors duration-300"
               onClick={toggleMenu}
-              aria-label="Toggle menu"
-              aria-expanded={isMenuOpen}
             >
               <svg
                 className="w-6 h-6"
@@ -169,17 +171,17 @@ export const LandingHeader = () => {
                 <title>Menu Icon</title>
                 {isMenuOpen ? (
                   <path
+                    d="M6 18L18 6M6 6l12 12"
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     strokeWidth={2}
-                    d="M6 18L18 6M6 6l12 12"
                   />
                 ) : (
                   <path
+                    d="M4 6h16M4 12h16M4 18h16"
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     strokeWidth={2}
-                    d="M4 6h16M4 12h16M4 18h16"
                   />
                 )}
               </svg>
@@ -188,8 +190,9 @@ export const LandingHeader = () => {
 
           {/* Mobile Navigation Menu */}
           <div
-            className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${isMenuOpen ? "max-h-80 opacity-100" : "max-h-0 opacity-0"
-              }`}
+            className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${
+              isMenuOpen ? "max-h-80 opacity-100" : "max-h-0 opacity-0"
+            }`}
           >
             <nav className="py-4 border-t border-slate-200 dark:border-slate-700 mt-4 bg-white dark:bg-slate-900 relative z-50">
               <div className="flex flex-col space-y-2">
@@ -198,7 +201,9 @@ export const LandingHeader = () => {
                     <SearchBar
                       variant="header"
                       onSubmit={(query) => {
-                        router.push(`/companies?search=${encodeURIComponent(query)}`);
+                        router.push(
+                          `/companies?search=${encodeURIComponent(query)}`,
+                        );
                         closeMenu();
                       }}
                       onSuggestionSelect={(suggestion) => {
@@ -209,24 +214,24 @@ export const LandingHeader = () => {
                   </div>
                 )}
                 <Link
-                  href="/about"
                   className="text-base font-medium text-slate-700 dark:text-slate-300 hover:text-sky-600 dark:hover:text-sky-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors duration-300 py-3 px-2 rounded-lg"
+                  href="/about"
                   onClick={closeMenu}
                 >
                   {t("header.about")}
                 </Link>
 
                 <Link
-                  href="/contact"
                   className="text-base font-medium text-slate-700 dark:text-slate-300 hover:text-sky-600 dark:hover:text-sky-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors duration-300 py-3 px-2 rounded-lg"
+                  href="/contact"
                   onClick={closeMenu}
                 >
                   {t("header.contact")}
                 </Link>
 
                 <Link
-                  href="/company/add"
                   className="bg-sky-600 text-white text-base font-semibold hover:bg-sky-700 transition-colors duration-300 py-3 px-4 rounded-lg text-center inline-block"
+                  href="/company/add"
                   onClick={closeMenu}
                 >
                   {t("header.addCompany")}
@@ -262,13 +267,13 @@ export const LandingHeader = () => {
       {/* Mobile Menu Overlay - moved outside header */}
       {isMenuOpen && (
         <div
+          aria-label="Close menu"
           className="md:hidden fixed inset-0 bg-black bg-opacity-25 dark:bg-opacity-50 z-40"
+          role="button"
           style={{ top: "84px" }} // Adjust based on header height
+          tabIndex={0}
           onClick={closeMenu}
           onKeyDown={handleOverlayKeyDown}
-          role="button"
-          tabIndex={0}
-          aria-label="Close menu"
         />
       )}
     </>

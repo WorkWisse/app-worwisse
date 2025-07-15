@@ -4,6 +4,7 @@ import { Input } from "@heroui/input";
 import { Card } from "@heroui/card";
 import { Select, SelectItem } from "@heroui/select";
 import { Trans, useTranslation } from "react-i18next";
+
 import { CompanyService } from "@/services/companyService";
 import { CompanyDocument } from "@/types";
 import { useToast } from "@/modules/core/components";
@@ -242,6 +243,7 @@ export default function AddCompanyForm() {
         t("addCompany.form.acceptTermsRequired"),
         t("addCompany.form.pleaseAcceptTerms")
       );
+
       return;
     }
 
@@ -258,7 +260,7 @@ export default function AddCompanyForm() {
         currentRegions.find((r) => r.key === formData.state)?.label ||
         formData.state;
 
-      // Create company data object
+      // company data object
       const companyData: Omit<
         CompanyDocument,
         "id" | "createdAt" | "updatedAt"
@@ -276,10 +278,17 @@ export default function AddCompanyForm() {
         terms: formData.terms,
         creationDate: new Date().toISOString(),
         approved: false,
+        name: "",
+        logo: "",
+        location: {
+          country: "",
+          state: "",
+          city: undefined,
+        },
       };
 
       // Save to Firebase
-      const companyId = await CompanyService.addCompany(companyData);
+      await CompanyService.addCompany(companyData);
 
       showSuccess(
         t("addCompany.form.submitSuccess"),
@@ -299,10 +308,11 @@ export default function AddCompanyForm() {
       setAcceptedTerms(false);
       setBenefitsInput("");
     } catch (error) {
+      // eslint-disable-next-line no-console
       console.error("Error adding company:", error);
       showError(
         t("addCompany.form.submitError"),
-        t("addCompany.form.tryAgainLater"),
+        t("addCompany.form.tryAgainLater")
       );
     } finally {
       setIsSubmitting(false);
@@ -480,8 +490,8 @@ export default function AddCompanyForm() {
                 {/* Row 4: Benefits */}
                 <div className="space-y-3">
                   <label
-                    htmlFor="benefits"
                     className="block text-slate-700 dark:text-slate-300 font-medium text-sm"
+                    htmlFor="benefits"
                   >
                     {t("addCompany.form.benefits.label")}
                   </label>
@@ -545,9 +555,9 @@ export default function AddCompanyForm() {
                         {filteredBenefits.slice(0, 8).map((benefit, index) => (
                           <button
                             key={index}
+                            className="w-full px-4 py-2 text-left text-slate-900 dark:text-white hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors duration-200 first:rounded-t-lg last:rounded-b-lg"
                             type="button"
                             onClick={() => addBenefit(benefit)}
-                            className="w-full px-4 py-2 text-left text-slate-900 dark:text-white hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors duration-200 first:rounded-t-lg last:rounded-b-lg"
                           >
                             {benefit}
                           </button>
@@ -571,33 +581,34 @@ export default function AddCompanyForm() {
                     onChange={(e) => setAcceptedTerms(e.target.checked)}
                   />
                   <label
-                    htmlFor="terms"
                     className="text-sm text-slate-700 dark:text-slate-300 leading-relaxed cursor-pointer"
+                    htmlFor="terms"
                   >
                     <Trans
-                      i18nKey="addCompany.form.terms"
                       components={{
                         1: (
+                          // eslint-disable-next-line jsx-a11y/anchor-has-content
                           <a
-                            href="/terms"
                             className="text-sky-600 dark:text-sky-400 hover:text-sky-700 dark:hover:text-sky-300 underline"
-                            target="_blank"
+                            href="/terms"
                             rel="noopener noreferrer"
+                            target="_blank"
                           />
                         ),
                       }}
+                      i18nKey="addCompany.form.terms"
                     />
                   </label>
                 </div>
 
                 {/* Submit Button */}
                 <Button
-                  color="primary"
-                  size="lg"
                   className="w-full bg-gradient-to-r from-sky-600 to-blue-600 dark:from-sky-500 dark:to-blue-500 hover:from-sky-700 hover:to-blue-700 dark:hover:from-sky-600 dark:hover:to-blue-600 text-white font-semibold text-sm h-11 transition-all duration-200"
-                  onPress={handleSubmit}
-                  isLoading={isSubmitting}
+                  color="primary"
                   isDisabled={!acceptedTerms}
+                  isLoading={isSubmitting}
+                  size="lg"
+                  onPress={handleSubmit}
                 >
                   {isSubmitting
                     ? t("addCompany.form.submitting")
@@ -617,19 +628,19 @@ export default function AddCompanyForm() {
                 </h3>
                 <ul className="space-y-2 text-sm text-slate-600 dark:text-slate-300">
                   <li className="flex items-start gap-2">
-                    <span className="w-1.5 h-1.5 bg-sky-500 dark:bg-sky-400 rounded-full mt-2 flex-shrink-0"></span>
+                    <span className="w-1.5 h-1.5 bg-sky-500 dark:bg-sky-400 rounded-full mt-2 flex-shrink-0" />
                     {t("addCompany.tips.tip1")}
                   </li>
                   <li className="flex items-start gap-2">
-                    <span className="w-1.5 h-1.5 bg-sky-500 dark:bg-sky-400 rounded-full mt-2 flex-shrink-0"></span>
+                    <span className="w-1.5 h-1.5 bg-sky-500 dark:bg-sky-400 rounded-full mt-2 flex-shrink-0" />
                     {t("addCompany.tips.tip2")}
                   </li>
                   <li className="flex items-start gap-2">
-                    <span className="w-1.5 h-1.5 bg-sky-500 dark:bg-sky-400 rounded-full mt-2 flex-shrink-0"></span>
+                    <span className="w-1.5 h-1.5 bg-sky-500 dark:bg-sky-400 rounded-full mt-2 flex-shrink-0" />
                     {t("addCompany.tips.tip3")}
                   </li>
                   <li className="flex items-start gap-2">
-                    <span className="w-1.5 h-1.5 bg-sky-500 dark:bg-sky-400 rounded-full mt-2 flex-shrink-0"></span>
+                    <span className="w-1.5 h-1.5 bg-sky-500 dark:bg-sky-400 rounded-full mt-2 flex-shrink-0" />
                     {t("addCompany.tips.tip4")}
                   </li>
                 </ul>
@@ -644,9 +655,9 @@ export default function AddCompanyForm() {
                   {t("addCompany.contact.description")}
                 </p>
                 <Button
-                  variant="bordered"
-                  size="sm"
                   className="w-full border-sky-200 dark:border-sky-700 text-sky-700 dark:text-sky-300 hover:bg-sky-50 dark:hover:bg-sky-900/20 transition-colors duration-200"
+                  size="sm"
+                  variant="bordered"
                 >
                   {t("addCompany.contact.button")}
                 </Button>

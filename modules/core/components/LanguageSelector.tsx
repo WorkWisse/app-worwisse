@@ -20,10 +20,10 @@ export const LanguageSelector = () => {
   if (!mounted) {
     return (
       <Button
-        variant="light"
-        size="sm"
-        className="min-w-unit-16 px-2"
         aria-label="Language selector loading"
+        className="min-w-unit-16 px-2"
+        size="sm"
+        variant="light"
       >
         <span className="text-xl">🌐</span>
       </Button>
@@ -66,22 +66,22 @@ export const LanguageSelector = () => {
     <Dropdown>
       <DropdownTrigger>
         <Button
-          variant="light"
-          size="sm"
-          className="min-w-unit-16 px-2 gap-1 data-[hover=true]:bg-slate-100"
           aria-label={`Current language: ${currentLangInfo.label}`}
+          className="min-w-unit-16 px-2 gap-1 data-[hover=true]:bg-slate-100"
+          size="sm"
+          variant="light"
         >
           <span className="text-xl">{currentLangInfo.flag}</span>
           <svg
-            width="12"
-            height="12"
-            viewBox="0 0 24 24"
+            className="opacity-50"
             fill="none"
+            height="12"
             stroke="currentColor"
-            strokeWidth="2"
             strokeLinecap="round"
             strokeLinejoin="round"
-            className="opacity-50"
+            strokeWidth="2"
+            viewBox="0 0 24 24"
+            width="12"
           >
             <title>Dropdown arrow</title>
             <path d="m6 9 6 6 6-6" />
@@ -95,6 +95,7 @@ export const LanguageSelector = () => {
         selectionMode="single"
         onSelectionChange={(keys) => {
           const selectedKey = Array.from(keys)[0] as string;
+
           if (selectedKey) {
             handleLanguageChange(selectedKey);
           }
@@ -103,23 +104,23 @@ export const LanguageSelector = () => {
         {languages.map((language) => (
           <DropdownItem
             key={language.key}
-            className="gap-2"
             aria-label={`Switch to ${language.label}`}
+            className="gap-2"
           >
             <div className="flex items-center gap-2">
               <span className="text-xl">{language.flag}</span>
               <span className="font-medium">{language.label}</span>
               {currentLanguage === language.key && (
                 <svg
-                  width="16"
-                  height="16"
-                  viewBox="0 0 24 24"
+                  className="text-sky-600"
                   fill="none"
+                  height="16"
                   stroke="currentColor"
-                  strokeWidth="2"
                   strokeLinecap="round"
                   strokeLinejoin="round"
-                  className="text-sky-600"
+                  strokeWidth="2"
+                  viewBox="0 0 24 24"
+                  width="16"
                 >
                   <title>Selected language indicator</title>
                   <path d="M20 6 9 17l-5-5" />
