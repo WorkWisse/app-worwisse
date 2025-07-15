@@ -5,6 +5,7 @@ import { Input } from "@heroui/input";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { useTranslation, Trans } from "react-i18next";
+
 import { ReviewService } from "@/services";
 import { ReviewDocument } from "@/types";
 
@@ -77,12 +78,12 @@ const StarRating = ({
         {[1, 2, 3, 4, 5].map((star) => (
           <button
             key={star}
-            type="button"
             className={`w-10 h-10 transition-all duration-200 hover:scale-110 ${
               star <= (hoverRating || rating)
                 ? "text-yellow-400 hover:text-yellow-500"
                 : "text-slate-300 dark:text-slate-600 hover:text-yellow-300"
             }`}
+            type="button"
             onClick={() => onRatingChange(star)}
             onMouseEnter={() => setHoverRating(star)}
             onMouseLeave={() => setHoverRating(0)}
@@ -177,6 +178,7 @@ export default function ReviewForm({ company }: { company: any }) {
       // Redirigir a la página de la empresa
       router.push(`/company/${slug}`);
     } catch (error) {
+      // eslint-disable-next-line no-console
       console.error("Error submitting review:", error);
       alert(t("reviewForm.error.message"));
     } finally {
@@ -229,8 +231,8 @@ export default function ReviewForm({ company }: { company: any }) {
                 {/* Company Logo */}
                 <div className="flex-shrink-0">
                   <button
-                    onClick={() => router.push(`/company/${slug}`)}
                     className="block hover:opacity-80 transition-opacity"
+                    onClick={() => router.push(`/company/${slug}`)}
                   >
                     <img
                       alt={`Logo de ${company.name}`}
@@ -257,10 +259,10 @@ export default function ReviewForm({ company }: { company: any }) {
                           •
                         </span>
                         <a
-                          href={company.website}
-                          target="_blank"
-                          rel="noopener noreferrer"
                           className="text-sky-600 hover:text-sky-700 dark:text-sky-400 dark:hover:text-sky-300 transition-colors hidden md:inline"
+                          href={company.website}
+                          rel="noopener noreferrer"
+                          target="_blank"
                         >
                           {t("companyDetail.website")}
                         </a>
@@ -294,7 +296,7 @@ export default function ReviewForm({ company }: { company: any }) {
             {/* Form Column */}
             <div className="flex-1">
               <Card className="p-8 shadow-xl border-0 bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm transition-colors duration-200">
-                <form onSubmit={handleSubmit} className="space-y-8">
+                <form className="space-y-8" onSubmit={handleSubmit}>
                   {/* Información Laboral */}
                   <div className="space-y-6">
                     <div className="text-center border-b border-slate-200 dark:border-slate-700 pb-4">
@@ -308,68 +310,68 @@ export default function ReviewForm({ company }: { company: any }) {
 
                     <div className="space-y-6">
                       <Input
-                        label={t("reviewForm.workInfo.role")}
-                        placeholder={t("reviewForm.workInfo.rolePlaceholder")}
-                        value={formData.role}
-                        onChange={(e) => handleChange("role", e.target.value)}
                         isRequired
-                        size="lg"
-                        variant="bordered"
                         classNames={{
                           input: "text-slate-900 dark:text-white",
                           label:
                             "text-slate-700 dark:text-slate-300 font-medium",
                         }}
+                        label={t("reviewForm.workInfo.role")}
+                        placeholder={t("reviewForm.workInfo.rolePlaceholder")}
+                        size="lg"
+                        value={formData.role}
+                        variant="bordered"
+                        onChange={(e) => handleChange("role", e.target.value)}
                       />
 
                       <div className="grid md:grid-cols-2 gap-6">
                         <Input
-                          label={t("reviewForm.workInfo.startDate")}
-                          type="month"
-                          value={formData.startDate}
-                          onChange={(e) =>
-                            handleChange("startDate", e.target.value)
-                          }
                           isRequired
-                          size="lg"
-                          variant="bordered"
                           classNames={{
                             input: "text-slate-900 dark:text-white",
                             label:
                               "text-slate-700 dark:text-slate-300 font-medium",
                           }}
+                          label={t("reviewForm.workInfo.startDate")}
+                          size="lg"
+                          type="month"
+                          value={formData.startDate}
+                          variant="bordered"
+                          onChange={(e) =>
+                            handleChange("startDate", e.target.value)
+                          }
                         />
 
                         {!formData.currentlyWorking && (
                           <Input
-                            label={t("reviewForm.workInfo.endDate")}
-                            type="month"
-                            value={formData.endDate}
-                            onChange={(e) =>
-                              handleChange("endDate", e.target.value)
-                            }
-                            isRequired={!formData.currentlyWorking}
-                            size="lg"
-                            variant="bordered"
                             classNames={{
                               input: "text-slate-900 dark:text-white",
                               label:
                                 "text-slate-700 dark:text-slate-300 font-medium",
                             }}
+                            isRequired={!formData.currentlyWorking}
+                            label={t("reviewForm.workInfo.endDate")}
+                            size="lg"
+                            type="month"
+                            value={formData.endDate}
+                            variant="bordered"
+                            onChange={(e) =>
+                              handleChange("endDate", e.target.value)
+                            }
                           />
                         )}
                       </div>
 
                       <div className="flex items-center space-x-3">
                         <Checkbox
+                          classNames={{
+                            label:
+                              "text-slate-700 dark:text-slate-300 font-medium",
+                          }}
                           isSelected={formData.currentlyWorking}
                           onValueChange={(checked) => {
                             handleChange("currentlyWorking", checked);
                             if (checked) handleChange("endDate", "");
-                          }}
-                          classNames={{
-                            label:
-                              "text-slate-700 dark:text-slate-300 font-medium",
                           }}
                         >
                           {t("reviewForm.workInfo.currentlyWorking")}
@@ -391,88 +393,88 @@ export default function ReviewForm({ company }: { company: any }) {
 
                     <div className="grid md:grid-cols-2 gap-8">
                       <StarRating
+                        description={t(
+                          "reviewForm.ratings.workEnvironmentDesc",
+                        )}
+                        label={t("reviewForm.ratings.workEnvironment")}
                         rating={formData.workEnvironmentRating}
                         onRatingChange={(rating) =>
                           handleChange("workEnvironmentRating", rating)
                         }
-                        label={t("reviewForm.ratings.workEnvironment")}
-                        description={t(
-                          "reviewForm.ratings.workEnvironmentDesc"
-                        )}
                       />
 
                       <StarRating
+                        description={t("reviewForm.ratings.compensationDesc")}
+                        label={t("reviewForm.ratings.compensation")}
                         rating={formData.compensationRating}
                         onRatingChange={(rating) =>
                           handleChange("compensationRating", rating)
                         }
-                        label={t("reviewForm.ratings.compensation")}
-                        description={t("reviewForm.ratings.compensationDesc")}
                       />
 
                       <StarRating
+                        description={t("reviewForm.ratings.benefitsDesc")}
+                        label={t("reviewForm.ratings.benefits")}
                         rating={formData.benefitsRating}
                         onRatingChange={(rating) =>
                           handleChange("benefitsRating", rating)
                         }
-                        label={t("reviewForm.ratings.benefits")}
-                        description={t("reviewForm.ratings.benefitsDesc")}
                       />
 
                       <StarRating
+                        description={t("reviewForm.ratings.cultureDesc")}
+                        label={t("reviewForm.ratings.culture")}
                         rating={formData.cultureRating}
                         onRatingChange={(rating) =>
                           handleChange("cultureRating", rating)
                         }
-                        label={t("reviewForm.ratings.culture")}
-                        description={t("reviewForm.ratings.cultureDesc")}
                       />
 
                       <StarRating
+                        description={t("reviewForm.ratings.communicationDesc")}
+                        label={t("reviewForm.ratings.communication")}
                         rating={formData.leadershipRating}
                         onRatingChange={(rating) =>
                           handleChange("leadershipRating", rating)
                         }
-                        label={t("reviewForm.ratings.communication")}
-                        description={t("reviewForm.ratings.communicationDesc")}
                       />
 
                       <StarRating
+                        description={t("reviewForm.ratings.careerGrowthDesc")}
+                        label={t("reviewForm.ratings.careerGrowth")}
                         rating={formData.careerGrowthRating}
                         onRatingChange={(rating) =>
                           handleChange("careerGrowthRating", rating)
                         }
-                        label={t("reviewForm.ratings.careerGrowth")}
-                        description={t("reviewForm.ratings.careerGrowthDesc")}
                       />
 
                       <StarRating
+                        description={t(
+                          "reviewForm.ratings.workLifeBalanceDesc",
+                        )}
+                        label={t("reviewForm.ratings.workLifeBalance")}
                         rating={formData.workLifeBalanceRating}
                         onRatingChange={(rating) =>
                           handleChange("workLifeBalanceRating", rating)
                         }
-                        label={t("reviewForm.ratings.workLifeBalance")}
-                        description={t(
-                          "reviewForm.ratings.workLifeBalanceDesc"
-                        )}
                       />
 
                       <StarRating
+                        description={t("reviewForm.ratings.inclusionDesc")}
+                        label={t("reviewForm.ratings.inclusion")}
                         rating={formData.inclusionRating}
                         onRatingChange={(rating) =>
                           handleChange("inclusionRating", rating)
                         }
-                        label={t("reviewForm.ratings.inclusion")}
-                        description={t("reviewForm.ratings.inclusionDesc")}
                       />
 
                       <StarRating
+                        description={t("reviewForm.ratings.overallDesc")}
+                        label={t("reviewForm.ratings.overall")}
                         rating={formData.overallRating}
                         onRatingChange={(rating) =>
                           handleChange("overallRating", rating)
                         }
-                        label={t("reviewForm.ratings.overall")}
-                        description={t("reviewForm.ratings.overallDesc")}
                       />
                     </div>
                   </div>
@@ -491,41 +493,41 @@ export default function ReviewForm({ company }: { company: any }) {
                     <div className="space-y-6">
                       <div className="space-y-2">
                         <label
-                          htmlFor="pros"
                           className="block text-slate-700 dark:text-slate-300 font-medium text-sm"
+                          htmlFor="pros"
                         >
                           {t("reviewForm.experience.pros")}
                         </label>
                         <textarea
+                          required
+                          className="w-full px-4 py-3 border-2 border-slate-200 dark:border-slate-600 rounded-lg focus:border-sky-500 dark:focus:border-sky-400 focus:outline-none resize-none text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 bg-white dark:bg-slate-800 transition-colors duration-200"
                           id="pros"
                           placeholder={t(
-                            "reviewForm.experience.prosPlaceholder"
+                            "reviewForm.experience.prosPlaceholder",
                           )}
+                          rows={4}
                           value={formData.pros}
                           onChange={(e) => handleChange("pros", e.target.value)}
-                          required
-                          rows={4}
-                          className="w-full px-4 py-3 border-2 border-slate-200 dark:border-slate-600 rounded-lg focus:border-sky-500 dark:focus:border-sky-400 focus:outline-none resize-none text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 bg-white dark:bg-slate-800 transition-colors duration-200"
                         />
                       </div>
 
                       <div className="space-y-2">
                         <label
-                          htmlFor="cons"
                           className="block text-slate-700 dark:text-slate-300 font-medium text-sm"
+                          htmlFor="cons"
                         >
                           {t("reviewForm.experience.cons")}
                         </label>
                         <textarea
+                          required
+                          className="w-full px-4 py-3 border-2 border-slate-200 dark:border-slate-600 rounded-lg focus:border-sky-500 dark:focus:border-sky-400 focus:outline-none resize-none text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 bg-white dark:bg-slate-800 transition-colors duration-200"
                           id="cons"
                           placeholder={t(
-                            "reviewForm.experience.consPlaceholder"
+                            "reviewForm.experience.consPlaceholder",
                           )}
+                          rows={4}
                           value={formData.cons}
                           onChange={(e) => handleChange("cons", e.target.value)}
-                          required
-                          rows={4}
-                          className="w-full px-4 py-3 border-2 border-slate-200 dark:border-slate-600 rounded-lg focus:border-sky-500 dark:focus:border-sky-400 focus:outline-none resize-none text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 bg-white dark:bg-slate-800 transition-colors duration-200"
                         />
                       </div>
                     </div>
@@ -535,14 +537,14 @@ export default function ReviewForm({ company }: { company: any }) {
                   <div className="space-y-6 border-t border-slate-200 dark:border-slate-700 pt-6">
                     <div className="flex items-center space-x-3">
                       <Checkbox
-                        isSelected={formData.wouldRecommend}
-                        onValueChange={(checked) =>
-                          handleChange("wouldRecommend", checked)
-                        }
                         classNames={{
                           label:
                             "text-slate-700 dark:text-slate-300 font-medium",
                         }}
+                        isSelected={formData.wouldRecommend}
+                        onValueChange={(checked) =>
+                          handleChange("wouldRecommend", checked)
+                        }
                       >
                         {t("reviewForm.wouldRecommend")}
                       </Checkbox>
@@ -550,21 +552,22 @@ export default function ReviewForm({ company }: { company: any }) {
 
                     <div className="flex items-start gap-3 p-4 bg-slate-50 dark:bg-slate-700 rounded-lg border border-slate-200 dark:border-slate-600 transition-colors duration-200">
                       <input
-                        type="checkbox"
-                        id="terms"
                         checked={formData.acceptedTerms}
+                        className="mt-1 w-4 h-4 text-sky-600 dark:text-sky-400 bg-white dark:bg-slate-600 border-slate-300 dark:border-slate-500 rounded focus:ring-sky-500 dark:focus:ring-sky-400 focus:ring-2"
+                        id="terms"
+                        type="checkbox"
                         onChange={(e) =>
                           handleChange("acceptedTerms", e.target.checked)
                         }
-                        className="mt-1 w-4 h-4 text-sky-600 dark:text-sky-400 bg-white dark:bg-slate-600 border-slate-300 dark:border-slate-500 rounded focus:ring-sky-500 dark:focus:ring-sky-400 focus:ring-2"
                       />
                       <label
-                        htmlFor="terms"
                         className="text-sm text-slate-700 dark:text-slate-300 leading-relaxed cursor-pointer"
+                        htmlFor="terms"
                       >
                         <Trans
                           components={{
                             1: (
+                              // eslint-disable-next-line jsx-a11y/anchor-has-content
                               <a
                                 className="text-sky-600 dark:text-sky-400 hover:text-sky-700 dark:hover:text-sky-300 underline"
                                 href="/terms"
@@ -582,20 +585,20 @@ export default function ReviewForm({ company }: { company: any }) {
                   {/* Botones de acción */}
                   <div className="flex flex-col sm:flex-row gap-4 pt-6">
                     <Button
-                      type="submit"
-                      size="lg"
-                      disabled={!formData.acceptedTerms || isSubmitting}
                       className="bg-sky-600 dark:bg-sky-600 text-white hover:bg-sky-700 dark:hover:bg-sky-700 font-semibold px-8 py-3 transition-colors duration-200 flex-1 sm:flex-initial"
+                      disabled={!formData.acceptedTerms || isSubmitting}
+                      size="lg"
+                      type="submit"
                     >
                       {isSubmitting
                         ? t("reviewForm.submitting")
                         : t("reviewForm.submit")}
                     </Button>
                     <Button
-                      variant="bordered"
-                      size="lg"
-                      onPress={() => router.push(`/company/${slug}`)}
                       className="border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 font-medium px-8 py-3 transition-colors duration-200"
+                      size="lg"
+                      variant="bordered"
+                      onPress={() => router.push(`/company/${slug}`)}
                     >
                       {t("reviewForm.cancel")}
                     </Button>
@@ -613,19 +616,19 @@ export default function ReviewForm({ company }: { company: any }) {
                   </h3>
                   <ul className="space-y-2 text-sm text-slate-600 dark:text-slate-300">
                     <li className="flex items-start gap-2">
-                      <span className="w-1.5 h-1.5 bg-sky-500 dark:bg-sky-400 rounded-full mt-2 flex-shrink-0"></span>
+                      <span className="w-1.5 h-1.5 bg-sky-500 dark:bg-sky-400 rounded-full mt-2 flex-shrink-0" />
                       {t("addCompany.tips.tip1")}
                     </li>
                     <li className="flex items-start gap-2">
-                      <span className="w-1.5 h-1.5 bg-sky-500 dark:bg-sky-400 rounded-full mt-2 flex-shrink-0"></span>
+                      <span className="w-1.5 h-1.5 bg-sky-500 dark:bg-sky-400 rounded-full mt-2 flex-shrink-0" />
                       {t("addCompany.tips.tip2")}
                     </li>
                     <li className="flex items-start gap-2">
-                      <span className="w-1.5 h-1.5 bg-sky-500 dark:bg-sky-400 rounded-full mt-2 flex-shrink-0"></span>
+                      <span className="w-1.5 h-1.5 bg-sky-500 dark:bg-sky-400 rounded-full mt-2 flex-shrink-0" />
                       {t("addCompany.tips.tip3")}
                     </li>
                     <li className="flex items-start gap-2">
-                      <span className="w-1.5 h-1.5 bg-sky-500 dark:bg-sky-400 rounded-full mt-2 flex-shrink-0"></span>
+                      <span className="w-1.5 h-1.5 bg-sky-500 dark:bg-sky-400 rounded-full mt-2 flex-shrink-0" />
                       {t("addCompany.tips.tip4")}
                     </li>
                   </ul>
@@ -641,9 +644,9 @@ export default function ReviewForm({ company }: { company: any }) {
                   {t("addCompany.contact.description")}
                 </p>
                 <Button
-                  variant="bordered"
-                  size="sm"
                   className="w-full border-sky-200 dark:border-sky-700 text-sky-700 dark:text-sky-300 hover:bg-sky-50 dark:hover:bg-sky-900/20 transition-colors duration-200"
+                  size="sm"
+                  variant="bordered"
                 >
                   {t("addCompany.contact.button")}
                 </Button>

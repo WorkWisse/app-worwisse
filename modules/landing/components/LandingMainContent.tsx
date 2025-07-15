@@ -38,7 +38,7 @@ interface LatestReview {
 // Helper function to calculate time ago
 const getTimeAgo = (
   creationDate: string,
-  t: (key: string) => string
+  t: (key: string, options?: { count: number }) => string,
 ): string => {
   const now = new Date();
   const reviewDate = new Date(creationDate);
@@ -48,7 +48,7 @@ const getTimeAgo = (
   const reviewDay = new Date(
     reviewDate.getFullYear(),
     reviewDate.getMonth(),
-    reviewDate.getDate()
+    reviewDate.getDate(),
   );
 
   const diffInMs = today.getTime() - reviewDay.getTime();
@@ -135,7 +135,6 @@ export const LandingMainContent = () => {
           sortOrder: "desc",
           limit: 5,
         });
-        console.log("Featured companies loaded:", companies);
 
         const mappedCompanies: TopCompany[] = companies.map(
           (company: CompanyDocument, index: number) => ({
@@ -153,7 +152,7 @@ export const LandingMainContent = () => {
                 .replace(/^-+|-+$/g, "") ||
               "",
             rank: index + 1,
-          })
+          }),
         );
 
         setFeaturedCompanies(mappedCompanies);
@@ -175,8 +174,6 @@ export const LandingMainContent = () => {
       try {
         setIsLoadingReviews(true);
         const reviews = await ReviewService.getLatestReviews(5);
-        console.log("Latest reviews loaded:", reviews);
-        
 
         // Get company data for each review to get the real logo
         const mappedReviews: LatestReview[] = await Promise.all(
@@ -193,7 +190,7 @@ export const LandingMainContent = () => {
             if (review.companyId) {
               try {
                 const companyData = await CompanyService.getCompanyById(
-                  review.companyId
+                  review.companyId,
                 );
 
                 if (companyData) {
@@ -492,7 +489,7 @@ export const LandingMainContent = () => {
                           {/* Aspectos Positivos */}
                           <div className="space-y-2">
                             <h4 className="text-sm font-bold text-green-600 dark:text-green-400 uppercase tracking-wide flex items-center">
-                              <span className="inline-block w-2 h-2 bg-green-500 rounded-full mr-2"></span>
+                              <span className="inline-block w-2 h-2 bg-green-500 rounded-full mr-2" />
                               {t("landing.latestReviews.positiveAspects")}
                             </h4>
                             <p className="text-sm text-slate-700 dark:text-slate-300 leading-relaxed pl-4 border-l-2 border-green-200 dark:border-green-800">
@@ -503,7 +500,7 @@ export const LandingMainContent = () => {
                           {/* Aspectos a Mejorar */}
                           <div className="space-y-2">
                             <h4 className="text-sm font-bold text-orange-600 dark:text-orange-400 uppercase tracking-wide flex items-center">
-                              <span className="inline-block w-2 h-2 bg-orange-500 rounded-full mr-2"></span>
+                              <span className="inline-block w-2 h-2 bg-orange-500 rounded-full mr-2" />
                               {t("landing.latestReviews.areasForImprovement")}
                             </h4>
                             <p className="text-sm text-slate-700 dark:text-slate-300 leading-relaxed pl-4 border-l-2 border-orange-200 dark:border-orange-800">

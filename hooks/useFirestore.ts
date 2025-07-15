@@ -28,7 +28,9 @@ export const useFirestore = (collectionName: string) => {
         createdAt: new Date(),
         updatedAt: new Date(),
       });
+
       setLoading(false);
+
       return docRef.id;
     } catch (err) {
       setError(err instanceof Error ? err.message : "Error adding document");
@@ -48,7 +50,9 @@ export const useFirestore = (collectionName: string) => {
         id: doc.id,
         ...doc.data(),
       }));
+
       setLoading(false);
+
       return documents;
     } catch (err) {
       setError(err instanceof Error ? err.message : "Error getting documents");
@@ -64,6 +68,7 @@ export const useFirestore = (collectionName: string) => {
     try {
       const docRef = doc(db, collectionName, id);
       const docSnap = await getDoc(docRef);
+
       setLoading(false);
       if (docSnap.exists()) {
         return { id: docSnap.id, ...docSnap.data() };
@@ -83,6 +88,7 @@ export const useFirestore = (collectionName: string) => {
     setError(null);
     try {
       const docRef = doc(db, collectionName, id);
+
       await updateDoc(docRef, {
         ...data,
         updatedAt: new Date(),
@@ -101,6 +107,7 @@ export const useFirestore = (collectionName: string) => {
     setError(null);
     try {
       const docRef = doc(db, collectionName, id);
+
       await deleteDoc(docRef);
       setLoading(false);
     } catch (err) {

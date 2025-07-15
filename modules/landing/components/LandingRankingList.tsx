@@ -22,14 +22,14 @@ const CardBody = ({
 // Placeholder for an icon, replace with actual icon component if available
 const TrendIcon = () => (
   <svg
+    aria-labelledby="trendIconTitle"
     className="w-5 h-5 text-gray-400 group-hover:text-purple-600"
     fill="none"
+    stroke="currentColor"
     strokeLinecap="round"
     strokeLinejoin="round"
     strokeWidth="2"
     viewBox="0 0 24 24"
-    stroke="currentColor"
-    aria-labelledby="trendIconTitle"
   >
     <title id="trendIconTitle">Trending up icon</title>
     <path d="M13 17h8m0 0V9m0 8l-8-8-4 4-6-6" />
@@ -97,8 +97,8 @@ export const LandingRankingList = () => {
             Top 5 <span className="text-purple-600">Empresas</span>
           </h2>
           <Link
-            href="/rankings"
             className="text-purple-600 hover:text-purple-800 font-semibold"
+            href="/rankings"
           >
             Ver Rankings Completos &rarr;
           </Link>

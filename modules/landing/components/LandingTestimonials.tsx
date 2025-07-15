@@ -70,8 +70,10 @@ export const LandingTestimonials = () => {
         <div className="text-center mb-16 animate-fade-in-up">
           <h2 className="text-4xl lg:text-5xl font-bold text-slate-900 dark:text-slate-100 mb-6 transition-colors duration-200">
             <Trans
+              components={{
+                1: <span className="text-sky-600 dark:text-sky-400" />,
+              }}
               i18nKey="testimonials.title"
-              components={{ 1: <span className="text-sky-600 dark:text-sky-400" /> }}
             />
           </h2>
           <p className="text-xl text-slate-600 dark:text-slate-300 max-w-3xl mx-auto leading-relaxed transition-colors duration-200">
@@ -110,9 +112,9 @@ export const LandingTestimonials = () => {
             >
               <div className="flex items-center mb-6">
                 <img
-                  src={`https://picsum.photos/seed/${testimonial.avatar}/60/60`}
                   alt={t(testimonial.nameKey)}
                   className="w-12 h-12 rounded-full object-cover mr-4"
+                  src={`https://picsum.photos/seed/${testimonial.avatar}/60/60`}
                 />
                 <div>
                   <h4 className="font-semibold text-slate-900 dark:text-slate-100 transition-colors duration-200">

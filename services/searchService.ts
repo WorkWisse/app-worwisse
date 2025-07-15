@@ -28,7 +28,7 @@ export class SearchService {
   // Get search suggestions based on query
   static async getSearchSuggestions(
     searchQuery: string,
-    maxResults: number = 5
+    maxResults: number = 5,
   ): Promise<SearchSuggestion[]> {
     try {
       if (!searchQuery || searchQuery.trim().length < 1) {
@@ -81,7 +81,9 @@ export class SearchService {
 
       return suggestions;
     } catch (error) {
+      // eslint-disable-next-line no-console
       console.error("Error getting search suggestions:", error);
+
       return [];
     }
   }
@@ -89,7 +91,7 @@ export class SearchService {
   // Perform full company search
   static async searchCompanies(
     searchQuery: string,
-    maxResults: number = 20
+    maxResults: number = 20,
   ): Promise<CompanyDocument[]> {
     try {
       if (!searchQuery || searchQuery.trim().length < 1) {
@@ -104,7 +106,7 @@ export class SearchService {
         where("name", "<=", searchQuery + "\uf8ff"),
         orderBy("name"),
         orderBy("reviewsCount", "desc"),
-        limit(maxResults)
+        limit(maxResults),
       );
 
       const querySnapshot = await getDocs(q);
@@ -118,9 +120,10 @@ export class SearchService {
       const query_lower = searchQuery.toLowerCase().trim();
 
       return companies.filter((company) =>
-        company.companyName.toLowerCase().includes(query_lower)
+        company.companyName.toLowerCase().includes(query_lower),
       );
     } catch (error) {
+      // eslint-disable-next-line no-console
       console.error("Error searching companies:", error);
       throw error;
     }
@@ -128,7 +131,7 @@ export class SearchService {
 
   // Get popular companies (fallback when no search query)
   static async getPopularCompanies(
-    maxResults: number = 20
+    maxResults: number = 20,
   ): Promise<CompanyDocument[]> {
     try {
       const q = query(
@@ -136,7 +139,7 @@ export class SearchService {
         where("status", "==", "approved"),
         orderBy("reviewsCount", "desc"),
         orderBy("rating", "desc"),
-        limit(maxResults)
+        limit(maxResults),
       );
 
       const querySnapshot = await getDocs(q);
@@ -146,6 +149,7 @@ export class SearchService {
         ...doc.data(),
       })) as CompanyDocument[];
     } catch (error) {
+      // eslint-disable-next-line no-console
       console.error("Error getting popular companies:", error);
       throw error;
     }

@@ -7,7 +7,6 @@ export default function ContactPage() {
     <DefaultLayout>
       <ContactHero />
       <ContactForm />
-
     </DefaultLayout>
   );
 }

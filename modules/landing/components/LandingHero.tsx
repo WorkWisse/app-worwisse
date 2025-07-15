@@ -14,15 +14,15 @@ export const LandingHero = () => {
           <div className="animate-fade-in-up delay-200">
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-800 dark:text-slate-100 mb-6 tracking-tight leading-tight transition-colors duration-200">
               <Trans
-                i18nKey="hero.title"
                 components={{ 1: <span className="text-sky-600" /> }}
+                i18nKey="hero.title"
               />
             </h1>
 
             <p className="text-lg text-slate-600 dark:text-slate-300 mb-8 max-w-xl leading-relaxed transition-colors duration-200">
               <Trans
-                i18nKey="hero.description"
                 components={{ 1: <strong /> }}
+                i18nKey="hero.description"
               />
             </p>
 
@@ -55,9 +55,9 @@ export const LandingHero = () => {
           <div className="hidden lg:flex justify-center items-center animate-slide-in-right delay-300">
             <div className="relative">
               <img
-                src="/images/home-1.png"
                 alt="Trabajadores tomando decisiones informadas"
                 className="w-full max-w-lg h-auto object-cover rounded-2xl shadow-2xl"
+                src="/images/home-1.png"
               />
               {/* <div className="absolute -bottom-6 -left-6 bg-white rounded-lg shadow-xl p-4 max-w-xs">
                 <div className="flex items-center gap-3">

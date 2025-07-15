@@ -30,27 +30,28 @@ export default function ContactFAQ() {
               className="border border-slate-200 dark:border-slate-700 rounded-lg overflow-hidden"
             >
               <button
+                aria-expanded={openIndex === index}
                 className="w-full px-6 py-4 text-left bg-slate-50 dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors duration-200 flex justify-between items-center"
                 onClick={() => toggleFAQ(index)}
-                aria-expanded={openIndex === index}
               >
                 <span className="font-semibold text-slate-900 dark:text-white">
                   {t(`contact.faq.items.${faqKey}.question`)}
                 </span>
                 <svg
-                  className={`w-5 h-5 text-slate-500 dark:text-slate-400 transition-transform duration-200 ${openIndex === index ? "rotate-180" : ""
-                    }`}
+                  aria-label="Toggle FAQ"
+                  className={`w-5 h-5 text-slate-500 dark:text-slate-400 transition-transform duration-200 ${
+                    openIndex === index ? "rotate-180" : ""
+                  }`}
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
-                  aria-label="Toggle FAQ"
                 >
                   <title>Toggle FAQ</title>
                   <path
+                    d="M19 9l-7 7-7-7"
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     strokeWidth={2}
-                    d="M19 9l-7 7-7-7"
                   />
                 </svg>
               </button>

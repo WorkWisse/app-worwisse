@@ -28,10 +28,10 @@ export default function AboutStats() {
         <div className="text-center mb-16 animate-fade-in-up">
           <h2 className="text-4xl lg:text-5xl font-bold text-white mb-6">
             <Trans
-              i18nKey="about.stats.title"
               components={{
                 1: <span className="text-sky-200 dark:text-sky-300" />,
               }}
+              i18nKey="about.stats.title"
             />
           </h2>
           <p className="text-xl text-sky-100 dark:text-sky-200 max-w-3xl mx-auto leading-relaxed">

@@ -34,10 +34,10 @@ export default function AboutMission() {
         <div className="text-center mb-16 animate-fade-in-up">
           <h2 className="text-4xl lg:text-5xl font-bold text-slate-900 dark:text-white mb-6">
             <Trans
-              i18nKey="about.mission.title"
               components={{
                 1: <span className="text-sky-600 dark:text-sky-400" />,
               }}
+              i18nKey="about.mission.title"
             />
           </h2>
           <div className="max-w-4xl mx-auto space-y-6">
