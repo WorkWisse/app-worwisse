@@ -697,5 +697,22 @@
             "description": "Não encontra sua empresa? Adicione-a e ajude outros profissionais.",
             "addCompany": "Adicionar empresa"
         }
+    },
+    "thankYou": {
+        "company": {
+            "title": "Obrigado por adicionar sua empresa!",
+            "message": "Nossa equipe irá revisar as informações que você compartilhou conosco o mais rápido possível."
+        },
+        "review": {
+            "title": "Obrigado por compartilhar sua experiência!",
+            "message": "Nossa equipe irá revisar sua opinião o mais rápido possível para garantir que seja útil para outros profissionais."
+        },
+        "reviewTime": {
+            "title": "Tempo de revisão",
+            "description": "O tempo máximo de revisão é de 48 horas. Notificaremos você quando for publicado."
+        },
+        "button": {
+            "continue": "Continuar"
+        }
     }
 }

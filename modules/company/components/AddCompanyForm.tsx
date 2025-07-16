@@ -8,6 +8,7 @@ import { Trans, useTranslation } from "react-i18next";
 import { CompanyService } from "@/services/companyService";
 import { CompanyDocument } from "@/types";
 import { useToast } from "@/modules/core/components";
+import ThankYouModal from "@/components/ThankYouModal";
 
 export default function AddCompanyForm() {
   const { t } = useTranslation();
@@ -23,6 +24,7 @@ export default function AddCompanyForm() {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [acceptedTerms, setAcceptedTerms] = useState(false);
+  const [showThankYouModal, setShowThankYouModal] = useState(false);
 
   // Nuevo estado para el autocomplete de beneficios
   const [benefitsInput, setBenefitsInput] = useState("");
@@ -290,11 +292,6 @@ export default function AddCompanyForm() {
       // Save to Firebase
       await CompanyService.addCompany(companyData);
 
-      showSuccess(
-        t("addCompany.form.submitSuccess"),
-        t("addCompany.form.companyAdded"),
-      );
-
       // Reset form
       setFormData({
         name: "",
@@ -307,6 +304,9 @@ export default function AddCompanyForm() {
       });
       setAcceptedTerms(false);
       setBenefitsInput("");
+      
+      // Show thank you modal
+      setShowThankYouModal(true);
     } catch (error) {
       // eslint-disable-next-line no-console
       console.error("Error adding company:", error);
@@ -666,6 +666,13 @@ export default function AddCompanyForm() {
           </div>
         </div>
       </div>
+
+      {/* Thank You Modal */}
+      <ThankYouModal
+        isOpen={showThankYouModal}
+        onClose={() => setShowThankYouModal(false)}
+        type="company"
+      />
     </div>
   );
 }

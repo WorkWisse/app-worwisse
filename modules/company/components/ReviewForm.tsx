@@ -8,6 +8,7 @@ import { useTranslation, Trans } from "react-i18next";
 
 import { ReviewService } from "@/services";
 import { ReviewDocument } from "@/types";
+import ThankYouModal from "@/components/ThankYouModal";
 
 interface ReviewFormData {
   // Información laboral
@@ -124,6 +125,13 @@ export default function ReviewForm({ company }: { company: any }) {
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showThankYouModal, setShowThankYouModal] = useState(false);
+
+  const handleModalClose = () => {
+    setShowThankYouModal(false);
+    // Redirigir a la página de la empresa después de cerrar el modal
+    router.push(`/company/${slug}`);
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -172,11 +180,8 @@ export default function ReviewForm({ company }: { company: any }) {
       // Enviar a Firebase
       await ReviewService.addReview(reviewData);
 
-      // Mostrar mensaje de éxito
-      alert(t("reviewForm.success.message"));
-
-      // Redirigir a la página de la empresa
-      router.push(`/company/${slug}`);
+      // Mostrar modal de agradecimiento
+      setShowThankYouModal(true);
     } catch (error) {
       // eslint-disable-next-line no-console
       console.error("Error submitting review:", error);
@@ -655,6 +660,13 @@ export default function ReviewForm({ company }: { company: any }) {
           </div>
         </div>
       </section>
+
+      {/* Thank You Modal */}
+      <ThankYouModal
+        isOpen={showThankYouModal}
+        onClose={handleModalClose}
+        type="review"
+      />
     </div>
   );
 }

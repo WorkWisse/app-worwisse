@@ -674,5 +674,22 @@
             "description": "Can't find your company? Add it and help other professionals.",
             "addCompany": "Add company"
         }
+    },
+    "thankYou": {
+        "company": {
+            "title": "Thanks for adding your company!",
+            "message": "Our team will review the information you shared with us as soon as possible."
+        },
+        "review": {
+            "title": "Thanks for sharing your experience!",
+            "message": "Our team will review your opinion as soon as possible to ensure it's helpful for other professionals."
+        },
+        "reviewTime": {
+            "title": "Review time",
+            "description": "The maximum review time is 48 hours. We'll notify you when it's published."
+        },
+        "button": {
+            "continue": "Continue"
+        }
     }
 }
