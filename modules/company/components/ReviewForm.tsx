@@ -79,11 +79,10 @@ const StarRating = ({
         {[1, 2, 3, 4, 5].map((star) => (
           <button
             key={star}
-            className={`w-10 h-10 transition-all duration-200 hover:scale-110 ${
-              star <= (hoverRating || rating)
-                ? "text-yellow-400 hover:text-yellow-500"
-                : "text-slate-300 dark:text-slate-600 hover:text-yellow-300"
-            }`}
+            className={`w-10 h-10 transition-all duration-200 hover:scale-110 ${star <= (hoverRating || rating)
+              ? "text-yellow-400 hover:text-yellow-500"
+              : "text-slate-300 dark:text-slate-600 hover:text-yellow-300"
+              }`}
             type="button"
             onClick={() => onRatingChange(star)}
             onMouseEnter={() => setHoverRating(star)}
@@ -125,6 +124,7 @@ export default function ReviewForm({ company }: { company: any }) {
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [dateError, setDateError] = useState<string>("");
   const [showThankYouModal, setShowThankYouModal] = useState(false);
 
   const handleModalClose = () => {
@@ -149,33 +149,52 @@ export default function ReviewForm({ company }: { company: any }) {
       return;
     }
 
+    // Validar que la fecha de inicio sea menor que la fecha de fin
+    if (!formData.currentlyWorking && formData.startDate && formData.endDate) {
+      const startDate = new Date(formData.startDate);
+      const endDate = new Date(formData.endDate);
+
+      if (startDate >= endDate) {
+        alert("La fecha de inicio debe ser anterior a la fecha de fin.");
+
+        return;
+      }
+    }
+
+    // Validar si hay errores de fecha pendientes
+    if (dateError) {
+      alert(dateError);
+
+      return;
+    }
+
     setIsSubmitting(true);
 
     try {
       // Preparar los datos para Firebase
       const reviewData: Omit<ReviewDocument, "id" | "createdAt" | "updatedAt"> =
-        {
-          companyId: company.id,
-          companyName: company.companyName,
-          creationDate: new Date().toISOString(),
-          role: formData.role,
-          startDate: formData.startDate,
-          endDate: formData.currentlyWorking ? null : formData.endDate,
-          workEnvironment: formData.workEnvironmentRating,
-          salary: formData.compensationRating,
-          benefits: formData.benefitsRating,
-          companyCulture: formData.cultureRating,
-          internalCommunication: formData.leadershipRating,
-          professionalGrowth: formData.careerGrowthRating,
-          workLifeBalance: formData.workLifeBalanceRating,
-          overallRating: formData.overallRating,
-          workInclusion: formData.inclusionRating,
-          positiveAspects: formData.pros,
-          areasForImprovement: formData.cons,
-          recommend: formData.wouldRecommend,
-          terms: formData.acceptedTerms,
-          approved: false,
-        };
+      {
+        companyId: company.id,
+        companyName: company.companyName,
+        creationDate: new Date().toISOString(),
+        role: formData.role,
+        startDate: formData.startDate,
+        endDate: formData.currentlyWorking ? null : formData.endDate,
+        workEnvironment: formData.workEnvironmentRating,
+        salary: formData.compensationRating,
+        benefits: formData.benefitsRating,
+        companyCulture: formData.cultureRating,
+        internalCommunication: formData.leadershipRating,
+        professionalGrowth: formData.careerGrowthRating,
+        workLifeBalance: formData.workLifeBalanceRating,
+        overallRating: formData.overallRating,
+        workInclusion: formData.inclusionRating,
+        positiveAspects: formData.pros,
+        areasForImprovement: formData.cons,
+        recommend: formData.wouldRecommend,
+        terms: formData.acceptedTerms,
+        approved: false,
+      };
 
       // Enviar a Firebase
       await ReviewService.addReview(reviewData);
@@ -192,20 +211,44 @@ export default function ReviewForm({ company }: { company: any }) {
   };
 
   const handleChange = (field: keyof ReviewFormData, value: any) => {
-    setFormData((prev) => ({ ...prev, [field]: value }));
+    setFormData((prev) => {
+      const newData = { ...prev, [field]: value };
+
+      // Validar fechas cuando se actualiza startDate o endDate
+      if ((field === "startDate" || field === "endDate") && !newData.currentlyWorking) {
+        if (newData.startDate && newData.endDate) {
+          const startDate = new Date(newData.startDate);
+          const endDate = new Date(newData.endDate);
+
+          if (startDate >= endDate) {
+            setDateError("La fecha de inicio debe ser anterior a la fecha de fin.");
+          } else {
+            setDateError("");
+          }
+        } else {
+          setDateError("");
+        }
+      }
+
+      // Limpiar error de fecha si se marca como trabajo actual
+      if (field === "currentlyWorking" && value) {
+        setDateError("");
+      }
+
+      return newData;
+    });
   };
 
   const renderStars = (rating: number) => {
     return Array.from({ length: 5 }, (_, index) => (
       <svg
         key={index}
-        className={`w-5 h-5 ${
-          index < Math.floor(rating)
-            ? "text-yellow-400 fill-current"
-            : index < rating
-              ? "text-yellow-400 fill-current opacity-50"
-              : "text-slate-300 dark:text-slate-600"
-        }`}
+        className={`w-5 h-5 ${index < Math.floor(rating)
+          ? "text-yellow-400 fill-current"
+          : index < rating
+            ? "text-yellow-400 fill-current opacity-50"
+            : "text-slate-300 dark:text-slate-600"
+          }`}
         viewBox="0 0 20 20"
       >
         <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
@@ -220,19 +263,8 @@ export default function ReviewForm({ company }: { company: any }) {
         <section className="bg-white dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6">
             <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
-              {/* Back Button and Company Logo and Basic Info */}
+              {/* Company Logo and Basic Info */}
               <div className="flex items-center gap-4 flex-1 min-w-0">
-                {/* Back Button */}
-                <div className="flex-shrink-0">
-                  <Button
-                    className="bg-slate-600 hover:bg-slate-700 text-white font-semibold px-3 sm:px-4 py-2 text-sm sm:text-base"
-                    size="sm"
-                    onPress={() => router.push(`/company/${slug}`)}
-                  >
-                    ← Volver
-                  </Button>
-                </div>
-
                 {/* Company Logo */}
                 <div className="flex-shrink-0">
                   <button
@@ -277,17 +309,28 @@ export default function ReviewForm({ company }: { company: any }) {
                 </div>
               </div>
 
-              {/* Rating */}
-              <div className="flex items-center gap-2 sm:gap-3 w-full sm:w-auto justify-start sm:justify-end">
-                <div className="flex scale-75 sm:scale-100">
-                  {renderStars(company.rating)}
+              {/* Rating and Back Button */}
+              <div className="flex xs:flex-row items-start xs:items-center gap-3 w-full sm:w-auto">
+                <div className="flex flex-col items-center gap-2 sm:gap-3">
+                  <div className="flex scale-75 sm:scale-100">
+                    {renderStars(company.rating)}
+                  </div>
+                  <div className="flex text-xs xs:text-sm gap-2">
+                    <div className="font-semibold text-slate-900 dark:text-white">
+                      {company.rating}
+                    </div>
+                    <div className="text-slate-500 dark:text-slate-400">
+                      {company.reviewsCount} {t("reviewForm.hero.reviews")}
+                    </div>
+                  </div>
                 </div>
-                <span className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white">
-                  {company.rating}
-                </span>
-                <span className="text-slate-600 dark:text-slate-300 text-xs sm:text-sm">
-                  ({company.reviewsCount} {t("reviewForm.hero.reviews")})
-                </span>
+
+                <Button
+                  className="w-full xs:w-auto text-xs sm:text-sm px-3 py-2 sm:px-4 sm:py-2 bg-slate-600 hover:bg-slate-700 text-white font-semibold"
+                  onPress={() => router.push(`/company/${slug}`)}
+                >
+                  ← Volver
+                </Button>
               </div>
             </div>
           </div>
@@ -366,6 +409,13 @@ export default function ReviewForm({ company }: { company: any }) {
                           />
                         )}
                       </div>
+
+                      {/* Error message for date validation */}
+                      {dateError && (
+                        <div className="text-red-600 dark:text-red-400 text-sm font-medium bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg p-3">
+                          {dateError}
+                        </div>
+                      )}
 
                       <div className="flex items-center space-x-3">
                         <Checkbox
@@ -590,8 +640,13 @@ export default function ReviewForm({ company }: { company: any }) {
                   {/* Botones de acción */}
                   <div className="flex flex-col sm:flex-row gap-4 pt-6">
                     <Button
-                      className="bg-sky-600 dark:bg-sky-600 text-white hover:bg-sky-700 dark:hover:bg-sky-700 font-semibold px-8 py-3 transition-colors duration-200 flex-1 sm:flex-initial"
-                      disabled={!formData.acceptedTerms || isSubmitting}
+                      className={`font-semibold px-8 py-3 transition-all duration-200 flex-1 sm:flex-initial ${!formData.acceptedTerms || isSubmitting || !!dateError
+                        ? "bg-slate-300 dark:bg-slate-600 text-slate-500 dark:text-slate-400 cursor-not-allowed opacity-60"
+                        : "bg-sky-600 dark:bg-sky-600 text-white hover:bg-sky-700 dark:hover:bg-sky-700 hover:scale-105 shadow-md hover:shadow-lg"
+                        }`}
+                      disabled={
+                        !formData.acceptedTerms || isSubmitting || !!dateError
+                      }
                       size="lg"
                       type="submit"
                     >
