@@ -164,6 +164,7 @@ export default function ContactForm() {
 
             <div className="flex justify-center pt-4">
               <Button
+                type="submit"
                 className="bg-sky-600 dark:bg-sky-600 text-white hover:bg-sky-700 dark:hover:bg-sky-700 font-semibold px-12 py-3 transition-colors duration-200"
                 disabled={submissionState.isSubmitting}
               >
