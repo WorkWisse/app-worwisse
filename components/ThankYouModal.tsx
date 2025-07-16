@@ -110,16 +110,6 @@ export default function ThankYouModal({
                         </p>
                     </div>
                 </div>
-
-                {/* Footer */}
-                <div className="flex justify-center p-6 border-t border-slate-200 dark:border-slate-700">
-                    <Button
-                        className="bg-purple-600 hover:bg-purple-700 dark:bg-purple-600 dark:hover:bg-purple-700 text-white font-semibold px-8 py-3"
-                        onPress={onClose}
-                    >
-                        {t("thankYou.button.continue")}
-                    </Button>
-                </div>
             </div>
         </div>
     );

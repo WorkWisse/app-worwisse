@@ -697,7 +697,7 @@
         },
         "reviewTime": {
             "title": "Tiempo de revisión",
-            "description": "El tiempo máximo de revisión es de 48 horas. Te notificaremos cuando esté publicado."
+            "description": "El tiempo máximo de revisión es de 48 horas."
         },
         "button": {
             "continue": "Volver"

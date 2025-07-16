@@ -687,7 +687,7 @@
         },
         "reviewTime": {
             "title": "Review time",
-            "description": "The maximum review time is 48 hours. We'll notify you when it's published."
+            "description": "The maximum review time is 48 hours."
         },
         "button": {
             "continue": "Continue"
