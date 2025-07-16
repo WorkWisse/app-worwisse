@@ -340,6 +340,10 @@
             "button": {
                 "send": "Send message",
                 "sending": "Sending..."
+            },
+            "messages": {
+                "success": "Message sent successfully! We'll respond soon.",
+                "error": "Error sending message. Please try again."
             }
         }
     },

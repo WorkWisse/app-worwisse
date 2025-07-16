@@ -4,24 +4,82 @@ import { Input } from "@heroui/input";
 import { Card } from "@heroui/card";
 import { useTranslation } from "react-i18next";
 
+interface ContactFormData {
+  name: string;
+  email: string;
+  subject: string;
+  message: string;
+}
+
+interface SubmissionState {
+  isSubmitting: boolean;
+  success: boolean;
+  error: string | null;
+}
+
 export default function ContactForm() {
   const { t } = useTranslation();
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<ContactFormData>({
     name: "",
     email: "",
     subject: "",
     message: "",
   });
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submissionState, setSubmissionState] = useState<SubmissionState>({
+    isSubmitting: false,
+    success: false,
+    error: null,
+  });
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setIsSubmitting(true);
 
-    await new Promise((resolve) => setTimeout(resolve, 1000));
+    setSubmissionState({
+      isSubmitting: true,
+      success: false,
+      error: null,
+    });
 
-    setIsSubmitting(false);
-    setFormData({ name: "", email: "", subject: "", message: "" });
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Error al enviar el mensaje');
+      }
+
+      // Éxito: limpiar formulario y mostrar mensaje
+      setFormData({ name: "", email: "", subject: "", message: "" });
+      setSubmissionState({
+        isSubmitting: false,
+        success: true,
+        error: null,
+      });
+
+      // Ocultar mensaje de éxito después de 5 segundos
+      setTimeout(() => {
+        setSubmissionState(prev => ({ ...prev, success: false }));
+      }, 5000);
+
+    } catch (error) {
+      setSubmissionState({
+        isSubmitting: false,
+        success: false,
+        error: error instanceof Error ? error.message : 'Error desconocido',
+      });
+
+      // Ocultar mensaje de error después de 5 segundos
+      setTimeout(() => {
+        setSubmissionState(prev => ({ ...prev, error: null }));
+      }, 5000);
+    }
   };
 
   const handleChange = (field: string, value: string) => {
@@ -107,15 +165,31 @@ export default function ContactForm() {
             <div className="flex justify-center pt-4">
               <Button
                 className="bg-sky-600 dark:bg-sky-600 text-white hover:bg-sky-700 dark:hover:bg-sky-700 font-semibold px-12 py-3 transition-colors duration-200"
-                disabled={isSubmitting}
-                size="lg"
-                type="submit"
+                disabled={submissionState.isSubmitting}
               >
-                {isSubmitting
+                {submissionState.isSubmitting
                   ? t("contact.form.button.sending")
                   : t("contact.form.button.send")}
               </Button>
             </div>
+
+            {/* Mensaje de éxito */}
+            {submissionState.success && (
+              <div className="mt-4 p-4 bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg">
+                <p className="text-green-800 dark:text-green-200 text-center font-medium">
+                  {t("contact.form.messages.success")}
+                </p>
+              </div>
+            )}
+
+            {/* Mensaje de error */}
+            {submissionState.error && (
+              <div className="mt-4 p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg">
+                <p className="text-red-800 dark:text-red-200 text-center font-medium">
+                  {submissionState.error}
+                </p>
+              </div>
+            )}
           </form>
         </Card>
       </div>
