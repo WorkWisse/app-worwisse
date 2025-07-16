@@ -124,6 +124,7 @@ export default function ReviewForm({ company }: { company: any }) {
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [dateError, setDateError] = useState<string>("");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -137,6 +138,25 @@ export default function ReviewForm({ company }: { company: any }) {
     // Validar que se hayan completado las calificaciones principales
     if (formData.overallRating === 0 || formData.workEnvironmentRating === 0) {
       alert(t("reviewForm.validation.ratingsRequired"));
+
+      return;
+    }
+
+    // Validar que la fecha de inicio sea menor que la fecha de fin
+    if (!formData.currentlyWorking && formData.startDate && formData.endDate) {
+      const startDate = new Date(formData.startDate);
+      const endDate = new Date(formData.endDate);
+      
+      if (startDate >= endDate) {
+        alert("La fecha de inicio debe ser anterior a la fecha de fin.");
+
+        return;
+      }
+    }
+
+    // Validar si hay errores de fecha pendientes
+    if (dateError) {
+      alert(dateError);
 
       return;
     }
@@ -187,7 +207,32 @@ export default function ReviewForm({ company }: { company: any }) {
   };
 
   const handleChange = (field: keyof ReviewFormData, value: any) => {
-    setFormData((prev) => ({ ...prev, [field]: value }));
+    setFormData((prev) => {
+      const newData = { ...prev, [field]: value };
+      
+      // Validar fechas cuando se actualiza startDate o endDate
+      if ((field === "startDate" || field === "endDate") && !newData.currentlyWorking) {
+        if (newData.startDate && newData.endDate) {
+          const startDate = new Date(newData.startDate);
+          const endDate = new Date(newData.endDate);
+          
+          if (startDate >= endDate) {
+            setDateError("La fecha de inicio debe ser anterior a la fecha de fin.");
+          } else {
+            setDateError("");
+          }
+        } else {
+          setDateError("");
+        }
+      }
+      
+      // Limpiar error de fecha si se marca como trabajo actual
+      if (field === "currentlyWorking" && value) {
+        setDateError("");
+      }
+      
+      return newData;
+    });
   };
 
   const renderStars = (rating: number) => {
@@ -215,19 +260,8 @@ export default function ReviewForm({ company }: { company: any }) {
         <section className="bg-white dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6">
             <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
-              {/* Back Button and Company Logo and Basic Info */}
+              {/* Company Logo and Basic Info */}
               <div className="flex items-center gap-4 flex-1 min-w-0">
-                {/* Back Button */}
-                <div className="flex-shrink-0">
-                  <Button
-                    className="bg-slate-600 hover:bg-slate-700 text-white font-semibold px-3 sm:px-4 py-2 text-sm sm:text-base"
-                    size="sm"
-                    onPress={() => router.push(`/company/${slug}`)}
-                  >
-                    ← Volver
-                  </Button>
-                </div>
-
                 {/* Company Logo */}
                 <div className="flex-shrink-0">
                   <button
@@ -272,17 +306,28 @@ export default function ReviewForm({ company }: { company: any }) {
                 </div>
               </div>
 
-              {/* Rating */}
-              <div className="flex items-center gap-2 sm:gap-3 w-full sm:w-auto justify-start sm:justify-end">
-                <div className="flex scale-75 sm:scale-100">
-                  {renderStars(company.rating)}
+              {/* Rating and Back Button */}
+              <div className="flex xs:flex-row items-start xs:items-center gap-3 w-full sm:w-auto">
+                <div className="flex flex-col items-center gap-2 sm:gap-3">
+                  <div className="flex scale-75 sm:scale-100">
+                    {renderStars(company.rating)}
+                  </div>
+                  <div className="flex text-xs xs:text-sm gap-2">
+                    <div className="font-semibold text-slate-900 dark:text-white">
+                      {company.rating}
+                    </div>
+                    <div className="text-slate-500 dark:text-slate-400">
+                      {company.reviewsCount} {t("reviewForm.hero.reviews")}
+                    </div>
+                  </div>
                 </div>
-                <span className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white">
-                  {company.rating}
-                </span>
-                <span className="text-slate-600 dark:text-slate-300 text-xs sm:text-sm">
-                  ({company.reviewsCount} {t("reviewForm.hero.reviews")})
-                </span>
+
+                <Button
+                  className="w-full xs:w-auto text-xs sm:text-sm px-3 py-2 sm:px-4 sm:py-2 bg-slate-600 hover:bg-slate-700 text-white font-semibold"
+                  onPress={() => router.push(`/company/${slug}`)}
+                >
+                  ← Volver
+                </Button>
               </div>
             </div>
           </div>
@@ -361,6 +406,13 @@ export default function ReviewForm({ company }: { company: any }) {
                           />
                         )}
                       </div>
+
+                      {/* Error message for date validation */}
+                      {dateError && (
+                        <div className="text-red-600 dark:text-red-400 text-sm font-medium bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg p-3">
+                          {dateError}
+                        </div>
+                      )}
 
                       <div className="flex items-center space-x-3">
                         <Checkbox
@@ -585,8 +637,14 @@ export default function ReviewForm({ company }: { company: any }) {
                   {/* Botones de acción */}
                   <div className="flex flex-col sm:flex-row gap-4 pt-6">
                     <Button
-                      className="bg-sky-600 dark:bg-sky-600 text-white hover:bg-sky-700 dark:hover:bg-sky-700 font-semibold px-8 py-3 transition-colors duration-200 flex-1 sm:flex-initial"
-                      disabled={!formData.acceptedTerms || isSubmitting}
+                      className={`font-semibold px-8 py-3 transition-all duration-200 flex-1 sm:flex-initial ${
+                        !formData.acceptedTerms || isSubmitting || !!dateError
+                          ? "bg-slate-300 dark:bg-slate-600 text-slate-500 dark:text-slate-400 cursor-not-allowed opacity-60"
+                          : "bg-sky-600 dark:bg-sky-600 text-white hover:bg-sky-700 dark:hover:bg-sky-700 hover:scale-105 shadow-md hover:shadow-lg"
+                      }`}
+                      disabled={
+                        !formData.acceptedTerms || isSubmitting || !!dateError
+                      }
                       size="lg"
                       type="submit"
                     >

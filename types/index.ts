@@ -91,7 +91,6 @@ export interface CompanyDocument
   location: {
     country: string;
     state: string;
-    city?: string; // Optional city field
   };
   description?: string; // Company description
   workEnvironment?: {

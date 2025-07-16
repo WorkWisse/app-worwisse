@@ -135,6 +135,23 @@ export default function AddCompanyForm() {
       { key: "go", label: "Goiás" },
       { key: "pe", label: "Pernambuco" },
       { key: "ce", label: "Ceará" },
+      { key: "df", label: "Distrito Federal" },
+      { key: "es", label: "Espírito Santo" },
+      { key: "ma", label: "Maranhão" },
+      { key: "mt", label: "Mato Grosso" },
+      { key: "ms", label: "Mato Grosso do Sul" },
+      { key: "pa", label: "Pará" },
+      { key: "pb", label: "Paraíba" },
+      { key: "pi", label: "Piauí" },
+      { key: "rn", label: "Rio Grande do Norte" },
+      { key: "ro", label: "Rondônia" },
+      { key: "rr", label: "Roraima" },
+      { key: "se", label: "Sergipe" },
+      { key: "to", label: "Tocantins" },
+      { key: "ac", label: "Acre" },
+      { key: "al", label: "Alagoas" },
+      { key: "ap", label: "Amapá" },
+      { key: "am", label: "Amazonas" },
     ],
     cl: [
       { key: "rm", label: "Región Metropolitana" },
@@ -145,6 +162,14 @@ export default function AddCompanyForm() {
       { key: "antofagasta", label: "Antofagasta" },
       { key: "maule", label: "Maule" },
       { key: "libertador", label: "Libertador General Bernardo O'Higgins" },
+      { key: "tarapaca", label: "Tarapacá" },
+      { key: "arica-parinacota", label: "Arica y Parinacota" },
+      { key: "atacama", label: "Atacama" },
+      { key: "coquimbo", label: "Coquimbo" },
+      { key: "nuble", label: "Ñuble" },
+      { key: "los-rios", label: "Los Ríos" },
+      { key: "aysen", label: "Aysén del General Carlos Ibáñez del Campo" },
+      { key: "magallanes", label: "Magallanes y de la Antártica Chilena" },
     ],
     co: [
       { key: "bogota", label: "Bogotá D.C." },
@@ -155,6 +180,30 @@ export default function AddCompanyForm() {
       { key: "santander", label: "Santander" },
       { key: "bolivar", label: "Bolívar" },
       { key: "norte-santander", label: "Norte de Santander" },
+      { key: "cordoba", label: "Córdoba" },
+      { key: "tolima", label: "Tolima" },
+      { key: "huila", label: "Huila" },
+      { key: "nariño", label: "Nariño" },
+      { key: "meta", label: "Meta" },
+      { key: "boyaca", label: "Boyacá" },
+      { key: "sucre", label: "Sucre" },
+      { key: "caldas", label: "Caldas" },
+      { key: "magdalena", label: "Magdalena" },
+      { key: "cauca", label: "Cauca" },
+      { key: "la-guajira", label: "La Guajira" },
+      { key: "cesar", label: "Cesar" },
+      { key: "risaralda", label: "Risaralda" },
+      { key: "casanare", label: "Casanare" },
+      { key: "choco", label: "Chocó" },
+      { key: "arauca", label: "Arauca" },
+      { key: "putumayo", label: "Putumayo" },
+      { key: "san-andres", label: "San Andrés y Providencia" },
+      { key: "amazonas", label: "Amazonas" },
+      { key: "caqueta", label: "Caquetá" },
+      { key: "guainia", label: "Guainía" },
+      { key: "guaviare", label: "Guaviare" },
+      { key: "vaupes", label: "Vaupés" },
+      { key: "vichada", label: "Vichada" },
     ],
     mx: [
       { key: "cdmx", label: "Ciudad de México" },
@@ -165,6 +214,30 @@ export default function AddCompanyForm() {
       { key: "veracruz", label: "Veracruz" },
       { key: "yucatan", label: "Yucatán" },
       { key: "sonora", label: "Sonora" },
+      { key: "chihuahua", label: "Chihuahua" },
+      { key: "oaxaca", label: "Oaxaca" },
+      { key: "tamaulipas", label: "Tamaulipas" },
+      { key: "chiapas", label: "Chiapas" },
+      { key: "tabasco", label: "Tabasco" },
+      { key: "michoacan", label: "Michoacán" },
+      { key: "sinaloa", label: "Sinaloa" },
+      { key: "coahuila", label: "Coahuila" },
+      { key: "hidalgo", label: "Hidalgo" },
+      { key: "guerrero", label: "Guerrero" },
+      { key: "san-luis-potosi", label: "San Luis Potosí" },
+      { key: "baja-california", label: "Baja California" },
+      { key: "zacatecas", label: "Zacatecas" },
+      { key: "queretaro", label: "Querétaro" },
+      { key: "morelos", label: "Morelos" },
+      { key: "durango", label: "Durango" },
+      { key: "campeche", label: "Campeche" },
+      { key: "aguascalientes", label: "Aguascalientes" },
+      { key: "nayarit", label: "Nayarit" },
+      { key: "tlaxcala", label: "Tlaxcala" },
+      { key: "baja-california-sur", label: "Baja California Sur" },
+      { key: "quintana-roo", label: "Quintana Roo" },
+      { key: "colima", label: "Colima" },
+      { key: "estado-de-mexico", label: "Estado de México" },
     ],
     pe: [
       { key: "lima", label: "Lima" },
@@ -175,6 +248,23 @@ export default function AddCompanyForm() {
       { key: "cusco", label: "Cusco" },
       { key: "junin", label: "Junín" },
       { key: "ica", label: "Ica" },
+      { key: "ancash", label: "Áncash" },
+      { key: "cajamarca", label: "Cajamarca" },
+      { key: "puno", label: "Puno" },
+      { key: "loreto", label: "Loreto" },
+      { key: "huanuco", label: "Huánuco" },
+      { key: "san-martin", label: "San Martín" },
+      { key: "ucayali", label: "Ucayali" },
+      { key: "apurimac", label: "Apurímac" },
+      { key: "ayacucho", label: "Ayacucho" },
+      { key: "huancavelica", label: "Huancavelica" },
+      { key: "tacna", label: "Tacna" },
+      { key: "moquegua", label: "Moquegua" },
+      { key: "pasco", label: "Pasco" },
+      { key: "tumbes", label: "Tumbes" },
+      { key: "amazonas", label: "Amazonas" },
+      { key: "madre-de-dios", label: "Madre de Dios" },
+      { key: "callao", label: "Callao" },
     ],
     uy: [
       { key: "montevideo", label: "Montevideo" },
@@ -183,6 +273,19 @@ export default function AddCompanyForm() {
       { key: "salto", label: "Salto" },
       { key: "paysandu", label: "Paysandú" },
       { key: "rivera", label: "Rivera" },
+      { key: "artigas", label: "Artigas" },
+      { key: "cerro-largo", label: "Cerro Largo" },
+      { key: "colonia", label: "Colonia" },
+      { key: "durazno", label: "Durazno" },
+      { key: "flores", label: "Flores" },
+      { key: "florida", label: "Florida" },
+      { key: "lavalleja", label: "Lavalleja" },
+      { key: "rio-negro", label: "Río Negro" },
+      { key: "rocha", label: "Rocha" },
+      { key: "san-jose", label: "San José" },
+      { key: "soriano", label: "Soriano" },
+      { key: "tacuarembo", label: "Tacuarembó" },
+      { key: "treinta-y-tres", label: "Treinta y Tres" },
     ],
   };
 
@@ -234,14 +337,14 @@ export default function AddCompanyForm() {
   const filteredBenefits = predefinedBenefits.filter(
     (benefit) =>
       benefit.toLowerCase().includes(benefitsInput.toLowerCase()) &&
-      !formData.benefits.includes(benefit)
+      !formData.benefits.includes(benefit),
   );
 
   const handleSubmit = async () => {
     if (!acceptedTerms) {
       showWarning(
         t("addCompany.form.acceptTermsRequired"),
-        t("addCompany.form.pleaseAcceptTerms")
+        t("addCompany.form.pleaseAcceptTerms"),
       );
 
       return;
@@ -281,9 +384,8 @@ export default function AddCompanyForm() {
         name: "",
         logo: "",
         location: {
-          country: "",
-          state: "",
-          city: undefined,
+          country: countryLabel,
+          state: stateLabel,
         },
       };
 
@@ -312,7 +414,7 @@ export default function AddCompanyForm() {
       console.error("Error adding company:", error);
       showError(
         t("addCompany.form.submitError"),
-        t("addCompany.form.tryAgainLater")
+        t("addCompany.form.tryAgainLater"),
       );
     } finally {
       setIsSubmitting(false);
