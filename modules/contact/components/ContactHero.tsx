@@ -4,7 +4,7 @@ export default function ContactHero() {
   const { t } = useTranslation();
 
   return (
-    <section className="relative bg-gradient-to-br from-slate-50 to-sky-100 dark:from-slate-900 dark:to-slate-800 py-20 px-4 transition-colors duration-200">
+    <section className="relative bg-gradient-to-br from-slate-50 to-sky-100 dark:from-slate-900 dark:to-slate-800 py-12 px-4 transition-colors duration-200">
       <div className="max-w-7xl mx-auto">
         <div className="text-center space-y-8 animate-fade-in-up">
           <div className="space-y-4">
