@@ -15,10 +15,11 @@ import {
   getCountries,
   countryRegions,
 } from "@/modules/company/data/companyFormData";
+import ThankYouModal from "@/components/ThankYouModal";
 
 export default function AddCompanyForm() {
   const { t } = useTranslation();
-  const { showSuccess, showError, showWarning } = useToast();
+  const { showError, showWarning } = useToast();
   const [formData, setFormData] = useState({
     name: "",
     industry: "",
@@ -33,6 +34,7 @@ export default function AddCompanyForm() {
   const [acceptedTerms, setAcceptedTerms] = useState(false);
   const [logoPreview, setLogoPreview] = useState<string | null>(null);
   const [isUploadingLogo, setIsUploadingLogo] = useState(false);
+  const [showThankYouModal, setShowThankYouModal] = useState(false);
 
   // Nuevo estado para el autocomplete de beneficios
   const [benefitsInput, setBenefitsInput] = useState("");
@@ -128,12 +130,12 @@ export default function AddCompanyForm() {
           logoUrl = await ImageService.uploadImage(
             formData.logo,
             "companies/logos",
-            `${formData.name.toLowerCase().replace(/\s+/g, "-")}-logo`,
+            `${formData.name.toLowerCase().replace(/\s+/g, "-")}-logo`
           );
         } catch (logoError) {
           showError(
             t("addCompany.form.logo.uploadError"),
-            (logoError as Error).message,
+            (logoError as Error).message
           );
 
           return;
@@ -171,11 +173,6 @@ export default function AddCompanyForm() {
       // Save to Firebase
       await CompanyService.addCompany(companyData);
 
-      showSuccess(
-        t("addCompany.form.submitSuccess"),
-        t("addCompany.form.companyAdded"),
-      );
-
       // Reset form
       setFormData({
         name: "",
@@ -190,6 +187,7 @@ export default function AddCompanyForm() {
       setAcceptedTerms(false);
       setBenefitsInput("");
       setLogoPreview(null);
+      setShowThankYouModal(true);
     } catch (error) {
       // eslint-disable-next-line no-console
       console.error("Error adding company:", error);
@@ -247,7 +245,7 @@ export default function AddCompanyForm() {
       const preview = URL.createObjectURL(file);
 
       setLogoPreview(preview);
-      
+
       // Guardar archivo en el estado
       setFormData((prev) => ({ ...prev, logo: file }));
     } catch {
@@ -444,7 +442,7 @@ export default function AddCompanyForm() {
                     >
                       {t("addCompany.form.logo.label")}
                     </label>
-                    
+
                     <div className="space-y-3">
                       {/* File input */}
                       <input
@@ -462,7 +460,7 @@ export default function AddCompanyForm() {
                         type="file"
                         onChange={handleLogoChange}
                       />
-                      
+
                       {/* Preview */}
                       {logoPreview && (
                         <div className="relative inline-block">
@@ -480,7 +478,7 @@ export default function AddCompanyForm() {
                           </button>
                         </div>
                       )}
-                      
+
                       <p className="text-xs text-slate-500 dark:text-slate-400">
                         {t("addCompany.form.logo.help")}
                       </p>
@@ -667,6 +665,13 @@ export default function AddCompanyForm() {
           </div>
         </div>
       </div>
+
+      {/* Thank You Modal */}
+      <ThankYouModal
+        isOpen={showThankYouModal}
+        onClose={() => setShowThankYouModal(false)}
+        type="company"
+      />
     </div>
   );
 }

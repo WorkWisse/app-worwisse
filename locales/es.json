@@ -623,6 +623,10 @@
             "button": {
                 "send": "Enviar mensaje",
                 "sending": "Enviando..."
+            },
+            "messages": {
+                "success": "¡Mensaje enviado exitosamente! Te responderemos pronto.",
+                "error": "Error al enviar el mensaje. Por favor, intentá nuevamente."
             }
         }
     },
@@ -690,6 +694,23 @@
         "cta": {
             "description": "¿No encuentras tu empresa? Agrégala y ayuda a otros profesionales.",
             "addCompany": "Agregar empresa"
+        }
+    },
+    "thankYou": {
+        "company": {
+            "title": "¡Gracias por agregar tu empresa!",
+            "message": "Nuestro equipo va a revisar la información que nos compartiste lo antes posible."
+        },
+        "review": {
+            "title": "¡Gracias por compartir tu experiencia!",
+            "message": "Nuestro equipo va a revisar tu opinión lo antes posible para asegurar que sea útil para otros profesionales."
+        },
+        "reviewTime": {
+            "title": "Tiempo de revisión",
+            "description": "El tiempo máximo de revisión es de 48 horas."
+        },
+        "button": {
+            "continue": "Volver"
         }
     }
 }
