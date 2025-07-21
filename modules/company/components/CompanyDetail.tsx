@@ -118,13 +118,12 @@ export default function CompanyDetail({
     return Array.from({ length: 5 }, (_, index) => (
       <svg
         key={index}
-        className={`w-5 h-5 ${
-          index < Math.floor(rating)
-            ? "text-yellow-400 fill-current"
-            : index < rating
-              ? "text-yellow-400 fill-current opacity-50"
-              : "text-slate-300 dark:text-slate-600"
-        }`}
+        className={`w-5 h-5 ${index < Math.floor(rating)
+          ? "text-yellow-400 fill-current"
+          : index < rating
+            ? "text-yellow-400 fill-current opacity-50"
+            : "text-slate-300 dark:text-slate-600"
+          }`}
         viewBox="0 0 20 20"
       >
         <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
@@ -231,7 +230,7 @@ export default function CompanyDetail({
             </div>
 
             {/* Rating and Action */}
-            <div className="flex xs:flex-row items-start xs:items-center gap-3 w-full sm:w-auto">
+            <div className="flex xs:flex-row items-start xs:items-center gap-3 w-full sm:w-auto ">
               <div className="flex flex-col items-center gap-2 sm:gap-3">
                 <div className="flex scale-75 sm:scale-100">
                   {renderStars(mappedCompany.rating)}
@@ -242,14 +241,13 @@ export default function CompanyDetail({
                   </div>
                   <div className="text-slate-500 dark:text-slate-400">
                     {mappedCompany.reviewsCount}{" "}
-                    {mappedCompany.reviewsCount === 1 ? "reseña" : "reseñas"}
+                    {mappedCompany.reviewsCount === 1 ? t("companyDetail.review") : t("companyDetail.reviews")}
                   </div>
                 </div>
               </div>
 
               <Button
-                className="w-full xs:w-auto text-xs sm:text-sm px-3 py-2 sm:px-4 sm:py-2"
-                color="primary"
+                className="w-full xs:w-auto hover:opacity-hover active:opacity-disabled bg-sky-600 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-sky-700 transition-all duration-300"
                 onPress={() =>
                   router.push(`/company/${company.slug || company.id}/review`)
                 }
@@ -267,7 +265,7 @@ export default function CompanyDetail({
           <div className="lg:col-span-2 space-y-6">
             {/* Rating Breakdown */}
             {ratingAverages && (
-              <Card className="shadow-sm">
+              <Card className="">
                 <CardHeader className="pb-3">
                   <h2 className="text-xl font-bold text-slate-900 dark:text-white">
                     {t("companyDetail.ratingBreakdown")}
@@ -299,7 +297,7 @@ export default function CompanyDetail({
             )}
 
             {/* Recent Reviews */}
-            <Card className="shadow-sm">
+            <Card className="shadow-xl p-1 rounded-xl">
               <CardHeader className="pb-3">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
@@ -308,7 +306,7 @@ export default function CompanyDetail({
                     </h2>
                     <span className="text-sm text-slate-500 dark:text-slate-400">
                       ({reviews.length}{" "}
-                      {reviews.length === 1 ? "reseña" : "reseñas"})
+                      {reviews.length === 1 ? t("companyDetail.review") : t("companyDetail.reviews")})
                     </span>
                   </div>
                 </div>
@@ -320,46 +318,50 @@ export default function CompanyDetail({
                       {displayedReviews.map((review) => (
                         <Card
                           key={review.id}
-                          className="border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-md transition-shadow"
+                          className="border border-slate-200 dark:border-slate-700 shadow-md hover:shadow-md transition-shadow bg-sky-25 dark:bg-slate-800 bg-[##F8FAFC]"
                         >
                           <CardBody className="p-4">
                             <div className="flex items-start gap-4">
                               <div className="flex-1">
-                                <div className="flex items-center gap-3 mb-3">
-                                  <div className="flex scale-75">
-                                    {renderStars(
-                                      review.rating ||
-                                        review.overallRating ||
-                                        0,
-                                    )}
+                                <div className="flex items-start justify-between mb-3">
+                                  <div className="flex-1">
+                                    <div className="flex items-center gap-3 mb-1">
+                                      <p className="text-sm text-slate-700 dark:text-slate-400">
+                                        <span className="font-bold text-slate-800 dark:text-slate-200">
+                                          {t("companyDetail.role")}: {review.role}
+                                        </span>
+                                      </p>
+                                      {(review.wouldRecommend ||
+                                        review.recommend) && (
+                                          <Chip
+                                            color="success"
+                                            size="sm"
+                                            variant="flat"
+                                          >
+                                            {t("companyDetail.recommends")}
+                                          </Chip>
+                                        )}
+                                    </div>
                                   </div>
-                                  <span className="text-sm font-medium text-slate-900 dark:text-white">
-                                    {review.rating || review.overallRating || 0}
-                                    /5
-                                  </span>
-                                  {(review.wouldRecommend ||
-                                    review.recommend) && (
-                                    <Chip
-                                      className="ml-2"
-                                      color="success"
-                                      size="sm"
-                                      variant="flat"
-                                    >
-                                      {t("companyDetail.recommends")}
-                                    </Chip>
-                                  )}
-                                </div>
-                                <div className="mb-3">
-                                  <p className="text-sm text-slate-600 dark:text-slate-400 mb-1">
-                                    <span className="font-medium">
-                                      {review.role}
-                                    </span>
-                                    {" • "}
-                                    <span>
+                                  <div className="flex flex-col items-end gap-2">
+                                    <div className="flex items-center gap-2">
+                                      <div className="flex scale-75">
+                                        {renderStars(
+                                          review.rating ||
+                                          review.overallRating ||
+                                          0,
+                                        )}
+                                      </div>
+                                      <span className="text-sm font-medium text-slate-900 dark:text-white">
+                                        {review.rating || review.overallRating || 0}
+                                        /5
+                                      </span>
+                                    </div>
+                                    <span className="text-xs text-slate-500 dark:text-slate-400">
                                       {review.timeAgo ||
                                         getTimeAgo(review.createdAt)}
                                     </span>
-                                  </p>
+                                  </div>
                                 </div>
                                 <div className="space-y-3">
                                   <div>
@@ -398,8 +400,8 @@ export default function CompanyDetail({
                           variant="bordered"
                           onPress={handleLoadMoreReviews}
                         >
-                          Cargar 5 reseñas más (
-                          {reviews.length - displayedReviewsCount} restantes)
+                          {t("companyDetail.loadMore")} (
+                          {reviews.length - displayedReviewsCount} {t("companyDetail.remaining")})
                         </Button>
                       </div>
                     )}
@@ -429,7 +431,7 @@ export default function CompanyDetail({
           {/* Sidebar */}
           <div className="space-y-6">
             {/* Quick Stats */}
-            <Card className="shadow-sm">
+            <Card className="shadow-xl">
               <CardHeader className="pb-3">
                 <h3 className="font-semibold text-slate-900 dark:text-white">
                   {t("companyDetail.quickStats")}
@@ -466,7 +468,7 @@ export default function CompanyDetail({
                       (reviews.filter((r) => r.wouldRecommend || r.recommend)
                         .length /
                         Math.max(reviews.length, 1)) *
-                        100,
+                      100,
                     )}
                     %
                   </span>
@@ -476,7 +478,7 @@ export default function CompanyDetail({
 
             {/* Benefits */}
             {mappedCompany.benefits.length > 0 && (
-              <Card className="shadow-sm">
+              <Card className="shadow-xl">
                 <CardHeader className="pb-3">
                   <h3 className="font-semibold text-slate-900 dark:text-white">
                     {t("companyDetail.benefits")}
