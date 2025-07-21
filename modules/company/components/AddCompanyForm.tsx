@@ -6,13 +6,20 @@ import { Select, SelectItem } from "@heroui/select";
 import { Trans, useTranslation } from "react-i18next";
 
 import { CompanyService } from "@/services/companyService";
+import { ImageService } from "@/services/imageService";
 import { CompanyDocument } from "@/types";
 import { useToast } from "@/modules/core/components";
+import {
+  getPredefinedBenefits,
+  getIndustries,
+  getCountries,
+  countryRegions,
+} from "@/modules/company/data/companyFormData";
 import ThankYouModal from "@/components/ThankYouModal";
 
 export default function AddCompanyForm() {
   const { t } = useTranslation();
-  const { showSuccess, showError, showWarning } = useToast();
+  const { showError, showWarning } = useToast();
   const [formData, setFormData] = useState({
     name: "",
     industry: "",
@@ -21,9 +28,12 @@ export default function AddCompanyForm() {
     website: "",
     terms: false,
     benefits: [] as string[], // Cambiar a array de strings
+    logo: null as File | null, // Nuevo campo para el logo
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [acceptedTerms, setAcceptedTerms] = useState(false);
+  const [logoPreview, setLogoPreview] = useState<string | null>(null);
+  const [isUploadingLogo, setIsUploadingLogo] = useState(false);
   const [showThankYouModal, setShowThankYouModal] = useState(false);
 
   // Nuevo estado para el autocomplete de beneficios
@@ -31,265 +41,11 @@ export default function AddCompanyForm() {
   const [showBenefitsSuggestions, setShowBenefitsSuggestions] = useState(false);
 
   // Lista de beneficios preestablecidos
-  const predefinedBenefits = [
-    t("addCompany.form.benefits.options.remote"),
-    t("addCompany.form.benefits.options.flexibleHours"),
-    t("addCompany.form.benefits.options.healthInsurance"),
-    t("addCompany.form.benefits.options.dental"),
-    t("addCompany.form.benefits.options.vision"),
-    t("addCompany.form.benefits.options.lifeInsurance"),
-    t("addCompany.form.benefits.options.vacation"),
-    t("addCompany.form.benefits.options.paidLeave"),
-    t("addCompany.form.benefits.options.training"),
-    t("addCompany.form.benefits.options.gym"),
-    t("addCompany.form.benefits.options.freeLunch"),
-    t("addCompany.form.benefits.options.transportation"),
-    t("addCompany.form.benefits.options.parking"),
-    t("addCompany.form.benefits.options.childcare"),
-    t("addCompany.form.benefits.options.stockOptions"),
-    t("addCompany.form.benefits.options.bonus"),
-    t("addCompany.form.benefits.options.teamEvents"),
-    t("addCompany.form.benefits.options.workFromHome"),
-  ];
+  const predefinedBenefits = getPredefinedBenefits(t);
 
-  const industries = [
-    { key: "tech", label: t("addCompany.form.industry.options.tech") },
-    { key: "finance", label: t("addCompany.form.industry.options.finance") },
-    {
-      key: "healthcare",
-      label: t("addCompany.form.industry.options.healthcare"),
-    },
-    {
-      key: "education",
-      label: t("addCompany.form.industry.options.education"),
-    },
-    { key: "retail", label: t("addCompany.form.industry.options.retail") },
-    {
-      key: "manufacturing",
-      label: t("addCompany.form.industry.options.manufacturing"),
-    },
-    {
-      key: "consulting",
-      label: t("addCompany.form.industry.options.consulting"),
-    },
-    {
-      key: "marketing",
-      label: t("addCompany.form.industry.options.marketing"),
-    },
-    {
-      key: "real-estate",
-      label: t("addCompany.form.industry.options.real-estate"),
-    },
-    {
-      key: "logistics",
-      label: t("addCompany.form.industry.options.logistics"),
-    },
-    { key: "other", label: t("addCompany.form.industry.options.other") },
-  ];
+  const industries = getIndustries(t);
 
-  const countries = [
-    { key: "ar", label: t("addCompany.form.country.options.ar") },
-    { key: "br", label: t("addCompany.form.country.options.br") },
-    { key: "cl", label: t("addCompany.form.country.options.cl") },
-    { key: "co", label: t("addCompany.form.country.options.co") },
-    { key: "mx", label: t("addCompany.form.country.options.mx") },
-    { key: "pe", label: t("addCompany.form.country.options.pe") },
-    { key: "uy", label: t("addCompany.form.country.options.uy") },
-    { key: "other", label: t("addCompany.form.country.options.other") },
-  ];
-
-  // Estados/Provincias/Departamentos por país
-  const countryRegions = {
-    ar: [
-      { key: "caba", label: "Ciudad Autónoma de Buenos Aires" },
-      { key: "buenos-aires", label: "Buenos Aires" },
-      { key: "cordoba", label: "Córdoba" },
-      { key: "santa-fe", label: "Santa Fe" },
-      { key: "mendoza", label: "Mendoza" },
-      { key: "tucuman", label: "Tucumán" },
-      { key: "entre-rios", label: "Entre Ríos" },
-      { key: "salta", label: "Salta" },
-      { key: "chaco", label: "Chaco" },
-      { key: "corrientes", label: "Corrientes" },
-      { key: "misiones", label: "Misiones" },
-      { key: "santiago-del-estero", label: "Santiago del Estero" },
-      { key: "jujuy", label: "Jujuy" },
-      { key: "formosa", label: "Formosa" },
-      { key: "neuquen", label: "Neuquén" },
-      { key: "rio-negro", label: "Río Negro" },
-      { key: "chubut", label: "Chubut" },
-      { key: "santa-cruz", label: "Santa Cruz" },
-      { key: "tierra-del-fuego", label: "Tierra del Fuego" },
-      { key: "catamarca", label: "Catamarca" },
-      { key: "la-rioja", label: "La Rioja" },
-      { key: "san-juan", label: "San Juan" },
-      { key: "san-luis", label: "San Luis" },
-      { key: "la-pampa", label: "La Pampa" },
-    ],
-    br: [
-      { key: "sp", label: "São Paulo" },
-      { key: "rj", label: "Rio de Janeiro" },
-      { key: "mg", label: "Minas Gerais" },
-      { key: "rs", label: "Rio Grande do Sul" },
-      { key: "ba", label: "Bahia" },
-      { key: "pr", label: "Paraná" },
-      { key: "sc", label: "Santa Catarina" },
-      { key: "go", label: "Goiás" },
-      { key: "pe", label: "Pernambuco" },
-      { key: "ce", label: "Ceará" },
-      { key: "df", label: "Distrito Federal" },
-      { key: "es", label: "Espírito Santo" },
-      { key: "ma", label: "Maranhão" },
-      { key: "mt", label: "Mato Grosso" },
-      { key: "ms", label: "Mato Grosso do Sul" },
-      { key: "pa", label: "Pará" },
-      { key: "pb", label: "Paraíba" },
-      { key: "pi", label: "Piauí" },
-      { key: "rn", label: "Rio Grande do Norte" },
-      { key: "ro", label: "Rondônia" },
-      { key: "rr", label: "Roraima" },
-      { key: "se", label: "Sergipe" },
-      { key: "to", label: "Tocantins" },
-      { key: "ac", label: "Acre" },
-      { key: "al", label: "Alagoas" },
-      { key: "ap", label: "Amapá" },
-      { key: "am", label: "Amazonas" },
-    ],
-    cl: [
-      { key: "rm", label: "Región Metropolitana" },
-      { key: "valparaiso", label: "Valparaíso" },
-      { key: "biobio", label: "Biobío" },
-      { key: "araucania", label: "La Araucanía" },
-      { key: "los-lagos", label: "Los Lagos" },
-      { key: "antofagasta", label: "Antofagasta" },
-      { key: "maule", label: "Maule" },
-      { key: "libertador", label: "Libertador General Bernardo O'Higgins" },
-      { key: "tarapaca", label: "Tarapacá" },
-      { key: "arica-parinacota", label: "Arica y Parinacota" },
-      { key: "atacama", label: "Atacama" },
-      { key: "coquimbo", label: "Coquimbo" },
-      { key: "nuble", label: "Ñuble" },
-      { key: "los-rios", label: "Los Ríos" },
-      { key: "aysen", label: "Aysén del General Carlos Ibáñez del Campo" },
-      { key: "magallanes", label: "Magallanes y de la Antártica Chilena" },
-    ],
-    co: [
-      { key: "bogota", label: "Bogotá D.C." },
-      { key: "antioquia", label: "Antioquia" },
-      { key: "valle", label: "Valle del Cauca" },
-      { key: "cundinamarca", label: "Cundinamarca" },
-      { key: "atlantico", label: "Atlántico" },
-      { key: "santander", label: "Santander" },
-      { key: "bolivar", label: "Bolívar" },
-      { key: "norte-santander", label: "Norte de Santander" },
-      { key: "cordoba", label: "Córdoba" },
-      { key: "tolima", label: "Tolima" },
-      { key: "huila", label: "Huila" },
-      { key: "nariño", label: "Nariño" },
-      { key: "meta", label: "Meta" },
-      { key: "boyaca", label: "Boyacá" },
-      { key: "sucre", label: "Sucre" },
-      { key: "caldas", label: "Caldas" },
-      { key: "magdalena", label: "Magdalena" },
-      { key: "cauca", label: "Cauca" },
-      { key: "la-guajira", label: "La Guajira" },
-      { key: "cesar", label: "Cesar" },
-      { key: "risaralda", label: "Risaralda" },
-      { key: "casanare", label: "Casanare" },
-      { key: "choco", label: "Chocó" },
-      { key: "arauca", label: "Arauca" },
-      { key: "putumayo", label: "Putumayo" },
-      { key: "san-andres", label: "San Andrés y Providencia" },
-      { key: "amazonas", label: "Amazonas" },
-      { key: "caqueta", label: "Caquetá" },
-      { key: "guainia", label: "Guainía" },
-      { key: "guaviare", label: "Guaviare" },
-      { key: "vaupes", label: "Vaupés" },
-      { key: "vichada", label: "Vichada" },
-    ],
-    mx: [
-      { key: "cdmx", label: "Ciudad de México" },
-      { key: "jalisco", label: "Jalisco" },
-      { key: "nuevo-leon", label: "Nuevo León" },
-      { key: "puebla", label: "Puebla" },
-      { key: "guanajuato", label: "Guanajuato" },
-      { key: "veracruz", label: "Veracruz" },
-      { key: "yucatan", label: "Yucatán" },
-      { key: "sonora", label: "Sonora" },
-      { key: "chihuahua", label: "Chihuahua" },
-      { key: "oaxaca", label: "Oaxaca" },
-      { key: "tamaulipas", label: "Tamaulipas" },
-      { key: "chiapas", label: "Chiapas" },
-      { key: "tabasco", label: "Tabasco" },
-      { key: "michoacan", label: "Michoacán" },
-      { key: "sinaloa", label: "Sinaloa" },
-      { key: "coahuila", label: "Coahuila" },
-      { key: "hidalgo", label: "Hidalgo" },
-      { key: "guerrero", label: "Guerrero" },
-      { key: "san-luis-potosi", label: "San Luis Potosí" },
-      { key: "baja-california", label: "Baja California" },
-      { key: "zacatecas", label: "Zacatecas" },
-      { key: "queretaro", label: "Querétaro" },
-      { key: "morelos", label: "Morelos" },
-      { key: "durango", label: "Durango" },
-      { key: "campeche", label: "Campeche" },
-      { key: "aguascalientes", label: "Aguascalientes" },
-      { key: "nayarit", label: "Nayarit" },
-      { key: "tlaxcala", label: "Tlaxcala" },
-      { key: "baja-california-sur", label: "Baja California Sur" },
-      { key: "quintana-roo", label: "Quintana Roo" },
-      { key: "colima", label: "Colima" },
-      { key: "estado-de-mexico", label: "Estado de México" },
-    ],
-    pe: [
-      { key: "lima", label: "Lima" },
-      { key: "arequipa", label: "Arequipa" },
-      { key: "la-libertad", label: "La Libertad" },
-      { key: "piura", label: "Piura" },
-      { key: "lambayeque", label: "Lambayeque" },
-      { key: "cusco", label: "Cusco" },
-      { key: "junin", label: "Junín" },
-      { key: "ica", label: "Ica" },
-      { key: "ancash", label: "Áncash" },
-      { key: "cajamarca", label: "Cajamarca" },
-      { key: "puno", label: "Puno" },
-      { key: "loreto", label: "Loreto" },
-      { key: "huanuco", label: "Huánuco" },
-      { key: "san-martin", label: "San Martín" },
-      { key: "ucayali", label: "Ucayali" },
-      { key: "apurimac", label: "Apurímac" },
-      { key: "ayacucho", label: "Ayacucho" },
-      { key: "huancavelica", label: "Huancavelica" },
-      { key: "tacna", label: "Tacna" },
-      { key: "moquegua", label: "Moquegua" },
-      { key: "pasco", label: "Pasco" },
-      { key: "tumbes", label: "Tumbes" },
-      { key: "amazonas", label: "Amazonas" },
-      { key: "madre-de-dios", label: "Madre de Dios" },
-      { key: "callao", label: "Callao" },
-    ],
-    uy: [
-      { key: "montevideo", label: "Montevideo" },
-      { key: "canelones", label: "Canelones" },
-      { key: "maldonado", label: "Maldonado" },
-      { key: "salto", label: "Salto" },
-      { key: "paysandu", label: "Paysandú" },
-      { key: "rivera", label: "Rivera" },
-      { key: "artigas", label: "Artigas" },
-      { key: "cerro-largo", label: "Cerro Largo" },
-      { key: "colonia", label: "Colonia" },
-      { key: "durazno", label: "Durazno" },
-      { key: "flores", label: "Flores" },
-      { key: "florida", label: "Florida" },
-      { key: "lavalleja", label: "Lavalleja" },
-      { key: "rio-negro", label: "Río Negro" },
-      { key: "rocha", label: "Rocha" },
-      { key: "san-jose", label: "San José" },
-      { key: "soriano", label: "Soriano" },
-      { key: "tacuarembo", label: "Tacuarembó" },
-      { key: "treinta-y-tres", label: "Treinta y Tres" },
-    ],
-  };
+  const countries = getCountries(t);
 
   const handleInputChange = (field: string, value: string) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
@@ -365,6 +121,29 @@ export default function AddCompanyForm() {
         currentRegions.find((r) => r.key === formData.state)?.label ||
         formData.state;
 
+      let logoUrl = `https://picsum.photos/seed/${formData.name}/200/200`; // Default logo
+
+      // Upload logo if provided
+      if (formData.logo) {
+        setIsUploadingLogo(true);
+        try {
+          logoUrl = await ImageService.uploadImage(
+            formData.logo,
+            "companies/logos",
+            `${formData.name.toLowerCase().replace(/\s+/g, "-")}-logo`
+          );
+        } catch (logoError) {
+          showError(
+            t("addCompany.form.logo.uploadError"),
+            (logoError as Error).message
+          );
+
+          return;
+        } finally {
+          setIsUploadingLogo(false);
+        }
+      }
+
       // company data object
       const companyData: Omit<
         CompanyDocument,
@@ -375,7 +154,7 @@ export default function AddCompanyForm() {
         reviewsCount: 0,
         rating: 0,
         industry: industryLabel,
-        logoUrl: `https://picsum.photos/seed/${formData.name}/200/200`, // Temporary logo
+        logoUrl, // Use the uploaded logo URL
         country: countryLabel,
         state: stateLabel,
         website: formData.website,
@@ -384,7 +163,7 @@ export default function AddCompanyForm() {
         creationDate: new Date().toISOString(),
         approved: false,
         name: "",
-        logo: "",
+        logo: logoUrl, // Also set this field for compatibility
         location: {
           country: countryLabel,
           state: stateLabel,
@@ -403,11 +182,11 @@ export default function AddCompanyForm() {
         website: "",
         terms: false,
         benefits: [],
+        logo: null,
       });
       setAcceptedTerms(false);
       setBenefitsInput("");
-
-      // Show thank you modal
+      setLogoPreview(null);
       setShowThankYouModal(true);
     } catch (error) {
       // eslint-disable-next-line no-console
@@ -418,6 +197,73 @@ export default function AddCompanyForm() {
       );
     } finally {
       setIsSubmitting(false);
+    }
+  };
+
+  // Funciones para manejar el logo
+  const handleLogoChange = async (
+    event: React.ChangeEvent<HTMLInputElement>,
+  ) => {
+    const file = event.target.files?.[0];
+
+    if (!file) return;
+
+    try {
+      // Validar tipo de archivo
+      if (!file.type.startsWith("image/")) {
+        showError(
+          t("addCompany.form.logo.uploadError"),
+          t("addCompany.form.logo.invalidType"),
+        );
+
+        return;
+      }
+
+      // Validar tamaño del archivo
+      if (file.size > 5 * 1024 * 1024) {
+        showError(
+          t("addCompany.form.logo.uploadError"),
+          t("addCompany.form.logo.invalidSize"),
+        );
+
+        return;
+      }
+
+      // Validar dimensiones
+      try {
+        await ImageService.validateImageDimensions(file, 250, 250);
+      } catch (error) {
+        showError(
+          t("addCompany.form.logo.uploadError"),
+          (error as Error).message,
+        );
+
+        return;
+      }
+
+      // Crear preview
+      const preview = URL.createObjectURL(file);
+
+      setLogoPreview(preview);
+
+      // Guardar archivo en el estado
+      setFormData((prev) => ({ ...prev, logo: file }));
+    } catch {
+      showError(
+        t("addCompany.form.logo.uploadError"),
+        t("addCompany.form.logo.uploadError"),
+      );
+    }
+  };
+
+  const removeLogo = () => {
+    setFormData((prev) => ({ ...prev, logo: null }));
+    setLogoPreview(null);
+    // Limpiar el input file
+    const fileInput = document.getElementById("logo-input") as HTMLInputElement;
+
+    if (fileInput) {
+      fileInput.value = "";
     }
   };
 
@@ -568,7 +414,7 @@ export default function AddCompanyForm() {
                   </div>
                 </div>
 
-                {/* Row 3: Website */}
+                {/* Row 3: Website and Logo */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                   <div>
                     <Input
@@ -586,6 +432,57 @@ export default function AddCompanyForm() {
                         handleInputChange("website", value)
                       }
                     />
+                  </div>
+
+                  {/* Logo Upload */}
+                  <div>
+                    <label
+                      className="block text-slate-700 dark:text-slate-300 font-medium text-sm mb-2"
+                      htmlFor="logo-input"
+                    >
+                      {t("addCompany.form.logo.label")}
+                    </label>
+
+                    <div className="space-y-3">
+                      {/* File input */}
+                      <input
+                        accept="image/*"
+                        className="block w-full text-sm text-slate-500 dark:text-slate-400
+                          file:mr-4 file:py-2 file:px-4
+                          file:rounded-lg file:border-0
+                          file:text-sm file:font-semibold
+                          file:bg-sky-50 file:text-sky-700
+                          hover:file:bg-sky-100
+                          dark:file:bg-sky-900/30 dark:file:text-sky-300
+                          dark:hover:file:bg-sky-800/30
+                          file:cursor-pointer cursor-pointer"
+                        id="logo-input"
+                        type="file"
+                        onChange={handleLogoChange}
+                      />
+
+                      {/* Preview */}
+                      {logoPreview && (
+                        <div className="relative inline-block">
+                          <img
+                            alt="Logo preview"
+                            className="w-20 h-20 object-cover rounded-lg border-2 border-slate-200 dark:border-slate-600"
+                            src={logoPreview}
+                          />
+                          <button
+                            className="absolute -top-2 -right-2 w-6 h-6 bg-red-500 hover:bg-red-600 text-white rounded-full flex items-center justify-center text-xs transition-colors"
+                            type="button"
+                            onClick={removeLogo}
+                          >
+                            ×
+                          </button>
+                        </div>
+                      )}
+
+                      <p className="text-xs text-slate-500 dark:text-slate-400">
+                        {t("addCompany.form.logo.help")}
+                      </p>
+                    </div>
                   </div>
                 </div>
 
@@ -708,11 +605,11 @@ export default function AddCompanyForm() {
                   className="w-full bg-gradient-to-r from-sky-600 to-blue-600 dark:from-sky-500 dark:to-blue-500 hover:from-sky-700 hover:to-blue-700 dark:hover:from-sky-600 dark:hover:to-blue-600 text-white font-semibold text-sm h-11 transition-all duration-200"
                   color="primary"
                   isDisabled={!acceptedTerms}
-                  isLoading={isSubmitting}
+                  isLoading={isSubmitting || isUploadingLogo}
                   size="lg"
                   onPress={handleSubmit}
                 >
-                  {isSubmitting
+                  {isSubmitting || isUploadingLogo
                     ? t("addCompany.form.submitting")
                     : t("addCompany.form.submit")}
                 </Button>

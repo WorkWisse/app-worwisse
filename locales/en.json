@@ -376,6 +376,16 @@
                 "label": "Website",
                 "placeholder": "https://company.com"
             },
+            "logo": {
+                "label": "Company logo",
+                "placeholder": "Select image...",
+                "help": "Image must be at least 250x250 pixels and no larger than 5MB",
+                "uploading": "Uploading image...",
+                "uploadError": "Error uploading image",
+                "invalidDimensions": "Image must be at least 250x250 pixels",
+                "invalidSize": "Image cannot exceed 5MB",
+                "invalidType": "Only image files are allowed (JPG, PNG, WebP)"
+            },
             "country": {
                 "label": "Company country",
                 "placeholder": "Select country",
