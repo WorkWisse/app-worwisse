@@ -394,6 +394,16 @@
                 "label": "Site",
                 "placeholder": "https://empresa.com"
             },
+            "logo": {
+                "label": "Logo da empresa",
+                "placeholder": "Selecionar imagem...",
+                "help": "A imagem deve ter pelo menos 250x250 pixels e não exceder 5MB",
+                "uploading": "Enviando imagem...",
+                "uploadError": "Erro ao enviar imagem",
+                "invalidDimensions": "A imagem deve ter pelo menos 250x250 pixels",
+                "invalidSize": "A imagem não pode exceder 5MB",
+                "invalidType": "Apenas arquivos de imagem são permitidos (JPG, PNG, WebP)"
+            },
             "country": {
                 "label": "País da empresa",
                 "placeholder": "Selecionar país",

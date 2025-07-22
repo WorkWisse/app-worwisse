@@ -327,6 +327,16 @@
                 "label": "Sitio web",
                 "placeholder": "https://empresa.com"
             },
+            "logo": {
+                "label": "Logo de la empresa",
+                "placeholder": "Seleccionar imagen...",
+                "help": "La imagen debe tener un tamaño mínimo de 250x250 píxeles y no superar los 5MB",
+                "uploading": "Subiendo imagen...",
+                "uploadError": "Error al subir la imagen",
+                "invalidDimensions": "La imagen debe tener un tamaño mínimo de 250x250 píxeles",
+                "invalidSize": "La imagen no puede superar los 5MB",
+                "invalidType": "Solo se permiten archivos de imagen (JPG, PNG, WebP)"
+            },
             "country": {
                 "label": "País de la empresa",
                 "placeholder": "Seleccionar país",

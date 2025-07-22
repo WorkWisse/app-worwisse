@@ -154,10 +154,10 @@ export default function CompanyDetail({
       <svg
         key={index}
         className={`w-5 h-5 ${index < Math.floor(rating)
-            ? "text-yellow-400 fill-current"
-            : index < rating
-              ? "text-yellow-400 fill-current opacity-50"
-              : "text-slate-300 dark:text-slate-600"
+          ? "text-yellow-400 fill-current"
+          : index < rating
+            ? "text-yellow-400 fill-current opacity-50"
+            : "text-slate-300 dark:text-slate-600"
           }`}
         viewBox="0 0 20 20"
       >
@@ -289,7 +289,7 @@ export default function CompanyDetail({
             </div>
 
             {/* Rating and Action */}
-            <div className="flex xs:flex-row items-start xs:items-center gap-3 w-full sm:w-auto">
+            <div className="flex xs:flex-row items-start xs:items-center gap-3 w-full sm:w-auto ">
               <div className="flex flex-col items-center gap-2 sm:gap-3">
                 <div className="flex scale-75 sm:scale-100">
                   {renderStars(mappedCompany.rating)}
@@ -300,14 +300,13 @@ export default function CompanyDetail({
                   </div>
                   <div className="text-slate-500 dark:text-slate-400">
                     {mappedCompany.reviewsCount}{" "}
-                    {mappedCompany.reviewsCount === 1 ? "reseña" : "reseñas"}
+                    {mappedCompany.reviewsCount === 1 ? t("companyDetail.review") : t("companyDetail.reviews")}
                   </div>
                 </div>
               </div>
 
               <Button
-                className="w-full xs:w-auto text-xs sm:text-sm px-3 py-2 sm:px-4 sm:py-2"
-                color="primary"
+                className="w-full xs:w-auto hover:opacity-hover active:opacity-disabled bg-sky-600 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-sky-700 transition-all duration-300"
                 onPress={() =>
                   router.push(`/company/${company.slug || company.id}/review`)
                 }
@@ -325,7 +324,7 @@ export default function CompanyDetail({
           <div className="lg:col-span-2 space-y-6">
             {/* Rating Breakdown */}
             {ratingAverages && (
-              <Card className="shadow-sm">
+              <Card className="">
                 <CardHeader className="pb-3">
                   <h2 className="text-xl font-bold text-slate-900 dark:text-white">
                     {t("companyDetail.ratingBreakdown")}
@@ -357,7 +356,7 @@ export default function CompanyDetail({
             )}
 
             {/* Recent Reviews */}
-            <Card className="shadow-sm">
+            <Card className="shadow-xl p-1 rounded-xl">
               <CardHeader className="pb-3">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
@@ -385,7 +384,7 @@ export default function CompanyDetail({
                       {reviews.map((review) => (
                         <Card
                           key={review.id}
-                          className="border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-md transition-shadow"
+                          className="border border-slate-200 dark:border-slate-700 shadow-md hover:shadow-md transition-shadow bg-sky-25 dark:bg-slate-800 bg-[##F8FAFC]"
                         >
                           <CardBody className="p-4">
                             <div className="flex items-start gap-4">
@@ -426,27 +425,27 @@ export default function CompanyDetail({
                                     </span>
                                   </p>
                                 </div>
-                                <div className="space-y-3">
-                                  <div>
-                                    <h4 className="text-sm font-medium text-slate-900 dark:text-white mb-1">
-                                      {t("companyDetail.pros")}
-                                    </h4>
-                                    <p className="text-sm text-slate-700 dark:text-slate-300 bg-green-50 dark:bg-green-900/20 p-2 rounded-md">
-                                      {review.pros ||
-                                        review.positiveAspects ||
-                                        "No disponible"}
-                                    </p>
-                                  </div>
-                                  <div>
-                                    <h4 className="text-sm font-medium text-slate-900 dark:text-white mb-1">
-                                      {t("companyDetail.cons")}
-                                    </h4>
-                                    <p className="text-sm text-slate-700 dark:text-slate-300 bg-red-50 dark:bg-red-900/20 p-2 rounded-md">
-                                      {review.cons ||
-                                        review.areasForImprovement ||
-                                        "No disponible"}
-                                    </p>
-                                  </div>
+                              </div>
+                              <div className="space-y-3">
+                                <div>
+                                  <h4 className="text-sm font-medium text-slate-900 dark:text-white mb-1">
+                                    {t("companyDetail.pros")}
+                                  </h4>
+                                  <p className="text-sm text-slate-700 dark:text-slate-300 bg-green-50 dark:bg-green-900/20 p-2 rounded-md">
+                                    {review.pros ||
+                                      review.positiveAspects ||
+                                      "No disponible"}
+                                  </p>
+                                </div>
+                                <div>
+                                  <h4 className="text-sm font-medium text-slate-900 dark:text-white mb-1">
+                                    {t("companyDetail.cons")}
+                                  </h4>
+                                  <p className="text-sm text-slate-700 dark:text-slate-300 bg-red-50 dark:bg-red-900/20 p-2 rounded-md">
+                                    {review.cons ||
+                                      review.areasForImprovement ||
+                                      "No disponible"}
+                                  </p>
                                 </div>
                               </div>
                             </div>
@@ -504,7 +503,7 @@ export default function CompanyDetail({
           {/* Sidebar */}
           <div className="space-y-6">
             {/* Quick Stats */}
-            <Card className="shadow-sm">
+            <Card className="shadow-xl">
               <CardHeader className="pb-3">
                 <h3 className="font-semibold text-slate-900 dark:text-white">
                   {t("companyDetail.quickStats")}
@@ -551,7 +550,7 @@ export default function CompanyDetail({
 
             {/* Benefits */}
             {mappedCompany.benefits.length > 0 && (
-              <Card className="shadow-sm">
+              <Card className="shadow-xl">
                 <CardHeader className="pb-3">
                   <h3 className="font-semibold text-slate-900 dark:text-white">
                     {t("companyDetail.benefits")}
