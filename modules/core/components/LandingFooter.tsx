@@ -223,12 +223,7 @@ export const LandingFooter = () => {
               >
                 {t("footer.legal.about")}
               </Link>
-              <Link
-                className="text-slate-400 dark:text-slate-500 hover:text-sky-400 dark:hover:text-sky-300 transition-colors"
-                href="/privacy"
-              >
-                {t("footer.legal.privacy")}
-              </Link>
+
               <Link
                 className="text-slate-400 dark:text-slate-500 hover:text-sky-400 dark:hover:text-sky-300 transition-colors"
                 href="/terms"
