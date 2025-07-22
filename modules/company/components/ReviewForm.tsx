@@ -79,10 +79,11 @@ const StarRating = ({
         {[1, 2, 3, 4, 5].map((star) => (
           <button
             key={star}
-            className={`w-10 h-10 transition-all duration-200 hover:scale-110 ${star <= (hoverRating || rating)
-              ? "text-yellow-400 hover:text-yellow-500"
-              : "text-slate-300 dark:text-slate-600 hover:text-yellow-300"
-              }`}
+            className={`w-10 h-10 transition-all duration-200 hover:scale-110 ${
+              star <= (hoverRating || rating)
+                ? "text-yellow-400 hover:text-yellow-500"
+                : "text-slate-300 dark:text-slate-600 hover:text-yellow-300"
+            }`}
             type="button"
             onClick={() => onRatingChange(star)}
             onMouseEnter={() => setHoverRating(star)}
@@ -173,28 +174,28 @@ export default function ReviewForm({ company }: { company: any }) {
     try {
       // Preparar los datos para Firebase
       const reviewData: Omit<ReviewDocument, "id" | "createdAt" | "updatedAt"> =
-      {
-        companyId: company.id,
-        companyName: company.companyName,
-        creationDate: new Date().toISOString(),
-        role: formData.role,
-        startDate: formData.startDate,
-        endDate: formData.currentlyWorking ? null : formData.endDate,
-        workEnvironment: formData.workEnvironmentRating,
-        salary: formData.compensationRating,
-        benefits: formData.benefitsRating,
-        companyCulture: formData.cultureRating,
-        internalCommunication: formData.leadershipRating,
-        professionalGrowth: formData.careerGrowthRating,
-        workLifeBalance: formData.workLifeBalanceRating,
-        overallRating: formData.overallRating,
-        workInclusion: formData.inclusionRating,
-        positiveAspects: formData.pros,
-        areasForImprovement: formData.cons,
-        recommend: formData.wouldRecommend,
-        terms: formData.acceptedTerms,
-        approved: false,
-      };
+        {
+          companyId: company.id,
+          companyName: company.companyName,
+          creationDate: new Date().toISOString(),
+          role: formData.role,
+          startDate: formData.startDate,
+          endDate: formData.currentlyWorking ? null : formData.endDate,
+          workEnvironment: formData.workEnvironmentRating,
+          salary: formData.compensationRating,
+          benefits: formData.benefitsRating,
+          companyCulture: formData.cultureRating,
+          internalCommunication: formData.leadershipRating,
+          professionalGrowth: formData.careerGrowthRating,
+          workLifeBalance: formData.workLifeBalanceRating,
+          overallRating: formData.overallRating,
+          workInclusion: formData.inclusionRating,
+          positiveAspects: formData.pros,
+          areasForImprovement: formData.cons,
+          recommend: formData.wouldRecommend,
+          terms: formData.acceptedTerms,
+          approved: false,
+        };
 
       // Enviar a Firebase
       await ReviewService.addReview(reviewData);
@@ -215,13 +216,18 @@ export default function ReviewForm({ company }: { company: any }) {
       const newData = { ...prev, [field]: value };
 
       // Validar fechas cuando se actualiza startDate o endDate
-      if ((field === "startDate" || field === "endDate") && !newData.currentlyWorking) {
+      if (
+        (field === "startDate" || field === "endDate") &&
+        !newData.currentlyWorking
+      ) {
         if (newData.startDate && newData.endDate) {
           const startDate = new Date(newData.startDate);
           const endDate = new Date(newData.endDate);
 
           if (startDate >= endDate) {
-            setDateError("La fecha de inicio debe ser anterior a la fecha de fin.");
+            setDateError(
+              "La fecha de inicio debe ser anterior a la fecha de fin.",
+            );
           } else {
             setDateError("");
           }
@@ -243,12 +249,13 @@ export default function ReviewForm({ company }: { company: any }) {
     return Array.from({ length: 5 }, (_, index) => (
       <svg
         key={index}
-        className={`w-5 h-5 ${index < Math.floor(rating)
-          ? "text-yellow-400 fill-current"
-          : index < rating
-            ? "text-yellow-400 fill-current opacity-50"
-            : "text-slate-300 dark:text-slate-600"
-          }`}
+        className={`w-5 h-5 ${
+          index < Math.floor(rating)
+            ? "text-yellow-400 fill-current"
+            : index < rating
+              ? "text-yellow-400 fill-current opacity-50"
+              : "text-slate-300 dark:text-slate-600"
+        }`}
         viewBox="0 0 20 20"
       >
         <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
@@ -640,10 +647,11 @@ export default function ReviewForm({ company }: { company: any }) {
                   {/* Botones de acción */}
                   <div className="flex flex-col sm:flex-row gap-4 pt-6">
                     <Button
-                      className={`font-semibold px-8 py-3 transition-all duration-200 flex-1 sm:flex-initial ${!formData.acceptedTerms || isSubmitting || !!dateError
-                        ? "bg-slate-300 dark:bg-slate-600 text-slate-500 dark:text-slate-400 cursor-not-allowed opacity-60"
-                        : "bg-sky-600 dark:bg-sky-600 text-white hover:bg-sky-700 dark:hover:bg-sky-700 hover:scale-105 shadow-md hover:shadow-lg"
-                        }`}
+                      className={`font-semibold px-8 py-3 transition-all duration-200 flex-1 sm:flex-initial ${
+                        !formData.acceptedTerms || isSubmitting || !!dateError
+                          ? "bg-slate-300 dark:bg-slate-600 text-slate-500 dark:text-slate-400 cursor-not-allowed opacity-60"
+                          : "bg-sky-600 dark:bg-sky-600 text-white hover:bg-sky-700 dark:hover:bg-sky-700 hover:scale-105 shadow-md hover:shadow-lg"
+                      }`}
                       disabled={
                         !formData.acceptedTerms || isSubmitting || !!dateError
                       }
@@ -719,8 +727,8 @@ export default function ReviewForm({ company }: { company: any }) {
       {/* Thank You Modal */}
       <ThankYouModal
         isOpen={showThankYouModal}
-        onClose={handleModalClose}
         type="review"
+        onClose={handleModalClose}
       />
     </div>
   );

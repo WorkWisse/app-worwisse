@@ -495,7 +495,13 @@
         "ratingWorkLifeBalance": "Equilibrio vida-trabajo",
         "ratingWorkLifeBalanceShort": "Equilibrio",
         "ratingInclusion": "Inclusión laboral",
-        "ratingInclusionShort": "Inclusión"
+        "ratingInclusionShort": "Inclusión",
+        "role": "Puesto/Cargo",
+        "review": "reseña",
+        "loadMore": "Cargar {{count}} reseñas más ({{remaining}} restantes)",
+        "remaining": "restantes",
+        "loading": "Cargando...",
+        "loadingReviews": "Cargando reseñas..."
     },
     "reviewForm": {
         "title": "Compartí tu experiencia",

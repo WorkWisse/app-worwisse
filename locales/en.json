@@ -539,7 +539,12 @@
         "ratingWorkLifeBalance": "Work-life balance",
         "ratingWorkLifeBalanceShort": "Balance",
         "ratingInclusion": "Workplace inclusion",
-        "ratingInclusionShort": "Inclusion"
+        "ratingInclusionShort": "Inclusion",
+        "role": "Position/Role",
+        "review": "review",
+        "loadMore": "Load {{count}} more reviews ({{remaining}} remaining)",
+        "remaining": "remaining",
+        "loading": "Loading..."
     },
     "reviewForm": {
         "title": "Share your experience",

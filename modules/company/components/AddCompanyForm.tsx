@@ -772,8 +772,8 @@ export default function AddCompanyForm() {
       {/* Thank You Modal */}
       <ThankYouModal
         isOpen={showThankYouModal}
-        onClose={() => setShowThankYouModal(false)}
         type="company"
+        onClose={() => setShowThankYouModal(false)}
       />
     </div>
   );

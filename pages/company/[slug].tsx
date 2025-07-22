@@ -10,10 +10,13 @@ import { CompanyService, ReviewService } from "@/services";
 
 interface CompanyPageProps {
   company: CompanyDocument;
-  reviews: ReviewDocument[];
+  totalReviewsCount: number;
 }
 
-export default function CompanyPage({ company, reviews }: CompanyPageProps) {
+export default function CompanyPage({
+  company,
+  totalReviewsCount,
+}: CompanyPageProps) {
   const router = useRouter();
 
   if (router.isFallback) {
@@ -86,7 +89,10 @@ export default function CompanyPage({ company, reviews }: CompanyPageProps) {
           />
         </Head>
 
-        <CompanyDetail company={company} reviews={reviews} />
+        <CompanyDetail
+          company={company}
+          totalReviewsCount={totalReviewsCount}
+        />
       </DefaultLayout>
     </>
   );
@@ -102,18 +108,16 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
       return {
         props: {
           company: null,
-          reviews: [],
+          totalReviewsCount: 0,
         },
       };
     }
 
-    const reviewsData = await ReviewService.getCompanyReviews(company.id!, 10);
+    const totalReviewsCount = await ReviewService.getCompanyReviewsCount(
+      company.id!,
+    );
 
-    const reviews = reviewsData.reviews.map((review: any) => ({
-      ...review,
-      createdAt: review.createdAt?.toDate?.().toISOString?.() || null,
-      updatedAt: review.updatedAt?.toDate?.().toISOString?.() || null,
-    }));
+    // No pasamos lastDoc serializado, lo manejamos desde el cliente
 
     const companySerializable = {
       ...company,
@@ -124,7 +128,7 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
     return {
       props: {
         company: companySerializable,
-        reviews,
+        totalReviewsCount,
       },
     };
   } catch (error) {
@@ -136,7 +140,7 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
     return {
       props: {
         company: null,
-        reviews: [],
+        totalReviewsCount: 0,
       },
     };
   }

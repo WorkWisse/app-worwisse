@@ -3,13 +3,15 @@ import { Button } from "@heroui/button";
 import { Chip } from "@heroui/chip";
 import { useTranslation } from "react-i18next";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { DocumentSnapshot } from "firebase/firestore";
 
 import { CompanyDocument, ReviewDocument } from "../../../types";
+import { ReviewService } from "../../../services";
 
 interface CompanyDetailProps {
   company: CompanyDocument;
-  reviews: ReviewDocument[];
+  totalReviewsCount: number;
 }
 
 // Helper interface for standardized review ratings
@@ -26,11 +28,44 @@ interface StandardizedRatings {
 
 export default function CompanyDetail({
   company,
-  reviews,
+  totalReviewsCount,
 }: CompanyDetailProps) {
   const { t } = useTranslation();
   const router = useRouter();
-  const [displayedReviewsCount, setDisplayedReviewsCount] = useState(5);
+
+  // Estados para paginación real
+  const [reviews, setReviews] = useState<ReviewDocument[]>([]);
+  const [lastDoc, setLastDoc] = useState<DocumentSnapshot | undefined>(
+    undefined,
+  );
+  const [hasMoreReviews, setHasMoreReviews] = useState(false);
+  const [isLoadingMore, setIsLoadingMore] = useState(false);
+  const [isInitialLoading, setIsInitialLoading] = useState(true);
+
+  // Cargar reseñas iniciales
+  useEffect(() => {
+    const loadInitialReviews = async () => {
+      try {
+        const initialPageSize = Number(process.env.NEXT_PUBLIC_REVIEW_LIMITER) || 3;
+        const result = await ReviewService.getCompanyReviews(
+          company.id || "",
+          initialPageSize
+        );
+        
+        setReviews(result.reviews);
+        setLastDoc(result.lastDoc);
+        setHasMoreReviews(result.reviews.length < totalReviewsCount);
+      } catch (error) {
+        console.error("Error loading initial reviews:", error);
+      } finally {
+        setIsInitialLoading(false);
+      }
+    };
+
+    if (company.id) {
+      loadInitialReviews();
+    }
+  }, [company.id, totalReviewsCount]);
 
   // Map CompanyDocument properties to expected format
   const mappedCompany = {
@@ -62,7 +97,7 @@ export default function CompanyDetail({
           ? date.toDate()
           : new Date(date);
     const diffInSeconds = Math.floor(
-      (now.getTime() - reviewDate.getTime()) / 1000
+      (now.getTime() - reviewDate.getTime()) / 1000,
     );
 
     if (diffInSeconds < 60) return "Hace menos de un minuto";
@@ -81,7 +116,7 @@ export default function CompanyDetail({
 
   // Map ReviewDocument to standardized ratings
   const mapReviewToStandardRatings = (
-    review: ReviewDocument
+    review: ReviewDocument,
   ): StandardizedRatings | null => {
     // If review has the ratings object, use it
     if (review.ratings) {
@@ -179,10 +214,34 @@ export default function CompanyDetail({
   };
 
   const ratingAverages = calculateRatingAverages();
-  const displayedReviews = reviews.slice(0, displayedReviewsCount);
 
-  const handleLoadMoreReviews = () => {
-    setDisplayedReviewsCount((prev) => Math.min(prev + 5, reviews.length));
+  const handleLoadMoreReviews = async () => {
+    if (isLoadingMore || !hasMoreReviews) return;
+
+    setIsLoadingMore(true);
+    try {
+      const loadMoreCount =
+        Number(process.env.NEXT_PUBLIC_REVIEW_LOAD_MORE) || 5;
+      const result = await ReviewService.getCompanyReviews(
+        company.id || "",
+        loadMoreCount,
+        lastDoc,
+      );
+
+      if (result.reviews.length > 0) {
+        const newReviews = [...reviews, ...result.reviews];
+        setReviews(newReviews);
+        setLastDoc(result.lastDoc);
+        // Verificar si hay más reseñas basado en el total count
+        setHasMoreReviews(newReviews.length < totalReviewsCount);
+      } else {
+        setHasMoreReviews(false);
+      }
+    } catch (error) {
+      console.error("Error loading more reviews:", error);
+    } finally {
+      setIsLoadingMore(false);
+    }
   };
 
   return (
@@ -307,17 +366,24 @@ export default function CompanyDetail({
                       {t("companyDetail.recentReviews")}
                     </h2>
                     <span className="text-sm text-slate-500 dark:text-slate-400">
-                      ({reviews.length}{" "}
-                      {reviews.length === 1 ? "reseña" : "reseñas"})
+                      ({totalReviewsCount}{" "}
+                      {totalReviewsCount === 1 ? "reseña" : "reseñas"})
                     </span>
                   </div>
                 </div>
               </CardHeader>
               <CardBody className="space-y-4">
-                {displayedReviews.length > 0 ? (
+                {isInitialLoading ? (
+                  <div className="text-center py-8">
+                    <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-sky-600 mx-auto mb-4" />
+                    <p className="text-slate-500 dark:text-slate-400">
+                      {t("companyDetail.loadingReviews") || "Cargando reseñas..."}
+                    </p>
+                  </div>
+                ) : reviews.length > 0 ? (
                   <>
                     <div className="grid gap-4">
-                      {displayedReviews.map((review) => (
+                      {reviews.map((review) => (
                         <Card
                           key={review.id}
                           className="border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-md transition-shadow"
@@ -391,15 +457,25 @@ export default function CompanyDetail({
                     </div>
 
                     {/* Load More Button */}
-                    {displayedReviewsCount < reviews.length && (
+                    {hasMoreReviews && totalReviewsCount > reviews.length && (
                       <div className="flex justify-center pt-4">
                         <Button
                           className="px-6"
+                          disabled={isLoadingMore || totalReviewsCount <= reviews.length}
                           variant="bordered"
                           onPress={handleLoadMoreReviews}
                         >
-                          Cargar 5 reseñas más (
-                          {reviews.length - displayedReviewsCount} restantes)
+                          {isLoadingMore
+                            ? t("companyDetail.loading")
+                            : t("companyDetail.loadMore", {
+                                count: Math.min(
+                                  Number(
+                                    process.env.NEXT_PUBLIC_REVIEW_LOAD_MORE,
+                                  ) || 5,
+                                  Math.max(0, totalReviewsCount - reviews.length),
+                                ),
+                                remaining: Math.max(0, totalReviewsCount - reviews.length),
+                              })}
                         </Button>
                       </div>
                     )}

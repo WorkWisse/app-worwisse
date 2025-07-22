@@ -41,10 +41,10 @@ export default function ContactForm() {
     });
 
     try {
-      const response = await fetch('/api/contact', {
-        method: 'POST',
+      const response = await fetch("/api/contact", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(formData),
       });
@@ -52,7 +52,7 @@ export default function ContactForm() {
       const data = await response.json();
 
       if (!response.ok) {
-        throw new Error(data.error || 'Error al enviar el mensaje');
+        throw new Error(data.error || "Error al enviar el mensaje");
       }
 
       // Éxito: limpiar formulario y mostrar mensaje
@@ -65,19 +65,18 @@ export default function ContactForm() {
 
       // Ocultar mensaje de éxito después de 5 segundos
       setTimeout(() => {
-        setSubmissionState(prev => ({ ...prev, success: false }));
+        setSubmissionState((prev) => ({ ...prev, success: false }));
       }, 5000);
-
     } catch (error) {
       setSubmissionState({
         isSubmitting: false,
         success: false,
-        error: error instanceof Error ? error.message : 'Error desconocido',
+        error: error instanceof Error ? error.message : "Error desconocido",
       });
 
       // Ocultar mensaje de error después de 5 segundos
       setTimeout(() => {
-        setSubmissionState(prev => ({ ...prev, error: null }));
+        setSubmissionState((prev) => ({ ...prev, error: null }));
       }, 5000);
     }
   };
@@ -164,9 +163,9 @@ export default function ContactForm() {
 
             <div className="flex justify-center pt-4">
               <Button
-                type="submit"
                 className="bg-sky-600 dark:bg-sky-600 text-white hover:bg-sky-700 dark:hover:bg-sky-700 font-semibold px-12 py-3 transition-colors duration-200"
                 disabled={submissionState.isSubmitting}
+                type="submit"
               >
                 {submissionState.isSubmitting
                   ? t("contact.form.button.sending")
