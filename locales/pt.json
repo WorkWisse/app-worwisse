@@ -548,6 +548,7 @@
         "recommends": "✅ Recomenda",
         "pros": "✅ O melhor",
         "cons": "⚠️ A melhorar",
+        "positionLabel": "Cargo/Posição:",
         "statistics": "📊 Estatísticas",
         "totalReviews": "📝 Total de avaliações",
         "wouldRecommend": "👍 Recomendariam",
@@ -575,8 +576,9 @@
         "ratingInclusionShort": "Inclusão",
         "role": "Cargo/Posição",
         "review": "avaliação",
-        "loadMore": "Carregar mais 5 avaliações",
-        "remaining": "restantes"
+        "loadMore": "Carregar mais {{count}} avaliações ({{remaining}} restantes)",
+        "remaining": "restantes",
+        "loading": "Carregando..."
     },
     "reviewForm": {
         "title": "Compartilhe sua experiência",

@@ -1,5 +1,6 @@
-import type { NextApiRequest, NextApiResponse } from 'next';
-import nodemailer from 'nodemailer';
+import type { NextApiRequest, NextApiResponse } from "next";
+
+import nodemailer from "nodemailer";
 
 interface ContactFormData {
   name: string;
@@ -10,10 +11,10 @@ interface ContactFormData {
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse
+  res: NextApiResponse,
 ) {
-  if (req.method !== 'POST') {
-    return res.status(405).json({ error: 'Method not allowed' });
+  if (req.method !== "POST") {
+    return res.status(405).json({ error: "Method not allowed" });
   }
 
   try {
@@ -21,22 +22,23 @@ export default async function handler(
 
     // Validar campos requeridos
     if (!name || !email || !subject || !message) {
-      return res.status(400).json({ 
-        error: 'Todos los campos son requeridos' 
+      return res.status(400).json({
+        error: "Todos los campos son requeridos",
       });
     }
 
     // Validar formato de email
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
     if (!emailRegex.test(email)) {
-      return res.status(400).json({ 
-        error: 'Formato de email inválido' 
+      return res.status(400).json({
+        error: "Formato de email inválido",
       });
     }
 
     // Configurar transporter de email
     const transporter = nodemailer.createTransport({
-      service: 'gmail',
+      service: "gmail",
       auth: {
         user: process.env.EMAIL_USER,
         pass: process.env.EMAIL_PASSWORD,
@@ -46,19 +48,22 @@ export default async function handler(
     // Configurar el email
     const mailOptions = {
       from: process.env.EMAIL_USER,
-      to: 'wworkwisse@gmail.com',
+      to: "wworkwisse@gmail.com",
       subject: `[WorkWisse Contact] ${subject}`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e0e0e0; border-radius: 8px;">
           <div style="background-color: #f8f9fa; padding: 20px; border-radius: 8px; margin-bottom: 20px;">
             <h2 style="color: #0ea5e9; margin: 0 0 10px 0;">Nuevo mensaje de contacto - WorkWisse</h2>
-            <p style="color: #6b7280; margin: 0;">Recibido el ${new Date().toLocaleDateString('es-ES', {
-              year: 'numeric',
-              month: 'long',
-              day: 'numeric',
-              hour: '2-digit',
-              minute: '2-digit'
-            })}</p>
+            <p style="color: #6b7280; margin: 0;">Recibido el ${new Date().toLocaleDateString(
+              "es-ES",
+              {
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+                hour: "2-digit",
+                minute: "2-digit",
+              },
+            )}</p>
           </div>
           
           <div style="margin-bottom: 20px;">
@@ -114,14 +119,14 @@ Para responder, contacta directamente a: ${email}
     // Enviar el email
     await transporter.sendMail(mailOptions);
 
-    return res.status(200).json({ 
-      message: 'Email enviado exitosamente' 
+    return res.status(200).json({
+      message: "Email enviado exitosamente",
     });
-
   } catch (error) {
-    console.error('Error sending email:', error);
-    return res.status(500).json({ 
-      error: 'Error interno del servidor al enviar el email' 
+    console.error("Error sending email:", error);
+
+    return res.status(500).json({
+      error: "Error interno del servidor al enviar el email",
     });
   }
 }

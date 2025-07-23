@@ -525,6 +525,7 @@
         "recommends": "✅ Recommends",
         "pros": "✅ The best",
         "cons": "⚠️ To improve",
+        "positionLabel": "Job/Position:",
         "statistics": "📊 Statistics",
         "totalReviews": "📝 Total reviews",
         "wouldRecommend": "👍 Would recommend",
@@ -552,8 +553,9 @@
         "ratingInclusionShort": "Inclusion",
         "role": "Position/Role",
         "review": "review",
-        "loadMore": "Load 5 more reviews",
-        "remaining": "remaining"
+        "loadMore": "Load {{count}} more reviews ({{remaining}} remaining)",
+        "remaining": "remaining",
+        "loading": "Loading..."
     },
     "reviewForm": {
         "title": "Share your experience",

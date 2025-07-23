@@ -3,13 +3,15 @@ import { Button } from "@heroui/button";
 import { Chip } from "@heroui/chip";
 import { useTranslation } from "react-i18next";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { DocumentSnapshot } from "firebase/firestore";
 
 import { CompanyDocument, ReviewDocument } from "../../../types";
+import { ReviewService } from "../../../services";
 
 interface CompanyDetailProps {
   company: CompanyDocument;
-  reviews: ReviewDocument[];
+  totalReviewsCount: number;
 }
 
 // Helper interface for standardized review ratings
@@ -26,11 +28,44 @@ interface StandardizedRatings {
 
 export default function CompanyDetail({
   company,
-  reviews,
+  totalReviewsCount,
 }: CompanyDetailProps) {
   const { t } = useTranslation();
   const router = useRouter();
-  const [displayedReviewsCount, setDisplayedReviewsCount] = useState(5);
+
+  // Estados para paginación real
+  const [reviews, setReviews] = useState<ReviewDocument[]>([]);
+  const [lastDoc, setLastDoc] = useState<DocumentSnapshot | undefined>(
+    undefined,
+  );
+  const [hasMoreReviews, setHasMoreReviews] = useState(false);
+  const [isLoadingMore, setIsLoadingMore] = useState(false);
+  const [isInitialLoading, setIsInitialLoading] = useState(true);
+
+  // Cargar reseñas iniciales
+  useEffect(() => {
+    const loadInitialReviews = async () => {
+      try {
+        const initialPageSize = Number(process.env.NEXT_PUBLIC_REVIEW_LIMITER) || 3;
+        const result = await ReviewService.getCompanyReviews(
+          company.id || "",
+          initialPageSize
+        );
+
+        setReviews(result.reviews);
+        setLastDoc(result.lastDoc);
+        setHasMoreReviews(result.reviews.length < totalReviewsCount);
+      } catch (error) {
+        console.error("Error loading initial reviews:", error);
+      } finally {
+        setIsInitialLoading(false);
+      }
+    };
+
+    if (company.id) {
+      loadInitialReviews();
+    }
+  }, [company.id, totalReviewsCount]);
 
   // Map CompanyDocument properties to expected format
   const mappedCompany = {
@@ -62,7 +97,7 @@ export default function CompanyDetail({
           ? date.toDate()
           : new Date(date);
     const diffInSeconds = Math.floor(
-      (now.getTime() - reviewDate.getTime()) / 1000
+      (now.getTime() - reviewDate.getTime()) / 1000,
     );
 
     if (diffInSeconds < 60) return "Hace menos de un minuto";
@@ -81,7 +116,7 @@ export default function CompanyDetail({
 
   // Map ReviewDocument to standardized ratings
   const mapReviewToStandardRatings = (
-    review: ReviewDocument
+    review: ReviewDocument,
   ): StandardizedRatings | null => {
     // If review has the ratings object, use it
     if (review.ratings) {
@@ -119,6 +154,24 @@ export default function CompanyDetail({
       <svg
         key={index}
         className={`w-5 h-5 ${index < Math.floor(rating)
+          ? "text-yellow-400 fill-current"
+          : index < rating
+            ? "text-yellow-400 fill-current opacity-50"
+            : "text-slate-300 dark:text-slate-600"
+          }`}
+        viewBox="0 0 20 20"
+      >
+        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+      </svg>
+    ));
+  };
+
+  // Función para estrellas compactas (para tarjetas de reseñas)
+  const renderCompactStars = (rating: number) => {
+    return Array.from({ length: 5 }, (_, index) => (
+      <svg
+        key={index}
+        className={`w-3 h-3 ${index < Math.floor(rating)
           ? "text-yellow-400 fill-current"
           : index < rating
             ? "text-yellow-400 fill-current opacity-50"
@@ -178,16 +231,40 @@ export default function CompanyDetail({
   };
 
   const ratingAverages = calculateRatingAverages();
-  const displayedReviews = reviews.slice(0, displayedReviewsCount);
 
-  const handleLoadMoreReviews = () => {
-    setDisplayedReviewsCount((prev) => Math.min(prev + 5, reviews.length));
+  const handleLoadMoreReviews = async () => {
+    if (isLoadingMore || !hasMoreReviews) return;
+
+    setIsLoadingMore(true);
+    try {
+      const loadMoreCount =
+        Number(process.env.NEXT_PUBLIC_REVIEW_LOAD_MORE) || 5;
+      const result = await ReviewService.getCompanyReviews(
+        company.id || "",
+        loadMoreCount,
+        lastDoc,
+      );
+
+      if (result.reviews.length > 0) {
+        const newReviews = [...reviews, ...result.reviews];
+        setReviews(newReviews);
+        setLastDoc(result.lastDoc);
+        // Verificar si hay más reseñas basado en el total count
+        setHasMoreReviews(newReviews.length < totalReviewsCount);
+      } else {
+        setHasMoreReviews(false);
+      }
+    } catch (error) {
+      console.error("Error loading more reviews:", error);
+    } finally {
+      setIsLoadingMore(false);
+    }
   };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-sky-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 transition-colors duration-200">
       {/* Compact Company Header */}
-      <section className="bg-white dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700">
+      <section className="bg-white/90 dark:bg-slate-800/60 backdrop-blur-md border-b border-slate-200/50 dark:border-slate-700/50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6">
           <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
             {/* Company Logo and Basic Info */}
@@ -265,7 +342,7 @@ export default function CompanyDetail({
           <div className="lg:col-span-2 space-y-6">
             {/* Rating Breakdown */}
             {ratingAverages && (
-              <Card className="">
+              <Card className="p-2 bg-white/80 dark:bg-slate-800/50 backdrop-blur-sm border-white/20 dark:border-slate-700/50">
                 <CardHeader className="pb-3">
                   <h2 className="text-xl font-bold text-slate-900 dark:text-white">
                     {t("companyDetail.ratingBreakdown")}
@@ -297,7 +374,7 @@ export default function CompanyDetail({
             )}
 
             {/* Recent Reviews */}
-            <Card className="shadow-xl p-1 rounded-xl">
+            <Card className="p-2 bg-white/80 dark:bg-slate-800/50 backdrop-blur-sm border-white/20 dark:border-slate-700/50 shadow-xl rounded-xl">
               <CardHeader className="pb-3">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
@@ -305,86 +382,90 @@ export default function CompanyDetail({
                       {t("companyDetail.recentReviews")}
                     </h2>
                     <span className="text-sm text-slate-500 dark:text-slate-400">
-                      ({reviews.length}{" "}
-                      {reviews.length === 1 ? t("companyDetail.review") : t("companyDetail.reviews")})
+                      ({totalReviewsCount}{" "}
+                      {totalReviewsCount === 1 ? "reseña" : "reseñas"})
                     </span>
                   </div>
                 </div>
               </CardHeader>
               <CardBody className="space-y-4">
-                {displayedReviews.length > 0 ? (
+                {isInitialLoading ? (
+                  <div className="text-center py-8">
+                    <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-sky-600 mx-auto mb-4" />
+                    <p className="text-slate-500 dark:text-slate-400">
+                      {t("companyDetail.loadingReviews") || "Cargando reseñas..."}
+                    </p>
+                  </div>
+                ) : reviews.length > 0 ? (
                   <>
                     <div className="grid gap-4">
-                      {displayedReviews.map((review) => (
+                      {reviews.map((review) => (
                         <Card
                           key={review.id}
-                          className="border border-slate-200 dark:border-slate-700 shadow-md hover:shadow-md transition-shadow bg-sky-25 dark:bg-slate-800 bg-[##F8FAFC]"
+                          className="bg-white/60 dark:bg-slate-800/30 backdrop-blur-sm border border-slate-200/50 dark:border-slate-700/30 shadow-sm hover:shadow-md hover:bg-white/80 dark:hover:bg-slate-800/50 transition-all duration-200"
                         >
                           <CardBody className="p-4">
-                            <div className="flex items-start gap-4">
+                            <div className="flex items-start justify-between">
                               <div className="flex-1">
-                                <div className="flex items-start justify-between mb-3">
-                                  <div className="flex-1">
-                                    <div className="flex items-center gap-3 mb-1">
-                                      <p className="text-sm text-slate-700 dark:text-slate-400">
-                                        <span className="font-bold text-slate-800 dark:text-slate-200">
-                                          {t("companyDetail.role")}: {review.role}
-                                        </span>
-                                      </p>
-                                      {(review.wouldRecommend ||
-                                        review.recommend) && (
-                                          <Chip
-                                            color="success"
-                                            size="sm"
-                                            variant="flat"
-                                          >
-                                            {t("companyDetail.recommends")}
-                                          </Chip>
-                                        )}
-                                    </div>
-                                  </div>
-                                  <div className="flex flex-col items-end gap-2">
-                                    <div className="flex items-center gap-2">
-                                      <div className="flex scale-75">
-                                        {renderStars(
-                                          review.rating ||
-                                          review.overallRating ||
-                                          0,
-                                        )}
-                                      </div>
-                                      <span className="text-sm font-medium text-slate-900 dark:text-white">
-                                        {review.rating || review.overallRating || 0}
-                                        /5
-                                      </span>
-                                    </div>
-                                    <span className="text-xs text-slate-500 dark:text-slate-400">
-                                      {review.timeAgo ||
-                                        getTimeAgo(review.createdAt)}
+                                <div className="mb-3">
+                                  <span className="text-xs font-bold text-slate-800 dark:text-slate-200 uppercase tracking-wide">
+                                    {t("companyDetail.positionLabel")} <span className="font-semibold text-slate-900 dark:text-white">{review.role}</span>
+                                  </span>
+                                </div>
+
+                                <div className="mb-3">
+                                  <div className="flex items-center gap-2 mb-2">
+                                    <span className="text-green-600 dark:text-green-400 text-sm font-medium">
+                                      {t("companyDetail.pros")}
                                     </span>
                                   </div>
+                                  <p className="text-sm text-slate-700 dark:text-slate-300 bg-green-50 dark:bg-green-900/20 p-2 rounded border-l-4 border-green-500">
+                                    {review.pros ||
+                                      review.positiveAspects ||
+                                      "No disponible"}
+                                  </p>
                                 </div>
-                                <div className="space-y-3">
-                                  <div>
-                                    <h4 className="text-sm font-medium text-slate-900 dark:text-white mb-1">
-                                      {t("companyDetail.pros")}
-                                    </h4>
-                                    <p className="text-sm text-slate-700 dark:text-slate-300 bg-green-50 dark:bg-green-900/20 p-2 rounded-md">
-                                      {review.pros ||
-                                        review.positiveAspects ||
-                                        "No disponible"}
-                                    </p>
-                                  </div>
-                                  <div>
-                                    <h4 className="text-sm font-medium text-slate-900 dark:text-white mb-1">
+
+                                <div className="mb-2">
+                                  <div className="flex items-center gap-2 mb-2">
+                                    <span className="text-orange-600 dark:text-orange-400 text-sm font-medium">
                                       {t("companyDetail.cons")}
-                                    </h4>
-                                    <p className="text-sm text-slate-700 dark:text-slate-300 bg-red-50 dark:bg-red-900/20 p-2 rounded-md">
-                                      {review.cons ||
-                                        review.areasForImprovement ||
-                                        "No disponible"}
-                                    </p>
+                                    </span>
                                   </div>
+                                  <p className="text-sm text-slate-700 dark:text-slate-300 bg-orange-50 dark:bg-orange-900/20 p-2 rounded border-l-4 border-orange-500">
+                                    {review.cons ||
+                                      review.areasForImprovement ||
+                                      "No disponible"}
+                                  </p>
                                 </div>
+                              </div>
+
+                              <div className="text-right text-xs text-slate-500 dark:text-slate-400 ml-4 flex flex-col items-end">
+                                <div className="flex items-center gap-1 mb-2">
+                                  <div className="flex">
+                                    {renderCompactStars(
+                                      review.rating ||
+                                      review.overallRating ||
+                                      0,
+                                    )}
+                                  </div>
+                                  <span className="text-sm font-bold text-slate-900 dark:text-white">
+                                    {review.rating || review.overallRating || 0}/5
+                                  </span>
+                                </div>
+                                <div className="mb-2">
+                                  {review.timeAgo || getTimeAgo(review.createdAt)}
+                                </div>
+                                {(review.wouldRecommend || review.recommend) && (
+                                  <Chip
+                                    color="success"
+                                    size="sm"
+                                    variant="flat"
+                                    className="text-xs"
+                                  >
+                                    {t("companyDetail.recommends")}
+                                  </Chip>
+                                )}
                               </div>
                             </div>
                           </CardBody>
@@ -393,15 +474,25 @@ export default function CompanyDetail({
                     </div>
 
                     {/* Load More Button */}
-                    {displayedReviewsCount < reviews.length && (
+                    {hasMoreReviews && totalReviewsCount > reviews.length && (
                       <div className="flex justify-center pt-4">
                         <Button
                           className="px-6"
+                          disabled={isLoadingMore || totalReviewsCount <= reviews.length}
                           variant="bordered"
                           onPress={handleLoadMoreReviews}
                         >
-                          {t("companyDetail.loadMore")} (
-                          {reviews.length - displayedReviewsCount} {t("companyDetail.remaining")})
+                          {isLoadingMore
+                            ? t("companyDetail.loading")
+                            : t("companyDetail.loadMore", {
+                              count: Math.min(
+                                Number(
+                                  process.env.NEXT_PUBLIC_REVIEW_LOAD_MORE,
+                                ) || 5,
+                                Math.max(0, totalReviewsCount - reviews.length),
+                              ),
+                              remaining: Math.max(0, totalReviewsCount - reviews.length),
+                            })}
                         </Button>
                       </div>
                     )}
@@ -431,7 +522,7 @@ export default function CompanyDetail({
           {/* Sidebar */}
           <div className="space-y-6">
             {/* Quick Stats */}
-            <Card className="shadow-xl">
+            <Card className="p-2 bg-white/80 dark:bg-slate-800/50 backdrop-blur-sm border-white/20 dark:border-slate-700/50 shadow-xl">
               <CardHeader className="pb-3">
                 <h3 className="font-semibold text-slate-900 dark:text-white">
                   {t("companyDetail.quickStats")}
@@ -478,7 +569,7 @@ export default function CompanyDetail({
 
             {/* Benefits */}
             {mappedCompany.benefits.length > 0 && (
-              <Card className="shadow-xl">
+              <Card className="p-2 bg-white/80 dark:bg-slate-800/50 backdrop-blur-sm border-white/20 dark:border-slate-700/50 shadow-xl">
                 <CardHeader className="pb-3">
                   <h3 className="font-semibold text-slate-900 dark:text-white">
                     {t("companyDetail.benefits")}

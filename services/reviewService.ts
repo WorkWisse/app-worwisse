@@ -12,6 +12,8 @@ import {
   updateDoc,
   where,
   writeBatch,
+  Timestamp,
+  getCountFromServer,
 } from "firebase/firestore";
 
 import { db } from "@/config/firebase";
@@ -21,10 +23,70 @@ const REVIEWS_COLLECTION = "reviews";
 const COMPANIES_COLLECTION = "companies";
 
 export class ReviewService {
+  // Get total count of reviews for a company
+  static async getCompanyReviewsCount(companyId: string) {
+    try {
+      const q = query(
+        collection(db, REVIEWS_COLLECTION),
+        where("companyId", "==", companyId),
+        where("approved", "==", true),
+      );
+
+      const snapshot = await getCountFromServer(q);
+
+      return snapshot.data().count;
+    } catch (error) {
+      console.error("Error getting company reviews count:", error);
+
+      return 0;
+    }
+  }
+
+  // Get reviews for a specific company with timestamp-based pagination
+  static async getCompanyReviewsPaginated(
+    companyId: string,
+    pageSize: number = 3,
+    lastReviewTimestamp?: string,
+  ) {
+    try {
+      let q = collection(db, REVIEWS_COLLECTION);
+      const constraints: any[] = [
+        where("companyId", "==", companyId),
+        where("approved", "==", true),
+        orderBy("createdAt", "desc"),
+        limit(pageSize),
+      ];
+
+      if (lastReviewTimestamp) {
+        const timestamp = Timestamp.fromDate(new Date(lastReviewTimestamp));
+
+        constraints.push(startAfter(timestamp));
+      }
+
+      const querySnapshot = await getDocs(query(q, ...constraints));
+
+      const reviews = querySnapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      })) as ReviewDocument[];
+
+      return {
+        reviews,
+        hasMore: reviews.length === pageSize,
+        lastTimestamp:
+          reviews.length > 0 ? reviews[reviews.length - 1].createdAt : null,
+      };
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.error("Error getting company reviews:", error);
+      throw error;
+    }
+  }
+
   // Get reviews for a specific company
   static async getCompanyReviews(
     companyId: string,
-    pageSize: number = 10,
+    pageSize: number = 3,
     lastDoc?: DocumentSnapshot,
   ) {
     try {
