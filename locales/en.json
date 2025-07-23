@@ -525,6 +525,7 @@
         "recommends": "✅ Recommends",
         "pros": "✅ The best",
         "cons": "⚠️ To improve",
+        "positionLabel": "Job/Position:",
         "statistics": "📊 Statistics",
         "totalReviews": "📝 Total reviews",
         "wouldRecommend": "👍 Would recommend",

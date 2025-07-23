@@ -166,6 +166,24 @@ export default function CompanyDetail({
     ));
   };
 
+  // Función para estrellas compactas (para tarjetas de reseñas)
+  const renderCompactStars = (rating: number) => {
+    return Array.from({ length: 5 }, (_, index) => (
+      <svg
+        key={index}
+        className={`w-3 h-3 ${index < Math.floor(rating)
+          ? "text-yellow-400 fill-current"
+          : index < rating
+            ? "text-yellow-400 fill-current opacity-50"
+            : "text-slate-300 dark:text-slate-600"
+          }`}
+        viewBox="0 0 20 20"
+      >
+        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+      </svg>
+    ));
+  };
+
   // Calcular promedios de calificaciones específicas
   const calculateRatingAverages = () => {
     const reviewsWithRatings = reviews
@@ -384,69 +402,70 @@ export default function CompanyDetail({
                       {reviews.map((review) => (
                         <Card
                           key={review.id}
-                          className="border border-slate-200 dark:border-slate-700 shadow-md hover:shadow-md transition-shadow bg-sky-25 dark:bg-slate-800 bg-[##F8FAFC]"
+                          className="border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-md transition-shadow bg-white dark:bg-slate-800"
                         >
                           <CardBody className="p-4">
-                            <div className="flex items-start gap-4">
+                            <div className="flex items-start justify-between">
                               <div className="flex-1">
-                                <div className="flex items-center gap-3 mb-3">
-                                  <div className="flex scale-75">
-                                    {renderStars(
-                                      review.rating ||
-                                      review.overallRating ||
-                                      0,
-                                    )}
-                                  </div>
-                                  <span className="text-sm font-medium text-slate-900 dark:text-white">
-                                    {review.rating || review.overallRating || 0}
-                                    /5
-                                  </span>
-                                  {(review.wouldRecommend ||
-                                    review.recommend) && (
-                                      <Chip
-                                        className="ml-2"
-                                        color="success"
-                                        size="sm"
-                                        variant="flat"
-                                      >
-                                        {t("companyDetail.recommends")}
-                                      </Chip>
-                                    )}
-                                </div>
                                 <div className="mb-3">
-                                  <p className="text-sm text-slate-600 dark:text-slate-400 mb-1">
-                                    <span className="font-medium">
-                                      {review.role}
-                                    </span>
-                                    {" • "}
-                                    <span>
-                                      {review.timeAgo ||
-                                        getTimeAgo(review.createdAt)}
-                                    </span>
-                                  </p>
+                                  <span className="text-xs font-bold text-slate-800 dark:text-slate-200 uppercase tracking-wide">
+                                    {t("companyDetail.positionLabel")} <span className="font-semibold text-slate-900 dark:text-white">{review.role}</span>
+                                  </span>
                                 </div>
-                              </div>
-                              <div className="space-y-3">
-                                <div>
-                                  <h4 className="text-sm font-medium text-slate-900 dark:text-white mb-1">
-                                    {t("companyDetail.pros")}
-                                  </h4>
-                                  <p className="text-sm text-slate-700 dark:text-slate-300 bg-green-50 dark:bg-green-900/20 p-2 rounded-md">
+
+                                <div className="mb-3">
+                                  <div className="flex items-center gap-2 mb-2">
+                                    <span className="text-green-600 dark:text-green-400 text-sm font-medium">
+                                      {t("companyDetail.pros")}
+                                    </span>
+                                  </div>
+                                  <p className="text-sm text-slate-700 dark:text-slate-300 bg-green-50 dark:bg-green-900/20 p-2 rounded border-l-4 border-green-500">
                                     {review.pros ||
                                       review.positiveAspects ||
                                       "No disponible"}
                                   </p>
                                 </div>
-                                <div>
-                                  <h4 className="text-sm font-medium text-slate-900 dark:text-white mb-1">
-                                    {t("companyDetail.cons")}
-                                  </h4>
-                                  <p className="text-sm text-slate-700 dark:text-slate-300 bg-red-50 dark:bg-red-900/20 p-2 rounded-md">
+
+                                <div className="mb-2">
+                                  <div className="flex items-center gap-2 mb-2">
+                                    <span className="text-orange-600 dark:text-orange-400 text-sm font-medium">
+                                      {t("companyDetail.cons")}
+                                    </span>
+                                  </div>
+                                  <p className="text-sm text-slate-700 dark:text-slate-300 bg-orange-50 dark:bg-orange-900/20 p-2 rounded border-l-4 border-orange-500">
                                     {review.cons ||
                                       review.areasForImprovement ||
                                       "No disponible"}
                                   </p>
                                 </div>
+                              </div>
+
+                              <div className="text-right text-xs text-slate-500 dark:text-slate-400 ml-4 flex flex-col items-end">
+                                <div className="flex items-center gap-1 mb-2">
+                                  <div className="flex">
+                                    {renderCompactStars(
+                                      review.rating ||
+                                      review.overallRating ||
+                                      0,
+                                    )}
+                                  </div>
+                                  <span className="text-sm font-bold text-slate-900 dark:text-white">
+                                    {review.rating || review.overallRating || 0}/5
+                                  </span>
+                                </div>
+                                <div className="mb-2">
+                                  {review.timeAgo || getTimeAgo(review.createdAt)}
+                                </div>
+                                {(review.wouldRecommend || review.recommend) && (
+                                  <Chip
+                                    color="success"
+                                    size="sm"
+                                    variant="flat"
+                                    className="text-xs"
+                                  >
+                                    {t("companyDetail.recommends")}
+                                  </Chip>
+                                )}
                               </div>
                             </div>
                           </CardBody>

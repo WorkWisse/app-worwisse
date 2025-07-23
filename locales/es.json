@@ -481,6 +481,7 @@
         "recommends": "✅ Recomienda",
         "pros": "✅ Lo mejor",
         "cons": "⚠️ A mejorar",
+        "positionLabel": "Cargo/Puesto:",
         "statistics": "📊 Estadísticas",
         "totalReviews": "📝 Total de opiniones",
         "wouldRecommend": "👍 Recomendaría",
