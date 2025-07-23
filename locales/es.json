@@ -650,6 +650,8 @@
         "noResultsTitle": "No se encontraron empresas",
         "noResultsDescription": "No pudimos encontrar empresas que coincidan con \"{{query}}\". Probá con otro término de búsqueda o agregá la empresa vos mismo.",
         "noResultsFound": "No se encontraron empresas que coincidan con \"{{query}}\"",
+        "noCompanyFound": "¿No encontrás la empresa?",
+        "addCompanyMessage": "Agregala y sé el primero en calificarla!",
         "addCompany": "Agregar empresa",
         "backHome": "Volver al inicio"
     },
