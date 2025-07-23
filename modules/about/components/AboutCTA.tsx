@@ -20,16 +20,6 @@ export default function AboutCTA() {
             {t("about.cta.description")}
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-            <Button
-              className="bg-sky-600 text-white hover:bg-sky-700 dark:bg-sky-600 dark:text-white dark:hover:bg-sky-700 font-semibold px-8 py-4 text-lg transition-colors duration-200"
-              size="lg"
-              variant="solid"
-            >
-              {t("about.cta.secondaryButton")}
-            </Button>
-          </div>
-
           <div className="grid md:grid-cols-3 gap-8 text-center">
             <div className="space-y-2">
               <div className="text-3xl text-sky-600 dark:text-sky-300 mb-2">
