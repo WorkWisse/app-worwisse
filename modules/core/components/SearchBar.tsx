@@ -119,9 +119,8 @@ export const SearchBar = ({
             ref={inputRef}
             fullWidth
             aria-label="Buscar empresa"
-            className={`shadow-md hover:shadow-lg transition-shadow duration-300 rounded-lg ${
-              isHero ? "" : "flex-1"
-            }`}
+            className={`${isHero ? "shadow-none" : "shadow-md hover:shadow-lg"} transition-shadow duration-300 rounded-lg ${isHero ? "" : "flex-1"
+              }`}
             classNames={{
               inputWrapper: isHero
                 ? "bg-white dark:bg-slate-800 border-slate-300 dark:border-slate-600 focus-within:border-sky-500 focus-within:ring-sky-500 transition-colors duration-200"
@@ -139,9 +138,8 @@ export const SearchBar = ({
               ) : (
                 <svg
                   aria-hidden="true"
-                  className={`text-slate-400 dark:text-slate-500 pointer-events-none transition-colors duration-200 ${
-                    isHero ? "h-5 w-5" : "h-4 w-4"
-                  }`}
+                  className={`text-slate-400 dark:text-slate-500 pointer-events-none transition-colors duration-200 ${isHero ? "h-5 w-5" : "h-4 w-4"
+                    }`}
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -164,11 +162,10 @@ export const SearchBar = ({
           />
           {showButton && (
             <Button
-              className={`font-semibold shadow-md hover:shadow-lg transition-all duration-300 rounded-lg whitespace-nowrap ${
-                isHero
+              className={`font-semibold shadow-md hover:shadow-lg transition-all duration-300 rounded-lg whitespace-nowrap ${isHero
                   ? "bg-sky-600 hover:bg-sky-700 text-white transform hover:scale-105 px-8"
                   : "bg-sky-600 hover:bg-sky-700 text-white px-4"
-              }`}
+                }`}
               color="primary"
               size={buttonSize}
               type="submit"

@@ -4,6 +4,8 @@
         "description": "Access real employee reviews. Companies are no longer chosen solely for salary—people seek purpose, a positive environment, inclusion, and real growth opportunities. Make informed career decisions with information that truly matters.",
         "searchPlaceholder": "Search by company name...",
         "searchButton": "Search",
+        "searchTitle": "Search companies",
+        "searchSubtitle": "Find the information you need",
         "ctaFeatured": "View featured companies",
         "trustBadges": {
             "free": "Free",
