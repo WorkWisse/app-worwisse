@@ -342,7 +342,7 @@ export default function CompanyDetail({
           <div className="lg:col-span-2 space-y-6">
             {/* Rating Breakdown */}
             {ratingAverages && (
-              <Card className="bg-white/80 dark:bg-slate-800/50 backdrop-blur-sm border-white/20 dark:border-slate-700/50">
+              <Card className="p-2 bg-white/80 dark:bg-slate-800/50 backdrop-blur-sm border-white/20 dark:border-slate-700/50">
                 <CardHeader className="pb-3">
                   <h2 className="text-xl font-bold text-slate-900 dark:text-white">
                     {t("companyDetail.ratingBreakdown")}
@@ -374,7 +374,7 @@ export default function CompanyDetail({
             )}
 
             {/* Recent Reviews */}
-            <Card className="bg-white/80 dark:bg-slate-800/50 backdrop-blur-sm border-white/20 dark:border-slate-700/50 shadow-xl p-1 rounded-xl">
+            <Card className="p-2 bg-white/80 dark:bg-slate-800/50 backdrop-blur-sm border-white/20 dark:border-slate-700/50 shadow-xl rounded-xl">
               <CardHeader className="pb-3">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
@@ -522,7 +522,7 @@ export default function CompanyDetail({
           {/* Sidebar */}
           <div className="space-y-6">
             {/* Quick Stats */}
-            <Card className="bg-white/80 dark:bg-slate-800/50 backdrop-blur-sm border-white/20 dark:border-slate-700/50 shadow-xl">
+            <Card className="p-2 bg-white/80 dark:bg-slate-800/50 backdrop-blur-sm border-white/20 dark:border-slate-700/50 shadow-xl">
               <CardHeader className="pb-3">
                 <h3 className="font-semibold text-slate-900 dark:text-white">
                   {t("companyDetail.quickStats")}
@@ -569,7 +569,7 @@ export default function CompanyDetail({
 
             {/* Benefits */}
             {mappedCompany.benefits.length > 0 && (
-              <Card className="bg-white/80 dark:bg-slate-800/50 backdrop-blur-sm border-white/20 dark:border-slate-700/50 shadow-xl">
+              <Card className="p-2 bg-white/80 dark:bg-slate-800/50 backdrop-blur-sm border-white/20 dark:border-slate-700/50 shadow-xl">
                 <CardHeader className="pb-3">
                   <h3 className="font-semibold text-slate-900 dark:text-white">
                     {t("companyDetail.benefits")}
