@@ -264,7 +264,7 @@ export default function CompanyDetail({
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-sky-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 transition-colors duration-200">
       {/* Compact Company Header */}
-      <section className="bg-white dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700">
+      <section className="bg-white/90 dark:bg-slate-800/60 backdrop-blur-md border-b border-slate-200/50 dark:border-slate-700/50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6">
           <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
             {/* Company Logo and Basic Info */}
@@ -342,7 +342,7 @@ export default function CompanyDetail({
           <div className="lg:col-span-2 space-y-6">
             {/* Rating Breakdown */}
             {ratingAverages && (
-              <Card className="">
+              <Card className="bg-white/80 dark:bg-slate-800/50 backdrop-blur-sm border-white/20 dark:border-slate-700/50">
                 <CardHeader className="pb-3">
                   <h2 className="text-xl font-bold text-slate-900 dark:text-white">
                     {t("companyDetail.ratingBreakdown")}
@@ -374,7 +374,7 @@ export default function CompanyDetail({
             )}
 
             {/* Recent Reviews */}
-            <Card className="shadow-xl p-1 rounded-xl">
+            <Card className="bg-white/80 dark:bg-slate-800/50 backdrop-blur-sm border-white/20 dark:border-slate-700/50 shadow-xl p-1 rounded-xl">
               <CardHeader className="pb-3">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
@@ -402,7 +402,7 @@ export default function CompanyDetail({
                       {reviews.map((review) => (
                         <Card
                           key={review.id}
-                          className="border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-md transition-shadow bg-white dark:bg-slate-800"
+                          className="bg-white/60 dark:bg-slate-800/30 backdrop-blur-sm border border-slate-200/50 dark:border-slate-700/30 shadow-sm hover:shadow-md hover:bg-white/80 dark:hover:bg-slate-800/50 transition-all duration-200"
                         >
                           <CardBody className="p-4">
                             <div className="flex items-start justify-between">
@@ -522,7 +522,7 @@ export default function CompanyDetail({
           {/* Sidebar */}
           <div className="space-y-6">
             {/* Quick Stats */}
-            <Card className="shadow-xl">
+            <Card className="bg-white/80 dark:bg-slate-800/50 backdrop-blur-sm border-white/20 dark:border-slate-700/50 shadow-xl">
               <CardHeader className="pb-3">
                 <h3 className="font-semibold text-slate-900 dark:text-white">
                   {t("companyDetail.quickStats")}
@@ -569,7 +569,7 @@ export default function CompanyDetail({
 
             {/* Benefits */}
             {mappedCompany.benefits.length > 0 && (
-              <Card className="shadow-xl">
+              <Card className="bg-white/80 dark:bg-slate-800/50 backdrop-blur-sm border-white/20 dark:border-slate-700/50 shadow-xl">
                 <CardHeader className="pb-3">
                   <h3 className="font-semibold text-slate-900 dark:text-white">
                     {t("companyDetail.benefits")}
