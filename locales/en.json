@@ -305,7 +305,9 @@
         "addCompany": "Add your company",
         "language": "Language",
         "contact": "Contact",
-        "theme": "Theme"
+        "theme": "Theme",
+        "search": "Search",
+        "rankings": "Rankings"
     },
     "contact": {
         "hero": {
@@ -634,6 +636,7 @@
         "noResults": "No companies found",
         "foundResults": "{{count}} companies found",
         "searching": "Searching companies...",
+        "redirecting": "Redirecting...",
         "review": "review",
         "reviews": "reviews",
         "noResultsTitle": "No companies found",

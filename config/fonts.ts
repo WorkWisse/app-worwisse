@@ -11,5 +11,12 @@ export const fontMono = FontMono({
   subsets: ["latin"],
   variable: "--font-mono",
   display: "swap",
-  fallback: ["ui-monospace", "SFMono-Regular", "Consolas", "Liberation Mono", "Menlo", "monospace"],
+  fallback: [
+    "ui-monospace",
+    "SFMono-Regular",
+    "Consolas",
+    "Liberation Mono",
+    "Menlo",
+    "monospace",
+  ],
 });
