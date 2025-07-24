@@ -41,12 +41,12 @@ export const SearchBar = ({
     // Don't search if we just selected a suggestion
     if (justSelectedSuggestion.current) {
       justSelectedSuggestion.current = false;
-
       return;
     }
 
     const timeoutId = setTimeout(async () => {
       if (searchQuery.trim().length > 0 && showSuggestions) {
+        setShowDropdown(true); // Show dropdown as soon as user types
         setIsLoading(true);
         try {
           const results = await SearchService.getSearchSuggestions(
@@ -144,6 +144,7 @@ export const SearchBar = ({
 
   const handleInputFocus = () => {
     if (searchQuery.length >= 1) {
+    if (searchQuery.trim().length > 0 && suggestions.length >= 0) {
       setShowDropdown(true);
     }
   };
@@ -314,36 +315,21 @@ export const SearchBar = ({
                 ))}
               </div>
             ) : (
-              <div className="py-6 text-center space-y-4">
-                <div className="text-sm text-slate-500 dark:text-slate-400">
-                  {t("search.noResultsFound", { query: searchQuery })}
-                </div>
-                <div className="text-xs text-slate-400 dark:text-slate-500">
-                  {t("search.noResultsDescription", { query: searchQuery })}
-                </div>
-                <Link
-                  className="inline-flex items-center gap-2 bg-sky-600 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-sky-700 transition-all duration-300"
+              <div className="py-4 px-3 text-center text-sm text-slate-500 dark:text-slate-400">
+                {t("search.noResultsFound", { query: searchQuery })}{" "}
+                <Button
+                  as={Link}
+                  className="h-auto p-0 text-sky-600 dark:text-sky-400 font-medium hover:underline"
                   href="/company/add"
+                  size="sm"
+                  variant="light"
                   onClick={() => {
                     setShowDropdown(false);
                     setSuggestions([]);
                   }}
                 >
-                  <svg
-                    className="w-4 h-4"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      d="M12 4v16m8-8H4"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                    />
-                  </svg>
-                  {t("search.addCompany")}
-                </Link>
+                  {t("search.wannaAddIt")}
+                </Button>
               </div>
             )}
           </div>
