@@ -67,9 +67,19 @@ export default function AboutHistory() {
                 {t("about.history.personal.beginning")}
               </p>
 
-              <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-6">
+              <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
                 {t("about.history.personal.background")}
               </p>
+
+              <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+                {t("about.history.personal.frustration")}
+              </p>
+
+              <div className="bg-gradient-to-r from-orange-50 to-red-50 dark:from-orange-900/20 dark:to-red-900/20 border-l-4 border-orange-400 dark:border-orange-500 rounded-r-lg p-4 my-6">
+                <p className="text-base font-medium text-orange-900 dark:text-orange-200 italic mb-0">
+                  {t("about.history.personal.priorityContrast")}
+                </p>
+              </div>
 
               <p className="text-xl font-semibold text-slate-900 dark:text-white mb-4">
                 {t("about.history.personal.realization")}
