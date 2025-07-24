@@ -4,7 +4,7 @@
         "description": "Acesse opiniões reais de funcionários. As empresas não são mais escolhidas apenas pelo salário, pois as pessoas buscam propósito, um bom ambiente, inclusão e oportunidades reais de crescimento. Tome decisões profissionais bem informadas com informações que realmente importam.",
         "searchPlaceholder": "Buscar por nome da empresa...",
         "searchButton": "Buscar",
-             "ratingsBreakdown": "📊 Avaliações detalhadas",
+        "ratingsBreakdown": "📊 Avaliações detalhadas",
         "ratingsBreakdownDesc": "Média das avaliações dos funcionários",
         "ratingWorkEnvironment": "Ambiente de trabalho",
         "ratingWorkEnvironmentShort": "Ambiente",
@@ -321,7 +321,9 @@
         "addCompany": "Adicione sua empresa",
         "language": "Idioma",
         "contact": "Contato",
-        "theme": "Tema"
+        "theme": "Tema",
+        "search": "Buscar",
+        "rankings": "Rankings"
     },
     "contact": {
         "hero": {
@@ -363,7 +365,7 @@
                 "success": "Mensagem enviada com sucesso! Responderemos em breve.",
                 "error": "Erro ao enviar mensagem. Tente novamente."
             }
-        }        
+        }
     },
     "addCompany": {
         "title": "Adicionar <1>empresa</1>",
@@ -655,6 +657,7 @@
         "noResults": "Nenhuma empresa encontrada",
         "foundResults": "{{count}} empresas encontradas",
         "searching": "Procurando empresas...",
+        "redirecting": "Redirecionando...",
         "review": "avaliação",
         "reviews": "avaliações",
         "noResultsTitle": "Nenhuma empresa encontrada",

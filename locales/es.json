@@ -593,7 +593,10 @@
         "about": "Sobre nosotros",
         "addCompany": "Sumá tu empresa",
         "language": "Idioma",
-        "contact": "Contacto"
+        "contact": "Contacto",
+        "theme": "Tema",
+        "search": "Buscar",
+        "rankings": "Rankings"
     },
     "contact": {
         "hero": {
@@ -643,6 +646,7 @@
         "noResults": "No se encontraron empresas",
         "foundResults": "{{count}} empresas encontradas",
         "searching": "Buscando empresas...",
+        "redirecting": "Redirigiendo...",
         "review": "reseña",
         "reviews": "reseñas",
         "noResultsTitle": "No se encontraron empresas",
