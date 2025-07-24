@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@heroui/button";
 import { Input } from "@heroui/input";
 import { Card } from "@heroui/card";
@@ -16,9 +16,11 @@ import {
   countryRegions,
 } from "@/modules/company/data/companyFormData";
 import ThankYouModal from "@/components/ThankYouModal";
+import { useRouter } from "next/router";
 
 export default function AddCompanyForm() {
   const { t } = useTranslation();
+  const router = useRouter();
   const { showError, showWarning } = useToast();
   const [formData, setFormData] = useState({
     name: "",
@@ -35,6 +37,13 @@ export default function AddCompanyForm() {
   const [logoPreview, setLogoPreview] = useState<string | null>(null);
   const [isUploadingLogo, setIsUploadingLogo] = useState(false);
   const [showThankYouModal, setShowThankYouModal] = useState(false);
+
+  // Set initial company name from URL query
+  useEffect(() => {
+    if (router.query.name && typeof router.query.name === "string") {
+      setFormData((prev) => ({ ...prev, name: router.query.name as string }));
+    }
+  }, [router.query.name]);
 
   // Nuevo estado para el autocomplete de beneficios
   const [benefitsInput, setBenefitsInput] = useState("");
