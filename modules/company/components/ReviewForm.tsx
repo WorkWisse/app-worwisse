@@ -125,6 +125,26 @@ export default function ReviewForm({ company }: { company: any }) {
     acceptedTerms: false,
   });
 
+  const initialFormData = {
+    role: "",
+    startDate: "",
+    endDate: "",
+    currentlyWorking: false,
+    workEnvironmentRating: 0,
+    compensationRating: 0,
+    benefitsRating: 0,
+    cultureRating: 0,
+    leadershipRating: 0,
+    careerGrowthRating: 0,
+    workLifeBalanceRating: 0,
+    inclusionRating: 0,
+    overallRating: 0,
+    pros: "",
+    cons: "",
+    wouldRecommend: false,
+    acceptedTerms: false,
+  };
+  
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [dateError, setDateError] = useState<string>("");
   const [showThankYouModal, setShowThankYouModal] = useState(false);
@@ -201,6 +221,7 @@ export default function ReviewForm({ company }: { company: any }) {
       // Enviar a Firebase
       await ReviewService.addReview(reviewData);
 
+      setFormData(initialFormData);
       // Mostrar modal de agradecimiento
       setShowThankYouModal(true);
     } catch (error) {
