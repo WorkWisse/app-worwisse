@@ -7,11 +7,15 @@ export default function Document() {
   return (
     <Html lang="en">
       <Head>
-        <link rel="dns-prefetch" href="//fonts.googleapis.com" />
-        <link rel="dns-prefetch" href="//fonts.gstatic.com" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        
+        <link href="//fonts.googleapis.com" rel="dns-prefetch" />
+        <link href="//fonts.gstatic.com" rel="dns-prefetch" />
+        <link href="https://fonts.googleapis.com" rel="preconnect" />
+        <link
+          crossOrigin="anonymous"
+          href="https://fonts.gstatic.com"
+          rel="preconnect"
+        />
+
         {/* 
         Para usar con Turbopack, descomenta esta línea y modifica config/fonts.ts:
         <link 
