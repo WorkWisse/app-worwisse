@@ -38,8 +38,9 @@
     "about": {
         "hero": {
             "title": "Conectamos <1>trabalhadores</1> com <2>bons empregos</2>",
-            "description": "A Workwisse é uma plataforma onde os trabalhadores compartilham suas experiências profissionais para ajudar outras pessoas a tomar decisões informadas e permitir que as empresas melhorem a partir desses relatos.",
+            "description": "Workwisse é uma plataforma onde os trabalhadores compartilham suas experiências de trabalho para ajudar outros a tomar decisões informadas e permitir que as empresas melhorem com base nessas opiniões.",
             "ctaTeam": "Conheça nossa equipe",
+            "ctaMission": "Nossa missão",
             "ctaHistory": "Nossa história"
         },
         "mission": {

@@ -39,9 +39,9 @@ export default function AboutHero() {
               <Button
                 className="bg-sky-600 dark:bg-sky-600 text-white hover:bg-sky-700 dark:hover:bg-sky-700 font-semibold px-8 transition-colors duration-200"
                 size="lg"
-                onClick={() => scrollToSection("team")}
+                onClick={() => scrollToSection("mission")}
               >
-                {t("about.hero.ctaTeam")}
+                {t("about.hero.ctaMission")}
               </Button>
               <Button
                 className="border-sky-600 dark:border-sky-400 text-sky-600 dark:text-sky-400 hover:bg-sky-50 dark:hover:bg-sky-900/20 font-semibold px-8 transition-colors duration-200"
