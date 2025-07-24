@@ -3,7 +3,7 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 
 import CompanyDetail from "../../modules/company/components/CompanyDetail";
-import { CompanyDocument, ReviewDocument } from "../../types";
+import { CompanyDocument } from "../../types";
 
 import DefaultLayout from "@/layouts/default";
 import { CompanyService, ReviewService } from "@/services";
