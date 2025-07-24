@@ -4,6 +4,8 @@
         "description": "Accede a opiniones reales de empleados. Las empresas ya no se eligen solo por salario, las personas buscan propósito, buen ambiente, inclusión y oportunidades reales de crecimiento. Tomá decisiones laborales informadas con información que realmente importa.",
         "searchPlaceholder": "Buscar por nombre de empresa...",
         "searchButton": "Buscar",
+        "searchTitle": "Busca empresas",
+        "searchSubtitle": "Encuentra la información que necesitas",
         "ctaFeatured": "Ver empresas destacadas",
         "trustBadges": {
             "free": "Gratis",
@@ -648,6 +650,8 @@
         "noResultsTitle": "No se encontraron empresas",
         "noResultsDescription": "No pudimos encontrar empresas que coincidan con \"{{query}}\". Probá con otro término de búsqueda o agregá la empresa vos mismo.",
         "noResultsFound": "No se encontraron empresas que coincidan con \"{{query}}\"",
+        "noCompanyFound": "¿No encontrás la empresa?",
+        "addCompanyMessage": "Agregala y sé el primero en calificarla!",
         "addCompany": "Agregar empresa",
         "backHome": "Volver al inicio"
     },

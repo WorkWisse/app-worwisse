@@ -3,6 +3,7 @@ import { Input } from "@heroui/input";
 import { Button } from "@heroui/button";
 import { Card } from "@heroui/card";
 import { useTranslation } from "react-i18next";
+import { useRouter } from "next/router";
 
 import { SearchService, SearchSuggestion } from "@/services";
 
@@ -24,6 +25,7 @@ export const SearchBar = ({
   showSuggestions = true,
 }: SearchBarProps) => {
   const { t } = useTranslation();
+  const router = useRouter();
   const [searchQuery, setSearchQuery] = useState("");
   const [suggestions, setSuggestions] = useState<SearchSuggestion[]>([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -43,7 +45,7 @@ export const SearchBar = ({
           );
 
           setSuggestions(results);
-          setShowDropdown(results.length > 0);
+          setShowDropdown(true); // Siempre mostrar dropdown cuando hay búsqueda
         } catch (error) {
           // eslint-disable-next-line no-console
           console.error("Error fetching suggestions:", error);
@@ -99,7 +101,7 @@ export const SearchBar = ({
   };
 
   const handleInputFocus = () => {
-    if (suggestions.length > 0) {
+    if (searchQuery.length >= 1) {
       setShowDropdown(true);
     }
   };
@@ -119,9 +121,8 @@ export const SearchBar = ({
             ref={inputRef}
             fullWidth
             aria-label="Buscar empresa"
-            className={`shadow-md hover:shadow-lg transition-shadow duration-300 rounded-lg ${
-              isHero ? "" : "flex-1"
-            }`}
+            className={`${isHero ? "shadow-none" : "shadow-md hover:shadow-lg"} transition-shadow duration-300 rounded-lg ${isHero ? "" : "flex-1"
+              }`}
             classNames={{
               inputWrapper: isHero
                 ? "bg-white dark:bg-slate-800 border-slate-300 dark:border-slate-600 focus-within:border-sky-500 focus-within:ring-sky-500 transition-colors duration-200"
@@ -139,9 +140,8 @@ export const SearchBar = ({
               ) : (
                 <svg
                   aria-hidden="true"
-                  className={`text-slate-400 dark:text-slate-500 pointer-events-none transition-colors duration-200 ${
-                    isHero ? "h-5 w-5" : "h-4 w-4"
-                  }`}
+                  className={`text-slate-400 dark:text-slate-500 pointer-events-none transition-colors duration-200 ${isHero ? "h-5 w-5" : "h-4 w-4"
+                    }`}
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -164,11 +164,10 @@ export const SearchBar = ({
           />
           {showButton && (
             <Button
-              className={`font-semibold shadow-md hover:shadow-lg transition-all duration-300 rounded-lg whitespace-nowrap ${
-                isHero
-                  ? "bg-sky-600 hover:bg-sky-700 text-white transform hover:scale-105 px-8"
-                  : "bg-sky-600 hover:bg-sky-700 text-white px-4"
-              }`}
+              className={`font-semibold shadow-md hover:shadow-lg transition-all duration-300 rounded-lg whitespace-nowrap ${isHero
+                ? "bg-sky-600 hover:bg-sky-700 text-white transform hover:scale-105 px-8"
+                : "bg-sky-600 hover:bg-sky-700 text-white px-4"
+                }`}
               color="primary"
               size={buttonSize}
               type="submit"
@@ -256,8 +255,19 @@ export const SearchBar = ({
                 ))}
               </div>
             ) : (
-              <div className="py-6 text-center text-sm text-slate-500 dark:text-slate-400">
-                {t("search.noResultsFound", { query: searchQuery })}
+              <div className="py-6 text-center">
+                <div className="text-sm text-slate-500 dark:text-slate-400 mb-3">
+                  {t("search.noCompanyFound")}
+                </div>
+                <Button
+                  size="sm"
+                  color="primary"
+                  variant="flat"
+                  onPress={() => router.push('/company/add')}
+                  className="text-sm"
+                >
+                  {t("search.addCompanyMessage")}
+                </Button>
               </div>
             )}
           </div>
