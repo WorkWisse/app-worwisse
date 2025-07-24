@@ -137,12 +137,6 @@ export const LandingHeader = () => {
                 <>
                   <Link
                     className="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-sky-600 dark:hover:text-sky-400 transition-colors duration-300"
-                    href="/search"
-                  >
-                    {t("header.search")}
-                  </Link>
-                  <Link
-                    className="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-sky-600 dark:hover:text-sky-400 transition-colors duration-300"
                     href="/rankings"
                   >
                     {t("header.rankings")}
@@ -232,14 +226,6 @@ export const LandingHeader = () => {
 
                 {router.pathname === "/" && (
                   <>
-                    <Link
-                      className="text-base font-medium text-slate-700 dark:text-slate-300 hover:text-sky-600 dark:hover:text-sky-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors duration-300 py-3 px-2 rounded-lg"
-                      href="/search"
-                      onClick={closeMenu}
-                    >
-                      {t("header.search")}
-                    </Link>
-
                     <Link
                       className="text-base font-medium text-slate-700 dark:text-slate-300 hover:text-sky-600 dark:hover:text-sky-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors duration-300 py-3 px-2 rounded-lg"
                       href="/rankings"
