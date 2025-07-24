@@ -9,6 +9,7 @@ import { useTranslation, Trans } from "react-i18next";
 import { ReviewService } from "@/services";
 import { ReviewDocument } from "@/types";
 import ThankYouModal from "@/components/ThankYouModal";
+import CompanyHeader from "./CompanyHeader";
 
 interface ReviewFormData {
   // Información laboral
@@ -245,103 +246,15 @@ export default function ReviewForm({ company }: { company: any }) {
     });
   };
 
-  const renderStars = (rating: number) => {
-    return Array.from({ length: 5 }, (_, index) => (
-      <svg
-        key={index}
-        className={`w-5 h-5 ${
-          index < Math.floor(rating)
-            ? "text-yellow-400 fill-current"
-            : index < rating
-              ? "text-yellow-400 fill-current opacity-50"
-              : "text-slate-300 dark:text-slate-600"
-        }`}
-        viewBox="0 0 20 20"
-      >
-        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-      </svg>
-    ));
-  };
-
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-sky-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 transition-colors duration-200">
-      {/* Compact Company Header - Identical to CompanyDetail */}
+      {/* Reusable Company Header */}
       {company && (
-        <section className="bg-white dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6">
-            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
-              {/* Company Logo and Basic Info */}
-              <div className="flex items-center gap-4 flex-1 min-w-0">
-                {/* Company Logo */}
-                <div className="flex-shrink-0">
-                  <button
-                    className="block hover:opacity-80 transition-opacity"
-                    onClick={() => router.push(`/company/${slug}`)}
-                  >
-                    <img
-                      alt={`Logo de ${company.name}`}
-                      className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-lg shadow-md object-cover"
-                      src={company.logoUrl}
-                    />
-                  </button>
-                </div>
-
-                {/* Company Info */}
-                <div className="flex-1 min-w-0">
-                  <h1 className="text-lg sm:text-xl md:text-2xl font-bold text-slate-900 dark:text-white mb-1">
-                    {company.name}
-                  </h1>
-                  <div className="flex flex-wrap items-center gap-2 sm:gap-3 text-sm text-slate-600 dark:text-slate-300">
-                    <span className="font-medium">{company.industry}</span>
-                    <span className="text-slate-400 hidden sm:inline">•</span>
-                    <span className="truncate">
-                      {company.state}, {company.country}
-                    </span>
-                    {company.website && (
-                      <>
-                        <span className="text-slate-400 hidden md:inline">
-                          •
-                        </span>
-                        <a
-                          className="text-sky-600 hover:text-sky-700 dark:text-sky-400 dark:hover:text-sky-300 transition-colors hidden md:inline"
-                          href={company.website}
-                          rel="noopener noreferrer"
-                          target="_blank"
-                        >
-                          {t("companyDetail.website")}
-                        </a>
-                      </>
-                    )}
-                  </div>
-                </div>
-              </div>
-
-              {/* Rating and Back Button */}
-              <div className="flex xs:flex-row items-start xs:items-center gap-3 w-full sm:w-auto">
-                <div className="flex flex-col items-center gap-2 sm:gap-3">
-                  <div className="flex scale-75 sm:scale-100">
-                    {renderStars(company.rating)}
-                  </div>
-                  <div className="flex text-xs xs:text-sm gap-2">
-                    <div className="font-semibold text-slate-900 dark:text-white">
-                      {company.rating}
-                    </div>
-                    <div className="text-slate-500 dark:text-slate-400">
-                      {company.reviewsCount} {t("reviewForm.hero.reviews")}
-                    </div>
-                  </div>
-                </div>
-
-                <Button
-                  className="w-full xs:w-auto text-xs sm:text-sm px-3 py-2 sm:px-4 sm:py-2 bg-slate-600 hover:bg-slate-700 text-white font-semibold"
-                  onPress={() => router.push(`/company/${slug}`)}
-                >
-                  ← Volver
-                </Button>
-              </div>
-            </div>
-          </div>
-        </section>
+        <CompanyHeader
+          company={company}
+          showBackButton
+          totalReviewsCount={company.reviewsCount || 0}
+        />
       )}
 
       {/* Main Form Section */}
