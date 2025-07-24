@@ -641,6 +641,7 @@
         "noResultsDescription": "We couldn't find any companies matching \"{{query}}\". Try a different search term or add the company yourself.",
         "noResultsFound": "No companies found matching \"{{query}}\"",
         "addCompany": "Add company",
+        "wannaAddIt": "Wanna add it?",
         "backHome": "Back to home"
     },
     "landing": {

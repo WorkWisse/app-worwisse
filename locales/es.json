@@ -653,6 +653,7 @@
         "noResultsDescription": "No pudimos encontrar empresas que coincidan con \"{{query}}\". Probá con otro término de búsqueda o agregá la empresa vos mismo.",
         "noResultsFound": "No se encontraron empresas que coincidan con \"{{query}}\"",
         "addCompany": "Agregar empresa",
+        "wannaAddIt": "¿Querés agregarla?",
         "backHome": "Volver al inicio"
     },
     "landing": {

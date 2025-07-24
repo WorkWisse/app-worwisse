@@ -664,6 +664,7 @@
         "noResultsDescription": "Não conseguimos encontrar empresas que correspondam a \"{{query}}\". Tente um termo de busca diferente ou adicione a empresa você mesmo.",
         "noResultsFound": "Nenhuma empresa encontrada que corresponda a \"{{query}}\"",
         "addCompany": "Adicionar empresa",
+        "wannaAddIt": "Quer adicioná-la?",
         "backHome": "Voltar ao início"
     },
     "landing": {
