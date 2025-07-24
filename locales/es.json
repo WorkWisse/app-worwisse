@@ -514,7 +514,8 @@
         "loadMore": "Cargar {{count}} reseñas más ({{remaining}} restantes)",
         "remaining": "restantes",
         "loading": "Cargando...",
-        "loadingReviews": "Cargando reseñas..."
+        "loadingReviews": "Cargando reseñas...",
+        "goBack": "Volver"
     },
     "reviewForm": {
         "title": "Compartí tu experiencia",

@@ -579,7 +579,8 @@
         "review": "avaliação",
         "loadMore": "Carregar mais {{count}} avaliações ({{remaining}} restantes)",
         "remaining": "restantes",
-        "loading": "Carregando..."
+        "loading": "Carregando...",
+        "goBack": "Voltar"
     },
     "reviewForm": {
         "title": "Compartilhe sua experiência",

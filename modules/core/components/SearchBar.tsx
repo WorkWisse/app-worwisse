@@ -175,11 +175,18 @@ export const SearchBar = ({
               }`}
             classNames={{
               inputWrapper: isHero
-                ? "bg-white dark:bg-slate-800 border-slate-300 dark:border-slate-600 focus-within:border-sky-500 focus-within:ring-sky-500 transition-colors duration-200"
+                ? "bg-gradient-to-br from-slate-50 to-sky-100 dark:bg-none dark:bg-slate-950 border-slate-500 dark:border-slate-700 focus-within:border-sky-500 focus-within:ring-sky-500 transition-colors duration-200 shadow-lg"
                 : "bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700 focus-within:border-sky-500 focus-within:ring-sky-500 transition-colors duration-200",
-              input: isHero
-                ? "text-slate-700 dark:text-slate-200 placeholder-slate-400 dark:placeholder-slate-500 text-base"
-                : "text-slate-700 dark:text-slate-200 placeholder-slate-400 dark:placeholder-slate-500 text-sm",
+              input: [
+                "text-slate-900",
+                "dark:text-slate-200",
+                "placeholder:text-slate-400",
+                "dark:placeholder:text-slate-500",
+                "caret-sky-500", // Custom caret color
+                isHero
+                  ? "text-base"
+                  : "text-sm",
+              ],
             }}
             name="search"
             placeholder={placeholder || t("hero.searchPlaceholder")}
@@ -233,11 +240,6 @@ export const SearchBar = ({
       {showDropdown && showSuggestions && searchQuery.length >= 1 && (
         <Card
           className="absolute top-full left-0 right-0 mt-2 z-[9999] shadow-xl border border-slate-200 dark:border-slate-700 max-h-80 overflow-y-auto bg-white dark:bg-slate-800"
-          style={{
-            position: "absolute",
-            zIndex: 9999,
-            transform: "translateZ(0)", // Force hardware acceleration
-          }}
         >
           <div className="p-1">
             {isLoading ? (
@@ -265,18 +267,18 @@ export const SearchBar = ({
                   >
                     <div className="flex items-center justify-between">
                       <div className="flex-1 min-w-0">
-                        <div className="flex items-center gap-2 mb-1">
-                          <div className="font-medium text-slate-900 dark:text-white group-hover:text-sky-600 dark:group-hover:text-sky-400 transition-colors">
+                        <div className="flex items-center justify-between gap-4 mb-1">
+                          <div className="font-medium text-slate-900 dark:text-white group-hover:text-sky-600 dark:group-hover:text-sky-400 transition-colors truncate">
                             {suggestion.name}
                           </div>
-                          <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs bg-sky-100 dark:bg-sky-900/30 text-sky-700 dark:text-sky-300">
+                          <span className="flex-shrink-0 inline-flex items-center px-2 py-0.5 rounded-full text-xs bg-sky-100 dark:bg-sky-900/30 text-sky-700 dark:text-sky-300">
                             {suggestion.reviewsCount}{" "}
                             {suggestion.reviewsCount === 1
                               ? t("search.review")
                               : t("search.reviews")}
                           </span>
                         </div>
-                        <div className="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400">
+                        <div className="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400 flex-wrap">
                           <span>{suggestion.industry}</span>
                           <span>•</span>
                           <span>{suggestion.location.country}</span>

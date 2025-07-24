@@ -558,7 +558,8 @@
         "review": "review",
         "loadMore": "Load {{count}} more reviews ({{remaining}} remaining)",
         "remaining": "remaining",
-        "loading": "Loading..."
+        "loading": "Loading...",
+        "goBack": "Go back"
     },
     "reviewForm": {
         "title": "Share your experience",

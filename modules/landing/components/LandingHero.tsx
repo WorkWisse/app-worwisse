@@ -8,7 +8,7 @@ export const LandingHero = () => {
   const router = useRouter();
 
   return (
-    <section className="bg-gradient-to-br from-slate-50 to-sky-100 dark:from-slate-900 dark:to-slate-800 py-20 sm:py-28 overflow-hidden transition-colors duration-200">
+    <section className="bg-gradient-to-br from-slate-50 to-sky-100 dark:bg-none dark:bg-slate-900 py-20 sm:py-28 overflow-hidden transition-colors duration-200">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-12 gap-y-16 items-center">
           <div className="animate-fade-in-up delay-200">

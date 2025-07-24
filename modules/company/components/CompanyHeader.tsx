@@ -102,7 +102,9 @@ export default function CompanyHeader({
               }`}
               onPress={handleAction}
             >
-              {showBackButton ? "← Volver" : t("companyDetail.writeReview")}
+              {showBackButton
+                ? t("companyDetail.goBack")
+                : t("companyDetail.writeReview")}
             </Button>
           </div>
         </div>
