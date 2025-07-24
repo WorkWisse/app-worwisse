@@ -320,7 +320,7 @@ export const SearchBar = ({
                 <Button
                   as={Link}
                   className="h-auto p-0 text-sky-600 dark:text-sky-400 font-medium hover:underline"
-                  href="/company/add"
+                  href={`/company/add?name=${encodeURIComponent(searchQuery)}`}
                   size="sm"
                   variant="light"
                   onClick={() => {
