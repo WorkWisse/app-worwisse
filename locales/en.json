@@ -104,6 +104,20 @@
         "history": {
             "title": "Our <1>story</1>",
             "description": "This is how it all started and how we got here, always thinking about making workers' lives easier.",
+            "personal": {
+                "question": "When, how and why was WorkWisse born?",
+                "story": "On January 16, 2023, I hit rock bottom. I felt empty. Without purpose. I didn't know what I was doing what I was doing for. So I wrote to one of the most generous and wise people I know. I asked for advice. He didn't hesitate. He responded instantly and invited me to his house. He listened to me for a whole hour without interrupting. And when I finished, he dropped a phrase that shook me:",
+                "quote": "\"Think about what you like to do the most, what you know how to do best, and find something that connects those dots.\"",
+                "beginning": "That's where it all began.",
+                "background": "I always worked in sales. I wasn't the best, but there was something I was very good at: teaching. Helping others improve. Showing them how to do their job with pride, with meaning. I was always angry seeing how companies say that \"people are their most important asset\" while leaving them last in the priority line. First the systems, the logos, the campaigns, the beautiful offices. People... later.",
+                "realization": "And one day it hit me: workers have no voice.",
+                "problem": "Nobody listens to them. Nobody knows what really happens inside companies. And if you know it, you know it because you had to live it.",
+                "reflection": "Then I asked myself:",
+                "mainQuestion": "How can there be thousands of pages where people leave reviews after spending three nights in a hotel, but nobody tells how it was to work three years in a company?",
+                "change": "That had to change.",
+                "creation": "So I gathered three brilliant young people, development specialists, told them my idea... and WorkWisse was born.",
+                "mission": "A platform made with soul, with history, and with the certainty that telling what we experience at work can help thousands of people make more human, more informed and fairer decisions."
+            },
             "timeline": {
                 "2020": {
                     "title": "The idea that changed everything",

@@ -45,69 +45,68 @@ export default function AboutHistory() {
           </p>
         </div>
 
-        <div className="relative">
-          <div className="absolute left-1/2 transform -translate-x-1/2 w-1 bg-sky-200 dark:bg-sky-800 h-full hidden lg:block" />
+        {/* Personal Story Section */}
+        <div className="mb-20">
+          <div className="max-w-4xl mx-auto bg-gradient-to-br from-slate-50 to-white dark:from-slate-800 dark:to-slate-900 rounded-2xl p-8 lg:p-12 shadow-xl border border-slate-200 dark:border-slate-700">
+            <h3 className="text-2xl lg:text-3xl font-bold text-sky-600 dark:text-sky-400 mb-8 text-center">
+              {t("about.history.personal.question")}
+            </h3>
 
-          <div className="space-y-12">
-            {timeline.map((event, index) => (
-              <div
-                key={event.year}
-                className={`flex flex-col lg:flex-row items-center gap-8 animate-fade-in-up ${
-                  index % 2 === 0 ? "lg:flex-row" : "lg:flex-row-reverse"
-                }`}
-                style={{ animationDelay: `${index * 0.2}s` }}
-              >
-                <div className="flex-1 text-center lg:text-left">
-                  <div
-                    className={`space-y-4 ${index % 2 === 0 ? "lg:text-right lg:pr-8" : "lg:text-left lg:pl-8"}`}
-                  >
-                    <div className="inline-block bg-sky-600 dark:bg-sky-600 text-white px-4 py-2 rounded-full font-bold text-lg">
-                      {event.year}
-                    </div>
-                    <h3 className="text-2xl font-bold text-slate-900 dark:text-white">
-                      {t(`about.history.timeline.${event.year}.title`)}
-                    </h3>
-                    <p className="text-slate-600 dark:text-slate-300 leading-relaxed max-w-md mx-auto lg:mx-0">
-                      {t(`about.history.timeline.${event.year}.description`)}
-                    </p>
-                  </div>
-                </div>
+            <div className="prose prose-lg prose-slate dark:prose-invert max-w-none">
+              <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-6">
+                {t("about.history.personal.story")}
+              </p>
 
-                <div className="relative">
-                  <div className="w-4 h-4 bg-sky-600 dark:bg-sky-600 rounded-full border-4 border-white dark:border-slate-900 shadow-lg" />
-                  <div className="absolute inset-0 w-4 h-4 bg-sky-600 dark:bg-sky-600 rounded-full animate-ping opacity-20" />
-                </div>
+              <blockquote className="border-l-4 border-sky-500 dark:border-sky-400 pl-6 py-4 my-8 bg-sky-50 dark:bg-sky-900/20 rounded-r-lg">
+                <p className="text-lg font-medium italic text-sky-800 dark:text-sky-200 mb-0">
+                  {t("about.history.personal.quote")}
+                </p>
+              </blockquote>
 
-                <div className="flex-1" />
+              <p className="text-xl font-semibold text-slate-900 dark:text-white mb-6">
+                {t("about.history.personal.beginning")}
+              </p>
+
+              <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-6">
+                {t("about.history.personal.background")}
+              </p>
+
+              <p className="text-xl font-semibold text-slate-900 dark:text-white mb-4">
+                {t("about.history.personal.realization")}
+              </p>
+
+              <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-6">
+                {t("about.history.personal.problem")}
+              </p>
+
+              <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+                {t("about.history.personal.reflection")}
+              </p>
+
+              <div className="bg-gradient-to-r from-sky-50 to-slate-50 dark:from-sky-900/20 dark:to-slate-800/20 border-l-4 border-sky-400 dark:border-sky-500 rounded-r-lg p-6 my-8">
+                <p className="text-lg font-medium text-sky-800 dark:text-sky-200 italic mb-0">
+                  {t("about.history.personal.mainQuestion")}
+                </p>
               </div>
-            ))}
+
+              <p className="text-xl font-semibold text-slate-900 dark:text-white mb-6">
+                {t("about.history.personal.change")}
+              </p>
+
+              <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-6">
+                {t("about.history.personal.creation")}
+              </p>
+
+              <div className="bg-gradient-to-r from-sky-50 to-blue-50 dark:from-sky-900/20 dark:to-blue-900/20 border border-sky-200 dark:border-sky-700 rounded-xl p-6 mt-8">
+                <p className="text-lg text-sky-800 dark:text-sky-200 leading-relaxed font-medium mb-0">
+                  {t("about.history.personal.mission")}
+                </p>
+              </div>
+            </div>
           </div>
         </div>
 
-        {/* <div className="mt-20 text-center">
-          <div className="bg-gradient-to-r from-sky-50 to-slate-50 rounded-2xl p-8 max-w-4xl mx-auto border border-sky-100">
-            <h3 className="text-2xl font-bold text-slate-900 mb-4">
-              {t("about.history.future.title")}
-            </h3>
-            <p className="text-slate-600 mb-6 leading-relaxed">
-              {t("about.history.future.description")}
-            </p>
-            <div className="flex flex-wrap justify-center gap-4 text-sm">
-              <span className="bg-sky-100 text-sky-700 px-4 py-2 rounded-full">
-                {t("about.history.future.tags.countries")}
-              </span>
-              <span className="bg-sky-100 text-sky-700 px-4 py-2 rounded-full">
-                {t("about.history.future.tags.experience")}
-              </span>
-              <span className="bg-sky-100 text-sky-700 px-4 py-2 rounded-full">
-                {t("about.history.future.tags.information")}
-              </span>
-              <span className="bg-sky-100 text-sky-700 px-4 py-2 rounded-full">
-                {t("about.history.future.tags.partnerships")}
-              </span>
-            </div>
-          </div>
-        </div> */}
+
       </div>
     </section>
   );
