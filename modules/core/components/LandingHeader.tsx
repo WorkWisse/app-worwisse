@@ -200,9 +200,8 @@ export const LandingHeader = () => {
 
           {/* Mobile Navigation Menu */}
           <div
-            className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${
-              isMenuOpen ? "max-h-80 opacity-100" : "max-h-0 opacity-0"
-            }`}
+            className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${isMenuOpen ? "max-h-80 opacity-100" : "max-h-0 opacity-0"
+              }`}
           >
             <nav className="py-4 border-t border-slate-200 dark:border-slate-700 mt-4 bg-white dark:bg-slate-900 relative z-50">
               <div className="flex flex-col space-y-2">
@@ -251,14 +250,6 @@ export const LandingHeader = () => {
                     </Link>
                   </>
                 )}
-
-                <Link
-                  className="bg-sky-600 text-white text-base font-semibold hover:bg-sky-700 transition-colors duration-300 py-3 px-4 rounded-lg text-center inline-block"
-                  href="/company/add"
-                  onClick={closeMenu}
-                >
-                  {t("header.addCompany")}
-                </Link>
 
                 {/* Theme Toggle in Mobile Menu */}
                 <div className="py-3 px-2 border-t border-slate-100 dark:border-slate-700 mt-3">

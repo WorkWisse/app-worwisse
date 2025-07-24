@@ -4,6 +4,8 @@
         "description": "Access real employee reviews. Companies are no longer chosen solely for salary—people seek purpose, a positive environment, inclusion, and real growth opportunities. Make informed career decisions with information that truly matters.",
         "searchPlaceholder": "Search by company name...",
         "searchButton": "Search",
+        "searchTitle": "Search companies",
+        "searchSubtitle": "Find the information you need",
         "ctaFeatured": "View featured companies",
         "trustBadges": {
             "free": "Free",
@@ -639,6 +641,8 @@
         "noResultsTitle": "No companies found",
         "noResultsDescription": "We couldn't find any companies matching \"{{query}}\". Try a different search term or add the company yourself.",
         "noResultsFound": "No companies found matching \"{{query}}\"",
+        "noCompanyFound": "Can't find the company?",
+        "addCompanyMessage": "Add it and be the first to rate it!",
         "addCompany": "Add company",
         "wannaAddIt": "Wanna add it?",
         "backHome": "Back to home"
