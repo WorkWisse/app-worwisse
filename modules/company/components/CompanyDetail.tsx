@@ -353,8 +353,8 @@ export default function CompanyDetail({
                                   <div className="flex">
                                     {renderCompactStars(
                                       review.rating ||
-                                        review.overallRating ||
-                                        0,
+                                      review.overallRating ||
+                                      0,
                                     )}
                                   </div>
                                   <span className="text-sm font-bold text-slate-900 dark:text-white">
@@ -368,15 +368,15 @@ export default function CompanyDetail({
                                 </div>
                                 {(review.wouldRecommend ||
                                   review.recommend) && (
-                                  <Chip
-                                    className="text-xs"
-                                    color="success"
-                                    size="sm"
-                                    variant="flat"
-                                  >
-                                    {t("companyDetail.recommends")}
-                                  </Chip>
-                                )}
+                                    <Chip
+                                      className="text-xs"
+                                      color="success"
+                                      size="sm"
+                                      variant="flat"
+                                    >
+                                      {t("companyDetail.recommends")}
+                                    </Chip>
+                                  )}
                               </div>
                             </div>
                           </CardBody>
@@ -388,30 +388,31 @@ export default function CompanyDetail({
                     {hasMoreReviews && totalReviewsCount > reviews.length && (
                       <div className="flex justify-center pt-4">
                         <Button
-                          className="px-6"
+                          className="border-sky-600 dark:border-sky-400 text-sky-600 dark:text-sky-400 hover:bg-sky-50 dark:hover:bg-sky-900/20 font-semibold px-8 transition-colors duration-200"
                           disabled={
                             isLoadingMore || totalReviewsCount <= reviews.length
                           }
+                          size="lg"
                           variant="bordered"
                           onPress={handleLoadMoreReviews}
                         >
                           {isLoadingMore
                             ? t("companyDetail.loading")
                             : t("companyDetail.loadMore", {
-                                count: Math.min(
-                                  Number(
-                                    process.env.NEXT_PUBLIC_REVIEW_LOAD_MORE,
-                                  ) || 5,
-                                  Math.max(
-                                    0,
-                                    totalReviewsCount - reviews.length,
-                                  ),
-                                ),
-                                remaining: Math.max(
+                              count: Math.min(
+                                Number(
+                                  process.env.NEXT_PUBLIC_REVIEW_LOAD_MORE,
+                                ) || 5,
+                                Math.max(
                                   0,
                                   totalReviewsCount - reviews.length,
                                 ),
-                              })}
+                              ),
+                              remaining: Math.max(
+                                0,
+                                totalReviewsCount - reviews.length,
+                              ),
+                            })}
                         </Button>
                       </div>
                     )}
@@ -422,8 +423,8 @@ export default function CompanyDetail({
                       {t("companyDetail.noReviews")}
                     </p>
                     <Button
-                      className="px-6"
-                      color="primary"
+                      className="bg-sky-600 dark:bg-sky-600 text-white hover:bg-sky-700 dark:hover:bg-sky-700 font-semibold px-8 transition-colors duration-200"
+                      size="lg"
                       onPress={() =>
                         router.push(
                           `/company/${company.slug || company.id}/review`,
@@ -478,7 +479,7 @@ export default function CompanyDetail({
                       (reviews.filter((r) => r.wouldRecommend || r.recommend)
                         .length /
                         Math.max(reviews.length, 1)) *
-                        100,
+                      100,
                     )}
                     %
                   </span>
