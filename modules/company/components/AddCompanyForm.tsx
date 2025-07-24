@@ -130,12 +130,12 @@ export default function AddCompanyForm() {
           logoUrl = await ImageService.uploadImage(
             formData.logo,
             "companies/logos",
-            `${formData.name.toLowerCase().replace(/\s+/g, "-")}-logo`
+            `${formData.name.toLowerCase().replace(/\s+/g, "-")}-logo`,
           );
         } catch (logoError) {
           showError(
             t("addCompany.form.logo.uploadError"),
-            (logoError as Error).message
+            (logoError as Error).message,
           );
 
           return;

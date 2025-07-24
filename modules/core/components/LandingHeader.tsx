@@ -61,18 +61,6 @@ export const LandingHeader = () => {
 
             <nav className="hidden md:flex items-center space-x-6">
               <Link
-                className="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-sky-600 dark:hover:text-sky-400 transition-colors duration-300"
-                href="/about"
-              >
-                Sobre nosotros
-              </Link>
-              <Link
-                className="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-sky-600 dark:hover:text-sky-400 transition-colors duration-300"
-                href="/contact"
-              >
-                Contacto
-              </Link>
-              <Link
                 className="bg-sky-600 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-sky-700 transition-all duration-300 shadow-sm hover:shadow-md"
                 href="/company/add"
               >
@@ -145,6 +133,34 @@ export const LandingHeader = () => {
 
             {/* Desktop Navigation */}
             <nav className="hidden md:flex items-center space-x-6">
+              {router.pathname === "/" && (
+                <>
+                  <Link
+                    className="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-sky-600 dark:hover:text-sky-400 transition-colors duration-300"
+                    href="/search"
+                  >
+                    {t("header.search")}
+                  </Link>
+                  <Link
+                    className="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-sky-600 dark:hover:text-sky-400 transition-colors duration-300"
+                    href="/rankings"
+                  >
+                    {t("header.rankings")}
+                  </Link>
+                  <Link
+                    className="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-sky-600 dark:hover:text-sky-400 transition-colors duration-300"
+                    href="/about"
+                  >
+                    {t("header.about")}
+                  </Link>
+                  <Link
+                    className="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-sky-600 dark:hover:text-sky-400 transition-colors duration-300"
+                    href="/contact"
+                  >
+                    {t("header.contact")}
+                  </Link>
+                </>
+              )}
               <Link
                 className="bg-sky-600 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-sky-700 transition-all duration-300 shadow-sm hover:shadow-md"
                 href="/company/add"
@@ -213,21 +229,42 @@ export const LandingHeader = () => {
                     />
                   </div>
                 )}
-                <Link
-                  className="text-base font-medium text-slate-700 dark:text-slate-300 hover:text-sky-600 dark:hover:text-sky-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors duration-300 py-3 px-2 rounded-lg"
-                  href="/about"
-                  onClick={closeMenu}
-                >
-                  {t("header.about")}
-                </Link>
 
-                <Link
-                  className="text-base font-medium text-slate-700 dark:text-slate-300 hover:text-sky-600 dark:hover:text-sky-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors duration-300 py-3 px-2 rounded-lg"
-                  href="/contact"
-                  onClick={closeMenu}
-                >
-                  {t("header.contact")}
-                </Link>
+                {router.pathname === "/" && (
+                  <>
+                    <Link
+                      className="text-base font-medium text-slate-700 dark:text-slate-300 hover:text-sky-600 dark:hover:text-sky-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors duration-300 py-3 px-2 rounded-lg"
+                      href="/search"
+                      onClick={closeMenu}
+                    >
+                      {t("header.search")}
+                    </Link>
+
+                    <Link
+                      className="text-base font-medium text-slate-700 dark:text-slate-300 hover:text-sky-600 dark:hover:text-sky-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors duration-300 py-3 px-2 rounded-lg"
+                      href="/rankings"
+                      onClick={closeMenu}
+                    >
+                      {t("header.rankings")}
+                    </Link>
+
+                    <Link
+                      className="text-base font-medium text-slate-700 dark:text-slate-300 hover:text-sky-600 dark:hover:text-sky-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors duration-300 py-3 px-2 rounded-lg"
+                      href="/about"
+                      onClick={closeMenu}
+                    >
+                      {t("header.about")}
+                    </Link>
+
+                    <Link
+                      className="text-base font-medium text-slate-700 dark:text-slate-300 hover:text-sky-600 dark:hover:text-sky-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors duration-300 py-3 px-2 rounded-lg"
+                      href="/contact"
+                      onClick={closeMenu}
+                    >
+                      {t("header.contact")}
+                    </Link>
+                  </>
+                )}
 
                 <Link
                   className="bg-sky-600 text-white text-base font-semibold hover:bg-sky-700 transition-colors duration-300 py-3 px-4 rounded-lg text-center inline-block"
