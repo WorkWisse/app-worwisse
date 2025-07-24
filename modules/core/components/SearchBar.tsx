@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { Input } from "@heroui/input";
 import { Button } from "@heroui/button";
 import { Card } from "@heroui/card";
+import { Link } from "@heroui/link";
 import { useTranslation } from "react-i18next";
 import { useRouter } from "next/router";
 
@@ -30,11 +31,20 @@ export const SearchBar = ({
   const [suggestions, setSuggestions] = useState<SearchSuggestion[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [showDropdown, setShowDropdown] = useState(false);
+  const [isRedirecting, setIsRedirecting] = useState(false);
   const searchRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+  const justSelectedSuggestion = useRef(false);
 
   // Debounce search to avoid too many API calls
   useEffect(() => {
+    // Don't search if we just selected a suggestion
+    if (justSelectedSuggestion.current) {
+      justSelectedSuggestion.current = false;
+
+      return;
+    }
+
     const timeoutId = setTimeout(async () => {
       if (searchQuery.trim().length > 0 && showSuggestions) {
         setIsLoading(true);
@@ -69,6 +79,7 @@ export const SearchBar = ({
         searchRef.current &&
         !searchRef.current.contains(event.target as Node)
       ) {
+        justSelectedSuggestion.current = false;
         setShowDropdown(false);
       }
     };
@@ -78,22 +89,53 @@ export const SearchBar = ({
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
+  // Close dropdown when route changes
+  useEffect(() => {
+    const handleRouteChange = () => {
+      justSelectedSuggestion.current = false;
+      setShowDropdown(false);
+      setSuggestions([]);
+      setSearchQuery("");
+      setIsRedirecting(false);
+    };
+
+    const handleRouteError = () => {
+      setIsRedirecting(false);
+    };
+
+    router.events.on("routeChangeComplete", handleRouteChange);
+    router.events.on("routeChangeError", handleRouteError);
+
+    return () => {
+      router.events.off("routeChangeComplete", handleRouteChange);
+      router.events.off("routeChangeError", handleRouteError);
+    };
+  }, [router]);
+
   const handleInputChange = (value: string) => {
+    justSelectedSuggestion.current = false;
     setSearchQuery(value);
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (onSubmit && searchQuery?.trim()) {
+      justSelectedSuggestion.current = false;
       onSubmit(searchQuery.trim());
       setShowDropdown(false);
+      setSuggestions([]);
     }
   };
 
   const handleSuggestionClick = (suggestion: SearchSuggestion) => {
+    justSelectedSuggestion.current = true;
     setSearchQuery(suggestion.name);
     setShowDropdown(false);
+    setSuggestions([]);
+
+    // Show redirecting loader when navigating to company
     if (onSuggestionSelect) {
+      setIsRedirecting(true);
       onSuggestionSelect(suggestion);
     } else if (onSubmit) {
       onSubmit(suggestion.name);
@@ -103,6 +145,15 @@ export const SearchBar = ({
   const handleInputFocus = () => {
     if (searchQuery.length >= 1) {
       setShowDropdown(true);
+    }
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Escape") {
+      justSelectedSuggestion.current = false;
+      setShowDropdown(false);
+      setSuggestions([]);
+      inputRef.current?.blur();
     }
   };
 
@@ -160,6 +211,7 @@ export const SearchBar = ({
             type="search"
             value={searchQuery}
             onFocus={handleInputFocus}
+            onKeyDown={handleKeyDown}
             onValueChange={handleInputChange}
           />
           {showButton && (
@@ -194,6 +246,13 @@ export const SearchBar = ({
                 <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-sky-600" />
                 <span className="ml-2 text-sm text-slate-600 dark:text-slate-400">
                   {t("search.searching")}
+                </span>
+              </div>
+            ) : isRedirecting ? (
+              <div className="flex items-center justify-center py-6">
+                <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-sky-600" />
+                <span className="ml-2 text-sm text-slate-600 dark:text-slate-400">
+                  {t("search.redirecting")}
                 </span>
               </div>
             ) : suggestions.length > 0 ? (
@@ -255,19 +314,36 @@ export const SearchBar = ({
                 ))}
               </div>
             ) : (
-              <div className="py-6 text-center">
-                <div className="text-sm text-slate-500 dark:text-slate-400 mb-3">
-                  {t("search.noCompanyFound")}
+              <div className="py-6 text-center space-y-4">
+                <div className="text-sm text-slate-500 dark:text-slate-400">
+                  {t("search.noResultsFound", { query: searchQuery })}
                 </div>
-                <Button
-                  size="sm"
-                  color="primary"
-                  variant="flat"
-                  onPress={() => router.push('/company/add')}
-                  className="text-sm"
+                <div className="text-xs text-slate-400 dark:text-slate-500">
+                  {t("search.noResultsDescription", { query: searchQuery })}
+                </div>
+                <Link
+                  className="inline-flex items-center gap-2 bg-sky-600 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-sky-700 transition-all duration-300"
+                  href="/company/add"
+                  onClick={() => {
+                    setShowDropdown(false);
+                    setSuggestions([]);
+                  }}
                 >
-                  {t("search.addCompanyMessage")}
-                </Button>
+                  <svg
+                    className="w-4 h-4"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M12 4v16m8-8H4"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                    />
+                  </svg>
+                  {t("search.addCompany")}
+                </Link>
               </div>
             )}
           </div>
