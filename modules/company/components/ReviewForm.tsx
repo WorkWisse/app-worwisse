@@ -14,6 +14,7 @@ import CompanyHeader from "./CompanyHeader";
 interface ReviewFormData {
   // Información laboral
   role: string;
+  email: string;
   startDate: string;
   endDate: string;
   currentlyWorking: boolean;
@@ -107,6 +108,7 @@ export default function ReviewForm({ company }: { company: any }) {
 
   const [formData, setFormData] = useState<ReviewFormData>({
     role: "",
+    email: "",
     startDate: "",
     endDate: "",
     currentlyWorking: false,
@@ -127,6 +129,7 @@ export default function ReviewForm({ company }: { company: any }) {
 
   const initialFormData = {
     role: "",
+    email: "",
     startDate: "",
     endDate: "",
     currentlyWorking: false,
@@ -200,6 +203,7 @@ export default function ReviewForm({ company }: { company: any }) {
           companyName: company.companyName,
           creationDate: new Date().toISOString(),
           role: formData.role,
+          email: formData.email,
           startDate: formData.startDate,
           endDate: formData.currentlyWorking ? null : formData.endDate,
           workEnvironment: formData.workEnvironmentRating,
@@ -299,7 +303,6 @@ export default function ReviewForm({ company }: { company: any }) {
 
                     <div className="space-y-6">
                       <Input
-                        isRequired
                         classNames={{
                           input: "text-slate-900 dark:text-white",
                           label:
@@ -311,6 +314,22 @@ export default function ReviewForm({ company }: { company: any }) {
                         value={formData.role}
                         variant="bordered"
                         onChange={(e) => handleChange("role", e.target.value)}
+                      />
+
+                      <Input
+                        classNames={{
+                          input: "text-slate-900 dark:text-white",
+                          label:
+                            "text-slate-700 dark:text-slate-300 font-medium",
+                        }}
+                        label="Email (anónimo)"
+                        placeholder="tu.email@ejemplo.com"
+                        size="lg"
+                        type="email"
+                        value={formData.email}
+                        variant="bordered"
+                        description="Tu email será mantenido de forma anónima y no será compartido públicamente"
+                        onChange={(e) => handleChange("email", e.target.value)}
                       />
 
                       <div className="grid md:grid-cols-2 gap-6">

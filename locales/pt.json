@@ -596,6 +596,7 @@
         "ratingInclusion": "Inclusão laboral",
         "ratingInclusionShort": "Inclusão",
         "role": "Cargo/Posição",
+        "anonymous": "Anônimo",
         "review": "avaliação",
         "loadMore": "Carregar mais {{count}} avaliações ({{remaining}} restantes)",
         "remaining": "restantes",
@@ -609,7 +610,7 @@
             "title": "Informações do Trabalho",
             "description": "Conte sobre sua experiência profissional na empresa",
             "role": "Cargo na empresa",
-            "rolePlaceholder": "Ex: Desenvolvedor Frontend, QA Engineer...",
+            "rolePlaceholder": "Ex: Desenvolvedor, Designer, Gerente, Analista, Vendedor, Repositor, etc.",
             "startDate": "Data de início",
             "endDate": "Data de término",
             "currentlyWorking": "Atualmente trabalho aqui"

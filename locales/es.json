@@ -528,6 +528,7 @@
         "ratingInclusion": "Inclusión laboral",
         "ratingInclusionShort": "Inclusión",
         "role": "Puesto/Cargo",
+        "anonymous": "Anónimo",
         "review": "reseña",
         "loadMore": "Cargar {{count}} reseñas más ({{remaining}} restantes)",
         "remaining": "restantes",
@@ -542,7 +543,7 @@
             "title": "Información Laboral",
             "description": "Contanos sobre tu experiencia de trabajo en la empresa",
             "role": "Posición/Cargo en la empresa",
-            "rolePlaceholder": "Ej: Desarrollador Senior, Analista, etc.",
+            "rolePlaceholder": "Ej: Vendedor, Repositor, Gerente, etc.",
             "startDate": "Fecha de inicio",
             "endDate": "Fecha de fin",
             "currentlyWorking": "Actualmente trabajo en esta empresa"

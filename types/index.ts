@@ -29,6 +29,7 @@ export interface Review {
   companyName?: string; // Optional, can be used for display purposes
   creationDate: string; // ISO date string
   role: string;
+  email: string; // Anonymous email for contact purposes
   startDate: string; // ISO date string
   endDate: string | null; // ISO date string or null
   workEnvironment: number;

@@ -553,6 +553,7 @@
         "pros": "✅ The best",
         "cons": "⚠️ To improve",
         "positionLabel": "Job/Position:",
+        "anonymous": "Anonymous",
         "statistics": "📊 Statistics",
         "wouldRecommend": "👍 Would recommend",
         "rating": "⭐ Rating",
@@ -593,7 +594,7 @@
             "title": "Work Information",
             "description": "Tell us about your work experience at the company",
             "role": "Position/Role at the company",
-            "rolePlaceholder": "Ex: Senior Developer, Analyst, etc.",
+            "rolePlaceholder": "Ex: Developer, Designer, Manager, Analyst, Salesperson, Stocker, etc.",
             "startDate": "Start date",
             "endDate": "End date",
             "currentlyWorking": "I currently work at this company"

@@ -316,7 +316,7 @@ export default function CompanyDetail({
                                   <span className="text-xs font-bold text-slate-800 dark:text-slate-200 uppercase tracking-wide">
                                     {t("companyDetail.positionLabel")}{" "}
                                     <span className="font-semibold text-slate-900 dark:text-white">
-                                      {review.role}
+                                      {review.role || t("companyDetail.anonymous")}
                                     </span>
                                   </span>
                                 </div>
