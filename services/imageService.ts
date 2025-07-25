@@ -18,7 +18,7 @@ export class ImageService {
   static async uploadImage(
     file: File,
     path: string,
-    fileName?: string,
+    fileName?: string
   ): Promise<string> {
     try {
       // Validate file type
@@ -56,12 +56,12 @@ export class ImageService {
       if (error instanceof Error) {
         if (error.message.includes("cors")) {
           throw new Error(
-            "Error de configuración CORS. Contacta al administrador del sistema.",
+            "Error de configuración CORS. Contacta al administrador del sistema."
           );
         }
         if (error.message.includes("permission")) {
           throw new Error(
-            "No tienes permisos para subir archivos. Verifica la configuración de Firebase Storage.",
+            "No tienes permisos para subir archivos. Verifica la configuración de Firebase Storage."
           );
         }
         if (error.message.includes("quota")) {

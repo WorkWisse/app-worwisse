@@ -104,14 +104,14 @@ export default function AddCompanyForm() {
   const filteredBenefits = predefinedBenefits.filter(
     (benefit) =>
       benefit.toLowerCase().includes(benefitsInput.toLowerCase()) &&
-      !formData.benefits.includes(benefit),
+      !formData.benefits.includes(benefit)
   );
 
   const handleSubmit = async () => {
     if (!acceptedTerms) {
       showWarning(
         t("addCompany.form.acceptTermsRequired"),
-        t("addCompany.form.pleaseAcceptTerms"),
+        t("addCompany.form.pleaseAcceptTerms")
       );
 
       return;
@@ -202,7 +202,7 @@ export default function AddCompanyForm() {
       console.error("Error adding company:", error);
       showError(
         t("addCompany.form.submitError"),
-        t("addCompany.form.tryAgainLater"),
+        t("addCompany.form.tryAgainLater")
       );
     } finally {
       setIsSubmitting(false);
@@ -211,7 +211,7 @@ export default function AddCompanyForm() {
 
   // Funciones para manejar el logo
   const handleLogoChange = async (
-    event: React.ChangeEvent<HTMLInputElement>,
+    event: React.ChangeEvent<HTMLInputElement>
   ) => {
     const file = event.target.files?.[0];
 
@@ -222,7 +222,7 @@ export default function AddCompanyForm() {
       if (!file.type.startsWith("image/")) {
         showError(
           t("addCompany.form.logo.uploadError"),
-          t("addCompany.form.logo.invalidType"),
+          t("addCompany.form.logo.invalidType")
         );
 
         return;
@@ -232,7 +232,7 @@ export default function AddCompanyForm() {
       if (file.size > 5 * 1024 * 1024) {
         showError(
           t("addCompany.form.logo.uploadError"),
-          t("addCompany.form.logo.invalidSize"),
+          t("addCompany.form.logo.invalidSize")
         );
 
         return;
@@ -244,7 +244,7 @@ export default function AddCompanyForm() {
       } catch (error) {
         showError(
           t("addCompany.form.logo.uploadError"),
-          (error as Error).message,
+          (error as Error).message
         );
 
         return;
@@ -260,7 +260,7 @@ export default function AddCompanyForm() {
     } catch {
       showError(
         t("addCompany.form.logo.uploadError"),
-        t("addCompany.form.logo.uploadError"),
+        t("addCompany.form.logo.uploadError")
       );
     }
   };

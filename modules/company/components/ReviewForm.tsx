@@ -248,7 +248,7 @@ export default function ReviewForm({ company }: { company: any }) {
 
           if (startDate >= endDate) {
             setDateError(
-              "La fecha de inicio debe ser anterior a la fecha de fin.",
+              "La fecha de inicio debe ser anterior a la fecha de fin."
             );
           } else {
             setDateError("");
@@ -390,7 +390,7 @@ export default function ReviewForm({ company }: { company: any }) {
                     <div className="grid md:grid-cols-2 gap-8">
                       <StarRating
                         description={t(
-                          "reviewForm.ratings.workEnvironmentDesc",
+                          "reviewForm.ratings.workEnvironmentDesc"
                         )}
                         label={t("reviewForm.ratings.workEnvironment")}
                         rating={formData.workEnvironmentRating}
@@ -446,7 +446,7 @@ export default function ReviewForm({ company }: { company: any }) {
 
                       <StarRating
                         description={t(
-                          "reviewForm.ratings.workLifeBalanceDesc",
+                          "reviewForm.ratings.workLifeBalanceDesc"
                         )}
                         label={t("reviewForm.ratings.workLifeBalance")}
                         rating={formData.workLifeBalanceRating}
@@ -499,7 +499,7 @@ export default function ReviewForm({ company }: { company: any }) {
                           className="w-full px-4 py-3 border-2 border-slate-200 dark:border-slate-600 rounded-lg focus:border-sky-500 dark:focus:border-sky-400 focus:outline-none resize-none text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 bg-white dark:bg-slate-800 transition-colors duration-200"
                           id="pros"
                           placeholder={t(
-                            "reviewForm.experience.prosPlaceholder",
+                            "reviewForm.experience.prosPlaceholder"
                           )}
                           rows={4}
                           value={formData.pros}
@@ -519,7 +519,7 @@ export default function ReviewForm({ company }: { company: any }) {
                           className="w-full px-4 py-3 border-2 border-slate-200 dark:border-slate-600 rounded-lg focus:border-sky-500 dark:focus:border-sky-400 focus:outline-none resize-none text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 bg-white dark:bg-slate-800 transition-colors duration-200"
                           id="cons"
                           placeholder={t(
-                            "reviewForm.experience.consPlaceholder",
+                            "reviewForm.experience.consPlaceholder"
                           )}
                           rows={4}
                           value={formData.cons}

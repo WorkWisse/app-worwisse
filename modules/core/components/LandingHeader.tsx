@@ -121,7 +121,7 @@ export const LandingHeader = () => {
                   variant="header"
                   onSubmit={(query) => {
                     router.push(
-                      `/companies?search=${encodeURIComponent(query)}`,
+                      `/companies?search=${encodeURIComponent(query)}`
                     );
                   }}
                   onSuggestionSelect={(suggestion) => {
@@ -200,8 +200,9 @@ export const LandingHeader = () => {
 
           {/* Mobile Navigation Menu */}
           <div
-            className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${isMenuOpen ? "max-h-80 opacity-100" : "max-h-0 opacity-0"
-              }`}
+            className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${
+              isMenuOpen ? "max-h-80 opacity-100" : "max-h-0 opacity-0"
+            }`}
           >
             <nav className="py-4 border-t border-slate-200 dark:border-slate-700 mt-4 bg-white dark:bg-slate-900 relative z-50">
               <div className="flex flex-col space-y-2">
@@ -211,7 +212,7 @@ export const LandingHeader = () => {
                       variant="header"
                       onSubmit={(query) => {
                         router.push(
-                          `/companies?search=${encodeURIComponent(query)}`,
+                          `/companies?search=${encodeURIComponent(query)}`
                         );
                         closeMenu();
                       }}

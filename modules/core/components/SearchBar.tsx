@@ -51,7 +51,7 @@ export const SearchBar = ({
         try {
           const results = await SearchService.getSearchSuggestions(
             searchQuery,
-            5,
+            5
           );
 
           setSuggestions(results);
@@ -171,8 +171,9 @@ export const SearchBar = ({
             ref={inputRef}
             fullWidth
             aria-label="Buscar empresa"
-            className={`${isHero ? "shadow-none" : "shadow-md hover:shadow-lg"} transition-shadow duration-300 rounded-lg ${isHero ? "" : "flex-1"
-              }`}
+            className={`${isHero ? "shadow-none" : "shadow-md hover:shadow-lg"} transition-shadow duration-300 rounded-lg ${
+              isHero ? "" : "flex-1"
+            }`}
             classNames={{
               inputWrapper: isHero
                 ? "bg-gradient-to-br from-slate-50 to-sky-100 dark:bg-none dark:bg-slate-950 border-slate-500 dark:border-slate-700 focus-within:border-sky-500 focus-within:ring-sky-500 transition-colors duration-200 shadow-lg"
@@ -183,9 +184,7 @@ export const SearchBar = ({
                 "placeholder:text-slate-400",
                 "dark:placeholder:text-slate-500",
                 "caret-sky-500", // Custom caret color
-                isHero
-                  ? "text-base"
-                  : "text-sm",
+                isHero ? "text-base" : "text-sm",
               ],
             }}
             name="search"
@@ -197,8 +196,9 @@ export const SearchBar = ({
               ) : (
                 <svg
                   aria-hidden="true"
-                  className={`text-slate-400 dark:text-slate-500 pointer-events-none transition-colors duration-200 ${isHero ? "h-5 w-5" : "h-4 w-4"
-                    }`}
+                  className={`text-slate-400 dark:text-slate-500 pointer-events-none transition-colors duration-200 ${
+                    isHero ? "h-5 w-5" : "h-4 w-4"
+                  }`}
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -222,10 +222,11 @@ export const SearchBar = ({
           />
           {showButton && (
             <Button
-              className={`font-semibold shadow-md hover:shadow-lg transition-all duration-300 rounded-lg whitespace-nowrap ${isHero
-                ? "bg-sky-600 hover:bg-sky-700 text-white transform hover:scale-105 px-8"
-                : "bg-sky-600 hover:bg-sky-700 text-white px-4"
-                }`}
+              className={`font-semibold shadow-md hover:shadow-lg transition-all duration-300 rounded-lg whitespace-nowrap ${
+                isHero
+                  ? "bg-sky-600 hover:bg-sky-700 text-white transform hover:scale-105 px-8"
+                  : "bg-sky-600 hover:bg-sky-700 text-white px-4"
+              }`}
               color="primary"
               size={buttonSize}
               type="submit"
@@ -238,9 +239,7 @@ export const SearchBar = ({
 
       {/* Autocomplete Dropdown */}
       {showDropdown && showSuggestions && searchQuery.length >= 1 && (
-        <Card
-          className="absolute top-full left-0 right-0 mt-2 z-[9999] shadow-xl border border-slate-200 dark:border-slate-700 max-h-80 overflow-y-auto bg-white dark:bg-slate-800"
-        >
+        <Card className="absolute top-full left-0 right-0 mt-2 z-[9999] shadow-xl border border-slate-200 dark:border-slate-700 max-h-80 overflow-y-auto bg-white dark:bg-slate-800">
           <div className="p-1">
             {isLoading ? (
               <div className="flex items-center justify-center py-6">

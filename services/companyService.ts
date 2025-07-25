@@ -44,13 +44,13 @@ export class CompanyService {
 
       if (params.filters?.location?.country) {
         constraints.push(
-          where("location.country", "==", params.filters.location.country),
+          where("location.country", "==", params.filters.location.country)
         );
       }
 
       if (params.filters?.location?.state) {
         constraints.push(
-          where("location.state", "==", params.filters.location.state),
+          where("location.state", "==", params.filters.location.state)
         );
       }
 
@@ -103,7 +103,7 @@ export class CompanyService {
         collection(db, COMPANIES_COLLECTION),
         where("slug", "==", slug),
         where("status", "==", "approved"),
-        limit(1),
+        limit(1)
       );
 
       const querySnapshot = await getDocs(q);
@@ -124,7 +124,7 @@ export class CompanyService {
 
   // Add new company
   static async addCompany(
-    companyData: Omit<CompanyDocument, "id" | "createdAt" | "updatedAt">,
+    companyData: Omit<CompanyDocument, "id" | "createdAt" | "updatedAt">
   ) {
     try {
       const docRef = await addDoc(collection(db, COMPANIES_COLLECTION), {
@@ -175,7 +175,7 @@ export class CompanyService {
   static async getCompaniesPaginated(
     pageSize: number = 10,
     lastDoc?: DocumentSnapshot,
-    filters: SearchParams = {},
+    filters: SearchParams = {}
   ) {
     try {
       let q = collection(db, COMPANIES_COLLECTION);
@@ -183,7 +183,7 @@ export class CompanyService {
 
       constraints.push(where("status", "==", "approved"));
       constraints.push(
-        orderBy(filters.sortBy || "rating", filters.sortOrder || "desc"),
+        orderBy(filters.sortBy || "rating", filters.sortOrder || "desc")
       );
       constraints.push(limit(pageSize));
 

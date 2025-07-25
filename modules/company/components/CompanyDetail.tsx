@@ -38,7 +38,7 @@ export default function CompanyDetail({
   // Estados para paginación real
   const [reviews, setReviews] = useState<ReviewDocument[]>([]);
   const [lastDoc, setLastDoc] = useState<DocumentSnapshot | undefined>(
-    undefined,
+    undefined
   );
   const [hasMoreReviews, setHasMoreReviews] = useState(false);
   const [isLoadingMore, setIsLoadingMore] = useState(false);
@@ -52,7 +52,7 @@ export default function CompanyDetail({
           Number(process.env.NEXT_PUBLIC_REVIEW_LIMITER) || 3;
         const result = await ReviewService.getCompanyReviews(
           company.id || "",
-          initialPageSize,
+          initialPageSize
         );
 
         setReviews(result.reviews);
@@ -100,7 +100,7 @@ export default function CompanyDetail({
           ? date.toDate()
           : new Date(date);
     const diffInSeconds = Math.floor(
-      (now.getTime() - reviewDate.getTime()) / 1000,
+      (now.getTime() - reviewDate.getTime()) / 1000
     );
 
     if (diffInSeconds < 60) return "Hace menos de un minuto";
@@ -119,7 +119,7 @@ export default function CompanyDetail({
 
   // Map ReviewDocument to standardized ratings
   const mapReviewToStandardRatings = (
-    review: ReviewDocument,
+    review: ReviewDocument
   ): StandardizedRatings | null => {
     // If review has the ratings object, use it
     if (review.ratings) {
@@ -215,7 +215,7 @@ export default function CompanyDetail({
       const result = await ReviewService.getCompanyReviews(
         company.id || "",
         loadMoreCount,
-        lastDoc,
+        lastDoc
       );
 
       if (result.reviews.length > 0) {
@@ -352,9 +352,7 @@ export default function CompanyDetail({
                                 <div className="flex items-center gap-1 mb-2">
                                   <div className="flex">
                                     {renderCompactStars(
-                                      review.rating ||
-                                      review.overallRating ||
-                                      0,
+                                      review.rating || review.overallRating || 0
                                     )}
                                   </div>
                                   <span className="text-sm font-bold text-slate-900 dark:text-white">
@@ -368,15 +366,15 @@ export default function CompanyDetail({
                                 </div>
                                 {(review.wouldRecommend ||
                                   review.recommend) && (
-                                    <Chip
-                                      className="text-xs"
-                                      color="success"
-                                      size="sm"
-                                      variant="flat"
-                                    >
-                                      {t("companyDetail.recommends")}
-                                    </Chip>
-                                  )}
+                                  <Chip
+                                    className="text-xs"
+                                    color="success"
+                                    size="sm"
+                                    variant="flat"
+                                  >
+                                    {t("companyDetail.recommends")}
+                                  </Chip>
+                                )}
                               </div>
                             </div>
                           </CardBody>
@@ -399,20 +397,20 @@ export default function CompanyDetail({
                           {isLoadingMore
                             ? t("companyDetail.loading")
                             : t("companyDetail.loadMore", {
-                              count: Math.min(
-                                Number(
-                                  process.env.NEXT_PUBLIC_REVIEW_LOAD_MORE,
-                                ) || 5,
-                                Math.max(
-                                  0,
-                                  totalReviewsCount - reviews.length,
+                                count: Math.min(
+                                  Number(
+                                    process.env.NEXT_PUBLIC_REVIEW_LOAD_MORE
+                                  ) || 5,
+                                  Math.max(
+                                    0,
+                                    totalReviewsCount - reviews.length
+                                  )
                                 ),
-                              ),
-                              remaining: Math.max(
-                                0,
-                                totalReviewsCount - reviews.length,
-                              ),
-                            })}
+                                remaining: Math.max(
+                                  0,
+                                  totalReviewsCount - reviews.length
+                                ),
+                              })}
                         </Button>
                       </div>
                     )}
@@ -427,7 +425,7 @@ export default function CompanyDetail({
                       size="lg"
                       onPress={() =>
                         router.push(
-                          `/company/${company.slug || company.id}/review`,
+                          `/company/${company.slug || company.id}/review`
                         )
                       }
                     >
@@ -479,7 +477,7 @@ export default function CompanyDetail({
                       (reviews.filter((r) => r.wouldRecommend || r.recommend)
                         .length /
                         Math.max(reviews.length, 1)) *
-                      100,
+                        100
                     )}
                     %
                   </span>
