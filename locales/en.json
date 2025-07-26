@@ -24,6 +24,7 @@
             "title": "We connect <1>workers</1> with <2>good jobs</2>",
             "description": "Workwisse is a platform where workers share their job experiences to help others make informed decisions and to enable companies to improve based on that feedback.",
             "ctaTeam": "Meet our team",
+            "ctaMission": "Our mission",
             "ctaHistory": "Our story"
         },
         "mission": {
@@ -104,6 +105,23 @@
         "history": {
             "title": "Our <1>story</1>",
             "description": "This is how it all started and how we got here, always thinking about making workers' lives easier.",
+            "personal": {
+                "question": "When, how and why was WorkWisse born?",
+                "story": "On January 16, 2023, I hit rock bottom. I felt empty. Without purpose. I didn't know what I was doing what I was doing for. So I wrote to one of the most generous and wise people I know. I asked for advice. He didn't hesitate. He responded instantly and invited me to his house. He listened to me for a whole hour without interrupting. And when I finished, he dropped a phrase that shook me:",
+                "quote": "\"Think about what you like to do the most, what you know how to do best, and find something that connects those dots.\"",
+                "beginning": "That's where it all began.",
+                "background": "I always worked in sales. I wasn't the best, but there was something I was very good at: teaching. Helping others improve. Showing them how to do their job with pride, with meaning.",
+                "teachingPassion": "teaching",
+                "frustration": "I was always angry seeing how companies say that \"people are their most important asset\" while leaving them last in the priority line.",
+                "priorityContrast": "First the systems, the logos, the campaigns, the beautiful offices. People... later.",
+                "realization": "And one day it hit me: workers have no voice.",
+                "problem": "Nobody listens to them. Nobody knows what really happens inside companies. And if you know it, you know it because you had to live it.",
+                "reflection": "Then I asked myself:",
+                "mainQuestion": "How can there be thousands of pages where people leave reviews after spending three nights in a hotel, but nobody tells how it was to work three years in a company?",
+                "change": "That had to change.",
+                "creation": "So I gathered three brilliant young people, development specialists, told them my idea... and WorkWisse was born.",
+                "mission": "A platform made with soul, with history, and with the certainty that telling what we experience at work can help thousands of people make more human, more informed and fairer decisions."
+            },
             "timeline": {
                 "2020": {
                     "title": "The idea that changed everything",
@@ -305,7 +323,8 @@
         "addCompany": "Add your company",
         "language": "Language",
         "contact": "Contact",
-        "theme": "Theme"
+        "theme": "Theme",
+        "rankings": "Rankings"
     },
     "contact": {
         "hero": {
@@ -513,6 +532,12 @@
     },
     "companyDetail": {
         "founded": "Founded in",
+        "noReviews": "No reviews yet",
+        "recentReviews": "Recent reviews",
+        "viewAll": "View all reviews",
+        "quickStats": "Quick stats",
+        "overallRating": "Overall rating",
+        "totalReviews": "Total reviews",
         "employees": "employees",
         "website": "Website",
         "writeReview": "✍️ Write review",
@@ -528,13 +553,15 @@
         "pros": "✅ The best",
         "cons": "⚠️ To improve",
         "positionLabel": "Job/Position:",
+        "anonymous": "Anonymous",
         "statistics": "📊 Statistics",
-        "totalReviews": "📝 Total reviews",
         "wouldRecommend": "👍 Would recommend",
         "rating": "⭐ Rating",
         "benefits": "🎁 Benefits",
         "ctaTitle": "Do you work here?",
         "ctaDescription": "Share your experience and help other professionals make better decisions.",
+        "ratingBreakdown": "📊 Rating breakdown",
+        "loadingReviews": "Loading reviews...",
         "ratingsBreakdown": "📊 Ratings breakdown",
         "ratingsBreakdownDesc": "Average ratings from employees",
         "ratingWorkEnvironment": "Work environment",
@@ -557,7 +584,8 @@
         "review": "review",
         "loadMore": "Load {{count}} more reviews ({{remaining}} remaining)",
         "remaining": "remaining",
-        "loading": "Loading..."
+        "loading": "Loading...",
+        "goBack": "Go back"
     },
     "reviewForm": {
         "title": "Share your experience",
@@ -566,7 +594,7 @@
             "title": "Work Information",
             "description": "Tell us about your work experience at the company",
             "role": "Position/Role at the company",
-            "rolePlaceholder": "Ex: Senior Developer, Analyst, etc.",
+            "rolePlaceholder": "Ex: Developer, Designer, Manager, Analyst, Salesperson, Stocker, etc.",
             "startDate": "Start date",
             "endDate": "End date",
             "currentlyWorking": "I currently work at this company"
@@ -634,6 +662,7 @@
         "noResults": "No companies found",
         "foundResults": "{{count}} companies found",
         "searching": "Searching companies...",
+        "redirecting": "Redirecting...",
         "review": "review",
         "reviews": "reviews",
         "noResultsTitle": "No companies found",
@@ -642,6 +671,7 @@
         "noCompanyFound": "Can't find the company?",
         "addCompanyMessage": "Add it and be the first to rate it!",
         "addCompany": "Add company",
+        "wannaAddIt": "Wanna add it?",
         "backHome": "Back to home"
     },
     "landing": {

@@ -3,7 +3,7 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 
 import CompanyDetail from "../../modules/company/components/CompanyDetail";
-import { CompanyDocument, ReviewDocument } from "../../types";
+import { CompanyDocument } from "../../types";
 
 import DefaultLayout from "@/layouts/default";
 import { CompanyService, ReviewService } from "@/services";
@@ -114,7 +114,7 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
     }
 
     const totalReviewsCount = await ReviewService.getCompanyReviewsCount(
-      company.id!,
+      company.id!
     );
 
     // No pasamos lastDoc serializado, lo manejamos desde el cliente

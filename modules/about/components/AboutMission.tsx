@@ -29,7 +29,7 @@ export default function AboutMission() {
   const { t } = useTranslation();
 
   return (
-    <section className="py-20 px-4 bg-slate-50 dark:bg-slate-800 transition-colors duration-200">
+    <section id="mission" className="py-20 px-4 bg-slate-50 dark:bg-slate-800 transition-colors duration-200">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16 animate-fade-in-up">
           <h2 className="text-4xl lg:text-5xl font-bold text-slate-900 dark:text-white mb-6">

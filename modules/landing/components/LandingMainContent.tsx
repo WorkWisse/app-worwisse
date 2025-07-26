@@ -38,7 +38,7 @@ interface LatestReview {
 // Helper function to calculate time ago
 const getTimeAgo = (
   creationDate: string,
-  t: (key: string, options?: { count: number }) => string,
+  t: (key: string, options?: { count: number }) => string
 ): string => {
   const now = new Date();
   const reviewDate = new Date(creationDate);
@@ -48,7 +48,7 @@ const getTimeAgo = (
   const reviewDay = new Date(
     reviewDate.getFullYear(),
     reviewDate.getMonth(),
-    reviewDate.getDate(),
+    reviewDate.getDate()
   );
 
   const diffInMs = today.getTime() - reviewDay.getTime();
@@ -75,7 +75,7 @@ const getTimeAgo = (
   }
 };
 
-interface IconProps extends React.SVGProps<SVGSVGElement> { }
+interface IconProps extends React.SVGProps<SVGSVGElement> {}
 
 const ChevronLeftIcon = (props: IconProps) => (
   <svg
@@ -152,7 +152,7 @@ export const LandingMainContent = () => {
                 .replace(/^-+|-+$/g, "") ||
               "",
             rank: index + 1,
-          }),
+          })
         );
 
         setFeaturedCompanies(mappedCompanies);
@@ -190,7 +190,7 @@ export const LandingMainContent = () => {
             if (review.companyId) {
               try {
                 const companyData = await CompanyService.getCompanyById(
-                  review.companyId,
+                  review.companyId
                 );
 
                 if (companyData) {
@@ -202,7 +202,7 @@ export const LandingMainContent = () => {
                 // eslint-disable-next-line no-console
                 console.warn(
                   `Could not fetch company data for review ${review.id}:`,
-                  companyError,
+                  companyError
                 );
                 // Keep the fallback values
               }
@@ -223,10 +223,10 @@ export const LandingMainContent = () => {
               recommend: review.recommend || false,
               timeAgo: getTimeAgo(
                 review.creationDate || new Date().toISOString(),
-                t,
+                t
               ),
             };
-          }),
+          })
         );
 
         setLatestReviews(mappedReviews);

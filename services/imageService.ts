@@ -18,7 +18,7 @@ export class ImageService {
   static async uploadImage(
     file: File,
     path: string,
-    fileName?: string,
+    fileName?: string
   ): Promise<string> {
     try {
       // Validate file type
@@ -56,12 +56,12 @@ export class ImageService {
       if (error instanceof Error) {
         if (error.message.includes("cors")) {
           throw new Error(
-            "Error de configuración CORS. Contacta al administrador del sistema.",
+            "Error de configuración CORS. Contacta al administrador del sistema."
           );
         }
         if (error.message.includes("permission")) {
           throw new Error(
-            "No tienes permisos para subir archivos. Verifica la configuración de Firebase Storage.",
+            "No tienes permisos para subir archivos. Verifica la configuración de Firebase Storage."
           );
         }
         if (error.message.includes("quota")) {
@@ -108,7 +108,7 @@ export class ImageService {
   static validateImageDimensions(
     file: File,
     minWidth: number = 250,
-    minHeight: number = 250
+    minHeight: number = 250,
   ): Promise<boolean> {
     return new Promise((resolve, reject) => {
       const img = new Image();
@@ -119,8 +119,8 @@ export class ImageService {
         if (!isValid) {
           reject(
             new Error(
-              `La imagen debe tener un tamaño mínimo de ${minWidth}x${minHeight} píxeles. Tamaño actual: ${img.width}x${img.height}`
-            )
+              `La imagen debe tener un tamaño mínimo de ${minWidth}x${minHeight} píxeles. Tamaño actual: ${img.width}x${img.height}`,
+            ),
           );
         } else {
           resolve(true);
@@ -147,7 +147,7 @@ export class ImageService {
     file: File,
     maxWidth: number = 800,
     maxHeight: number = 600,
-    quality: number = 0.8
+    quality: number = 0.8,
   ): Promise<File> {
     return new Promise((resolve, reject) => {
       const canvas = document.createElement("canvas");
@@ -191,7 +191,7 @@ export class ImageService {
             }
           },
           file.type,
-          quality
+          quality,
         );
       };
 

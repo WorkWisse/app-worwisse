@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@heroui/button";
 import { Input } from "@heroui/input";
 import { Card } from "@heroui/card";
@@ -16,9 +16,11 @@ import {
   countryRegions,
 } from "@/modules/company/data/companyFormData";
 import ThankYouModal from "@/components/ThankYouModal";
+import { useRouter } from "next/router";
 
 export default function AddCompanyForm() {
   const { t } = useTranslation();
+  const router = useRouter();
   const { showError, showWarning } = useToast();
   const [formData, setFormData] = useState({
     name: "",
@@ -35,6 +37,13 @@ export default function AddCompanyForm() {
   const [logoPreview, setLogoPreview] = useState<string | null>(null);
   const [isUploadingLogo, setIsUploadingLogo] = useState(false);
   const [showThankYouModal, setShowThankYouModal] = useState(false);
+
+  // Set initial company name from URL query
+  useEffect(() => {
+    if (router.query.name && typeof router.query.name === "string") {
+      setFormData((prev) => ({ ...prev, name: router.query.name as string }));
+    }
+  }, [router.query.name]);
 
   // Nuevo estado para el autocomplete de beneficios
   const [benefitsInput, setBenefitsInput] = useState("");
@@ -95,14 +104,14 @@ export default function AddCompanyForm() {
   const filteredBenefits = predefinedBenefits.filter(
     (benefit) =>
       benefit.toLowerCase().includes(benefitsInput.toLowerCase()) &&
-      !formData.benefits.includes(benefit),
+      !formData.benefits.includes(benefit)
   );
 
   const handleSubmit = async () => {
     if (!acceptedTerms) {
       showWarning(
         t("addCompany.form.acceptTermsRequired"),
-        t("addCompany.form.pleaseAcceptTerms"),
+        t("addCompany.form.pleaseAcceptTerms")
       );
 
       return;
@@ -130,12 +139,12 @@ export default function AddCompanyForm() {
           logoUrl = await ImageService.uploadImage(
             formData.logo,
             "companies/logos",
-            `${formData.name.toLowerCase().replace(/\s+/g, "-")}-logo`
+            `${formData.name.toLowerCase().replace(/\s+/g, "-")}-logo`,
           );
         } catch (logoError) {
           showError(
             t("addCompany.form.logo.uploadError"),
-            (logoError as Error).message
+            (logoError as Error).message,
           );
 
           return;
@@ -193,7 +202,7 @@ export default function AddCompanyForm() {
       console.error("Error adding company:", error);
       showError(
         t("addCompany.form.submitError"),
-        t("addCompany.form.tryAgainLater"),
+        t("addCompany.form.tryAgainLater")
       );
     } finally {
       setIsSubmitting(false);
@@ -202,7 +211,7 @@ export default function AddCompanyForm() {
 
   // Funciones para manejar el logo
   const handleLogoChange = async (
-    event: React.ChangeEvent<HTMLInputElement>,
+    event: React.ChangeEvent<HTMLInputElement>
   ) => {
     const file = event.target.files?.[0];
 
@@ -213,7 +222,7 @@ export default function AddCompanyForm() {
       if (!file.type.startsWith("image/")) {
         showError(
           t("addCompany.form.logo.uploadError"),
-          t("addCompany.form.logo.invalidType"),
+          t("addCompany.form.logo.invalidType")
         );
 
         return;
@@ -223,7 +232,7 @@ export default function AddCompanyForm() {
       if (file.size > 5 * 1024 * 1024) {
         showError(
           t("addCompany.form.logo.uploadError"),
-          t("addCompany.form.logo.invalidSize"),
+          t("addCompany.form.logo.invalidSize")
         );
 
         return;
@@ -235,7 +244,7 @@ export default function AddCompanyForm() {
       } catch (error) {
         showError(
           t("addCompany.form.logo.uploadError"),
-          (error as Error).message,
+          (error as Error).message
         );
 
         return;
@@ -251,7 +260,7 @@ export default function AddCompanyForm() {
     } catch {
       showError(
         t("addCompany.form.logo.uploadError"),
-        t("addCompany.form.logo.uploadError"),
+        t("addCompany.form.logo.uploadError")
       );
     }
   };

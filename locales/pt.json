@@ -4,8 +4,6 @@
         "description": "Acesse opiniões reais de funcionários. As empresas não são mais escolhidas apenas pelo salário, pois as pessoas buscam propósito, um bom ambiente, inclusão e oportunidades reais de crescimento. Tome decisões profissionais bem informadas com informações que realmente importam.",
         "searchPlaceholder": "Buscar por nome da empresa...",
         "searchButton": "Buscar",
-        "searchTitle": "Buscar empresas",
-        "searchSubtitle": "Encontre as informações que você precisa",
         "ratingsBreakdown": "📊 Avaliações detalhadas",
         "ratingsBreakdownDesc": "Média das avaliações dos funcionários",
         "ratingWorkEnvironment": "Ambiente de trabalho",
@@ -40,8 +38,9 @@
     "about": {
         "hero": {
             "title": "Conectamos <1>trabalhadores</1> com <2>bons empregos</2>",
-            "description": "A Workwisse é uma plataforma onde os trabalhadores compartilham suas experiências profissionais para ajudar outras pessoas a tomar decisões informadas e permitir que as empresas melhorem a partir desses relatos.",
+            "description": "Workwisse é uma plataforma onde os trabalhadores compartilham suas experiências de trabalho para ajudar outros a tomar decisões informadas e permitir que as empresas melhorem com base nessas opiniões.",
             "ctaTeam": "Conheça nossa equipe",
+            "ctaMission": "Nossa missão",
             "ctaHistory": "Nossa história"
         },
         "mission": {
@@ -122,6 +121,23 @@
         "history": {
             "title": "Nossa <1>história</1>",
             "description": "Assim tudo começou e como chegamos até aqui, sempre pensando em facilitar a vida dos trabalhadores.",
+            "personal": {
+                "question": "Quando, como e por que nasceu o WorkWisse?",
+                "story": "Em 16 de janeiro de 2023, toquei o fundo do poço. Me sentia vazio. Sem propósito. Não sabia para que fazia o que fazia. Então escrevi para uma das pessoas mais generosas e sábias que conheço. Pedi um conselho. Ele não hesitou. Respondeu na hora e me convidou para sua casa. Me escutou uma hora inteira sem me interromper. E quando terminei, soltou uma frase que me abalou:",
+                "quote": "\"Pense no que você mais gosta de fazer, no que sabe fazer melhor, e encontre algo que una esses pontos.\"",
+                "beginning": "Ali começou tudo.",
+                "background": "Sempre trabalhei em vendas. Não fui o melhor, mas havia algo que eu fazia muito bem: ensinar. Ajudar outros a melhorar. Mostrar como fazer seu trabalho com orgulho, com sentido.",
+                "teachingPassion": "ensinar",
+                "frustration": "Sempre me irritou ver como as empresas dizem que \"as pessoas são seu ativo mais importante\" enquanto as deixam por último na fila de prioridades.",
+                "priorityContrast": "Primeiro os sistemas, os logos, as campanhas, os escritórios bonitos. As pessoas... depois.",
+                "realization": "E um dia me dei conta: os trabalhadores não têm voz.",
+                "problem": "Ninguém os escuta. Ninguém sabe o que realmente acontece dentro das empresas. E se você sabe, sabe porque teve que viver isso.",
+                "reflection": "Então me perguntei:",
+                "mainQuestion": "Como pode existir milhares de páginas onde as pessoas deixam opiniões depois de ficar três noites em um hotel, mas ninguém conta como foi trabalhar três anos em uma empresa?",
+                "change": "Isso tinha que mudar.",
+                "creation": "Então reuni três jovens brilhantes, especialistas em desenvolvimento, contei minha ideia... e nasceu o WorkWisse.",
+                "mission": "Uma plataforma feita com alma, com história, e com a certeza de que contar o que vivemos no trabalho pode ajudar milhares de pessoas a tomar decisões mais humanas, mais informadas e mais justas."
+            },
             "timeline": {
                 "2020": {
                     "title": "A ideia que mudou tudo",
@@ -323,7 +339,8 @@
         "addCompany": "Adicione sua empresa",
         "language": "Idioma",
         "contact": "Contato",
-        "theme": "Tema"
+        "theme": "Tema",
+        "rankings": "Rankings"
     },
     "contact": {
         "hero": {
@@ -365,7 +382,7 @@
                 "success": "Mensagem enviada com sucesso! Responderemos em breve.",
                 "error": "Erro ao enviar mensagem. Tente novamente."
             }
-        }        
+        }
     },
     "addCompany": {
         "title": "Adicionar <1>empresa</1>",
@@ -558,6 +575,8 @@
         "benefits": "🎁 Benefícios",
         "ctaTitle": "Você trabalha aqui?",
         "ctaDescription": "Compartilhe sua experiência e ajude outros profissionais a tomar melhores decisões.",
+        "ratingBreakdown": "📊 Análise das avaliações",
+        "loadingReviews": "Carregando avaliações...",
         "ratingsBreakdown": "📊 Avaliações por aspecto",
         "ratingsBreakdownDesc": "Média das avaliações dos funcionários",
         "ratingWorkEnvironment": "Ambiente de trabalho",
@@ -577,10 +596,12 @@
         "ratingInclusion": "Inclusão laboral",
         "ratingInclusionShort": "Inclusão",
         "role": "Cargo/Posição",
+        "anonymous": "Anônimo",
         "review": "avaliação",
         "loadMore": "Carregar mais {{count}} avaliações ({{remaining}} restantes)",
         "remaining": "restantes",
-        "loading": "Carregando..."
+        "loading": "Carregando...",
+        "goBack": "Voltar"
     },
     "reviewForm": {
         "title": "Compartilhe sua experiência",
@@ -589,7 +610,7 @@
             "title": "Informações do Trabalho",
             "description": "Conte sobre sua experiência profissional na empresa",
             "role": "Cargo na empresa",
-            "rolePlaceholder": "Ex: Desenvolvedor Frontend, QA Engineer...",
+            "rolePlaceholder": "Ex: Desenvolvedor, Designer, Gerente, Analista, Vendedor, Repositor, etc.",
             "startDate": "Data de início",
             "endDate": "Data de término",
             "currentlyWorking": "Atualmente trabalho aqui"
@@ -657,6 +678,7 @@
         "noResults": "Nenhuma empresa encontrada",
         "foundResults": "{{count}} empresas encontradas",
         "searching": "Procurando empresas...",
+        "redirecting": "Redirecionando...",
         "review": "avaliação",
         "reviews": "avaliações",
         "noResultsTitle": "Nenhuma empresa encontrada",
@@ -665,6 +687,7 @@
         "noCompanyFound": "Não encontra a empresa?",
         "addCompanyMessage": "Adicione-a e seja o primeiro a avaliá-la!",
         "addCompany": "Adicionar empresa",
+        "wannaAddIt": "Quer adicioná-la?",
         "backHome": "Voltar ao início"
     },
     "landing": {

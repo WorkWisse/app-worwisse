@@ -61,18 +61,6 @@ export const LandingHeader = () => {
 
             <nav className="hidden md:flex items-center space-x-6">
               <Link
-                className="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-sky-600 dark:hover:text-sky-400 transition-colors duration-300"
-                href="/about"
-              >
-                Sobre nosotros
-              </Link>
-              <Link
-                className="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-sky-600 dark:hover:text-sky-400 transition-colors duration-300"
-                href="/contact"
-              >
-                Contacto
-              </Link>
-              <Link
                 className="bg-sky-600 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-sky-700 transition-all duration-300 shadow-sm hover:shadow-md"
                 href="/company/add"
               >
@@ -133,7 +121,7 @@ export const LandingHeader = () => {
                   variant="header"
                   onSubmit={(query) => {
                     router.push(
-                      `/companies?search=${encodeURIComponent(query)}`,
+                      `/companies?search=${encodeURIComponent(query)}`
                     );
                   }}
                   onSuggestionSelect={(suggestion) => {
@@ -145,6 +133,34 @@ export const LandingHeader = () => {
 
             {/* Desktop Navigation */}
             <nav className="hidden md:flex items-center space-x-6">
+              {router.pathname === "/" && (
+                <>
+                  <Link
+                    className="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-sky-600 dark:hover:text-sky-400 transition-colors duration-300"
+                    href="/rankings"
+                  >
+                    {t("header.rankings")}
+                  </Link>
+                  <Link
+                    className="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-sky-600 dark:hover:text-sky-400 transition-colors duration-300"
+                    href="/about"
+                  >
+                    {t("header.about")}
+                  </Link>
+                  <Link
+                    className="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-sky-600 dark:hover:text-sky-400 transition-colors duration-300"
+                    href="/contact"
+                  >
+                    {t("header.contact")}
+                  </Link>
+                </>
+              )}
+              <Link
+                className="bg-sky-600 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-sky-700 transition-all duration-300 shadow-sm hover:shadow-md"
+                href="/company/add"
+              >
+                {t("header.addCompany")}
+              </Link>
               <ThemeToggle />
               <LanguageSelector />
             </nav>
@@ -184,8 +200,9 @@ export const LandingHeader = () => {
 
           {/* Mobile Navigation Menu */}
           <div
-            className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${isMenuOpen ? "max-h-80 opacity-100" : "max-h-0 opacity-0"
-              }`}
+            className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${
+              isMenuOpen ? "max-h-80 opacity-100" : "max-h-0 opacity-0"
+            }`}
           >
             <nav className="py-4 border-t border-slate-200 dark:border-slate-700 mt-4 bg-white dark:bg-slate-900 relative z-50">
               <div className="flex flex-col space-y-2">
@@ -195,7 +212,7 @@ export const LandingHeader = () => {
                       variant="header"
                       onSubmit={(query) => {
                         router.push(
-                          `/companies?search=${encodeURIComponent(query)}`,
+                          `/companies?search=${encodeURIComponent(query)}`
                         );
                         closeMenu();
                       }}
@@ -206,21 +223,34 @@ export const LandingHeader = () => {
                     />
                   </div>
                 )}
-                <Link
-                  className="text-base font-medium text-slate-700 dark:text-slate-300 hover:text-sky-600 dark:hover:text-sky-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors duration-300 py-3 px-2 rounded-lg"
-                  href="/about"
-                  onClick={closeMenu}
-                >
-                  {t("header.about")}
-                </Link>
 
-                <Link
-                  className="text-base font-medium text-slate-700 dark:text-slate-300 hover:text-sky-600 dark:hover:text-sky-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors duration-300 py-3 px-2 rounded-lg"
-                  href="/contact"
-                  onClick={closeMenu}
-                >
-                  {t("header.contact")}
-                </Link>
+                {router.pathname === "/" && (
+                  <>
+                    <Link
+                      className="text-base font-medium text-slate-700 dark:text-slate-300 hover:text-sky-600 dark:hover:text-sky-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors duration-300 py-3 px-2 rounded-lg"
+                      href="/rankings"
+                      onClick={closeMenu}
+                    >
+                      {t("header.rankings")}
+                    </Link>
+
+                    <Link
+                      className="text-base font-medium text-slate-700 dark:text-slate-300 hover:text-sky-600 dark:hover:text-sky-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors duration-300 py-3 px-2 rounded-lg"
+                      href="/about"
+                      onClick={closeMenu}
+                    >
+                      {t("header.about")}
+                    </Link>
+
+                    <Link
+                      className="text-base font-medium text-slate-700 dark:text-slate-300 hover:text-sky-600 dark:hover:text-sky-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors duration-300 py-3 px-2 rounded-lg"
+                      href="/contact"
+                      onClick={closeMenu}
+                    >
+                      {t("header.contact")}
+                    </Link>
+                  </>
+                )}
 
                 {/* Theme Toggle in Mobile Menu */}
                 <div className="py-3 px-2 border-t border-slate-100 dark:border-slate-700 mt-3">

@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { Input } from "@heroui/input";
 import { Button } from "@heroui/button";
 import { Card } from "@heroui/card";
+import { Link } from "@heroui/link";
 import { useTranslation } from "react-i18next";
 import { useRouter } from "next/router";
 
@@ -30,22 +31,30 @@ export const SearchBar = ({
   const [suggestions, setSuggestions] = useState<SearchSuggestion[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [showDropdown, setShowDropdown] = useState(false);
+  const [isRedirecting, setIsRedirecting] = useState(false);
   const searchRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+  const justSelectedSuggestion = useRef(false);
 
   // Debounce search to avoid too many API calls
   useEffect(() => {
+    // Don't search if we just selected a suggestion
+    if (justSelectedSuggestion.current) {
+      justSelectedSuggestion.current = false;
+      return;
+    }
+
     const timeoutId = setTimeout(async () => {
       if (searchQuery.trim().length > 0 && showSuggestions) {
+        setShowDropdown(true); // Show dropdown as soon as user types
         setIsLoading(true);
         try {
           const results = await SearchService.getSearchSuggestions(
             searchQuery,
-            5,
+            5
           );
 
           setSuggestions(results);
-          setShowDropdown(true); // Siempre mostrar dropdown cuando hay búsqueda
         } catch (error) {
           // eslint-disable-next-line no-console
           console.error("Error fetching suggestions:", error);
@@ -69,6 +78,7 @@ export const SearchBar = ({
         searchRef.current &&
         !searchRef.current.contains(event.target as Node)
       ) {
+        justSelectedSuggestion.current = false;
         setShowDropdown(false);
       }
     };
@@ -78,22 +88,53 @@ export const SearchBar = ({
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
+  // Close dropdown when route changes
+  useEffect(() => {
+    const handleRouteChange = () => {
+      justSelectedSuggestion.current = false;
+      setShowDropdown(false);
+      setSuggestions([]);
+      setSearchQuery("");
+      setIsRedirecting(false);
+    };
+
+    const handleRouteError = () => {
+      setIsRedirecting(false);
+    };
+
+    router.events.on("routeChangeComplete", handleRouteChange);
+    router.events.on("routeChangeError", handleRouteError);
+
+    return () => {
+      router.events.off("routeChangeComplete", handleRouteChange);
+      router.events.off("routeChangeError", handleRouteError);
+    };
+  }, [router]);
+
   const handleInputChange = (value: string) => {
+    justSelectedSuggestion.current = false;
     setSearchQuery(value);
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (onSubmit && searchQuery?.trim()) {
+      justSelectedSuggestion.current = false;
       onSubmit(searchQuery.trim());
       setShowDropdown(false);
+      setSuggestions([]);
     }
   };
 
   const handleSuggestionClick = (suggestion: SearchSuggestion) => {
+    justSelectedSuggestion.current = true;
     setSearchQuery(suggestion.name);
     setShowDropdown(false);
+    setSuggestions([]);
+
+    // Show redirecting loader when navigating to company
     if (onSuggestionSelect) {
+      setIsRedirecting(true);
       onSuggestionSelect(suggestion);
     } else if (onSubmit) {
       onSubmit(suggestion.name);
@@ -101,8 +142,17 @@ export const SearchBar = ({
   };
 
   const handleInputFocus = () => {
-    if (searchQuery.length >= 1) {
+    if (searchQuery.trim().length > 0 && suggestions.length >= 0) {
       setShowDropdown(true);
+    }
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Escape") {
+      justSelectedSuggestion.current = false;
+      setShowDropdown(false);
+      setSuggestions([]);
+      inputRef.current?.blur();
     }
   };
 
@@ -121,15 +171,21 @@ export const SearchBar = ({
             ref={inputRef}
             fullWidth
             aria-label="Buscar empresa"
-            className={`${isHero ? "shadow-none" : "shadow-md hover:shadow-lg"} transition-shadow duration-300 rounded-lg ${isHero ? "" : "flex-1"
-              }`}
+            className={`${isHero ? "shadow-none" : "shadow-md hover:shadow-lg"} transition-shadow duration-300 rounded-lg ${
+              isHero ? "" : "flex-1"
+            }`}
             classNames={{
               inputWrapper: isHero
-                ? "bg-white dark:bg-slate-800 border-slate-300 dark:border-slate-600 focus-within:border-sky-500 focus-within:ring-sky-500 transition-colors duration-200"
+                ? "bg-gradient-to-br from-slate-50 to-sky-100 dark:bg-none dark:bg-slate-950 border-slate-500 dark:border-slate-700 focus-within:border-sky-500 focus-within:ring-sky-500 transition-colors duration-200 shadow-lg"
                 : "bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700 focus-within:border-sky-500 focus-within:ring-sky-500 transition-colors duration-200",
-              input: isHero
-                ? "text-slate-700 dark:text-slate-200 placeholder-slate-400 dark:placeholder-slate-500 text-base"
-                : "text-slate-700 dark:text-slate-200 placeholder-slate-400 dark:placeholder-slate-500 text-sm",
+              input: [
+                "text-slate-900",
+                "dark:text-slate-200",
+                "placeholder:text-slate-400",
+                "dark:placeholder:text-slate-500",
+                "caret-sky-500", // Custom caret color
+                isHero ? "text-base" : "text-sm",
+              ],
             }}
             name="search"
             placeholder={placeholder || t("hero.searchPlaceholder")}
@@ -140,8 +196,9 @@ export const SearchBar = ({
               ) : (
                 <svg
                   aria-hidden="true"
-                  className={`text-slate-400 dark:text-slate-500 pointer-events-none transition-colors duration-200 ${isHero ? "h-5 w-5" : "h-4 w-4"
-                    }`}
+                  className={`text-slate-400 dark:text-slate-500 pointer-events-none transition-colors duration-200 ${
+                    isHero ? "h-5 w-5" : "h-4 w-4"
+                  }`}
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -160,14 +217,16 @@ export const SearchBar = ({
             type="search"
             value={searchQuery}
             onFocus={handleInputFocus}
+            onKeyDown={handleKeyDown}
             onValueChange={handleInputChange}
           />
           {showButton && (
             <Button
-              className={`font-semibold shadow-md hover:shadow-lg transition-all duration-300 rounded-lg whitespace-nowrap ${isHero
-                ? "bg-sky-600 hover:bg-sky-700 text-white transform hover:scale-105 px-8"
-                : "bg-sky-600 hover:bg-sky-700 text-white px-4"
-                }`}
+              className={`font-semibold shadow-md hover:shadow-lg transition-all duration-300 rounded-lg whitespace-nowrap ${
+                isHero
+                  ? "bg-sky-600 hover:bg-sky-700 text-white transform hover:scale-105 px-8"
+                  : "bg-sky-600 hover:bg-sky-700 text-white px-4"
+              }`}
               color="primary"
               size={buttonSize}
               type="submit"
@@ -180,20 +239,20 @@ export const SearchBar = ({
 
       {/* Autocomplete Dropdown */}
       {showDropdown && showSuggestions && searchQuery.length >= 1 && (
-        <Card
-          className="absolute top-full left-0 right-0 mt-2 z-[9999] shadow-xl border border-slate-200 dark:border-slate-700 max-h-80 overflow-y-auto bg-white dark:bg-slate-800"
-          style={{
-            position: "absolute",
-            zIndex: 9999,
-            transform: "translateZ(0)", // Force hardware acceleration
-          }}
-        >
+        <Card className="absolute top-full left-0 right-0 mt-2 z-[9999] shadow-xl border border-slate-200 dark:border-slate-700 max-h-80 overflow-y-auto bg-white dark:bg-slate-800">
           <div className="p-1">
             {isLoading ? (
               <div className="flex items-center justify-center py-6">
                 <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-sky-600" />
                 <span className="ml-2 text-sm text-slate-600 dark:text-slate-400">
                   {t("search.searching")}
+                </span>
+              </div>
+            ) : isRedirecting ? (
+              <div className="flex items-center justify-center py-6">
+                <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-sky-600" />
+                <span className="ml-2 text-sm text-slate-600 dark:text-slate-400">
+                  {t("search.redirecting")}
                 </span>
               </div>
             ) : suggestions.length > 0 ? (
@@ -207,18 +266,18 @@ export const SearchBar = ({
                   >
                     <div className="flex items-center justify-between">
                       <div className="flex-1 min-w-0">
-                        <div className="flex items-center gap-2 mb-1">
-                          <div className="font-medium text-slate-900 dark:text-white group-hover:text-sky-600 dark:group-hover:text-sky-400 transition-colors">
+                        <div className="flex items-center justify-between gap-4 mb-1">
+                          <div className="font-medium text-slate-900 dark:text-white group-hover:text-sky-600 dark:group-hover:text-sky-400 transition-colors truncate">
                             {suggestion.name}
                           </div>
-                          <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs bg-sky-100 dark:bg-sky-900/30 text-sky-700 dark:text-sky-300">
+                          <span className="flex-shrink-0 inline-flex items-center px-2 py-0.5 rounded-full text-xs bg-sky-100 dark:bg-sky-900/30 text-sky-700 dark:text-sky-300">
                             {suggestion.reviewsCount}{" "}
                             {suggestion.reviewsCount === 1
                               ? t("search.review")
                               : t("search.reviews")}
                           </span>
                         </div>
-                        <div className="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400">
+                        <div className="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400 flex-wrap">
                           <span>{suggestion.industry}</span>
                           <span>•</span>
                           <span>{suggestion.location.country}</span>
@@ -255,18 +314,20 @@ export const SearchBar = ({
                 ))}
               </div>
             ) : (
-              <div className="py-6 text-center">
-                <div className="text-sm text-slate-500 dark:text-slate-400 mb-3">
-                  {t("search.noCompanyFound")}
-                </div>
+              <div className="py-4 px-3 text-center text-sm text-slate-500 dark:text-slate-400">
+                {t("search.noResultsFound", { query: searchQuery })}{" "}
                 <Button
+                  as={Link}
+                  className="h-auto p-0 text-sky-600 dark:text-sky-400 font-medium hover:underline"
+                  href={`/company/add?name=${encodeURIComponent(searchQuery)}`}
                   size="sm"
-                  color="primary"
-                  variant="flat"
-                  onPress={() => router.push('/company/add')}
-                  className="text-sm"
+                  variant="light"
+                  onClick={() => {
+                    setShowDropdown(false);
+                    setSuggestions([]);
+                  }}
                 >
-                  {t("search.addCompanyMessage")}
+                  {t("search.wannaAddIt")}
                 </Button>
               </div>
             )}

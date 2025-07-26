@@ -61,7 +61,7 @@ export default function SearchPage({
             <p className="text-lg text-slate-600 dark:text-slate-300 mb-8">
               {t(
                 "search.description",
-                "Encuentra información y reseñas de empresas",
+                "Encuentra información y reseñas de empresas"
               )}
             </p>
 
@@ -90,7 +90,7 @@ export default function SearchPage({
                 <p className="text-slate-600 dark:text-slate-300">
                   {t(
                     "search.noResults",
-                    "No se encontraron resultados para tu búsqueda",
+                    "No se encontraron resultados para tu búsqueda"
                   )}
                 </p>
               </div>

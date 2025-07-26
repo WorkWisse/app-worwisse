@@ -1,4 +1,3 @@
-import { Button } from "@heroui/button";
 import { useTranslation, Trans } from "react-i18next";
 
 export default function AboutCTA() {
