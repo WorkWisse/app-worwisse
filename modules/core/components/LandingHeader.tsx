@@ -59,7 +59,7 @@ export const LandingHeader = () => {
               WorkWisse
             </Link>
 
-            <nav className="hidden md:flex items-center space-x-6">
+            {/* <nav className="hidden md:flex items-center space-x-6">
               <Link
                 className="bg-sky-600 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-sky-700 transition-all duration-300 shadow-sm hover:shadow-md"
                 href="/company/add"
@@ -68,7 +68,7 @@ export const LandingHeader = () => {
               </Link>
               <ThemeToggle />
               <LanguageSelector />
-            </nav>
+            </nav> */}
 
             <button
               aria-expanded={isMenuOpen}
