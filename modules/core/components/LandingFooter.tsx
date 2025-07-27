@@ -140,7 +140,7 @@ export const LandingFooter = () => {
               <li>
                 <Link
                   className="hover:text-sky-400 dark:hover:text-sky-300 transition-colors"
-                  href="/companies"
+                  href="/"
                 >
                   {t("footer.workers.links.search")}
                 </Link>
