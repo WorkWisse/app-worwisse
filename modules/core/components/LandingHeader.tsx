@@ -155,12 +155,12 @@ export const LandingHeader = () => {
                   </Link>
                 </>
               )}
-              <Link
+              {/* <Link
                 className="bg-sky-600 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-sky-700 transition-all duration-300 shadow-sm hover:shadow-md"
                 href="/company/add"
               >
                 {t("header.addCompany")}
-              </Link>
+              </Link> */}
               <ThemeToggle />
               <LanguageSelector />
             </nav>
