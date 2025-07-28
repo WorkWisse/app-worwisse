@@ -95,22 +95,7 @@ export const LandingLastReviews = () => {
           <h2 className="text-3xl font-bold text-purple-600">
             Últimas Calificaciones
           </h2>
-          <div className="space-x-2">
-            <Button
-              isIconOnly
-              className="bg-gray-200 hover:bg-gray-300"
-              variant="flat"
-            >
-              <ChevronLeftIcon />
-            </Button>
-            <Button
-              isIconOnly
-              className="bg-gray-200 hover:bg-gray-300"
-              variant="flat"
-            >
-              <ChevronRightIcon />
-            </Button>
-          </div>
+
         </div>
         {/* This would be part of a carousel/slider in a real implementation */}
         {lastReviewsData.map((review) => (

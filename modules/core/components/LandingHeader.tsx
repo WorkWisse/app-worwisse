@@ -2,6 +2,13 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { Link } from "@heroui/link";
 import { useTranslation } from "react-i18next";
+import {
+  Dropdown,
+  DropdownTrigger,
+  DropdownMenu,
+  DropdownItem,
+} from "@heroui/dropdown";
+import { Button } from "@heroui/button";
 
 import { LanguageSelector } from "./LanguageSelector";
 import { SearchBar } from "./SearchBar";
@@ -155,12 +162,86 @@ export const LandingHeader = () => {
                   </Link>
                 </>
               )}
-              {/* <Link
-                className="bg-sky-600 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-sky-700 transition-all duration-300 shadow-sm hover:shadow-md"
-                href="/company/add"
-              >
-                {t("header.addCompany")}
-              </Link> */}
+              
+              {/* Navigation Dropdown - Only show when search is visible */}
+              {shouldShowSearch && (
+                <Dropdown>
+                  <DropdownTrigger>
+                    <Button
+                      variant="light"
+                      className="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-sky-600 dark:hover:text-sky-400 transition-colors duration-300 gap-1"
+                      aria-label="Menú de navegación"
+                    >
+                      <svg
+                        className="w-5 h-5"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        viewBox="0 0 24 24"
+                      >
+                        <title>Menú</title>
+                        <path d="M3 12h18M3 6h18M3 18h18" />
+                      </svg>
+                      <svg
+                        className="w-4 h-4 opacity-50"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        viewBox="0 0 24 24"
+                      >
+                        <path d="m6 9 6 6 6-6" />
+                      </svg>
+                    </Button>
+                  </DropdownTrigger>
+                  <DropdownMenu aria-label="Navigation menu">
+                    <DropdownItem key="home">
+                      <Link
+                        className="text-slate-700 dark:text-slate-300 hover:text-sky-600 dark:hover:text-sky-400 transition-colors duration-300 w-full block"
+                        href="/"
+                      >
+                        Inicio
+                      </Link>
+                    </DropdownItem>
+                    <DropdownItem key="rankings">
+                      <Link
+                        className="text-slate-700 dark:text-slate-300 hover:text-sky-600 dark:hover:text-sky-400 transition-colors duration-300 w-full block"
+                        href="/rankings"
+                      >
+                        {t("header.rankings")}
+                      </Link>
+                    </DropdownItem>
+                    <DropdownItem key="about">
+                      <Link
+                        className="text-slate-700 dark:text-slate-300 hover:text-sky-600 dark:hover:text-sky-400 transition-colors duration-300 w-full block"
+                        href="/about"
+                      >
+                        {t("header.about")}
+                      </Link>
+                    </DropdownItem>
+                    <DropdownItem key="contact">
+                      <Link
+                        className="text-slate-700 dark:text-slate-300 hover:text-sky-600 dark:hover:text-sky-400 transition-colors duration-300 w-full block"
+                        href="/contact"
+                      >
+                        {t("header.contact")}
+                      </Link>
+                    </DropdownItem>
+                    <DropdownItem key="add-company">
+                      <Link
+                        className="text-slate-700 dark:text-slate-300 hover:text-sky-600 dark:hover:text-sky-400 transition-colors duration-300 w-full block"
+                        href="/company/add"
+                      >
+                        Agregar Empresa
+                      </Link>
+                    </DropdownItem>
+                  </DropdownMenu>
+                </Dropdown>
+              )}
+              
               <ThemeToggle />
               <LanguageSelector />
             </nav>
