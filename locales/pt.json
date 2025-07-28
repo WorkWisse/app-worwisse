@@ -411,7 +411,7 @@
             },
             "website": {
                 "label": "Site",
-                "placeholder": "https://empresa.com"
+                "placeholder": "www.empresa.com"
             },
             "logo": {
                 "label": "Logo da empresa",

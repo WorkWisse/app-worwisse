@@ -434,7 +434,7 @@ export default function AddCompanyForm() {
                       label={t("addCompany.form.website.label")}
                       placeholder={t("addCompany.form.website.placeholder")}
                       size="lg"
-                      type="url"
+                      type="text"
                       value={formData.website}
                       variant="bordered"
                       onValueChange={(value) =>
