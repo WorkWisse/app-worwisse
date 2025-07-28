@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Input } from "@heroui/input";
 import { Button } from "@heroui/button";
 import { Card } from "@heroui/card";
@@ -171,20 +171,21 @@ export const SearchBar = ({
             ref={inputRef}
             fullWidth
             aria-label="Buscar empresa"
-            className={`${isHero ? "shadow-none" : "shadow-md hover:shadow-lg"} transition-shadow duration-300 rounded-lg ${
-              isHero ? "" : "flex-1"
+            className={`${isHero ? "shadow-lg hover:shadow-xl" : "shadow-lg hover:shadow-xl"} transition-all duration-500 rounded-lg ${
+              isHero ? "transform hover:scale-[1.02]" : "flex-1 transform hover:scale-[1.01]"
             }`}
             classNames={{
               inputWrapper: isHero
-                ? "bg-gradient-to-br from-slate-50 to-sky-100 dark:bg-none dark:bg-slate-950 border-slate-500 dark:border-slate-700 focus-within:border-sky-500 focus-within:ring-sky-500 transition-colors duration-200 shadow-lg"
-                : "bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700 focus-within:border-sky-500 focus-within:ring-sky-500 transition-colors duration-200",
+                ? "bg-gradient-to-br from-white via-sky-50 to-blue-100 dark:bg-gradient-to-br dark:from-slate-800 dark:via-slate-700 dark:to-slate-900 border-2 border-sky-200/60 dark:border-sky-600 focus-within:border-sky-500 focus-within:ring-4 focus-within:ring-sky-500/30 focus-within:shadow-lg focus-within:shadow-sky-500/25 transition-all duration-300 shadow-xl backdrop-blur-sm"
+                : "bg-gradient-to-br from-white via-sky-50/30 to-blue-50 dark:bg-gradient-to-br dark:from-slate-800 dark:via-slate-700 dark:to-slate-900 border-2 border-sky-200/40 dark:border-sky-600/50 focus-within:border-sky-500 focus-within:ring-2 focus-within:ring-sky-500/20 focus-within:shadow-lg transition-all duration-300 shadow-md backdrop-blur-sm",
               input: [
                 "text-slate-900",
                 "dark:text-slate-200",
                 "placeholder:text-slate-400",
                 "dark:placeholder:text-slate-500",
                 "caret-sky-500", // Custom caret color
-                isHero ? "text-base" : "text-sm",
+                isHero ? "text-base font-medium" : "text-sm font-medium",
+                isHero ? "focus:placeholder:text-sky-400" : "focus:placeholder:text-sky-400",
               ],
             }}
             name="search"
@@ -196,8 +197,8 @@ export const SearchBar = ({
               ) : (
                 <svg
                   aria-hidden="true"
-                  className={`text-slate-400 dark:text-slate-500 pointer-events-none transition-colors duration-200 ${
-                    isHero ? "h-5 w-5" : "h-4 w-4"
+                  className={`text-sky-500 dark:text-sky-400 pointer-events-none transition-all duration-300 hover:text-sky-600 hover:scale-110 ${
+                    isHero ? "h-6 w-6 drop-shadow-sm" : "h-5 w-5 drop-shadow-sm"
                   }`}
                   fill="none"
                   stroke="currentColor"
@@ -209,7 +210,7 @@ export const SearchBar = ({
                     d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
                     strokeLinecap="round"
                     strokeLinejoin="round"
-                    strokeWidth={2}
+                    strokeWidth={isHero ? 2.5 : 2.2}
                   />
                 </svg>
               )
@@ -222,9 +223,9 @@ export const SearchBar = ({
           />
           {showButton && (
             <Button
-              className={`font-semibold shadow-md hover:shadow-lg transition-all duration-300 rounded-lg whitespace-nowrap ${
+              className={`font-semibold shadow-lg hover:shadow-xl transition-all duration-300 rounded-lg whitespace-nowrap ${
                 isHero
-                  ? "bg-sky-600 hover:bg-sky-700 text-white transform hover:scale-105 px-8"
+                  ? "bg-gradient-to-r from-sky-600 to-blue-600 hover:from-sky-700 hover:to-blue-700 text-white transform hover:scale-105 px-8"
                   : "bg-sky-600 hover:bg-sky-700 text-white px-4"
               }`}
               color="primary"

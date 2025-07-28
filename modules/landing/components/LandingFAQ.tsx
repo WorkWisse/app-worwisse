@@ -28,11 +28,7 @@ const faqData: FAQItem[] = [
   {
     questionKey: "faq.items.addCompany.question",
     answerKey: "faq.items.addCompany.answer",
-  },
-  {
-    questionKey: "faq.items.salaryData.question",
-    answerKey: "faq.items.salaryData.answer",
-  },
+  }
 ];
 
 export const LandingFAQ = () => {

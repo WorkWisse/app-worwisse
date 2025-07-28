@@ -2,7 +2,7 @@
     "hero": {
         "title": "Conocé la verdad sobre tu <1>próximo trabajo</1> antes de postularte",
         "description": "Accede a opiniones reales de empleados. Las empresas ya no se eligen solo por salario, las personas buscan propósito, buen ambiente, inclusión y oportunidades reales de crecimiento. Tomá decisiones laborales informadas con información que realmente importa.",
-        "searchPlaceholder": "Buscar por nombre de empresa...",
+        "searchPlaceholder": "Harrington, TaTa, etc...",
         "searchButton": "Buscar",
         "searchTitle": "Busca empresas",
         "searchSubtitle": "Encuentra la información que necesitas",
@@ -284,7 +284,7 @@
             }
         },
         "cta": {
-            "title": "¿Tenés más preguntas o alguna sugerencia?",
+            "title": "¿Tenés preguntas, sugerencias o queres contarnos tu historia?",
             "description": "Nuestro equipo está disponible para ayudarte con cualquier consulta que tengas.",
             "primary": "Contactanos",
             "secondary": "Ver más info"

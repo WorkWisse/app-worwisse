@@ -34,13 +34,13 @@ export const LandingHero = () => {
               <div className="absolute inset-0 bg-gradient-to-br from-white/50 via-sky-50/30 to-slate-100/20 dark:bg-gradient-to-r dark:from-sky-400/5 dark:to-blue-500/5 rounded-xl blur-xl transform scale-110" />
 
               {/* Marco del buscador simple y elegante */}
-              <div className="relative bg-white/95 dark:bg-slate-800/95 backdrop-blur-sm rounded-xl shadow-xl border border-slate-200/50 dark:border-slate-700/50 p-6 lg:p-8 hover:shadow-2xl transition-all duration-500 group">
+              <div className="relative bg-white/95 dark:bg-slate-800/95 backdrop-blur-sm rounded-xl shadow-xl border border-slate-200/50 dark:border-slate-700/50 p-8 lg:p-12 hover:shadow-2xl transition-all duration-500 group">
                 {/* Sutil brillo en hover */}
                 <div className="absolute inset-0 bg-gradient-to-r from-sky-500/5 via-transparent to-sky-500/5 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
                 <div className="relative z-10">
                   <div className="text-center mb-6">
-                    <h2 className="text-lg lg:text-xl font-semibold text-slate-800 dark:text-slate-100 mb-3 transition-colors duration-200">
+                    <h2 className="text-xl lg:text-2xl font-bold text-slate-900 dark:text-white mb-4 transition-colors duration-200 bg-gradient-to-r from-slate-800 to-sky-700 dark:from-slate-100 dark:to-sky-300 bg-clip-text text-transparent">
                       {t("hero.searchTitle")}
                     </h2>
                     <p className="text-sm text-slate-600 dark:text-slate-400 transition-colors duration-200">
