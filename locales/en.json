@@ -453,6 +453,13 @@
             "terms": "I accept the <1>terms and conditions</1> of the platform",
             "acceptTermsRequired": "You must accept the terms and conditions to continue",
             "pleaseAcceptTerms": "Please review and accept our terms and conditions.",
+            "validation": {
+                "error": "Validation Error",
+                "nameRequired": "Company name is required",
+                "industryRequired": "Please select an industry",
+                "countryRequired": "Please select a country",
+                "stateRequired": "Please select a state/province"
+            },
             "submit": "Add company",
             "submitting": "Adding company...",
             "submitSuccess": "Company added successfully!",
