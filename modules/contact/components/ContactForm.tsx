@@ -1,8 +1,9 @@
 import { useState } from "react";
-import { Button } from "@heroui/button";
 import { Input } from "@heroui/input";
 import { Card } from "@heroui/card";
 import { useTranslation } from "react-i18next";
+
+import { SubmitButton } from "@/modules/core/components";
 
 interface ContactFormData {
   name: string;
@@ -162,15 +163,20 @@ export default function ContactForm() {
             </div>
 
             <div className="flex justify-center pt-4">
-              <Button
-                className="bg-sky-600 dark:bg-sky-600 text-white hover:bg-sky-700 dark:hover:bg-sky-700 font-semibold px-12 py-3 transition-colors duration-200"
-                disabled={submissionState.isSubmitting}
+              <SubmitButton
+                className="px-12 py-3"
+                isDisabled={
+                  submissionState.isSubmitting ||
+                  !formData.name.trim() ||
+                  !formData.email.trim() ||
+                  !formData.subject.trim() ||
+                  !formData.message.trim()
+                }
+                isLoading={submissionState.isSubmitting}
+                loadingText={t("contact.form.button.sending")}
+                submitText={t("contact.form.button.send")}
                 type="submit"
-              >
-                {submissionState.isSubmitting
-                  ? t("contact.form.button.sending")
-                  : t("contact.form.button.send")}
-              </Button>
+              />
             </div>
 
             {/* Mensaje de éxito */}
