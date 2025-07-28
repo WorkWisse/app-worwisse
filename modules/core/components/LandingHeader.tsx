@@ -29,9 +29,8 @@ export const LandingHeader = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
 
-  // Don't show search on landing page or review pages
-  const shouldShowSearch =
-    router.pathname !== "/" && !router.pathname.includes("/add");
+  // Don't show search on landing page only
+  const shouldShowSearch = router.pathname !== "/";
 
   useEffect(() => {
     setMounted(true);
