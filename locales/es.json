@@ -345,7 +345,7 @@
             },
             "website": {
                 "label": "Sitio web",
-                "placeholder": "https://empresa.com"
+                "placeholder": "www.empresa.com"
             },
             "logo": {
                 "label": "Logo de la empresa",

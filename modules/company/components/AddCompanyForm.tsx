@@ -29,7 +29,7 @@ export default function AddCompanyForm() {
     state: "",
     website: "",
     terms: false,
-    benefits: [] as string[], // Cambiar a array de strings
+    benefits: [] as string[],
     logo: null as File | null, // Nuevo campo para el logo
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -434,7 +434,7 @@ export default function AddCompanyForm() {
                       label={t("addCompany.form.website.label")}
                       placeholder={t("addCompany.form.website.placeholder")}
                       size="lg"
-                      type="url"
+                      type="text"
                       value={formData.website}
                       variant="bordered"
                       onValueChange={(value) =>

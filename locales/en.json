@@ -395,7 +395,7 @@
             },
             "website": {
                 "label": "Website",
-                "placeholder": "https://company.com"
+                "placeholder": "www.company.com"
             },
             "logo": {
                 "label": "Company logo",

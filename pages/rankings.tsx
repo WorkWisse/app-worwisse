@@ -186,18 +186,6 @@ export default function RankingsPage() {
       <main className="container mx-auto px-2 sm:px-4 lg:px-6 py-8 lg:py-16">
         {/* Header */}
         <div className="mb-12">
-          <div className="flex items-start justify-start">
-            <Button
-              as={Link}
-              className="text-slate-600 dark:text-slate-300 hover:text-slate-800 dark:hover:text-slate-100"
-              href="/"
-              startContent={<ChevronLeftIcon className="h-4 w-4" />}
-              variant="ghost"
-            >
-              {t("rankings.backHome")}
-            </Button>
-          </div>
-
           <div className="mb-6 lg:mb-8">
             <h1 className="text-center text-3xl lg:text-5xl font-bold text-slate-900 dark:text-white mb-3 lg:mb-4 leading-tight transition-colors duration-200">
               <Trans
