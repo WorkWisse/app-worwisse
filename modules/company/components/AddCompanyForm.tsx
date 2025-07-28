@@ -5,10 +5,12 @@ import { Card } from "@heroui/card";
 import { Select, SelectItem } from "@heroui/select";
 import { Trans, useTranslation } from "react-i18next";
 
+import { useRouter } from "next/router";
+
 import { CompanyService } from "@/services/companyService";
 import { ImageService } from "@/services/imageService";
 import { CompanyDocument } from "@/types";
-import { useToast } from "@/modules/core/components";
+import { useToast, SubmitButton } from "@/modules/core/components";
 import {
   getPredefinedBenefits,
   getIndustries,
@@ -16,7 +18,6 @@ import {
   countryRegions,
 } from "@/modules/company/data/companyFormData";
 import ThankYouModal from "@/components/ThankYouModal";
-import { useRouter } from "next/router";
 
 export default function AddCompanyForm() {
   const { t } = useTranslation();
@@ -610,18 +611,13 @@ export default function AddCompanyForm() {
                 </div>
 
                 {/* Submit Button */}
-                <Button
-                  className="w-full bg-gradient-to-r from-sky-600 to-blue-600 dark:from-sky-500 dark:to-blue-500 hover:from-sky-700 hover:to-blue-700 dark:hover:from-sky-600 dark:hover:to-blue-600 text-white font-semibold text-sm h-11 transition-all duration-200"
-                  color="primary"
+                <SubmitButton
                   isDisabled={!acceptedTerms}
                   isLoading={isSubmitting || isUploadingLogo}
-                  size="lg"
+                  loadingText={t("addCompany.form.submitting")}
+                  submitText={t("addCompany.form.submit")}
                   onPress={handleSubmit}
-                >
-                  {isSubmitting || isUploadingLogo
-                    ? t("addCompany.form.submitting")
-                    : t("addCompany.form.submit")}
-                </Button>
+                />
               </div>
             </Card>
           </div>
@@ -666,7 +662,7 @@ export default function AddCompanyForm() {
                   className="w-full border-sky-200 dark:border-sky-700 text-sky-700 dark:text-sky-300 hover:bg-sky-50 dark:hover:bg-sky-900/20 transition-colors duration-200"
                   size="sm"
                   variant="bordered"
-                  onPress={() => router.push('/contact')}
+                  onPress={() => router.push("/contact")}
                 >
                   {t("addCompany.contact.button")}
                 </Button>

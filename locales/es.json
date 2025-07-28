@@ -747,5 +747,13 @@
         "button": {
             "continue": "Volver"
         }
+    },
+    "common": {
+        "submitting": "Enviando...",
+        "submit": "Enviar",
+        "error": {
+            "title": "Error",
+            "close": "Cerrar"
+        }
     }
 }

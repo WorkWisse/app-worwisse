@@ -6,10 +6,12 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import { useTranslation, Trans } from "react-i18next";
 
+import CompanyHeader from "./CompanyHeader";
+
 import { ReviewService } from "@/services";
 import { ReviewDocument } from "@/types";
+import { SubmitButton, useToast } from "@/modules/core/components";
 import ThankYouModal from "@/components/ThankYouModal";
-import CompanyHeader from "./CompanyHeader";
 
 interface ReviewFormData {
   // Información laboral
@@ -105,6 +107,7 @@ export default function ReviewForm({ company }: { company: any }) {
   const router = useRouter();
   const { slug } = router.query;
   const { t } = useTranslation();
+  const { showError } = useToast();
 
   const [formData, setFormData] = useState<ReviewFormData>({
     role: "",
@@ -147,7 +150,6 @@ export default function ReviewForm({ company }: { company: any }) {
     wouldRecommend: false,
     acceptedTerms: false,
   };
-  
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [dateError, setDateError] = useState<string>("");
   const [showThankYouModal, setShowThankYouModal] = useState(false);
@@ -162,14 +164,20 @@ export default function ReviewForm({ company }: { company: any }) {
     e.preventDefault();
 
     if (!formData.acceptedTerms) {
-      alert(t("reviewForm.validation.acceptTermsRequired"));
+      showError(
+        t("common.error.title"),
+        t("reviewForm.validation.acceptTermsRequired"),
+      );
 
       return;
     }
 
     // Validar que se hayan completado las calificaciones principales
     if (formData.overallRating === 0 || formData.workEnvironmentRating === 0) {
-      alert(t("reviewForm.validation.ratingsRequired"));
+      showError(
+        t("common.error.title"),
+        t("reviewForm.validation.ratingsRequired"),
+      );
 
       return;
     }
@@ -180,7 +188,10 @@ export default function ReviewForm({ company }: { company: any }) {
       const endDate = new Date(formData.endDate);
 
       if (startDate >= endDate) {
-        alert("La fecha de inicio debe ser anterior a la fecha de fin.");
+        showError(
+          t("common.error.title"),
+          "La fecha de inicio debe ser anterior a la fecha de fin.",
+        );
 
         return;
       }
@@ -188,7 +199,7 @@ export default function ReviewForm({ company }: { company: any }) {
 
     // Validar si hay errores de fecha pendientes
     if (dateError) {
-      alert(dateError);
+      showError(t("common.error.title"), dateError);
 
       return;
     }
@@ -231,7 +242,7 @@ export default function ReviewForm({ company }: { company: any }) {
     } catch (error) {
       // eslint-disable-next-line no-console
       console.error("Error submitting review:", error);
-      alert(t("reviewForm.error.message"));
+      showError(t("common.error.title"), t("reviewForm.error.message"));
     } finally {
       setIsSubmitting(false);
     }
@@ -599,22 +610,16 @@ export default function ReviewForm({ company }: { company: any }) {
 
                   {/* Botones de acción */}
                   <div className="flex flex-col sm:flex-row gap-4 pt-6">
-                    <Button
-                      className={`font-semibold px-8 py-3 transition-all duration-200 flex-1 sm:flex-initial ${
-                        !formData.acceptedTerms || isSubmitting || !!dateError
-                          ? "bg-slate-300 dark:bg-slate-600 text-slate-500 dark:text-slate-400 cursor-not-allowed opacity-60"
-                          : "bg-sky-600 dark:bg-sky-600 text-white hover:bg-sky-700 dark:hover:bg-sky-700 hover:scale-105 shadow-md hover:shadow-lg"
-                      }`}
-                      disabled={
+                    <SubmitButton
+                      className="flex-1 sm:flex-initial px-8 py-3"
+                      isDisabled={
                         !formData.acceptedTerms || isSubmitting || !!dateError
                       }
-                      size="lg"
+                      isLoading={isSubmitting}
+                      loadingText={t("reviewForm.submitting")}
+                      submitText={t("reviewForm.submit")}
                       type="submit"
-                    >
-                      {isSubmitting
-                        ? t("reviewForm.submitting")
-                        : t("reviewForm.submit")}
-                    </Button>
+                    />
                     <Button
                       className="border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 font-medium px-8 py-3 transition-colors duration-200"
                       size="lg"
@@ -668,7 +673,7 @@ export default function ReviewForm({ company }: { company: any }) {
                   className="w-full border-sky-200 dark:border-sky-700 text-sky-700 dark:text-sky-300 hover:bg-sky-50 dark:hover:bg-sky-900/20 transition-colors duration-200"
                   size="sm"
                   variant="bordered"
-                  onPress={() => router.push('/contact')}
+                  onPress={() => router.push("/contact")}
                 >
                   {t("addCompany.contact.button")}
                 </Button>

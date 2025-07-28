@@ -742,5 +742,13 @@
         "button": {
             "continue": "Continue"
         }
+    },
+    "common": {
+        "submitting": "Submitting...",
+        "submit": "Submit",
+        "error": {
+            "title": "Error",
+            "close": "Close"
+        }
     }
 }
