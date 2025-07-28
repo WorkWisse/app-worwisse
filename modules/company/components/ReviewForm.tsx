@@ -668,6 +668,7 @@ export default function ReviewForm({ company }: { company: any }) {
                   className="w-full border-sky-200 dark:border-sky-700 text-sky-700 dark:text-sky-300 hover:bg-sky-50 dark:hover:bg-sky-900/20 transition-colors duration-200"
                   size="sm"
                   variant="bordered"
+                  onPress={() => router.push('/contact')}
                 >
                   {t("addCompany.contact.button")}
                 </Button>
