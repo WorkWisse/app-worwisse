@@ -25,6 +25,7 @@ async function testReviewSubmission() {
       recommend: true,
       terms: true,
       approved: false,
+      email: "test@test.com"
     };
 
     const reviewId = await ReviewService.addReview(testReview);

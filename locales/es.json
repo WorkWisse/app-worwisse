@@ -303,7 +303,7 @@
         "companies": {
             "title": "Para Empresas",
             "links": {
-                "add": "Sumá tu empresa",
+                "add": "Agregar empresa",
                 "services": "Servicios empresariales",
                 "branding": "Mejorar imagen",
                 "analytics": "Ver estadísticas"
@@ -613,7 +613,7 @@
     },
     "header": {
         "about": "Sobre nosotros",
-        "addCompany": "Sumá tu empresa",
+        "addCompany": "Agregar empresa",
         "language": "Idioma",
         "contact": "Contacto",
         "theme": "Tema",

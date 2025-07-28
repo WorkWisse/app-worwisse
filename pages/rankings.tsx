@@ -5,6 +5,7 @@ import { Card, CardBody } from "@heroui/card";
 import { Button } from "@heroui/button";
 
 import { LandingHeader } from "@/modules/core/components";
+import { LandingFooter } from "@/modules/core/components/LandingFooter";
 import { CompanyService } from "@/services";
 import { ReviewService } from "@/services/reviewService";
 import { CompanyDocument, ReviewDocument } from "@/types";
@@ -472,6 +473,8 @@ export default function RankingsPage() {
           </Card>
         </div>
       </main>
+
+      <LandingFooter />
     </div>
   );
 }
