@@ -1,0 +1,42 @@
+# Robots.txt para WorkWisse
+# Permitir a todos los bots acceder al sitio
+
+User-agent: *
+Allow: /
+
+# Bloquear páginas administrativas o privadas
+Disallow: /api/
+Disallow: /admin/
+Disallow: /_next/
+Disallow: /private/
+
+# Permitir específicamente páginas importantes
+Allow: /search
+Allow: /company/
+Allow: /about
+Allow: /contact
+Allow: /rankings
+
+# Sitemap
+Sitemap: https://workwisse.com/sitemap.xml
+
+# Crawl-delay para ser respetuosos
+Crawl-delay: 1
+
+# Configuraciones específicas para bots principales
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+User-agent: facebookexternalhit
+Allow: /
+
+User-agent: Twitterbot
+Allow: /
+
+User-agent: LinkedInBot
+Allow: /

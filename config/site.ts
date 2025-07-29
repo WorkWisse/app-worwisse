@@ -1,8 +1,13 @@
 export type SiteConfig = typeof siteConfig;
 
 export const siteConfig = {
-  name: "Next.js + HeroUI",
-  description: "Make beautiful websites regardless of your design experience.",
+  name: "WorkWisse - Opiniones Reales de Empresas",
+  description: "Descubre la verdad sobre tu próximo trabajo. Accede a opiniones verificadas de empleados, salarios reales y ambiente laboral antes de postularte. La plataforma líder en transparencia laboral.",
+  keywords: "opiniones empresas, reseñas trabajo, salarios reales, ambiente laboral, empleos, trabajos, empresas, reviews empleados, glassdoor alternativa, transparencia laboral",
+  author: "WorkWisse",
+  siteUrl: "https://workwisse.com",
+  ogImage: "/images/og-workwisse.jpg",
+  twitterHandle: "@workwisse",
   navItems: [
     {
       label: "Home",

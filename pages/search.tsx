@@ -7,6 +7,7 @@ import DefaultLayout from "@/layouts/default";
 import { SearchBar } from "@/modules/core/components";
 import { CompanyDocument } from "@/types";
 import { SearchService } from "@/services/searchService";
+import { getSearchPageStructuredData, getBreadcrumbStructuredData } from "@/modules/core/utils/structuredData";
 
 interface SearchPageProps {
   initialResults?: CompanyDocument[];
@@ -49,8 +50,31 @@ export default function SearchPage({
     }
   }, [initialQuery]);
 
+  // SEO para página de búsqueda
+  const breadcrumbs = [
+    { name: 'Inicio', url: 'https://workwisse.com' },
+    { name: 'Buscar Empresas', url: 'https://workwisse.com/search' }
+  ];
+
+  const seoProps = {
+    title: initialQuery 
+      ? `Resultados para "${initialQuery}" - Buscar Empresas`
+      : "Buscar Empresas - Opiniones y Reseñas Laborales",
+    description: initialQuery
+      ? `Encuentra información sobre empresas relacionadas con "${initialQuery}". Opiniones de empleados, salarios y ambiente laboral.`
+      : "Busca y encuentra información detallada sobre empresas. Accede a opiniones verificadas de empleados, salarios reales y datos sobre ambiente laboral.",
+    keywords: "buscar empresas, opiniones trabajo, reseñas empleados, salarios empresas, ambiente laboral, empleos",
+    canonical: initialQuery 
+      ? `https://workwisse.com/search?query=${encodeURIComponent(initialQuery)}`
+      : "https://workwisse.com/search",
+    structuredData: [
+      getSearchPageStructuredData(),
+      getBreadcrumbStructuredData(breadcrumbs)
+    ]
+  };
+
   return (
-    <DefaultLayout>
+    <DefaultLayout seo={seoProps}>
       <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-sky-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           {/* Search Header */}
