@@ -1,7 +1,6 @@
 import { siteConfig } from '@/config/site';
 import { CompanyDocument } from '@/types';
 
-// Datos estructurados para la organización principal
 export const getOrganizationStructuredData = () => {
   return {
     '@context': 'https://schema.org',
