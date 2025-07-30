@@ -403,6 +403,13 @@
             "terms": "Acepto los <1>términos y condiciones</1> de la plataforma",
             "acceptTermsRequired": "Debés aceptar los términos y condiciones para continuar",
             "pleaseAcceptTerms": "Por favor, revisá y aceptá nuestros términos y condiciones.",
+            "validation": {
+                "error": "Error de Validación",
+                "nameRequired": "El nombre de la empresa es obligatorio",
+                "industryRequired": "Por favor seleccioná una industria",
+                "countryRequired": "Por favor seleccioná un país",
+                "stateRequired": "Por favor seleccioná un estado/provincia"
+            },
             "submit": "Agregar empresa",
             "submitting": "Agregando empresa...",
             "submitSuccess": "¡Empresa agregada exitosamente!",

@@ -118,6 +118,43 @@ export default function AddCompanyForm() {
       return;
     }
 
+    // Validar campos requeridos
+    if (!formData.name.trim()) {
+      showError(
+        t("addCompany.form.validation.error"),
+        t("addCompany.form.validation.nameRequired"),
+      );
+
+      return;
+    }
+
+    if (!formData.industry) {
+      showError(
+        t("addCompany.form.validation.error"),
+        t("addCompany.form.validation.industryRequired"),
+      );
+
+      return;
+    }
+
+    if (!formData.country) {
+      showError(
+        t("addCompany.form.validation.error"),
+        t("addCompany.form.validation.countryRequired"),
+      );
+
+      return;
+    }
+
+    if (!formData.state) {
+      showError(
+        t("addCompany.form.validation.error"),
+        t("addCompany.form.validation.stateRequired"),
+      );
+
+      return;
+    }
+
     setIsSubmitting(true);
     try {
       // Get the industry and country labels for display
@@ -612,7 +649,13 @@ export default function AddCompanyForm() {
 
                 {/* Submit Button */}
                 <SubmitButton
-                  isDisabled={!acceptedTerms}
+                  isDisabled={
+                    !acceptedTerms ||
+                    !formData.name.trim() ||
+                    !formData.industry ||
+                    !formData.country ||
+                    !formData.state
+                  }
                   isLoading={isSubmitting || isUploadingLogo}
                   loadingText={t("addCompany.form.submitting")}
                   submitText={t("addCompany.form.submit")}
