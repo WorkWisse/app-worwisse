@@ -1,6 +1,8 @@
 import { Link } from "@heroui/link";
 import { useTranslation } from "react-i18next";
 
+import LogoPng from "../../../public/images/logo.png"
+
 const SocialIcon = ({ title, href }: { title: string; href: string }) => {
   // Definir el ícono adecuado según el título
   const getIcon = () => {
@@ -95,8 +97,8 @@ export const LandingFooter = () => {
             <div className="flex items-center text-2xl font-bold">
               <img
                 alt="WorkWisse Logo"
-                className="h-8 w-8 mr-2 rounded-full"
-                src="https://picsum.photos/seed/workwisselogo/40/40"
+                className="h-10 w-10 mr-3 rounded-lg object-contain group-hover:opacity-90 transition-opacity duration-300"
+                src={LogoPng.src}
               />
               WorkWisse
             </div>
@@ -153,7 +155,6 @@ export const LandingFooter = () => {
                   {t("footer.workers.links.rankings")}
                 </Link>
               </li>
-
             </ul>
           </div>
 

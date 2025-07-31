@@ -4,8 +4,10 @@ import { Input } from "@heroui/input";
 import { Card } from "@heroui/card";
 import { Select, SelectItem } from "@heroui/select";
 import { Trans, useTranslation } from "react-i18next";
-
 import { useRouter } from "next/router";
+
+import NotImage from "../../../public/images/notimage.png"
+
 
 import { CompanyService } from "@/services/companyService";
 import { ImageService } from "@/services/imageService";
@@ -167,7 +169,7 @@ export default function AddCompanyForm() {
         currentRegions.find((r) => r.key === formData.state)?.label ||
         formData.state;
 
-      let logoUrl = `https://picsum.photos/seed/${formData.name}/200/200`; // Default logo
+      let logoUrl = NotImage.src; // Default logo
 
       // Upload logo if provided
       if (formData.logo) {
