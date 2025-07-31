@@ -31,6 +31,7 @@ interface ReviewFormData {
   workLifeBalanceRating: number;
   inclusionRating: number;
   overallRating: number;
+  equalOpportunity: number;
 
   // Experiencia
   pros: string;
@@ -124,6 +125,7 @@ export default function ReviewForm({ company }: { company: any }) {
     workLifeBalanceRating: 0,
     inclusionRating: 0,
     overallRating: 0,
+    equalOpportunity: 0,
     pros: "",
     cons: "",
     wouldRecommend: false,
@@ -145,6 +147,7 @@ export default function ReviewForm({ company }: { company: any }) {
     workLifeBalanceRating: 0,
     inclusionRating: 0,
     overallRating: 0,
+    equalOpportunity: 0,
     pros: "",
     cons: "",
     wouldRecommend: false,
@@ -226,6 +229,7 @@ export default function ReviewForm({ company }: { company: any }) {
           workLifeBalance: formData.workLifeBalanceRating,
           overallRating: formData.overallRating,
           workInclusion: formData.inclusionRating,
+          equalOpportunity: formData.equalOpportunity,
           positiveAspects: formData.pros,
           areasForImprovement: formData.cons,
           recommend: formData.wouldRecommend,
@@ -500,6 +504,17 @@ export default function ReviewForm({ company }: { company: any }) {
                         rating={formData.overallRating}
                         onRatingChange={(rating) =>
                           handleChange("overallRating", rating)
+                        }
+                      />
+                      
+                      <StarRating
+                        description={t(
+                          "reviewForm.ratings.equalOpportunityDesc",
+                        )}
+                        label={t("reviewForm.ratings.equalOpportunity")}
+                        rating={formData.equalOpportunity}
+                        onRatingChange={(rating) =>
+                          handleChange("equalOpportunity", rating)
                         }
                       />
                     </div>

@@ -1,15 +1,18 @@
-import React from 'react';
-import Head from 'next/head';
-import { useRouter } from 'next/router';
-import { siteConfig } from '@/config/site';
+import React from "react";
+import Head from "next/head";
+import { useRouter } from "next/router";
+
+import LogoPng from "../../../public/images/logo.png"; // Assuming you have a Logo component
+
+import { siteConfig } from "@/config/site";
 
 interface SEOHeadProps {
   title?: string;
   description?: string;
   keywords?: string;
   ogImage?: string;
-  ogType?: 'website' | 'article' | 'profile';
-  twitterCard?: 'summary' | 'summary_large_image';
+  ogType?: "website" | "article" | "profile";
+  twitterCard?: "summary" | "summary_large_image";
   canonical?: string;
   noindex?: boolean;
   nofollow?: boolean;
@@ -22,8 +25,8 @@ export const SEOHead: React.FC<SEOHeadProps> = ({
   description = siteConfig.description,
   keywords = siteConfig.keywords,
   ogImage = siteConfig.ogImage,
-  ogType = 'website',
-  twitterCard = 'summary_large_image',
+  ogType = "website",
+  twitterCard = "summary_large_image",
   canonical,
   noindex = false,
   nofollow = false,
@@ -34,12 +37,14 @@ export const SEOHead: React.FC<SEOHeadProps> = ({
   const currentUrl = `${siteConfig.siteUrl}${router.asPath}`;
   const fullTitle = title ? `${title} | ${siteConfig.name}` : siteConfig.name;
   const canonicalUrl = canonical || currentUrl;
-  const fullOgImage = ogImage?.startsWith('http') ? ogImage : `${siteConfig.siteUrl}${ogImage}`;
+  const fullOgImage = ogImage?.startsWith("http")
+    ? ogImage
+    : `${siteConfig.siteUrl}${ogImage}`;
 
   const robotsContent = [
-    noindex ? 'noindex' : 'index',
-    nofollow ? 'nofollow' : 'follow',
-  ].join(', ');
+    noindex ? "noindex" : "index",
+    nofollow ? "nofollow" : "follow",
+  ].join(", ");
 
   return (
     <Head>
@@ -50,14 +55,17 @@ export const SEOHead: React.FC<SEOHeadProps> = ({
       <meta name="author" content={siteConfig.author} />
       <meta name="robots" content={robotsContent} />
       <link rel="canonical" href={canonicalUrl} />
-      
+
       {/* Viewport and Mobile */}
-      <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+      <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=5.0"
+      />
       <meta name="theme-color" content="#0ea5e9" />
       <meta name="mobile-web-app-capable" content="yes" />
       <meta name="apple-mobile-web-app-capable" content="yes" />
       <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-      
+
       {/* Open Graph */}
       <meta property="og:type" content={ogType} />
       <meta property="og:title" content={fullTitle} />
@@ -69,7 +77,7 @@ export const SEOHead: React.FC<SEOHeadProps> = ({
       <meta property="og:image:height" content="630" />
       <meta property="og:image:alt" content={title || siteConfig.name} />
       <meta property="og:locale" content="es_ES" />
-      
+
       {/* Twitter Cards */}
       <meta name="twitter:card" content={twitterCard} />
       <meta name="twitter:site" content={siteConfig.twitterHandle} />
@@ -78,17 +86,17 @@ export const SEOHead: React.FC<SEOHeadProps> = ({
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={fullOgImage} />
       <meta name="twitter:image:alt" content={title || siteConfig.name} />
-      
+
       {/* Alternate Languages */}
       {alternateLanguages.map((lang) => (
         <link
           key={lang.hreflang}
-          rel="alternate"
-          hrefLang={lang.hreflang}
           href={lang.href}
+          hrefLang={lang.hreflang}
+          rel="alternate"
         />
       ))}
-      
+
       {/* Structured Data */}
       {structuredData && (
         <script
@@ -98,18 +106,26 @@ export const SEOHead: React.FC<SEOHeadProps> = ({
           }}
         />
       )}
-      
+
       {/* Favicon and Icons */}
-      <link rel="icon" href="/favicon.ico" />
-      <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-      <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-      <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+      <link href={LogoPng.src} rel="icon" />
+      <link
+        href="/apple-touch-icon.png"
+        rel="apple-touch-icon"
+        sizes="180x180"
+      />
+      <link href={LogoPng.src} rel="icon" sizes="32x32" type="image/png" />
+      <link href={LogoPng.src} rel="icon" sizes="16x16" type="image/png" />
       <link rel="manifest" href="/site.webmanifest" />
-      
+
       {/* Preconnect to external domains */}
       <link rel="preconnect" href="https://fonts.googleapis.com" />
-      <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-      <link rel="dns-prefetch" href="https://www.google-analytics.com" />
+      <link
+        crossOrigin="anonymous"
+        href="https://fonts.gstatic.com"
+        rel="preconnect"
+      />
+      <link href="https://www.google-analytics.com" rel="dns-prefetch" />
     </Head>
   );
 };

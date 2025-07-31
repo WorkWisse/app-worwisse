@@ -40,7 +40,6 @@ export class SearchService {
       // Get all approved companies first (we'll filter on client side)
       const q = query(
         collection(db, COMPANIES_COLLECTION),
-        where("approved", "==", true),
         orderBy("reviewsCount", "desc"),
         limit(50) // Get more results to filter client-side
       );
@@ -101,7 +100,6 @@ export class SearchService {
 
       const q = query(
         collection(db, COMPANIES_COLLECTION),
-        where("status", "==", "approved"),
         where("name", ">=", searchQuery),
         where("name", "<=", searchQuery + "\uf8ff"),
         orderBy("name"),
@@ -136,7 +134,6 @@ export class SearchService {
     try {
       const q = query(
         collection(db, COMPANIES_COLLECTION),
-        where("status", "==", "approved"),
         orderBy("reviewsCount", "desc"),
         orderBy("rating", "desc"),
         limit(maxResults)

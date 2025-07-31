@@ -626,7 +626,9 @@
             "inclusion": "Workplace inclusion",
             "inclusionDesc": "Did the company promote diversity and inclusion?",
             "overall": "Overall rating",
-            "overallDesc": "How do you rate the overall experience?"
+            "overallDesc": "How do you rate the overall experience?",
+            "equalOpportunity": "Equal opportunities",
+            "equalOpportunityDesc": "Are development and growth opportunities given regardless of gender?"
         },
         "ratingScale": {
             "1": "Very bad",

@@ -41,6 +41,7 @@ export interface Review {
   workLifeBalance: number;
   overallRating: number;
   workInclusion: number;
+  equalOpportunity: number;
   positiveAspects: string;
   areasForImprovement: string;
   recommend: boolean;
@@ -130,6 +131,7 @@ export interface ReviewDocument extends Omit<Review, "id">, FirebaseDocument {
     careerGrowth: number;
     workLifeBalance: number;
     inclusion: number;
+    equalOpportunity: number;
   };
 }
 

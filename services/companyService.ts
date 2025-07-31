@@ -26,9 +26,6 @@ export class CompanyService {
       let q = collection(db, COMPANIES_COLLECTION);
       const constraints = [];
 
-      // Add status filter (only approved companies)
-      constraints.push(where("approved", "==", true));
-
       // Add search query
       if (params.query) {
         // Note: Firestore doesn't support full-text search natively
@@ -102,8 +99,7 @@ export class CompanyService {
       const q = query(
         collection(db, COMPANIES_COLLECTION),
         where("slug", "==", slug),
-        where("status", "==", "approved"),
-        limit(1)
+        limit(1),
       );
 
       const querySnapshot = await getDocs(q);
@@ -181,7 +177,6 @@ export class CompanyService {
       let q = collection(db, COMPANIES_COLLECTION);
       const constraints = [];
 
-      constraints.push(where("status", "==", "approved"));
       constraints.push(
         orderBy(filters.sortBy || "rating", filters.sortOrder || "desc")
       );

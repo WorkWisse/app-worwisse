@@ -10,6 +10,8 @@ import {
 } from "@heroui/dropdown";
 import { Button } from "@heroui/button";
 
+import LogoPng from "../../../public/images/logo.png"; // Assuming you have a Logo component
+
 import { LanguageSelector } from "./LanguageSelector";
 import { SearchBar } from "./SearchBar";
 import { ThemeToggle } from "./ThemeToggle";
@@ -17,9 +19,9 @@ import { ThemeToggle } from "./ThemeToggle";
 // Consider using an actual SVG or a dedicated Icon component if you have one in HeroUI
 const Logo = () => (
   <img
-    alt="WorkWisse Logo Placeholder"
-    className="h-8 w-8 mr-2 rounded-full group-hover:opacity-90 transition-opacity duration-300"
-    src="https://picsum.photos/seed/workwisselogo/40/40" // Seeded for consistency
+    alt="WorkWisse Logo"
+    className="h-10 w-10 mr-3 rounded-lg object-contain group-hover:opacity-90 transition-opacity duration-300"
+    src={LogoPng.src} // Seeded for consistency
   />
 );
 

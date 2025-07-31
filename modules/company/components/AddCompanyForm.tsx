@@ -206,7 +206,7 @@ export default function AddCompanyForm() {
         state: stateLabel,
         website: formData.website,
         benefits: formData.benefits.join(", "),
-        terms: formData.terms,
+        terms: acceptedTerms,
         creationDate: new Date().toISOString(),
         approved: false,
         name: "",

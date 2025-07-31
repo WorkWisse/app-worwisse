@@ -58,8 +58,8 @@ export default function AboutHero() {
             <div className="relative">
               <img
                 alt="Trabajadores tomando decisiones informadas"
-                className="w-full max-w-lg h-auto object-cover rounded-2xl shadow-2xl"
-                src="/images/about-us.png"
+                className="w-full max-w-md h-auto object-cover rounded-2xl shadow-2xl"
+                src="/images/aboutus.png"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-sky-600/20 to-transparent rounded-2xl" />
             </div>

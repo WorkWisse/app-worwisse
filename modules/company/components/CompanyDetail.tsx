@@ -8,8 +8,10 @@ import { DocumentSnapshot } from "firebase/firestore";
 
 import { CompanyDocument, ReviewDocument } from "../../../types";
 import { ReviewService } from "../../../services";
-import { renderStars } from "@/modules/core/utils/stars";
+
 import CompanyHeader from "./CompanyHeader";
+
+import { renderStars } from "@/modules/core/utils/stars";
 
 interface CompanyDetailProps {
   company: CompanyDocument;
@@ -26,6 +28,7 @@ interface StandardizedRatings {
   careerGrowth: number;
   workLifeBalance: number;
   inclusion: number;
+  equalOpportunity: number;
 }
 
 export default function CompanyDetail({
@@ -132,6 +135,7 @@ export default function CompanyDetail({
         careerGrowth: review.ratings.careerGrowth,
         workLifeBalance: review.ratings.workLifeBalance,
         inclusion: review.ratings.inclusion,
+        equalOpportunity: review.ratings.equalOpportunity || 0,
       };
     }
 
@@ -146,6 +150,7 @@ export default function CompanyDetail({
         careerGrowth: review.professionalGrowth || 0,
         workLifeBalance: review.workLifeBalance || 0,
         inclusion: review.workInclusion || 0,
+        equalOpportunity: review.equalOpportunity || 0,
       };
     }
 
@@ -176,6 +181,7 @@ export default function CompanyDetail({
       careerGrowth: 0,
       workLifeBalance: 0,
       inclusion: 0,
+      equalOpportunity: 0,
     };
 
     reviewsWithRatings.forEach((ratings) => {
@@ -187,6 +193,7 @@ export default function CompanyDetail({
       totals.careerGrowth += ratings.careerGrowth;
       totals.workLifeBalance += ratings.workLifeBalance;
       totals.inclusion += ratings.inclusion;
+      totals.equalOpportunity += ratings.equalOpportunity || 0;
     });
 
     const count = reviewsWithRatings.length;
@@ -200,6 +207,7 @@ export default function CompanyDetail({
       careerGrowth: Number((totals.careerGrowth / count).toFixed(1)),
       workLifeBalance: Number((totals.workLifeBalance / count).toFixed(1)),
       inclusion: Number((totals.inclusion / count).toFixed(1)),
+      equalOpportunity: Number((totals.equalOpportunity / count).toFixed(1)),
     };
   };
 
@@ -316,7 +324,8 @@ export default function CompanyDetail({
                                   <span className="text-xs font-bold text-slate-800 dark:text-slate-200 uppercase tracking-wide">
                                     {t("companyDetail.positionLabel")}{" "}
                                     <span className="font-semibold text-slate-900 dark:text-white">
-                                      {review.role || t("companyDetail.anonymous")}
+                                      {review.role ||
+                                        t("companyDetail.anonymous")}
                                     </span>
                                   </span>
                                 </div>

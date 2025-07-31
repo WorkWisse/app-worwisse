@@ -438,7 +438,7 @@
                 }
             },
             "state": {
-                "label": "Estado/Província",
+                "label": "Cidade/Província/Estado",
                 "placeholder": "Selecionar estado/província"
             },
             "benefits": {
@@ -642,7 +642,9 @@
             "inclusion": "Inclusão laboral",
             "inclusionDesc": "A empresa promovia diversidade e inclusão?",
             "overall": "Avaliação geral",
-            "overallDesc": "Como avalia a experiência geral?"
+            "overallDesc": "Como avalia a experiência geral?",
+            "equalOpportunity": "Igualdade de oportunidades",
+            "equalOpportunityDesc": "São oferecidas oportunidades de desenvolvimento e crescimento independentemente do gênero?"
         },
         "ratingScale": {
             "1": "Muito ruim",
