@@ -118,7 +118,7 @@ export class SearchService {
       const query_lower = searchQuery.toLowerCase().trim();
 
       return companies.filter((company) =>
-        company.companyName.toLowerCase().includes(query_lower)
+        company.companyName.toLowerCase().includes(query_lower),
       );
     } catch (error) {
       // eslint-disable-next-line no-console
