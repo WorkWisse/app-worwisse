@@ -17,7 +17,7 @@ import {
   getCountries,
   countryRegions,
 } from "@/modules/company/data/companyFormData";
-import ThankYouModal from "@/components/ThankYouModal";
+
 
 export default function AddCompanyForm() {
   const { t } = useTranslation();
@@ -37,7 +37,6 @@ export default function AddCompanyForm() {
   const [acceptedTerms, setAcceptedTerms] = useState(false);
   const [logoPreview, setLogoPreview] = useState<string | null>(null);
   const [isUploadingLogo, setIsUploadingLogo] = useState(false);
-  const [showThankYouModal, setShowThankYouModal] = useState(false);
 
   // Set initial company name from URL query
   useEffect(() => {
@@ -191,6 +190,15 @@ export default function AddCompanyForm() {
         }
       }
 
+      // Generate slug from company name
+      const slug = formData.name
+        .toLowerCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .replace(/[^a-z0-9\s-]/g, "")
+        .trim()
+        .replace(/\s+/g, "-");
+
       // company data object
       const companyData: Omit<
         CompanyDocument,
@@ -209,16 +217,19 @@ export default function AddCompanyForm() {
         terms: acceptedTerms,
         creationDate: new Date().toISOString(),
         approved: false,
-        name: "",
+        name: formData.name,
         logo: logoUrl, // Also set this field for compatibility
+        slug: slug, // Add the generated slug
         location: {
           country: countryLabel,
           state: stateLabel,
         },
+        description: `Empresa de ${industryLabel} ubicada en ${stateLabel}, ${countryLabel}.`,
+        href: `/company/${slug}`,
       };
 
-      // Save to Firebase
-      await CompanyService.addCompany(companyData);
+      // Save to Firebase and get the company ID
+      const companyId = await CompanyService.addCompany(companyData);
 
       // Reset form
       setFormData({
@@ -234,7 +245,9 @@ export default function AddCompanyForm() {
       setAcceptedTerms(false);
       setBenefitsInput("");
       setLogoPreview(null);
-      setShowThankYouModal(true);
+      
+      // Redirect to company review page instead of showing modal
+      router.push(`/company/${slug}/review`);
     } catch (error) {
       // eslint-disable-next-line no-console
       console.error("Error adding company:", error);
@@ -715,12 +728,7 @@ export default function AddCompanyForm() {
         </div>
       </div>
 
-      {/* Thank You Modal */}
-      <ThankYouModal
-        isOpen={showThankYouModal}
-        type="company"
-        onClose={() => setShowThankYouModal(false)}
-      />
+
     </div>
   );
 }

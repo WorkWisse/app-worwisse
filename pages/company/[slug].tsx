@@ -102,7 +102,7 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   const slug = params?.slug as string;
 
   try {
-    let company = await CompanyService.getCompanyById(slug);
+    let company = await CompanyService.getCompanyBySlug(slug);
 
     if (!company) {
       return {

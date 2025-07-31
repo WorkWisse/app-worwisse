@@ -37,8 +37,8 @@ export default function ReviewPage({ company }: ReviewPageProps) {
 export const getStaticPaths: GetStaticPaths = async () => {
   const companies = await CompanyService.getCompanies();
 
-  const paths = companies.map((company: { id?: string }) => ({
-    params: { slug: company.id ?? "" },
+  const paths = companies.map((company: { slug?: string }) => ({
+    params: { slug: company.slug ?? "" },
   }));
 
   return {
@@ -53,7 +53,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   let company = null;
 
   try {
-    const fetchedCompany = await CompanyService.getCompanyById(companySlug);
+    const fetchedCompany = await CompanyService.getCompanyBySlug(companySlug);
 
     // Serializar fechas si existen
     if (fetchedCompany) {
