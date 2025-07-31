@@ -11,7 +11,7 @@ interface UseCompanyServiceReturn {
 
   // Funciones
   addCompany: (
-    data: Omit<CompanyDocument, "id" | "createdAt" | "updatedAt">
+    data: Omit<CompanyDocument, "id" | "createdAt" | "updatedAt">,
   ) => Promise<string | null>;
   getCompanies: (params?: any) => Promise<CompanyDocument[] | null>;
   getCompanyBySlug: (slug: string) => Promise<CompanyDocument | null>;
@@ -31,7 +31,7 @@ export const useCompanyService = (): UseCompanyServiceReturn => {
   const clearSuccess = () => setSuccess(false);
 
   const addCompany = async (
-    data: Omit<CompanyDocument, "id" | "createdAt" | "updatedAt">
+    data: Omit<CompanyDocument, "id" | "createdAt" | "updatedAt">,
   ): Promise<string | null> => {
     setLoading(true);
     setError(null);
@@ -56,7 +56,7 @@ export const useCompanyService = (): UseCompanyServiceReturn => {
   };
 
   const getCompanies = async (
-    params: any = {}
+    params: any = {},
   ): Promise<CompanyDocument[] | null> => {
     setLoading(true);
     setError(null);
@@ -78,7 +78,7 @@ export const useCompanyService = (): UseCompanyServiceReturn => {
   };
 
   const getCompanyBySlug = async (
-    slug: string
+    slug: string,
   ): Promise<CompanyDocument | null> => {
     setLoading(true);
     setError(null);
@@ -130,7 +130,7 @@ export const useAddCompanyForm = () => {
       countries: Array<{ key: string; label: string }>;
       currentRegions: Array<{ key: string; label: string }>;
       userId?: string;
-    }
+    },
   ) => {
     // Generar slug
     const slug = formData.name

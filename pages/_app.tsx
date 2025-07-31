@@ -5,6 +5,7 @@ import { ThemeProvider as NextThemesProvider } from "next-themes";
 import { useRouter } from "next/router";
 
 import { ToastProvider, GlobalLoader } from "@/modules/core/components";
+import { QueryProvider } from "@/providers/QueryProvider";
 import { fontSans, fontMono } from "@/config/fonts";
 
 import "@/styles/globals.css";
@@ -14,15 +15,17 @@ export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter();
 
   return (
-    <HeroUIProvider navigate={router.push}>
-      <NextThemesProvider enableSystem attribute="class" defaultTheme="light">
-        <ToastProvider>
-          <GlobalLoader>
-            <Component {...pageProps} />
-          </GlobalLoader>
-        </ToastProvider>
-      </NextThemesProvider>
-    </HeroUIProvider>
+    <QueryProvider>
+      <HeroUIProvider navigate={router.push}>
+        <NextThemesProvider enableSystem attribute="class" defaultTheme="light">
+          <ToastProvider>
+            <GlobalLoader>
+              <Component {...pageProps} />
+            </GlobalLoader>
+          </ToastProvider>
+        </NextThemesProvider>
+      </HeroUIProvider>
+    </QueryProvider>
   );
 }
 

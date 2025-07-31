@@ -29,7 +29,7 @@ export class ReviewService {
       const q = query(
         collection(db, REVIEWS_COLLECTION),
         where("companyId", "==", companyId),
-        where("approved", "==", true)
+        where("approved", "==", true),
       );
 
       const snapshot = await getCountFromServer(q);
@@ -46,7 +46,7 @@ export class ReviewService {
   static async getCompanyReviewsPaginated(
     companyId: string,
     pageSize: number = 3,
-    lastReviewTimestamp?: string
+    lastReviewTimestamp?: string,
   ) {
     try {
       let q = collection(db, REVIEWS_COLLECTION);
@@ -87,7 +87,7 @@ export class ReviewService {
   static async getCompanyReviews(
     companyId: string,
     pageSize: number = 3,
-    lastDoc?: DocumentSnapshot
+    lastDoc?: DocumentSnapshot,
   ) {
     try {
       let q = collection(db, REVIEWS_COLLECTION);
@@ -126,7 +126,7 @@ export class ReviewService {
         collection(db, REVIEWS_COLLECTION),
         where("approved", "==", true),
         orderBy("createdAt", "desc"),
-        limit(pageSize)
+        limit(pageSize),
       );
 
       const querySnapshot = await getDocs(q);
@@ -162,7 +162,7 @@ export class ReviewService {
 
   // Add new review
   static async addReview(
-    reviewData: Omit<ReviewDocument, "id" | "createdAt" | "updatedAt">
+    reviewData: Omit<ReviewDocument, "id" | "createdAt" | "updatedAt">,
   ) {
     try {
       const batch = writeBatch(db);
@@ -231,12 +231,12 @@ export class ReviewService {
       const q = query(
         collection(db, REVIEWS_COLLECTION),
         where("companyId", "==", companyId),
-        where("status", "==", "approved")
+        where("status", "==", "approved"),
       );
 
       const querySnapshot = await getDocs(q);
       const reviews = querySnapshot.docs.map(
-        (doc) => doc.data() as ReviewDocument
+        (doc) => doc.data() as ReviewDocument,
       );
 
       if (reviews.length === 0) {
@@ -255,7 +255,7 @@ export class ReviewService {
       // Calculate new average rating using overallRating
       const totalRating = reviews.reduce(
         (sum, review) => sum + (review.overallRating || 0),
-        0
+        0,
       );
       const averageRating =
         Math.round((totalRating / reviews.length) * 10) / 10;
@@ -263,7 +263,7 @@ export class ReviewService {
       // Calculate recommendation rate
       const recommendations = reviews.filter((review) => review.recommend);
       const recommendationRate = Math.round(
-        (recommendations.length / reviews.length) * 100
+        (recommendations.length / reviews.length) * 100,
       );
 
       // Update company document with new stats
@@ -288,12 +288,12 @@ export class ReviewService {
       const q = query(
         collection(db, REVIEWS_COLLECTION),
         where("companyId", "==", companyId),
-        where("status", "==", "approved")
+        where("status", "==", "approved"),
       );
 
       const querySnapshot = await getDocs(q);
       const reviews = querySnapshot.docs.map(
-        (doc) => doc.data() as ReviewDocument
+        (doc) => doc.data() as ReviewDocument,
       );
 
       if (reviews.length === 0) {
@@ -310,7 +310,7 @@ export class ReviewService {
 
       reviews.forEach((review) => {
         const rating = Math.round(
-          review.overallRating || 0
+          review.overallRating || 0,
         ) as keyof typeof ratingDistribution;
 
         if (rating >= 1 && rating <= 5) {
@@ -321,13 +321,13 @@ export class ReviewService {
       // Calculate recommendation rate using recommend field
       const recommendations = reviews.filter((review) => review.recommend);
       const recommendationRate = Math.round(
-        (recommendations.length / reviews.length) * 100
+        (recommendations.length / reviews.length) * 100,
       );
 
       // Calculate average rating using overallRating
       const totalRating = reviews.reduce(
         (sum, review) => sum + (review.overallRating || 0),
-        0
+        0,
       );
       const averageRating =
         Math.round((totalRating / reviews.length) * 10) / 10;

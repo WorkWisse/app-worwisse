@@ -43,12 +43,12 @@ export function GlobalLoader({ children }: GlobalLoaderProps) {
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-white/80 dark:bg-slate-900/80 backdrop-blur-sm">
           <div className="flex flex-col items-center gap-4">
             <Spinner
-              size="lg"
-              color="primary"
               classNames={{
                 circle1: "border-b-primary",
                 circle2: "border-b-primary",
               }}
+              color="primary"
+              size="lg"
             />
             <p className="text-sm text-slate-600 dark:text-slate-400 font-medium">
               Cargando...

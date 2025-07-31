@@ -28,7 +28,7 @@ const faqData: FAQItem[] = [
   {
     questionKey: "faq.items.addCompany.question",
     answerKey: "faq.items.addCompany.answer",
-  }
+  },
 ];
 
 export const LandingFAQ = () => {
@@ -39,7 +39,7 @@ export const LandingFAQ = () => {
     setOpenItems((prev) =>
       prev.includes(index)
         ? prev.filter((item) => item !== index)
-        : [...prev, index]
+        : [...prev, index],
     );
   };
 

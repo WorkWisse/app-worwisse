@@ -1,12 +1,14 @@
 import { Button } from "@heroui/button";
 import { Link } from "@heroui/link";
 import { Card, CardBody, CardHeader } from "@heroui/card";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTranslation } from "react-i18next";
 
-import { CompanyService, ReviewService } from "@/services";
-import { CompanyDocument, ReviewDocument } from "@/types";
+import { useFeaturedCompanies } from "@/hooks/useCompanies";
+import { useLatestReviews, ReviewWithCompany } from "@/hooks/useReviews";
+import { CompanySkeleton, ReviewSkeleton } from "@/components/skeletons";
+import { OptimizedImage } from "@/components/OptimizedImage";
 
 interface TopCompany {
   id: string;
@@ -19,26 +21,10 @@ interface TopCompany {
   rank: number;
 }
 
-interface LatestReview {
-  id: string;
-  companyId: string;
-  companyName: string;
-  companySlug: string;
-  companyLogoUrl: string;
-  companyIndustry: string;
-  role: string;
-  overallRating: number;
-  positiveAspects: string;
-  areasForImprovement: string;
-  creationDate: string;
-  recommend: boolean;
-  timeAgo: string;
-}
-
 // Helper function to calculate time ago
 const getTimeAgo = (
   creationDate: string,
-  t: (key: string, options?: { count: number }) => string
+  t: (key: string, options?: { count: number }) => string,
 ): string => {
   const now = new Date();
   const reviewDate = new Date(creationDate);
@@ -48,7 +34,7 @@ const getTimeAgo = (
   const reviewDay = new Date(
     reviewDate.getFullYear(),
     reviewDate.getMonth(),
-    reviewDate.getDate()
+    reviewDate.getDate(),
   );
 
   const diffInMs = today.getTime() - reviewDay.getTime();
@@ -114,133 +100,63 @@ const StarIcon = (props: IconProps) => (
 
 export const LandingMainContent = () => {
   const { t } = useTranslation();
-  // States for loading data from Firebase
-  const [featuredCompanies, setFeaturedCompanies] = useState<TopCompany[]>([]);
-  const [latestReviews, setLatestReviews] = useState<LatestReview[]>([]);
-  const [isLoadingCompanies, setIsLoadingCompanies] = useState(true);
-  const [isLoadingReviews, setIsLoadingReviews] = useState(true);
+
+  // Usar hooks optimizados con React Query
+  const { data: companiesData = [], isLoading: isLoadingCompanies } =
+    useFeaturedCompanies(5);
+  const { data: reviewsData = [], isLoading: isLoadingReviews } =
+    useLatestReviews(5);
 
   const [[currentReviewIndex, direction], setCurrentReviewState] = useState([
     0, 0,
   ]);
 
-  // Load featured companies from Firebase
-  useEffect(() => {
-    const loadFeaturedCompanies = async () => {
-      try {
-        setIsLoadingCompanies(true);
-        // Get companies sorted by rating, limited to 5
-        const companies = await CompanyService.getCompanies({
-          sortBy: "rating",
-          sortOrder: "desc",
-          limit: 5,
-        });
+  // Mapear datos de empresas para el formato esperado
+  const featuredCompanies: TopCompany[] = companiesData.map(
+    (company, index) => ({
+      id: company.id || "",
+      companyName: company.companyName || "",
+      logoUrl:
+        company.logoUrl ||
+        `https://ui-avatars.com/api/?name=${encodeURIComponent(company.companyName || "")}&background=0D8ABC&color=fff&size=80`,
+      rating: company.rating || 0,
+      reviewsCount: company.reviewsCount || 0,
+      industry: company.industry || "",
+      slug:
+        company.slug ||
+        company.companyName
+          ?.toLowerCase()
+          .replace(/[^a-z0-9]+/g, "-")
+          .replace(/^-+|-+$/g, "") ||
+        "",
+      rank: index + 1,
+    }),
+  );
 
-        const mappedCompanies: TopCompany[] = companies.map(
-          (company: CompanyDocument, index: number) => ({
-            id: company.id || "",
-            companyName: company.companyName || "",
-            logoUrl: company.logoUrl,
-            rating: company.rating || 0,
-            reviewsCount: company.reviewsCount || 0,
-            industry: company.industry || "",
-            slug:
-              company.slug ||
-              company.companyName
-                ?.toLowerCase()
-                .replace(/[^a-z0-9]+/g, "-")
-                .replace(/^-+|-+$/g, "") ||
-              "",
-            rank: index + 1,
-          })
-        );
-
-        setFeaturedCompanies(mappedCompanies);
-      } catch (error) {
-        // eslint-disable-next-line no-console
-        console.error("Error loading featured companies:", error);
-        setFeaturedCompanies([]);
-      } finally {
-        setIsLoadingCompanies(false);
-      }
-    };
-
-    loadFeaturedCompanies();
-  }, []);
-
-  // Load latest reviews from Firebase
-  useEffect(() => {
-    const loadLatestReviews = async () => {
-      try {
-        setIsLoadingReviews(true);
-        const reviews = await ReviewService.getLatestReviews(5);
-
-        // Get company data for each review to get the real logo
-        const mappedReviews: LatestReview[] = await Promise.all(
-          reviews.map(async (review: ReviewDocument) => {
-            let companyLogoUrl = `https://ui-avatars.com/api/?name=${encodeURIComponent(review.companyName || "")}&background=0D8ABC&color=fff&size=80`;
-            let companyIndustry = "Tecnología";
-            let companySlug =
-              review.companyName
-                ?.toLowerCase()
-                .replace(/[^a-z0-9]+/g, "-")
-                .replace(/^-+|-+$/g, "") || "";
-
-            // Try to get company data if we have a companyId
-            if (review.companyId) {
-              try {
-                const companyData = await CompanyService.getCompanyById(
-                  review.companyId
-                );
-
-                if (companyData) {
-                  companyLogoUrl = companyData.logoUrl || companyLogoUrl;
-                  companyIndustry = companyData.industry || companyIndustry;
-                  companySlug = companyData.slug || companySlug;
-                }
-              } catch (companyError) {
-                // eslint-disable-next-line no-console
-                console.warn(
-                  `Could not fetch company data for review ${review.id}:`,
-                  companyError
-                );
-                // Keep the fallback values
-              }
-            }
-
-            return {
-              id: review.id || "",
-              companyId: review.companyId || "",
-              companyName: review.companyName || "",
-              companySlug,
-              companyLogoUrl,
-              companyIndustry,
-              role: review.role || "",
-              overallRating: review.overallRating || 0,
-              positiveAspects: review.positiveAspects || "",
-              areasForImprovement: review.areasForImprovement || "",
-              creationDate: review.creationDate || new Date().toISOString(),
-              recommend: review.recommend || false,
-              timeAgo: getTimeAgo(
-                review.creationDate || new Date().toISOString(),
-                t
-              ),
-            };
-          })
-        );
-
-        setLatestReviews(mappedReviews);
-      } catch (error) {
-        // eslint-disable-next-line no-console
-        console.error("Error loading latest reviews:", error);
-        setLatestReviews([]);
-      } finally {
-        setIsLoadingReviews(false);
-      }
-    };
-
-    loadLatestReviews();
-  }, []);
+  // Mapear datos de reseñas con información de empresa optimizada
+  const latestReviews = reviewsData.map((review: ReviewWithCompany) => ({
+    id: review.id || "",
+    companyId: review.companyId || "",
+    companyName: review.companyName || "",
+    companySlug:
+      review.company?.slug ||
+      review.companyName
+        ?.toLowerCase()
+        .replace(/[^a-z0-9]+/g, "-")
+        .replace(/^-+|-+$/g, "") ||
+      "",
+    companyLogoUrl:
+      review.company?.logoUrl ||
+      `https://ui-avatars.com/api/?name=${encodeURIComponent(review.companyName || "")}&background=0D8ABC&color=fff&size=80`,
+    companyIndustry: review.company?.industry || "Tecnología",
+    role: review.role || "",
+    overallRating: review.overallRating || 0,
+    positiveAspects: review.positiveAspects || "",
+    areasForImprovement: review.areasForImprovement || "",
+    creationDate: review.creationDate || new Date().toISOString(),
+    recommend: review.recommend || false,
+    timeAgo: getTimeAgo(review.creationDate || new Date().toISOString(), t),
+  }));
 
   const paginate = (newDirection: number) => {
     let newIndex = currentReviewIndex + newDirection;
@@ -292,26 +208,7 @@ export const LandingMainContent = () => {
               </Link>
             </div>
             {isLoadingCompanies ? (
-              // Loading state for companies
-              Array.from({ length: 5 }).map((_, index) => (
-                <Card
-                  key={`loading-${index}`}
-                  className="shadow-lg bg-white dark:bg-slate-800 rounded-xl overflow-hidden w-full animate-pulse"
-                >
-                  <CardBody className="p-5">
-                    <div className="flex items-center space-x-4">
-                      <span className="text-xl font-semibold text-slate-400 dark:text-slate-500 w-5 text-center">
-                        {index + 1}.
-                      </span>
-                      <div className="h-10 w-10 rounded-full bg-slate-300 dark:bg-slate-600 flex-shrink-0" />
-                      <div className="flex-grow min-w-0">
-                        <div className="h-4 bg-slate-300 dark:bg-slate-600 rounded w-3/4 mb-2" />
-                        <div className="h-3 bg-slate-300 dark:bg-slate-600 rounded w-1/2" />
-                      </div>
-                    </div>
-                  </CardBody>
-                </Card>
-              ))
+              <CompanySkeleton count={5} showRank={true} />
             ) : featuredCompanies.length === 0 ? (
               <p className="text-slate-500 dark:text-slate-400 text-center py-4">
                 {t("landing.featuredCompanies.noCompanies")}
@@ -330,10 +227,13 @@ export const LandingMainContent = () => {
                       <span className="text-xl font-semibold text-slate-400 dark:text-slate-500 w-5 text-center transition-colors duration-200">
                         {company.rank}.
                       </span>
-                      <img
+                      <OptimizedImage
                         alt={`${company.companyName} logo`}
                         className="h-10 w-10 rounded-full object-cover flex-shrink-0"
+                        height={40}
+                        lazy={true}
                         src={company.logoUrl}
+                        width={40}
                       />
                       <div className="flex-grow min-w-0">
                         <h3
@@ -388,39 +288,7 @@ export const LandingMainContent = () => {
             </div>
             <div className="relative min-h-[500px] overflow-x-hidden">
               {isLoadingReviews ? (
-                // Loading state for reviews
-                <div className="w-full">
-                  <Card className="shadow-lg bg-white dark:bg-slate-800 rounded-xl overflow-hidden animate-pulse">
-                    <CardHeader className="p-5 pb-3 border-b border-slate-100 dark:border-slate-700">
-                      <div className="flex items-start justify-between">
-                        <div className="flex items-center space-x-4">
-                          <div className="h-12 w-12 rounded-full bg-slate-300 dark:bg-slate-600 flex-shrink-0" />
-                          <div>
-                            <div className="h-4 bg-slate-300 dark:bg-slate-600 rounded w-32 mb-2" />
-                            <div className="h-3 bg-slate-300 dark:bg-slate-600 rounded w-24" />
-                          </div>
-                        </div>
-                        <div className="text-right flex-shrink-0">
-                          <div className="h-4 bg-slate-300 dark:bg-slate-600 rounded w-16 mb-1" />
-                          <div className="h-3 bg-slate-300 dark:bg-slate-600 rounded w-12" />
-                        </div>
-                      </div>
-                    </CardHeader>
-                    <CardBody className="p-5 space-y-3">
-                      <div className="h-3 bg-slate-300 dark:bg-slate-600 rounded w-24" />
-                      <div className="space-y-2">
-                        <div className="h-3 bg-slate-300 dark:bg-slate-600 rounded w-16" />
-                        <div className="h-3 bg-slate-300 dark:bg-slate-600 rounded w-full" />
-                        <div className="h-3 bg-slate-300 dark:bg-slate-600 rounded w-3/4" />
-                      </div>
-                      <div className="space-y-2">
-                        <div className="h-3 bg-slate-300 dark:bg-slate-600 rounded w-20" />
-                        <div className="h-3 bg-slate-300 dark:bg-slate-600 rounded w-full" />
-                        <div className="h-3 bg-slate-300 dark:bg-slate-600 rounded w-2/3" />
-                      </div>
-                    </CardBody>
-                  </Card>
-                </div>
+                <ReviewSkeleton />
               ) : (
                 <AnimatePresence custom={direction} initial={false} mode="wait">
                   {currentReview && (
@@ -442,10 +310,13 @@ export const LandingMainContent = () => {
                         <CardHeader className="p-5 pb-3 border-b border-slate-100 dark:border-slate-700 transition-colors duration-200">
                           <div className="flex items-start justify-between w-full">
                             <div className="flex items-center space-x-4 flex-1">
-                              <img
+                              <OptimizedImage
                                 alt={`${currentReview.companyName} logo`}
                                 className="h-12 w-12 rounded-full object-cover flex-shrink-0"
+                                height={48}
+                                lazy={false}
                                 src={currentReview.companyLogoUrl}
+                                width={48}
                               />
                               <div className="min-w-0">
                                 <Link

@@ -127,7 +127,7 @@ export const LandingHeader = () => {
                   variant="header"
                   onSubmit={(query) => {
                     router.push(
-                      `/companies?search=${encodeURIComponent(query)}`
+                      `/companies?search=${encodeURIComponent(query)}`,
                     );
                   }}
                   onSuggestionSelect={(suggestion) => {
@@ -161,15 +161,15 @@ export const LandingHeader = () => {
                   </Link>
                 </>
               )}
-              
+
               {/* Navigation Dropdown - Only show when search is visible */}
               {shouldShowSearch && (
                 <Dropdown>
                   <DropdownTrigger>
                     <Button
-                      variant="light"
-                      className="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-sky-600 dark:hover:text-sky-400 transition-colors duration-300 gap-1"
                       aria-label="Menú de navegación"
+                      className="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-sky-600 dark:hover:text-sky-400 transition-colors duration-300 gap-1"
+                      variant="light"
                     >
                       <svg
                         className="w-5 h-5"
@@ -240,7 +240,7 @@ export const LandingHeader = () => {
                   </DropdownMenu>
                 </Dropdown>
               )}
-              
+
               <ThemeToggle />
               <LanguageSelector />
             </nav>
@@ -292,7 +292,7 @@ export const LandingHeader = () => {
                       variant="header"
                       onSubmit={(query) => {
                         router.push(
-                          `/companies?search=${encodeURIComponent(query)}`
+                          `/companies?search=${encodeURIComponent(query)}`,
                         );
                         closeMenu();
                       }}

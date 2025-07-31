@@ -115,8 +115,6 @@ export default function AboutHistory() {
             </div>
           </div>
         </div>
-
-
       </div>
     </section>
   );

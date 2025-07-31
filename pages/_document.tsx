@@ -8,32 +8,46 @@ export default function Document() {
     <Html lang="en">
       <Head>
         {/* Preconnect para mejorar performance */}
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link href="https://fonts.googleapis.com" rel="preconnect" />
         <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
           crossOrigin="anonymous"
+          href="https://fonts.gstatic.com"
+          rel="preconnect"
         />
-        
+
         {/* PWA y Mobile */}
-        <link rel="manifest" href="/site.webmanifest" />
-        <meta name="mobile-web-app-capable" content="yes" />
-        <meta name="apple-mobile-web-app-capable" content="yes" />
-        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-        <meta name="apple-mobile-web-app-title" content="WorkWisse" />
-        
+        <link href="/site.webmanifest" rel="manifest" />
+        <meta content="yes" name="mobile-web-app-capable" />
+        <meta content="yes" name="apple-mobile-web-app-capable" />
+        <meta content="default" name="apple-mobile-web-app-status-bar-style" />
+        <meta content="WorkWisse" name="apple-mobile-web-app-title" />
+
         {/* Favicons */}
-        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-        <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#0ea5e9" />
-        <meta name="msapplication-TileColor" content="#0ea5e9" />
-        <meta name="theme-color" content="#0ea5e9" />
-        
+        <link
+          href="/apple-touch-icon.png"
+          rel="apple-touch-icon"
+          sizes="180x180"
+        />
+        <link
+          href="/favicon-32x32.png"
+          rel="icon"
+          sizes="32x32"
+          type="image/png"
+        />
+        <link
+          href="/favicon-16x16.png"
+          rel="icon"
+          sizes="16x16"
+          type="image/png"
+        />
+        <link color="#0ea5e9" href="/safari-pinned-tab.svg" rel="mask-icon" />
+        <meta content="#0ea5e9" name="msapplication-TileColor" />
+        <meta content="#0ea5e9" name="theme-color" />
+
         {/* DNS Prefetch para recursos externos */}
-        <link rel="dns-prefetch" href="//fonts.googleapis.com" />
-        <link rel="dns-prefetch" href="//fonts.gstatic.com" />
-        
+        <link href="//fonts.googleapis.com" rel="dns-prefetch" />
+        <link href="//fonts.gstatic.com" rel="dns-prefetch" />
+
         {/* Turbopack: https://turbo.build/pack/docs/features/css#fonts */}
         {/* <link
           href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap"
@@ -43,7 +57,7 @@ export default function Document() {
       <body
         className={clsx(
           "min-h-screen bg-background font-sans antialiased",
-          fontSans.variable
+          fontSans.variable,
         )}
       >
         <Main />

@@ -1,13 +1,14 @@
+import { Head } from "./head";
+
 import { LandingHeader } from "@/modules/core/components/LandingHeader";
 import { LandingFooter } from "@/modules/core/components/LandingFooter";
-import { Head } from "./head";
 
 interface SEOProps {
   title?: string;
   description?: string;
   keywords?: string;
   ogImage?: string;
-  ogType?: 'website' | 'article' | 'profile';
+  ogType?: "website" | "article" | "profile";
   canonical?: string;
   noindex?: boolean;
   nofollow?: boolean;

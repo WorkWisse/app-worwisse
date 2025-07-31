@@ -1,4 +1,3 @@
-import { Button } from "@heroui/button";
 import { Link } from "@heroui/link";
 
 // Using the simple Card component structure defined earlier
@@ -95,7 +94,6 @@ export const LandingLastReviews = () => {
           <h2 className="text-3xl font-bold text-purple-600">
             Últimas Calificaciones
           </h2>
-
         </div>
         {/* This would be part of a carousel/slider in a real implementation */}
         {lastReviewsData.map((review) => (

@@ -41,6 +41,7 @@ export const SearchBar = ({
     // Don't search if we just selected a suggestion
     if (justSelectedSuggestion.current) {
       justSelectedSuggestion.current = false;
+
       return;
     }
 
@@ -51,7 +52,7 @@ export const SearchBar = ({
         try {
           const results = await SearchService.getSearchSuggestions(
             searchQuery,
-            5
+            5,
           );
 
           setSuggestions(results);
@@ -172,7 +173,9 @@ export const SearchBar = ({
             fullWidth
             aria-label="Buscar empresa"
             className={`${isHero ? "shadow-lg hover:shadow-xl" : "shadow-lg hover:shadow-xl"} transition-all duration-500 rounded-lg ${
-              isHero ? "transform hover:scale-[1.02]" : "flex-1 transform hover:scale-[1.01]"
+              isHero
+                ? "transform hover:scale-[1.02]"
+                : "flex-1 transform hover:scale-[1.01]"
             }`}
             classNames={{
               inputWrapper: isHero
@@ -185,7 +188,9 @@ export const SearchBar = ({
                 "dark:placeholder:text-slate-500",
                 "caret-sky-500", // Custom caret color
                 isHero ? "text-base font-medium" : "text-sm font-medium",
-                isHero ? "focus:placeholder:text-sky-400" : "focus:placeholder:text-sky-400",
+                isHero
+                  ? "focus:placeholder:text-sky-400"
+                  : "focus:placeholder:text-sky-400",
               ],
             }}
             name="search"

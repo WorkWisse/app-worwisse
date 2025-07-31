@@ -1,6 +1,7 @@
 import { Button } from "@heroui/button";
 import { useRouter } from "next/router";
 import { useTranslation } from "react-i18next";
+
 import { CompanyDocument } from "@/types";
 import { renderStars } from "@/modules/core/utils/stars";
 
@@ -59,7 +60,8 @@ export default function CompanyHeader({
                 <span className="font-medium">{mappedCompany.industry}</span>
                 <span className="text-slate-400 hidden sm:inline">•</span>
                 <span className="truncate">
-                  {mappedCompany.location.city}, {mappedCompany.location.country}
+                  {mappedCompany.location.city},{" "}
+                  {mappedCompany.location.country}
                 </span>
                 {mappedCompany.website && (
                   <>
@@ -111,4 +113,4 @@ export default function CompanyHeader({
       </div>
     </section>
   );
-} 
+}

@@ -75,7 +75,7 @@ export default function TermsContent() {
                               </span>
                               <span>{item}</span>
                             </li>
-                          )
+                          ),
                         )}
                       </ul>
                     ) : (

@@ -7,7 +7,10 @@ import DefaultLayout from "@/layouts/default";
 import { SearchBar } from "@/modules/core/components";
 import { CompanyDocument } from "@/types";
 import { SearchService } from "@/services/searchService";
-import { getSearchPageStructuredData, getBreadcrumbStructuredData } from "@/modules/core/utils/structuredData";
+import {
+  getSearchPageStructuredData,
+  getBreadcrumbStructuredData,
+} from "@/modules/core/utils/structuredData";
 
 interface SearchPageProps {
   initialResults?: CompanyDocument[];
@@ -52,25 +55,26 @@ export default function SearchPage({
 
   // SEO para página de búsqueda
   const breadcrumbs = [
-    { name: 'Inicio', url: 'https://workwisse.com' },
-    { name: 'Buscar Empresas', url: 'https://workwisse.com/search' }
+    { name: "Inicio", url: "https://workwisse.com" },
+    { name: "Buscar Empresas", url: "https://workwisse.com/search" },
   ];
 
   const seoProps = {
-    title: initialQuery 
+    title: initialQuery
       ? `Resultados para "${initialQuery}" - Buscar Empresas`
       : "Buscar Empresas - Opiniones y Reseñas Laborales",
     description: initialQuery
       ? `Encuentra información sobre empresas relacionadas con "${initialQuery}". Opiniones de empleados, salarios y ambiente laboral.`
       : "Busca y encuentra información detallada sobre empresas. Accede a opiniones verificadas de empleados, salarios reales y datos sobre ambiente laboral.",
-    keywords: "buscar empresas, opiniones trabajo, reseñas empleados, salarios empresas, ambiente laboral, empleos",
-    canonical: initialQuery 
+    keywords:
+      "buscar empresas, opiniones trabajo, reseñas empleados, salarios empresas, ambiente laboral, empleos",
+    canonical: initialQuery
       ? `https://workwisse.com/search?query=${encodeURIComponent(initialQuery)}`
       : "https://workwisse.com/search",
     structuredData: [
       getSearchPageStructuredData(),
-      getBreadcrumbStructuredData(breadcrumbs)
-    ]
+      getBreadcrumbStructuredData(breadcrumbs),
+    ],
   };
 
   return (
@@ -85,7 +89,7 @@ export default function SearchPage({
             <p className="text-lg text-slate-600 dark:text-slate-300 mb-8">
               {t(
                 "search.description",
-                "Encuentra información y reseñas de empresas"
+                "Encuentra información y reseñas de empresas",
               )}
             </p>
 
@@ -114,7 +118,7 @@ export default function SearchPage({
                 <p className="text-slate-600 dark:text-slate-300">
                   {t(
                     "search.noResults",
-                    "No se encontraron resultados para tu búsqueda"
+                    "No se encontraron resultados para tu búsqueda",
                   )}
                 </p>
               </div>

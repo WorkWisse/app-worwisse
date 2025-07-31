@@ -114,7 +114,7 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
     }
 
     const totalReviewsCount = await ReviewService.getCompanyReviewsCount(
-      company.id!
+      company.id!,
     );
 
     // No pasamos lastDoc serializado, lo manejamos desde el cliente

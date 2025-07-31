@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import { Trans, useTranslation } from "react-i18next";
 import Link from "next/link";
 import { Card, CardBody } from "@heroui/card";
-import { Button } from "@heroui/button";
 
 import { LandingHeader } from "@/modules/core/components";
 import { LandingFooter } from "@/modules/core/components/LandingFooter";
@@ -77,7 +76,7 @@ export default function RankingsPage() {
             try {
               const reviewsData = await ReviewService.getCompanyReviews(
                 company.id || "",
-                50
+                50,
               );
               const reviews = reviewsData.reviews;
 
@@ -110,31 +109,31 @@ export default function RankingsPage() {
                     professionalGrowth: 0,
                     workLifeBalance: 0,
                     workInclusion: 0,
-                  }
+                  },
                 );
 
                 reviewAverages = {
                   workEnvironment: Number(
-                    (totals.workEnvironment / reviews.length).toFixed(1)
+                    (totals.workEnvironment / reviews.length).toFixed(1),
                   ),
                   salary: Number((totals.salary / reviews.length).toFixed(1)),
                   benefits: Number(
-                    (totals.benefits / reviews.length).toFixed(1)
+                    (totals.benefits / reviews.length).toFixed(1),
                   ),
                   companyCulture: Number(
-                    (totals.companyCulture / reviews.length).toFixed(1)
+                    (totals.companyCulture / reviews.length).toFixed(1),
                   ),
                   internalCommunication: Number(
-                    (totals.internalCommunication / reviews.length).toFixed(1)
+                    (totals.internalCommunication / reviews.length).toFixed(1),
                   ),
                   professionalGrowth: Number(
-                    (totals.professionalGrowth / reviews.length).toFixed(1)
+                    (totals.professionalGrowth / reviews.length).toFixed(1),
                   ),
                   workLifeBalance: Number(
-                    (totals.workLifeBalance / reviews.length).toFixed(1)
+                    (totals.workLifeBalance / reviews.length).toFixed(1),
                   ),
                   workInclusion: Number(
-                    (totals.workInclusion / reviews.length).toFixed(1)
+                    (totals.workInclusion / reviews.length).toFixed(1),
                   ),
                 };
               }
@@ -142,7 +141,7 @@ export default function RankingsPage() {
               // eslint-disable-next-line no-console
               console.warn(
                 `Error fetching reviews for company ${company.id}:`,
-                reviewError
+                reviewError,
               );
             }
 
@@ -163,7 +162,7 @@ export default function RankingsPage() {
               rank: index + 1,
               ...reviewAverages,
             };
-          })
+          }),
         );
 
         setCompanies(mappedCompanies);
