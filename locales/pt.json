@@ -1,779 +1,784 @@
 {
+  "hero": {
+    "title": "Conheça a verdade sobre seu <1>próximo trabalho</1> antes de se candidatar",
+    "description": "Acesse opiniões reais de funcionários. As empresas não são mais escolhidas apenas pelo salário, pois as pessoas buscam propósito, um bom ambiente, inclusão e oportunidades reais de crescimento. Tome decisões profissionais bem informadas com informações que realmente importam.",
+    "searchPlaceholder": "Harrington, Carrefour, etc...",
+    "searchButton": "Buscar",
+    "ratingsBreakdown": "📊 Avaliações detalhadas",
+    "ratingsBreakdownDesc": "Média das avaliações dos funcionários",
+    "ratingWorkEnvironment": "Ambiente de trabalho",
+    "ratingWorkEnvironmentShort": "Ambiente",
+    "ratingCompensation": "Compensação",
+    "ratingCompensationShort": "Compensação",
+    "ratingBenefits": "Benefícios",
+    "ratingBenefitsShort": "Benefícios",
+    "ratingCulture": "Cultura empresarial",
+    "ratingCultureShort": "Cultura",
+    "ratingCommunication": "Comunicação",
+    "ratingCommunicationShort": "Comunicação",
+    "ratingCareerGrowth": "Crescimento profissional",
+    "ratingCareerGrowthShort": "Crescimento",
+    "ratingWorkLifeBalance": "Equilíbrio vida-trabalho",
+    "ratingWorkLifeBalanceShort": "Equilíbrio",
+    "ratingInclusion": "Inclusão no trabalho",
+    "ratingInclusionShort": "Inclusão",
+    "ctaFeatured": "Ver empresas em destaque",
+    "trustBadges": {
+      "free": "Grátis",
+      "verified": "Opiniões verificadas",
+      "anonymous": "100% anônimo"
+    },
+    "notifications": {
+      "success": "Maria encontrou um trabalho que ela gosta",
+      "timeAgo": "2 horas atrás",
+      "rating": "4.9/5 estrelas",
+      "reviews": "+2.500 opiniões"
+    }
+  },
+  "about": {
     "hero": {
-        "title": "Conheça a verdade sobre seu <1>próximo trabalho</1> antes de se candidatar",
-        "description": "Acesse opiniões reais de funcionários. As empresas não são mais escolhidas apenas pelo salário, pois as pessoas buscam propósito, um bom ambiente, inclusão e oportunidades reais de crescimento. Tome decisões profissionais bem informadas com informações que realmente importam.",
-        "searchPlaceholder": "Harrington, Carrefour, etc...",
-        "searchButton": "Buscar",
-        "ratingsBreakdown": "📊 Avaliações detalhadas",
-        "ratingsBreakdownDesc": "Média das avaliações dos funcionários",
-        "ratingWorkEnvironment": "Ambiente de trabalho",
-        "ratingWorkEnvironmentShort": "Ambiente",
-        "ratingCompensation": "Compensação",
-        "ratingCompensationShort": "Compensação",
-        "ratingBenefits": "Benefícios",
-        "ratingBenefitsShort": "Benefícios",
-        "ratingCulture": "Cultura empresarial",
-        "ratingCultureShort": "Cultura",
-        "ratingCommunication": "Comunicação",
-        "ratingCommunicationShort": "Comunicação",
-        "ratingCareerGrowth": "Crescimento profissional",
-        "ratingCareerGrowthShort": "Crescimento",
-        "ratingWorkLifeBalance": "Equilíbrio vida-trabalho",
-        "ratingWorkLifeBalanceShort": "Equilíbrio",
-        "ratingInclusion": "Inclusão no trabalho",
-        "ratingInclusionShort": "Inclusão",
-        "ctaFeatured": "Ver empresas em destaque",
-        "trustBadges": {
-            "free": "Grátis",
-            "verified": "Opiniões verificadas",
-            "anonymous": "100% anônimo"
-        },
-        "notifications": {
-            "success": "Maria encontrou um trabalho que ela gosta",
-            "timeAgo": "2 horas atrás",
-            "rating": "4.9/5 estrelas",
-            "reviews": "+2.500 opiniões"
-        }
+      "title": "Conectamos <1>trabalhadores</1> com <2>bons empregos</2>",
+      "description": "Workwisse é uma plataforma onde os trabalhadores compartilham suas experiências de trabalho para ajudar outros a tomar decisões informadas e permitir que as empresas melhorem com base nessas opiniões.",
+      "ctaTeam": "Conheça nossa equipe",
+      "ctaMission": "Nossa missão",
+      "ctaHistory": "Nossa história"
     },
-    "about": {
-        "hero": {
-            "title": "Conectamos <1>trabalhadores</1> com <2>bons empregos</2>",
-            "description": "Workwisse é uma plataforma onde os trabalhadores compartilham suas experiências de trabalho para ajudar outros a tomar decisões informadas e permitir que as empresas melhorem com base nessas opiniões.",
-            "ctaTeam": "Conheça nossa equipe",
-            "ctaMission": "Nossa missão",
-            "ctaHistory": "Nossa história"
+    "mission": {
+      "title": "Nossa <1>missão</1>",
+      "description1": "Dar voz aos trabalhadores para construir um mundo do trabalho mais justo, onde as empresas sejam espaços de crescimento, respeito e propósito. Acreditamos que a informação real empodera e que toda pessoa merece um lugar onde possa se desenvolver plenamente.",
+      "description2": "Acreditamos que toda pessoa merece trabalhar em um lugar onde possa crescer, contribuir e ser tratada com dignidade.",
+      "values": {
+        "transparency": {
+          "title": "Transparência",
+          "description": "Acreditamos em mostrar informações claras e honestas para que você possa tomar as melhores decisões profissionais."
         },
-        "mission": {
-            "title": "Nossa <1>missão</1>",
-            "description1": "Dar voz aos trabalhadores para construir um mundo do trabalho mais justo, onde as empresas sejam espaços de crescimento, respeito e propósito. Acreditamos que a informação real empodera e que toda pessoa merece um lugar onde possa se desenvolver plenamente.",
-            "description2": "Acreditamos que toda pessoa merece trabalhar em um lugar onde possa crescer, contribuir e ser tratada com dignidade.",
-            "values": {
-                "transparency": {
-                    "title": "Transparência",
-                    "description": "Acreditamos em mostrar informações claras e honestas para que você possa tomar as melhores decisões profissionais."
-                },
-                "simplicity": {
-                    "title": "Simplicidade",
-                    "description": "Fazemos com que seja fácil encontrar e entender as informações que você precisa sobre qualquer empresa."
-                },
-                "community": {
-                    "title": "Comunidade",
-                    "description": "Construímos uma comunidade onde trabalhadores compartilham suas experiências e se ajudam mutuamente."
-                },
-                "honesty": {
-                    "title": "Honestidade",
-                    "description": "Nos comprometemos a mostrar a realidade de cada empresa, sem filtros ou informações manipuladas."
-                }
-            }
+        "simplicity": {
+          "title": "Simplicidade",
+          "description": "Fazemos com que seja fácil encontrar e entender as informações que você precisa sobre qualquer empresa."
         },
-        "team": {
-            "title": "Conheça nossa <1>equipe</1>",
-            "description": "Somos um grupo de pessoas que também trabalhamos e entendemos o quanto é importante encontrar um bom lugar para se desenvolver profissionalmente.",
-            "members": {
-                "maria": {
-                    "name": "María González",
-                    "role": "Fundadora",
-                    "bio": "Trabalhou muitos anos em recursos humanos e se cansou de ver como as informações sobre empresas não eram transparentes. Decidiu criar o WorkWisse para mudar isso."
-                },
-                "carlos": {
-                    "name": "Carlos Rodríguez",
-                    "role": "Responsável pela Tecnologia",
-                    "bio": "Cuida para que a plataforma funcione bem e seja fácil de usar. Acredita que a tecnologia deve estar a serviço das pessoas."
-                },
-                "ana": {
-                    "name": "Ana Martínez",
-                    "role": "Responsável pela Comunidade",
-                    "bio": "Cuida para que nossa comunidade seja um lugar seguro onde os trabalhadores possam compartilhar suas experiências sem medo."
-                },
-                "diego": {
-                    "name": "Diego López",
-                    "role": "Responsável pela Informação",
-                    "bio": "Garante que todas as informações que mostramos sejam precisas e úteis para ajudar você a tomar melhores decisões."
-                }
-            }
+        "community": {
+          "title": "Comunidade",
+          "description": "Construímos uma comunidade onde trabalhadores compartilham suas experiências e se ajudam mutuamente."
         },
-        "stats": {
-            "title": "O que conseguimos <1>juntos</1>",
-            "description": "Estes números mostram como estamos ajudando os trabalhadores a ter mais informações antes de escolher onde trabalhar.",
-            "items": {
-                "workers": {
-                    "number": "50K+",
-                    "label": "Trabalhadores que nos usam",
-                    "description": "Pessoas que já usam o WorkWisse para conhecer a verdade sobre as empresas"
-                },
-                "companies": {
-                    "number": "2.500+",
-                    "label": "Empresas avaliadas",
-                    "description": "Empresas com opiniões reais de trabalhadores como você"
-                },
-                "satisfaction": {
-                    "number": "95%",
-                    "label": "Pessoas satisfeitas",
-                    "description": "De quem usa o WorkWisse recomendam para outros trabalhadores"
-                },
-                "availability": {
-                    "number": "24/7",
-                    "label": "Sempre disponível",
-                    "description": "Você pode consultar informações sobre empresas quando precisar"
-                }
-            }
-        },
-        "history": {
-            "title": "Nossa <1>história</1>",
-            "description": "Assim tudo começou e como chegamos até aqui, sempre pensando em facilitar a vida dos trabalhadores.",
-            "personal": {
-                "question": "Quando, como e por que nasceu o WorkWisse?",
-                "story": "Em 16 de janeiro de 2023, toquei o fundo do poço. Me sentia vazio. Sem propósito. Não sabia para que fazia o que fazia. Então escrevi para uma das pessoas mais generosas e sábias que conheço. Pedi um conselho. Ele não hesitou. Respondeu na hora e me convidou para sua casa. Me escutou uma hora inteira sem me interromper. E quando terminei, soltou uma frase que me abalou:",
-                "quote": "\"Pense no que você mais gosta de fazer, no que sabe fazer melhor, e encontre algo que una esses pontos.\"",
-                "beginning": "Ali começou tudo.",
-                "background": "Sempre trabalhei em vendas. Não fui o melhor, mas havia algo que eu fazia muito bem: ensinar. Ajudar outros a melhorar. Mostrar como fazer seu trabalho com orgulho, com sentido.",
-                "teachingPassion": "ensinar",
-                "frustration": "Sempre me irritou ver como as empresas dizem que \"as pessoas são seu ativo mais importante\" enquanto as deixam por último na fila de prioridades.",
-                "priorityContrast": "Primeiro os sistemas, os logos, as campanhas, os escritórios bonitos. As pessoas... depois.",
-                "realization": "E um dia me dei conta: os trabalhadores não têm voz.",
-                "problem": "Ninguém os escuta. Ninguém sabe o que realmente acontece dentro das empresas. E se você sabe, sabe porque teve que viver isso.",
-                "reflection": "Então me perguntei:",
-                "mainQuestion": "Como pode existir milhares de páginas onde as pessoas deixam opiniões depois de ficar três noites em um hotel, mas ninguém conta como foi trabalhar três anos em uma empresa?",
-                "change": "Isso tinha que mudar.",
-                "creation": "Então reuni três jovens brilhantes, especialistas em desenvolvimento, contei minha ideia... e nasceu o WorkWisse.",
-                "mission": "Uma plataforma feita com alma, com história, e com a certeza de que contar o que vivemos no trabalho pode ajudar milhares de pessoas a tomar decisões mais humanas, mais informadas e mais justas."
-            },
-            "timeline": {
-                "2020": {
-                    "title": "A ideia que mudou tudo",
-                    "description": "Percebemos que os trabalhadores precisavam de informações reais sobre as empresas, especialmente quando tudo mudou com a pandemia."
-                },
-                "2021": {
-                    "title": "Primeiros passos",
-                    "description": "Lançamos o WorkWisse com informações de 100 empresas e 1.000 trabalhadores que se animaram a compartilhar suas experiências."
-                },
-                "2022": {
-                    "title": "Crescemos juntos",
-                    "description": "Chegamos a 5 países da América Latina e já éramos 10.000 trabalhadores se ajudando."
-                },
-                "2023": {
-                    "title": "Melhoramos a experiência",
-                    "description": "Usamos tecnologia para que seja mais fácil encontrar as informações que você precisa sobre qualquer empresa."
-                },
-                "2024": {
-                    "title": "Somos comunidade",
-                    "description": "Já somos mais de 50.000 trabalhadores compartilhando informações reais para nos ajudar a escolher melhor onde trabalhar."
-                }
-            },
-            "future": {
-                "title": "O que vem por aí",
-                "description": "Continuamos trabalhando para que seja cada vez mais fácil conhecer a verdade sobre as empresas. Queremos que todos os trabalhadores possam tomar melhores decisões com informações reais e honestas.",
-                "tags": {
-                    "countries": "Mais países",
-                    "experience": "Melhor experiência",
-                    "information": "Mais informações úteis",
-                    "partnerships": "Novas parcerias"
-                }
-            }
-        },
-        "cta": {
-            "title": "Quer tomar melhores <1>decisões profissionais</1>?",
-            "description": "A mudança começa com uma decisão informada. Descubra o que outros já estão fazendo para transformar o futuro profissional.",
-            "primaryButton": "Começar grátis",
-            "secondaryButton": "Ver empresas",
-            "benefits": {
-                "improve": {
-                    "title": "Melhore seu trabalho",
-                    "description": "Encontre locais de trabalho que realmente convém para você"
-                },
-                "connect": {
-                    "title": "Conecte-se com outros",
-                    "description": "Faça parte de uma comunidade de trabalhadores que se ajudam"
-                },
-                "information": {
-                    "title": "Informação real",
-                    "description": "Acesse opiniões verdadeiras sobre empresas e trabalhos"
-                }
-            }
+        "honesty": {
+          "title": "Honestidade",
+          "description": "Nos comprometemos a mostrar a realidade de cada empresa, sem filtros ou informações manipuladas."
         }
+      }
     },
-    "features": {
-        "title": "Descubra o que ninguém te conta <1>antes de aceitar um trabalho</1>",
-        "description": "As informações mais valiosas sobre uma empresa não estão no site. Estão com os funcionários. A Workwisse te mostra. Acesse experiências reais e rankings honestos. A nova forma de escolher um trabalho.",
-        "items": {
-            "reviews": {
-                "title": "Opiniões Verificadas",
-                "description": "Comentários autênticos de funcionários que realmente trabalharam lá",
-                "benefit": "Informação real e confiável"
-            },
-            "data": {
-                "title": "Dados Reais",
-                "description": "Informações sobre salários, benefícios e ambiente de trabalho",
-                "benefit": "Decisões baseadas em fatos"
-            },
-            "rankings": {
-                "title": "Melhores Empregadores",
-                "description": "Conheça quais são as melhores empresas para trabalhar",
-                "benefit": "Trabalhe nos melhores lugares"
-            }
+    "team": {
+      "title": "Conheça nossa <1>equipe</1>",
+      "description": "Somos um grupo de pessoas que também trabalhamos e entendemos o quanto é importante encontrar um bom lugar para se desenvolver profissionalmente.",
+      "members": {
+        "maria": {
+          "name": "María González",
+          "role": "Fundadora",
+          "bio": "Trabalhou muitos anos em recursos humanos e se cansou de ver como as informações sobre empresas não eram transparentes. Decidiu criar o WorkWisse para mudar isso."
         },
-        "cta": {
-            "title": "Pronto para começar?",
-            "description": "Junte-se a milhares de trabalhadores que já estão usando o WorkWisse para tomar melhores decisões profissionais.",
-            "primary": "Ver empresas em destaque",
-            "secondary": "Buscar trabalhos"
+        "carlos": {
+          "name": "Carlos Rodríguez",
+          "role": "Responsável pela Tecnologia",
+          "bio": "Cuida para que a plataforma funcione bem e seja fácil de usar. Acredita que a tecnologia deve estar a serviço das pessoas."
+        },
+        "ana": {
+          "name": "Ana Martínez",
+          "role": "Responsável pela Comunidade",
+          "bio": "Cuida para que nossa comunidade seja um lugar seguro onde os trabalhadores possam compartilhar suas experiências sem medo."
+        },
+        "diego": {
+          "name": "Diego López",
+          "role": "Responsável pela Informação",
+          "bio": "Garante que todas as informações que mostramos sejam precisas e úteis para ajudar você a tomar melhores decisões."
         }
+      }
     },
-    "testimonials": {
-        "title": "Milhares de trabalhadores já estão <1>tomando melhores decisões</1>",
-        "description": "Ouça o que dizem aqueles que já usaram o WorkWisse para encontrar um trabalho que realmente gostam.",
-        "stats": {
-            "workers": {
-                "value": "50K+",
-                "label": "Trabalhadores ativos",
-                "description": "Confiam em nossas informações"
-            },
-            "companies": {
-                "value": "2.500+",
-                "label": "Empresas avaliadas",
-                "description": "Com informações detalhadas"
-            },
-            "satisfaction": {
-                "value": "95%",
-                "label": "Satisfação",
-                "description": "Dos nossos usuários"
-            },
-            "availability": {
-                "value": "24/7",
-                "label": "Disponível",
-                "description": "Informações sempre atualizadas"
-            }
-        },
-        "reviews": {
-            "maria": {
-                "name": "Maria Rodriguez",
-                "role": "Vendedora",
-                "company": "Retail Fashion",
-                "quote": "Graças ao WorkWisse pude conhecer o ambiente de trabalho antes de aceitar. Agora sei que escolhi bem."
-            },
-            "carlos": {
-                "name": "Carlos Mendoza",
-                "role": "Operário",
-                "company": "Logística Plus",
-                "quote": "As informações sobre horários e benefícios me ajudaram muito. Pude comparar e escolher onde mais me convinha."
-            },
-            "ana": {
-                "name": "Ana Silva",
-                "role": "Administrativa",
-                "company": "Serviços Contábeis",
-                "quote": "Encontrei meu trabalho atual lendo as opiniões. Me ajudou a entender como era trabalhar lá realmente."
-            }
-        },
-        "cta": {
-            "title": "Quer ser o próximo a encontrar um trabalho que goste?",
-            "description": "Comece a tomar decisões profissionais mais inteligentes hoje mesmo.",
-            "button": "Explorar empresas agora"
-        }
-    },
-    "faq": {
-        "title": "Perguntas <1>frequentes</1>",
-        "description": "Tudo o que você precisa saber sobre o WorkWisse. Se tiver alguma outra pergunta, entre em contato conosco sem problemas.",
-        "items": {
-            "free": {
-                "question": "É grátis usar o WorkWisse?",
-                "answer": "Sim, o WorkWisse é completamente gratuito. Você pode ver opiniões, buscar empresas e acessar informações de salários sem nenhum custo."
-            },
-            "verification": {
-                "question": "Como sabem que as opiniões são reais?",
-                "answer": "Verificamos que as pessoas realmente trabalharam nas empresas que comentam. Revisamos cada opinião antes de publicá-la para garantir que seja autêntica."
-            },
-            "anonymity": {
-                "question": "As empresas podem saber quem escreveu as opiniões?",
-                "answer": "Não, todas as opiniões são completamente anônimas. As empresas podem ler os comentários mas nunca sabem quem os escreveu."
-            },
-            "information": {
-                "question": "Que tipo de informação posso encontrar sobre as empresas?",
-                "answer": "Você encontrará informações sobre ambiente de trabalho, salários, benefícios, horários, chefes, colegas e tudo o que precisa saber antes de se candidatar."
-            },
-            "addCompany": {
-                "question": "Como posso adicionar minha empresa à plataforma?",
-                "answer": "Se sua empresa não está no WorkWisse, você pode entrar em contato conosco e a adicionamos. É simples e rápido."
-            },
-            "salaryData": {
-                "question": "As informações de salários são atuais?",
-                "answer": "Sim, as informações são atualizadas constantemente com dados de trabalhadores atuais. Mostramos faixas reais baseadas em experiências recentes."
-            }
-        },
-        "cta": {
-            "title": "Tem mais perguntas ou sugestões?",
-            "description": "Nossa equipe está disponível para ajudá-lo com qualquer consulta que tenha.",
-            "primary": "Entre em contato",
-            "secondary": "Ver mais informações"
-        }
-    },
-    "footer": {
-        "description": "A plataforma que te ajuda a tomar melhores decisões profissionais. Informações reais, transparentes e gratuitas para todos.",
+    "stats": {
+      "title": "O que conseguimos <1>juntos</1>",
+      "description": "Estes números mostram como estamos ajudando os trabalhadores a ter mais informações antes de escolher onde trabalhar.",
+      "items": {
         "workers": {
-            "title": "Para Trabalhadores",
-            "links": {
-                "search": "Buscar empresas",
-                "rankings": "Melhores empresas",
-                "reviews": "Escrever opinião"
-            }
+          "number": "50K+",
+          "label": "Trabalhadores que nos usam",
+          "description": "Pessoas que já usam o WorkWisse para conhecer a verdade sobre as empresas"
         },
         "companies": {
-            "title": "Para Empresas",
-            "links": {
-                "add": "Adicione sua empresa",
-                "services": "Serviços empresariais",
-                "branding": "Melhorar imagem",
-                "analytics": "Ver estatísticas"
-            }
+          "number": "2.500+",
+          "label": "Empresas avaliadas",
+          "description": "Empresas com opiniões reais de trabalhadores como você"
         },
-        "legal": {
-            "copyright": "© {{year}} WorkWisse. Todos os direitos reservados.",
-            "tagline": "Ajudando trabalhadores a tomar melhores decisões profissionais.",
-            "about": "Sobre nós",
-            "privacy": "Privacidade",
-            "terms": "Termos",
-            "contact": "Contato"
+        "satisfaction": {
+          "number": "95%",
+          "label": "Pessoas satisfeitas",
+          "description": "De quem usa o WorkWisse recomendam para outros trabalhadores"
+        },
+        "availability": {
+          "number": "24/7",
+          "label": "Sempre disponível",
+          "description": "Você pode consultar informações sobre empresas quando precisar"
         }
+      }
     },
-    "header": {
-        "about": "Sobre nós",
-        "addCompany": "Adicione sua empresa",
-        "language": "Idioma",
-        "contact": "Contato",
-        "theme": "Tema",
-        "rankings": "Rankings"
+    "history": {
+      "title": "Nossa <1>história</1>",
+      "description": "Assim tudo começou e como chegamos até aqui, sempre pensando em facilitar a vida dos trabalhadores.",
+      "personal": {
+        "question": "Quando, como e por que nasceu o WorkWisse?",
+        "story": "Em 16 de janeiro de 2023, toquei o fundo do poço. Me sentia vazio. Sem propósito. Não sabia para que fazia o que fazia. Então escrevi para uma das pessoas mais generosas e sábias que conheço. Pedi um conselho. Ele não hesitou. Respondeu na hora e me convidou para sua casa. Me escutou uma hora inteira sem me interromper. E quando terminei, soltou uma frase que me abalou:",
+        "quote": "\"Pense no que você mais gosta de fazer, no que sabe fazer melhor, e encontre algo que una esses pontos.\"",
+        "beginning": "Ali começou tudo.",
+        "background": "Sempre trabalhei em vendas. Não fui o melhor, mas havia algo que eu fazia muito bem: ensinar. Ajudar outros a melhorar. Mostrar como fazer seu trabalho com orgulho, com sentido.",
+        "teachingPassion": "ensinar",
+        "frustration": "Sempre me irritou ver como as empresas dizem que \"as pessoas são seu ativo mais importante\" enquanto as deixam por último na fila de prioridades.",
+        "priorityContrast": "Primeiro os sistemas, os logos, as campanhas, os escritórios bonitos. As pessoas... depois.",
+        "realization": "E um dia me dei conta: os trabalhadores não têm voz.",
+        "problem": "Ninguém os escuta. Ninguém sabe o que realmente acontece dentro das empresas. E se você sabe, sabe porque teve que viver isso.",
+        "reflection": "Então me perguntei:",
+        "mainQuestion": "Como pode existir milhares de páginas onde as pessoas deixam opiniões depois de ficar três noites em um hotel, mas ninguém conta como foi trabalhar três anos em uma empresa?",
+        "change": "Isso tinha que mudar.",
+        "creation": "Então reuni três jovens brilhantes, especialistas em desenvolvimento, contei minha ideia... e nasceu o WorkWisse.",
+        "mission": "Uma plataforma feita com alma, com história, e com a certeza de que contar o que vivemos no trabalho pode ajudar milhares de pessoas a tomar decisões mais humanas, mais informadas e mais justas."
+      },
+      "timeline": {
+        "2020": {
+          "title": "A ideia que mudou tudo",
+          "description": "Percebemos que os trabalhadores precisavam de informações reais sobre as empresas, especialmente quando tudo mudou com a pandemia."
+        },
+        "2021": {
+          "title": "Primeiros passos",
+          "description": "Lançamos o WorkWisse com informações de 100 empresas e 1.000 trabalhadores que se animaram a compartilhar suas experiências."
+        },
+        "2022": {
+          "title": "Crescemos juntos",
+          "description": "Chegamos a 5 países da América Latina e já éramos 10.000 trabalhadores se ajudando."
+        },
+        "2023": {
+          "title": "Melhoramos a experiência",
+          "description": "Usamos tecnologia para que seja mais fácil encontrar as informações que você precisa sobre qualquer empresa."
+        },
+        "2024": {
+          "title": "Somos comunidade",
+          "description": "Já somos mais de 50.000 trabalhadores compartilhando informações reais para nos ajudar a escolher melhor onde trabalhar."
+        }
+      },
+      "future": {
+        "title": "O que vem por aí",
+        "description": "Continuamos trabalhando para que seja cada vez mais fácil conhecer a verdade sobre as empresas. Queremos que todos os trabalhadores possam tomar melhores decisões com informações reais e honestas.",
+        "tags": {
+          "countries": "Mais países",
+          "experience": "Melhor experiência",
+          "information": "Mais informações úteis",
+          "partnerships": "Novas parcerias"
+        }
+      }
+    },
+    "cta": {
+      "title": "Quer tomar melhores <1>decisões profissionais</1>?",
+      "description": "A mudança começa com uma decisão informada. Descubra o que outros já estão fazendo para transformar o futuro profissional.",
+      "primaryButton": "Começar grátis",
+      "secondaryButton": "Ver empresas",
+      "benefits": {
+        "improve": {
+          "title": "Melhore seu trabalho",
+          "description": "Encontre locais de trabalho que realmente convém para você"
+        },
+        "connect": {
+          "title": "Conecte-se com outros",
+          "description": "Faça parte de uma comunidade de trabalhadores que se ajudam"
+        },
+        "information": {
+          "title": "Informação real",
+          "description": "Acesse opiniões verdadeiras sobre empresas e trabalhos"
+        }
+      }
+    }
+  },
+  "features": {
+    "title": "Descubra o que ninguém te conta <1>antes de aceitar um trabalho</1>",
+    "description": "As informações mais valiosas sobre uma empresa não estão no site. Estão com os funcionários. A Workwisse te mostra. Acesse experiências reais e rankings honestos. A nova forma de escolher um trabalho.",
+    "items": {
+      "reviews": {
+        "title": "Opiniões Verificadas",
+        "description": "Comentários autênticos de funcionários que realmente trabalharam lá",
+        "benefit": "Informação real e confiável"
+      },
+      "data": {
+        "title": "Dados Reais",
+        "description": "Informações sobre salários, benefícios e ambiente de trabalho",
+        "benefit": "Decisões baseadas em fatos"
+      },
+      "rankings": {
+        "title": "Melhores Empregadores",
+        "description": "Conheça quais são as melhores empresas para trabalhar",
+        "benefit": "Trabalhe nos melhores lugares"
+      }
+    },
+    "cta": {
+      "title": "Pronto para começar?",
+      "description": "Junte-se a milhares de trabalhadores que já estão usando o WorkWisse para tomar melhores decisões profissionais.",
+      "primary": "Ver empresas em destaque",
+      "secondary": "Buscar trabalhos"
+    }
+  },
+  "testimonials": {
+    "title": "Milhares de trabalhadores já estão <1>tomando melhores decisões</1>",
+    "description": "Ouça o que dizem aqueles que já usaram o WorkWisse para encontrar um trabalho que realmente gostam.",
+    "stats": {
+      "workers": {
+        "value": "50K+",
+        "label": "Trabalhadores ativos",
+        "description": "Confiam em nossas informações"
+      },
+      "companies": {
+        "value": "2.500+",
+        "label": "Empresas avaliadas",
+        "description": "Com informações detalhadas"
+      },
+      "satisfaction": {
+        "value": "95%",
+        "label": "Satisfação",
+        "description": "Dos nossos usuários"
+      },
+      "availability": {
+        "value": "24/7",
+        "label": "Disponível",
+        "description": "Informações sempre atualizadas"
+      }
+    },
+    "reviews": {
+      "maria": {
+        "name": "Maria Rodriguez",
+        "role": "Vendedora",
+        "company": "Retail Fashion",
+        "quote": "Graças ao WorkWisse pude conhecer o ambiente de trabalho antes de aceitar. Agora sei que escolhi bem."
+      },
+      "carlos": {
+        "name": "Carlos Mendoza",
+        "role": "Operário",
+        "company": "Logística Plus",
+        "quote": "As informações sobre horários e benefícios me ajudaram muito. Pude comparar e escolher onde mais me convinha."
+      },
+      "ana": {
+        "name": "Ana Silva",
+        "role": "Administrativa",
+        "company": "Serviços Contábeis",
+        "quote": "Encontrei meu trabalho atual lendo as opiniões. Me ajudou a entender como era trabalhar lá realmente."
+      }
+    },
+    "cta": {
+      "title": "Quer ser o próximo a encontrar um trabalho que goste?",
+      "description": "Comece a tomar decisões profissionais mais inteligentes hoje mesmo.",
+      "button": "Explorar empresas agora"
+    }
+  },
+  "faq": {
+    "title": "Perguntas <1>frequentes</1>",
+    "description": "Tudo o que você precisa saber sobre o WorkWisse. Se tiver alguma outra pergunta, entre em contato conosco sem problemas.",
+    "items": {
+      "free": {
+        "question": "É grátis usar o WorkWisse?",
+        "answer": "Sim, o WorkWisse é completamente gratuito. Você pode ver opiniões, buscar empresas e acessar informações de salários sem nenhum custo."
+      },
+      "verification": {
+        "question": "Como sabem que as opiniões são reais?",
+        "answer": "Verificamos que as pessoas realmente trabalharam nas empresas que comentam. Revisamos cada opinião antes de publicá-la para garantir que seja autêntica."
+      },
+      "anonymity": {
+        "question": "As empresas podem saber quem escreveu as opiniões?",
+        "answer": "Não, todas as opiniões são completamente anônimas. As empresas podem ler os comentários mas nunca sabem quem os escreveu."
+      },
+      "information": {
+        "question": "Que tipo de informação posso encontrar sobre as empresas?",
+        "answer": "Você encontrará informações sobre ambiente de trabalho, salários, benefícios, horários, chefes, colegas e tudo o que precisa saber antes de se candidatar."
+      },
+      "addCompany": {
+        "question": "Como posso adicionar minha empresa à plataforma?",
+        "answer": "Se sua empresa não está no WorkWisse, você pode entrar em contato conosco e a adicionamos. É simples e rápido."
+      },
+      "salaryData": {
+        "question": "As informações de salários são atuais?",
+        "answer": "Sim, as informações são atualizadas constantemente com dados de trabalhadores atuais. Mostramos faixas reais baseadas em experiências recentes."
+      }
+    },
+    "cta": {
+      "title": "Tem mais perguntas ou sugestões?",
+      "description": "Nossa equipe está disponível para ajudá-lo com qualquer consulta que tenha.",
+      "primary": "Entre em contato",
+      "secondary": "Ver mais informações"
+    }
+  },
+  "footer": {
+    "description": "A plataforma que te ajuda a tomar melhores decisões profissionais. Informações reais, transparentes e gratuitas para todos.",
+    "workers": {
+      "title": "Para Trabalhadores",
+      "links": {
+        "search": "Buscar empresas",
+        "rankings": "Melhores empresas",
+        "reviews": "Escrever opinião"
+      }
+    },
+    "companies": {
+      "title": "Para Empresas",
+      "links": {
+        "add": "Adicione sua empresa",
+        "services": "Serviços empresariais",
+        "branding": "Melhorar imagem",
+        "analytics": "Ver estatísticas"
+      }
+    },
+    "legal": {
+      "copyright": "© {{year}} WorkWisse. Todos os direitos reservados.",
+      "tagline": "Ajudando trabalhadores a tomar melhores decisões profissionais.",
+      "about": "Sobre nós",
+      "privacy": "Privacidade",
+      "terms": "Termos",
+      "contact": "Contato"
+    }
+  },
+  "header": {
+    "about": "Sobre nós",
+    "addCompany": "Adicione sua empresa",
+    "language": "Idioma",
+    "contact": "Contato",
+    "theme": "Tema",
+    "rankings": "Rankings"
+  },
+  "contact": {
+    "hero": {
+      "title": "Entre em <1>contato</1>",
+      "description": "Adoraríamos ouvir de você. Envie-nos uma mensagem e responderemos o mais breve possível.",
+      "email": "Email",
+      "phone": "Telefone",
+      "office": "Escritório",
+      "emailAddress": "ola@worwisse.com",
+      "phoneNumber": "+55 11 1234-5678",
+      "officeAddress": "Av. Paulista 1234<br />Andar 5, São Paulo, SP"
+    },
+    "form": {
+      "title": "Envie-nos uma mensagem",
+      "description": "Tem alguma pergunta ou sugestão? Adoraríamos ouvir de você. Preencha o formulário e responderemos o mais breve possível.",
+      "fields": {
+        "name": {
+          "label": "Nome completo",
+          "placeholder": "Digite seu nome completo"
+        },
+        "email": {
+          "label": "Endereço de email",
+          "placeholder": "Digite seu email"
+        },
+        "subject": {
+          "label": "Assunto",
+          "placeholder": "Sobre o que se trata?"
+        },
+        "message": {
+          "label": "Mensagem",
+          "placeholder": "Conte-nos mais sobre sua consulta..."
+        }
+      },
+      "button": {
+        "send": "Enviar mensagem",
+        "sending": "Enviando..."
+      },
+      "messages": {
+        "success": "Mensagem enviada com sucesso! Responderemos em breve.",
+        "error": "Erro ao enviar mensagem. Tente novamente."
+      }
+    }
+  },
+  "addCompany": {
+    "title": "Adicionar <1>empresa</1>",
+    "description": "Precisamos de alguns dados básicos para que você possa adicionar a empresa e avaliá-la.",
+    "form": {
+      "name": {
+        "label": "Nome da empresa",
+        "placeholder": "Ex: TechCorp SA"
+      },
+      "industry": {
+        "label": "Indústria ou Setor",
+        "placeholder": "Selecionar indústria",
+        "options": {
+          "tech": "Tecnologia",
+          "finance": "Finanças",
+          "healthcare": "Saúde",
+          "education": "Educação",
+          "retail": "Varejo",
+          "manufacturing": "Manufatura",
+          "consulting": "Consultoria",
+          "marketing": "Marketing",
+          "real-estate": "Imobiliária",
+          "logistics": "Logística",
+          "textile": "Têxtil",
+          "gastronomy": "Gastronomia",
+          "automotive": "Automotivo",
+          "construction": "Construção",
+          "agriculture": "Agricultura",
+          "other": "Outro"
+        }
+      },
+      "website": {
+        "label": "Site",
+        "placeholder": "www.empresa.com"
+      },
+      "logo": {
+        "label": "Logo da empresa",
+        "placeholder": "Selecionar imagem...",
+        "help": "A imagem deve ter pelo menos 250x250 pixels e não exceder 5MB",
+        "uploading": "Enviando imagem...",
+        "uploadError": "Erro ao enviar imagem",
+        "invalidDimensions": "A imagem deve ter pelo menos 250x250 pixels",
+        "invalidSize": "A imagem não pode exceder 5MB",
+        "invalidType": "Apenas arquivos de imagem são permitidos (JPG, PNG, WebP)"
+      },
+      "country": {
+        "label": "País da empresa",
+        "placeholder": "Selecionar país",
+        "options": {
+          "ar": "Argentina",
+          "br": "Brasil",
+          "cl": "Chile",
+          "co": "Colômbia",
+          "mx": "México",
+          "pe": "Peru",
+          "uy": "Uruguai",
+          "other": "Outro"
+        }
+      },
+      "state": {
+        "label": "Cidade/Província/Estado",
+        "placeholder": "Selecionar estado/província"
+      },
+      "benefits": {
+        "label": "Benefícios e cultura organizacional",
+        "placeholder": "Digite um benefício e pressione Enter, ou selecione das sugestões...",
+        "help": "Pressione Enter para adicionar benefícios personalizados, ou selecione das sugestões predefinidas.",
+        "options": {
+          "remote": "Trabalho remoto",
+          "flexibleHours": "Horários flexíveis",
+          "healthInsurance": "Plano de saúde",
+          "dental": "Plano dental",
+          "vision": "Plano de visão",
+          "lifeInsurance": "Seguro de vida",
+          "vacation": "Férias remuneradas",
+          "paidLeave": "Licenças remuneradas",
+          "training": "Capacitações",
+          "gym": "Academia",
+          "freeLunch": "Almoço grátis",
+          "transportation": "Auxílio transporte",
+          "parking": "Estacionamento",
+          "childcare": "Creche",
+          "stockOptions": "Opções de ações",
+          "bonus": "Bônus anuais",
+          "teamEvents": "Eventos de equipe",
+          "workFromHome": "Trabalho de casa"
+        }
+      },
+      "terms": "Aceito os <1>termos e condições</1> da plataforma",
+      "acceptTermsRequired": "Você deve aceitar os termos e condições para continuar",
+      "pleaseAcceptTerms": "Por favor, revise e aceite nossos termos e condições.",
+      "validation": {
+        "error": "Erro de Validação",
+        "nameRequired": "O nome da empresa é obrigatório",
+        "industryRequired": "Por favor selecione uma indústria",
+        "countryRequired": "Por favor selecione um país",
+        "stateRequired": "Por favor selecione um estado/província"
+      },
+      "submit": "Adicionar empresa",
+      "submitting": "Adicionando empresa...",
+      "submitSuccess": "Empresa adicionada com sucesso!",
+      "companyAdded": "A empresa foi adicionada ao nosso banco de dados e já está disponível para avaliações.",
+      "submitError": "Erro ao adicionar a empresa. Tente novamente.",
+      "tryAgainLater": "Houve um erro ao processar sua solicitação. Por favor, tente novamente mais tarde."
+    },
+    "tips": {
+      "title": "Dicas úteis",
+      "tip1": "Forneça informações precisas e completas sobre a empresa",
+      "tip2": "Benefícios específicos ajudam outros trabalhadores",
+      "tip3": "Revise as informações antes de enviar",
+      "tip4": "Mantenha um tom profissional e construtivo"
     },
     "contact": {
-        "hero": {
-            "title": "Entre em <1>contato</1>",
-            "description": "Adoraríamos ouvir de você. Envie-nos uma mensagem e responderemos o mais breve possível.",
-            "email": "Email",
-            "phone": "Telefone",
-            "office": "Escritório",
-            "emailAddress": "ola@worwisse.com",
-            "phoneNumber": "+55 11 1234-5678",
-            "officeAddress": "Av. Paulista 1234<br />Andar 5, São Paulo, SP"
-        },
-        "form": {
-            "title": "Envie-nos uma mensagem",
-            "description": "Tem alguma pergunta ou sugestão? Adoraríamos ouvir de você. Preencha o formulário e responderemos o mais breve possível.",
-            "fields": {
-                "name": {
-                    "label": "Nome completo",
-                    "placeholder": "Digite seu nome completo"
-                },
-                "email": {
-                    "label": "Endereço de email",
-                    "placeholder": "Digite seu email"
-                },
-                "subject": {
-                    "label": "Assunto",
-                    "placeholder": "Sobre o que se trata?"
-                },
-                "message": {
-                    "label": "Mensagem",
-                    "placeholder": "Conte-nos mais sobre sua consulta..."
-                }
-            },
-            "button": {
-                "send": "Enviar mensagem",
-                "sending": "Enviando..."
-            },
-            "messages": {
-                "success": "Mensagem enviada com sucesso! Responderemos em breve.",
-                "error": "Erro ao enviar mensagem. Tente novamente."
-            }
-        }
+      "title": "Precisa de ajuda?",
+      "description": "Se você tem dúvidas sobre como preencher o formulário, estamos aqui para ajudar.",
+      "button": "Contatar suporte"
     },
-    "addCompany": {
-        "title": "Adicionar <1>empresa</1>",
-        "description": "Precisamos de alguns dados básicos para que você possa adicionar a empresa e avaliá-la.",
-        "form": {
-            "name": {
-                "label": "Nome da empresa",
-                "placeholder": "Ex: TechCorp SA"
-            },
-            "industry": {
-                "label": "Indústria ou Setor",
-                "placeholder": "Selecionar indústria",
-                "options": {
-                    "tech": "Tecnologia",
-                    "finance": "Finanças",
-                    "healthcare": "Saúde",
-                    "education": "Educação",
-                    "retail": "Varejo",
-                    "manufacturing": "Manufatura",
-                    "consulting": "Consultoria",
-                    "marketing": "Marketing",
-                    "real-estate": "Imobiliária",
-                    "logistics": "Logística",
-                    "other": "Outro"
-                }
-            },
-            "website": {
-                "label": "Site",
-                "placeholder": "www.empresa.com"
-            },
-            "logo": {
-                "label": "Logo da empresa",
-                "placeholder": "Selecionar imagem...",
-                "help": "A imagem deve ter pelo menos 250x250 pixels e não exceder 5MB",
-                "uploading": "Enviando imagem...",
-                "uploadError": "Erro ao enviar imagem",
-                "invalidDimensions": "A imagem deve ter pelo menos 250x250 pixels",
-                "invalidSize": "A imagem não pode exceder 5MB",
-                "invalidType": "Apenas arquivos de imagem são permitidos (JPG, PNG, WebP)"
-            },
-            "country": {
-                "label": "País da empresa",
-                "placeholder": "Selecionar país",
-                "options": {
-                    "ar": "Argentina",
-                    "br": "Brasil",
-                    "cl": "Chile",
-                    "co": "Colômbia",
-                    "mx": "México",
-                    "pe": "Peru",
-                    "uy": "Uruguai",
-                    "other": "Outro"
-                }
-            },
-            "state": {
-                "label": "Cidade/Província/Estado",
-                "placeholder": "Selecionar estado/província"
-            },
-            "benefits": {
-                "label": "Benefícios e cultura organizacional",
-                "placeholder": "Digite um benefício e pressione Enter, ou selecione das sugestões...",
-                "help": "Pressione Enter para adicionar benefícios personalizados, ou selecione das sugestões predefinidas.",
-                "options": {
-                    "remote": "Trabalho remoto",
-                    "flexibleHours": "Horários flexíveis",
-                    "healthInsurance": "Plano de saúde",
-                    "dental": "Plano dental",
-                    "vision": "Plano de visão",
-                    "lifeInsurance": "Seguro de vida",
-                    "vacation": "Férias remuneradas",
-                    "paidLeave": "Licenças remuneradas",
-                    "training": "Capacitações",
-                    "gym": "Academia",
-                    "freeLunch": "Almoço grátis",
-                    "transportation": "Auxílio transporte",
-                    "parking": "Estacionamento",
-                    "childcare": "Creche",
-                    "stockOptions": "Opções de ações",
-                    "bonus": "Bônus anuais",
-                    "teamEvents": "Eventos de equipe",
-                    "workFromHome": "Trabalho de casa"
-                }
-            },
-            "terms": "Aceito os <1>termos e condições</1> da plataforma",
-            "acceptTermsRequired": "Você deve aceitar os termos e condições para continuar",
-            "pleaseAcceptTerms": "Por favor, revise e aceite nossos termos e condições.",
-            "validation": {
-                "error": "Erro de Validação",
-                "nameRequired": "O nome da empresa é obrigatório",
-                "industryRequired": "Por favor selecione uma indústria",
-                "countryRequired": "Por favor selecione um país",
-                "stateRequired": "Por favor selecione um estado/província"
-            },
-            "submit": "Adicionar empresa",
-            "submitting": "Adicionando empresa...",
-            "submitSuccess": "Empresa adicionada com sucesso!",
-            "companyAdded": "A empresa foi adicionada ao nosso banco de dados e já está disponível para avaliações.",
-            "submitError": "Erro ao adicionar a empresa. Tente novamente.",
-            "tryAgainLater": "Houve um erro ao processar sua solicitação. Por favor, tente novamente mais tarde."
-        },
-        "tips": {
-            "title": "Dicas úteis",
-            "tip1": "Forneça informações precisas e completas sobre a empresa",
-            "tip2": "Benefícios específicos ajudam outros trabalhadores",
-            "tip3": "Revise as informações antes de enviar",
-            "tip4": "Mantenha um tom profissional e construtivo"
-        },
-        "contact": {
-            "title": "Precisa de ajuda?",
-            "description": "Se você tem dúvidas sobre como preencher o formulário, estamos aqui para ajudar.",
-            "button": "Contatar suporte"
-        },
-        "messages": {
-            "termsRequired": "Você deve aceitar as normas de convivência para continuar",
-            "success": "Empresa adicionada com sucesso! Será revisada por nossa equipe."
-        }
-    },
-    "terms": {
-        "hero": {
-            "badge": "Normas de convivência",
-            "title": "Normas de <1>convivência</1>",
-            "subtitle": "Construímos juntos uma comunidade profissional respeitosa, transparente e colaborativa onde todos possam compartilhar suas experiências de forma segura.",
-            "lastUpdated": "Última atualização: Maio 2025",
-            "readTime": "Tempo de leitura: 5 minutos"
-        },
-        "content": {
-            "mainTitle": "Princípios da nossa comunidade",
-            "mainSubtitle": "Essas normas garantem um espaço seguro e construtivo para todos os usuários do WorkWisse",
-            "purpose": {
-                "title": "Propósito da plataforma",
-                "content": "WorkWisse é um espaço para compartilhar experiências profissionais genuínas que ajudem outros trabalhadores a tomar decisões informadas. Buscamos criar uma comunidade onde a transparência e o respeito mútuo sejam os pilares fundamentais."
-            },
-            "respect": {
-                "title": "Respeito e civilidade",
-                "content": "Tratamos todos os membros da comunidade com respeito, independentemente de sua posição, empresa ou experiência. Não toleramos discriminação por gênero, idade, orientação sexual, religião, nacionalidade, raça ou qualquer outra característica pessoal. Diferenças de opinião devem ser expressas de forma construtiva e respeitosa."
-            },
-            "privacy": {
-                "title": "Privacidade e anonimato",
-                "content": "Respeitamos a privacidade de todos os usuários. Não revele nomes completos de pessoas específicas (colegas, chefes, clientes). Evite compartilhar informações pessoais identificáveis próprias ou de terceiros. Mantenha a confidencialidade de informações sensíveis das empresas que possam comprometer sua competitividade ou violar acordos de confidencialidade."
-            },
-            "accuracy": {
-                "title": "Veracidade e autenticidade",
-                "content": "Compartilhe apenas experiências reais e verificáveis. Base suas opiniões em fatos concretos e experiências pessoais. Evite exageros ou distorções que possam enganar outros usuários. Se compartilhar informações de segunda mão, especifique claramente."
-            },
-            "prohibited": {
-                "title": "Conteúdo proibido",
-                "content": "Não é permitido: linguagem ofensiva, ameaçadora ou discriminatória; conteúdo que promova atividades ilegais; spam, publicidade não autorizada ou conteúdo comercial; informações falsas, difamatórias ou maliciosas; conteúdo que viole direitos autorais ou propriedade intelectual; assédio, intimidação ou ataques pessoais."
-            },
-            "consequences": {
-                "title": "Consequências do descumprimento",
-                "content": "O descumprimento dessas normas pode resultar em: remoção temporária ou permanente de conteúdo."
-            },
-            "important": {
-                "title": "Importante lembrar",
-                "content": "Essas normas foram criadas para proteger toda a comunidade. Se você vir conteúdo que viola essas normas, denuncie imediatamente. Nossa equipe analisa todas as denúncias e toma as ações apropriadas."
-            },
-            "contact": {
-                "title": "Dúvidas ou consultas?",
-                "content": "Se você tem perguntas sobre essas normas ou precisa denunciar conteúdo inadequado, não hesite em",
-                "link": "entrar em contato"
-            }
-        },
-        "cta": {
-            "title": "Pronto para contribuir?",
-            "subtitle": "Junte-se à nossa comunidade e ajude outros trabalhadores compartilhando sua experiência de forma responsável e construtiva.",
-            "addCompanyButton": "Adicionar empresa",
-            "backHomeButton": "Voltar ao início",
-            "footer": "Ao usar o WorkWisse, você concorda em cumprir essas normas de convivência."
-        }
-    },
-    "companyDetail": {
-        "founded": "Fundada em",
-        "employees": "funcionários",
-        "noReviews": "Ainda não há avaliações para esta empresa",
-        "recentReviews": "Avaliações recentes",
-        "viewAll": "Ver todas as avaliações",
-        "quickStats": "Estatísticas rápidas",
-        "overallRating": "Avaliação geral",
-        "website": "Site",
-        "writeReview": "✍️ Escrever avaliação",
-        "writeFirstReview": "✍️ Escrever a primeira avaliação",
-        "reviews": "avaliações",
-        "followCompany": "Seguir empresa",
-        "aboutTitle": "Sobre",
-        "workEnvironmentTitle": "Ambiente de trabalho",
-        "recentReviewsTitle": "💬 Avaliações de funcionários",
-        "viewAllReviews": "Ver todas as avaliações",
-        "viewAllReviewsShort": "Ver todas",
-        "recommends": "✅ Recomenda",
-        "pros": "✅ O melhor",
-        "cons": "⚠️ A melhorar",
-        "positionLabel": "Cargo/Posição:",
-        "statistics": "📊 Estatísticas",
-        "totalReviews": "📝 Total de avaliações",
-        "wouldRecommend": "👍 Recomendariam",
-        "rating": "⭐ Pontuação",
-        "benefits": "🎁 Benefícios",
-        "ctaTitle": "Você trabalha aqui?",
-        "ctaDescription": "Compartilhe sua experiência e ajude outros profissionais a tomar melhores decisões.",
-        "ratingBreakdown": "📊 Análise das avaliações",
-        "loadingReviews": "Carregando avaliações...",
-        "ratingsBreakdown": "📊 Avaliações por aspecto",
-        "ratingsBreakdownDesc": "Média das avaliações dos funcionários",
-        "ratingWorkEnvironment": "Ambiente de trabalho",
-        "ratingWorkEnvironmentShort": "Ambiente",
-        "ratingCompensation": "Compensação",
-        "ratingCompensationShort": "Compensação",
-        "ratingBenefits": "Benefícios",
-        "ratingBenefitsShort": "Benefícios",
-        "ratingCulture": "Cultura empresarial",
-        "ratingCultureShort": "Cultura",
-        "ratingCommunication": "Comunicação",
-        "ratingCommunicationShort": "Comunicação",
-        "ratingCareerGrowth": "Crescimento profissional",
-        "ratingCareerGrowthShort": "Crescimento",
-        "ratingWorkLifeBalance": "Equilíbrio vida-trabalho",
-        "ratingWorkLifeBalanceShort": "Equilíbrio",
-        "ratingInclusion": "Inclusão laboral",
-        "ratingInclusionShort": "Inclusão",
-        "role": "Cargo/Posição",
-        "anonymous": "Anônimo",
-        "review": "avaliação",
-        "loadMore": "Carregar mais {{count}} avaliações ({{remaining}} restantes)",
-        "remaining": "restantes",
-        "loading": "Carregando...",
-        "goBack": "Voltar"
-    },
-    "reviewForm": {
-        "title": "Compartilhe sua experiência",
-        "viewReview": "Ver Avaliações",
-        "workInfo": {
-            "title": "Informações do Trabalho",
-            "description": "Conte sobre sua experiência profissional na empresa",
-            "role": "Cargo na empresa",
-            "rolePlaceholder": "Ex: Desenvolvedor, Designer, Gerente, Analista, Vendedor, Repositor, etc.",
-            "startDate": "Data de início",
-            "endDate": "Data de término",
-            "currentlyWorking": "Atualmente trabalho aqui"
-        },
-        "ratings": {
-            "title": "Avaliações",
-            "description": "Avalie diferentes aspectos da empresa (1-5 estrelas)",
-            "workEnvironment": "Ambiente de trabalho",
-            "workEnvironmentDesc": "Como era o ambiente de trabalho geral?",
-            "compensation": "Compensação e salários",
-            "compensationDesc": "A compensação era competitiva?",
-            "benefits": "Benefícios",
-            "benefitsDesc": "Como eram os benefícios e vantagens?",
-            "culture": "Cultura empresarial",
-            "cultureDesc": "Você se sentiu parte da cultura?",
-            "communication": "Comunicação interna",
-            "communicationDesc": "Como era a comunicação na empresa?",
-            "careerGrowth": "Crescimento profissional",
-            "careerGrowthDesc": "Havia oportunidades de crescimento?",
-            "workLifeBalance": "Equilíbrio vida-trabalho",
-            "workLifeBalanceDesc": "Conseguia manter um bom equilíbrio?",
-            "inclusion": "Inclusão laboral",
-            "inclusionDesc": "A empresa promovia diversidade e inclusão?",
-            "overall": "Avaliação geral",
-            "overallDesc": "Como avalia a experiência geral?",
-            "equalOpportunity": "Igualdade de oportunidades",
-            "equalOpportunityDesc": "São oferecidas oportunidades de desenvolvimento e crescimento independentemente do gênero?"
-        },
-        "ratingScale": {
-            "1": "Muito ruim",
-            "2": "Ruim",
-            "3": "Regular",
-            "4": "Bom",
-            "5": "Excelente",
-            "0": "Não avaliado"
-        },
-        "experience": {
-            "title": "Sua Experiência",
-            "description": "Compartilhe os detalhes da sua experiência na empresa",
-            "pros": "Aspectos positivos",
-            "prosPlaceholder": "O que foi melhor ao trabalhar nesta empresa? (benefícios, ambiente, projetos, etc.)",
-            "cons": "Aspectos a melhorar",
-            "consPlaceholder": "Que aspectos você acha que a empresa poderia melhorar?"
-        },
-        "wouldRecommend": "Recomendaria esta empresa a um amigo",
-        "acceptTerms": "Aceito as <1>normas de convivência</1> e confirmo que minha avaliação é honesta e baseada na minha experiência real",
-        "acceptTermsPrefix": "Aceito as",
-        "acceptTermsLink": "normas de convivência",
-        "acceptTermsSuffix": "e confirmo que minha avaliação é honesta e baseada na minha experiência real",
-        "mustAcceptTerms": "Você deve aceitar as normas de convivência",
-        "submit": "Publicar avaliação",
-        "submitting": "Publicando avaliação...",
-        "cancel": "Cancelar",
-        "hero": {
-            "title": "Escreva uma avaliação sobre {{companyName}}",
-            "description": "Compartilhe sua experiência trabalhando na {{companyName}} e ajude outros profissionais",
-            "reviews": "avaliações"
-        },
-        "validation": {
-            "acceptTermsRequired": "Você deve aceitar as normas de convivência",
-            "ratingsRequired": "Por favor, complete pelo menos as avaliações principais"
-        }
-    },
-    "search": {
-        "resultsFor": "Resultados de busca para",
-        "allCompanies": "Todas as empresas",
-        "noResults": "Nenhuma empresa encontrada",
-        "foundResults": "{{count}} empresas encontradas",
-        "searching": "Procurando empresas...",
-        "redirecting": "Redirecionando...",
-        "review": "avaliação",
-        "reviews": "avaliações",
-        "noResultsTitle": "Nenhuma empresa encontrada",
-        "noResultsDescription": "Não conseguimos encontrar empresas que correspondam a \"{{query}}\". Tente um termo de busca diferente ou adicione a empresa você mesmo.",
-        "noResultsFound": "Nenhuma empresa encontrada que corresponda a \"{{query}}\"",
-        "noCompanyFound": "Não encontra a empresa?",
-        "addCompanyMessage": "Adicione-a e seja o primeiro a avaliá-la!",
-        "addCompany": "Adicionar empresa",
-        "wannaAddIt": "Quer adicioná-la?",
-        "backHome": "Voltar ao início"
-    },
-    "landing": {
-        "featuredCompanies": {
-            "title": "Empresas em Destaque",
-            "viewAll": "Ver classificação",
-            "noCompanies": "Não há empresas para mostrar.",
-            "reviews": "opiniões"
-        },
-        "latestReviews": {
-            "title": "Últimas Opiniões",
-            "previous": "Anterior",
-            "next": "Próximo",
-            "positiveAspects": "O bom:",
-            "areasForImprovement": "A melhorar:",
-            "readFullReview": "Ler opinião completa",
-            "noReviews": "Não há opiniões recentes para mostrar.",
-            "role": "Cargo/Função:"
-        },
-        "timeAgo": {
-            "today": "Hoje",
-            "oneDay": "Há 1 dia",
-            "days": "Há {{count}} dias",
-            "oneWeek": "Há 1 semana",
-            "weeks": "Há {{count}} semanas",
-            "oneMonth": "Há 1 mês",
-            "months": "Há {{count}} meses"
-        }
-    },
-    "rankings": {
-        "title": "Classificação de <1>Empresas</1>",
-        "description": "Descubra as empresas mais bem avaliadas por seus funcionários. Classificação baseada em opiniões reais e verificadas.",
-        "backHome": "Voltar ao início",
-        "reviews": "opiniões",
-        "noCompanies": "Não há empresas para mostrar na classificação.",
-        "table": {
-            "company": "Empresa",
-            "industry": "Indústria",
-            "rating": "Avaliação",
-            "reviews": "Opiniões",
-            "workEnv": "Ambiente",
-            "salary": "Salário",
-            "benefits": "Benefícios",
-            "culture": "Cultura",
-            "balance": "Equilíbrio",
-            "growth": "Crescimento",
-            "communication": "Comunicação",
-            "inclusion": "Inclusão"
-        },
-        "cta": {
-            "description": "Não encontra sua empresa? Adicione-a e ajude outros profissionais.",
-            "addCompany": "Adicionar empresa"
-        }
-    },
-    "thankYou": {
-        "company": {
-            "title": "Obrigado por adicionar sua empresa!",
-            "message": "Nossa equipe irá revisar as informações que você compartilhou conosco o mais rápido possível."
-        },
-        "review": {
-            "title": "Obrigado por compartilhar sua experiência!",
-            "message": "Nossa equipe irá revisar sua opinião o mais rápido possível para garantir que seja útil para outros profissionais."
-        },
-        "reviewTime": {
-            "title": "Tempo de revisão",
-            "description": "O tempo máximo de revisão é de 48 horas."
-        },
-        "button": {
-            "continue": "Continuar"
-        }
-    },
-    "common": {
-        "submitting": "Enviando...",
-        "submit": "Enviar",
-        "error": {
-            "title": "Erro",
-            "close": "Fechar"
-        }
+    "messages": {
+      "termsRequired": "Você deve aceitar as normas de convivência para continuar",
+      "success": "Empresa adicionada com sucesso! Será revisada por nossa equipe."
     }
+  },
+  "terms": {
+    "hero": {
+      "badge": "Normas de convivência",
+      "title": "Normas de <1>convivência</1>",
+      "subtitle": "Construímos juntos uma comunidade profissional respeitosa, transparente e colaborativa onde todos possam compartilhar suas experiências de forma segura.",
+      "lastUpdated": "Última atualização: Maio 2025",
+      "readTime": "Tempo de leitura: 5 minutos"
+    },
+    "content": {
+      "mainTitle": "Princípios da nossa comunidade",
+      "mainSubtitle": "Essas normas garantem um espaço seguro e construtivo para todos os usuários do WorkWisse",
+      "purpose": {
+        "title": "Propósito da plataforma",
+        "content": "WorkWisse é um espaço para compartilhar experiências profissionais genuínas que ajudem outros trabalhadores a tomar decisões informadas. Buscamos criar uma comunidade onde a transparência e o respeito mútuo sejam os pilares fundamentais."
+      },
+      "respect": {
+        "title": "Respeito e civilidade",
+        "content": "Tratamos todos os membros da comunidade com respeito, independentemente de sua posição, empresa ou experiência. Não toleramos discriminação por gênero, idade, orientação sexual, religião, nacionalidade, raça ou qualquer outra característica pessoal. Diferenças de opinião devem ser expressas de forma construtiva e respeitosa."
+      },
+      "privacy": {
+        "title": "Privacidade e anonimato",
+        "content": "Respeitamos a privacidade de todos os usuários. Não revele nomes completos de pessoas específicas (colegas, chefes, clientes). Evite compartilhar informações pessoais identificáveis próprias ou de terceiros. Mantenha a confidencialidade de informações sensíveis das empresas que possam comprometer sua competitividade ou violar acordos de confidencialidade."
+      },
+      "accuracy": {
+        "title": "Veracidade e autenticidade",
+        "content": "Compartilhe apenas experiências reais e verificáveis. Base suas opiniões em fatos concretos e experiências pessoais. Evite exageros ou distorções que possam enganar outros usuários. Se compartilhar informações de segunda mão, especifique claramente."
+      },
+      "prohibited": {
+        "title": "Conteúdo proibido",
+        "content": "Não é permitido: linguagem ofensiva, ameaçadora ou discriminatória; conteúdo que promova atividades ilegais; spam, publicidade não autorizada ou conteúdo comercial; informações falsas, difamatórias ou maliciosas; conteúdo que viole direitos autorais ou propriedade intelectual; assédio, intimidação ou ataques pessoais."
+      },
+      "consequences": {
+        "title": "Consequências do descumprimento",
+        "content": "O descumprimento dessas normas pode resultar em: remoção temporária ou permanente de conteúdo."
+      },
+      "important": {
+        "title": "Importante lembrar",
+        "content": "Essas normas foram criadas para proteger toda a comunidade. Se você vir conteúdo que viola essas normas, denuncie imediatamente. Nossa equipe analisa todas as denúncias e toma as ações apropriadas."
+      },
+      "contact": {
+        "title": "Dúvidas ou consultas?",
+        "content": "Se você tem perguntas sobre essas normas ou precisa denunciar conteúdo inadequado, não hesite em",
+        "link": "entrar em contato"
+      }
+    },
+    "cta": {
+      "title": "Pronto para contribuir?",
+      "subtitle": "Junte-se à nossa comunidade e ajude outros trabalhadores compartilhando sua experiência de forma responsável e construtiva.",
+      "addCompanyButton": "Adicionar empresa",
+      "backHomeButton": "Voltar ao início",
+      "footer": "Ao usar o WorkWisse, você concorda em cumprir essas normas de convivência."
+    }
+  },
+  "companyDetail": {
+    "founded": "Fundada em",
+    "employees": "funcionários",
+    "noReviews": "Ainda não há avaliações para esta empresa",
+    "recentReviews": "Avaliações recentes",
+    "viewAll": "Ver todas as avaliações",
+    "quickStats": "Estatísticas rápidas",
+    "overallRating": "Avaliação geral",
+    "website": "Site",
+    "writeReview": "✍️ Escrever avaliação",
+    "writeFirstReview": "✍️ Escrever a primeira avaliação",
+    "reviews": "avaliações",
+    "followCompany": "Seguir empresa",
+    "aboutTitle": "Sobre",
+    "workEnvironmentTitle": "Ambiente de trabalho",
+    "recentReviewsTitle": "💬 Avaliações de funcionários",
+    "viewAllReviews": "Ver todas as avaliações",
+    "viewAllReviewsShort": "Ver todas",
+    "recommends": "✅ Recomenda",
+    "pros": "✅ O melhor",
+    "cons": "⚠️ A melhorar",
+    "positionLabel": "Cargo/Posição:",
+    "statistics": "📊 Estatísticas",
+    "totalReviews": "📝 Total de avaliações",
+    "wouldRecommend": "👍 Recomendariam",
+    "rating": "⭐ Pontuação",
+    "benefits": "🎁 Benefícios",
+    "ctaTitle": "Você trabalha aqui?",
+    "ctaDescription": "Compartilhe sua experiência e ajude outros profissionais a tomar melhores decisões.",
+    "ratingBreakdown": "📊 Análise das avaliações",
+    "loadingReviews": "Carregando avaliações...",
+    "ratingsBreakdown": "📊 Avaliações por aspecto",
+    "ratingsBreakdownDesc": "Média das avaliações dos funcionários",
+    "ratingWorkEnvironment": "Ambiente de trabalho",
+    "ratingWorkEnvironmentShort": "Ambiente",
+    "ratingCompensation": "Compensação",
+    "ratingCompensationShort": "Compensação",
+    "ratingBenefits": "Benefícios",
+    "ratingBenefitsShort": "Benefícios",
+    "ratingCulture": "Cultura empresarial",
+    "ratingCultureShort": "Cultura",
+    "ratingCommunication": "Comunicação",
+    "ratingCommunicationShort": "Comunicação",
+    "ratingCareerGrowth": "Crescimento profissional",
+    "ratingCareerGrowthShort": "Crescimento",
+    "ratingWorkLifeBalance": "Equilíbrio vida-trabalho",
+    "ratingWorkLifeBalanceShort": "Equilíbrio",
+    "ratingInclusion": "Inclusão laboral",
+    "ratingInclusionShort": "Inclusão",
+    "role": "Cargo/Posição",
+    "anonymous": "Anônimo",
+    "review": "avaliação",
+    "loadMore": "Carregar mais {{count}} avaliações ({{remaining}} restantes)",
+    "remaining": "restantes",
+    "loading": "Carregando...",
+    "goBack": "Voltar"
+  },
+  "reviewForm": {
+    "title": "Compartilhe sua experiência",
+    "viewReview": "Ver Avaliações",
+    "workInfo": {
+      "title": "Informações do Trabalho",
+      "description": "Conte sobre sua experiência profissional na empresa",
+      "role": "Cargo na empresa",
+      "rolePlaceholder": "Ex: Desenvolvedor, Designer, Gerente, Analista, Vendedor, Repositor, etc.",
+      "startDate": "Data de início",
+      "endDate": "Data de término",
+      "currentlyWorking": "Atualmente trabalho aqui"
+    },
+    "ratings": {
+      "title": "Avaliações",
+      "description": "Avalie diferentes aspectos da empresa (1-5 estrelas)",
+      "workEnvironment": "Ambiente de trabalho",
+      "workEnvironmentDesc": "Como era o ambiente de trabalho geral?",
+      "compensation": "Compensação e salários",
+      "compensationDesc": "A compensação era competitiva?",
+      "benefits": "Benefícios",
+      "benefitsDesc": "Como eram os benefícios e vantagens?",
+      "culture": "Cultura empresarial",
+      "cultureDesc": "Você se sentiu parte da cultura?",
+      "communication": "Comunicação interna",
+      "communicationDesc": "Como era a comunicação na empresa?",
+      "careerGrowth": "Crescimento profissional",
+      "careerGrowthDesc": "Havia oportunidades de crescimento?",
+      "workLifeBalance": "Equilíbrio vida-trabalho",
+      "workLifeBalanceDesc": "Conseguia manter um bom equilíbrio?",
+      "inclusion": "Inclusão laboral",
+      "inclusionDesc": "A empresa promovia diversidade e inclusão?",
+      "overall": "Avaliação geral",
+      "overallDesc": "Como avalia a experiência geral?",
+      "equalOpportunity": "Igualdade de oportunidades",
+      "equalOpportunityDesc": "São oferecidas oportunidades de desenvolvimento e crescimento independentemente do gênero?"
+    },
+    "ratingScale": {
+      "1": "Muito ruim",
+      "2": "Ruim",
+      "3": "Regular",
+      "4": "Bom",
+      "5": "Excelente",
+      "0": "Não avaliado"
+    },
+    "experience": {
+      "title": "Sua Experiência",
+      "description": "Compartilhe os detalhes da sua experiência na empresa",
+      "pros": "Aspectos positivos",
+      "prosPlaceholder": "O que foi melhor ao trabalhar nesta empresa? (benefícios, ambiente, projetos, etc.)",
+      "cons": "Aspectos a melhorar",
+      "consPlaceholder": "Que aspectos você acha que a empresa poderia melhorar?"
+    },
+    "wouldRecommend": "Recomendaria esta empresa a um amigo",
+    "acceptTerms": "Aceito as <1>normas de convivência</1> e confirmo que minha avaliação é honesta e baseada na minha experiência real",
+    "acceptTermsPrefix": "Aceito as",
+    "acceptTermsLink": "normas de convivência",
+    "acceptTermsSuffix": "e confirmo que minha avaliação é honesta e baseada na minha experiência real",
+    "mustAcceptTerms": "Você deve aceitar as normas de convivência",
+    "submit": "Publicar avaliação",
+    "submitting": "Publicando avaliação...",
+    "cancel": "Cancelar",
+    "hero": {
+      "title": "Escreva uma avaliação sobre {{companyName}}",
+      "description": "Compartilhe sua experiência trabalhando na {{companyName}} e ajude outros profissionais",
+      "reviews": "avaliações"
+    },
+    "validation": {
+      "acceptTermsRequired": "Você deve aceitar as normas de convivência",
+      "ratingsRequired": "Por favor, complete pelo menos as avaliações principais"
+    }
+  },
+  "search": {
+    "resultsFor": "Resultados de busca para",
+    "allCompanies": "Todas as empresas",
+    "noResults": "Nenhuma empresa encontrada",
+    "foundResults": "{{count}} empresas encontradas",
+    "searching": "Procurando empresas...",
+    "redirecting": "Redirecionando...",
+    "review": "avaliação",
+    "reviews": "avaliações",
+    "noResultsTitle": "Nenhuma empresa encontrada",
+    "noResultsDescription": "Não conseguimos encontrar empresas que correspondam a \"{{query}}\". Tente um termo de busca diferente ou adicione a empresa você mesmo.",
+    "noResultsFound": "Nenhuma empresa encontrada que corresponda a \"{{query}}\"",
+    "noCompanyFound": "Não encontra a empresa?",
+    "addCompanyMessage": "Adicione-a e seja o primeiro a avaliá-la!",
+    "addCompany": "Adicionar empresa",
+    "wannaAddIt": "Quer adicioná-la?",
+    "backHome": "Voltar ao início"
+  },
+  "landing": {
+    "featuredCompanies": {
+      "title": "Empresas em Destaque",
+      "viewAll": "Ver classificação",
+      "noCompanies": "Não há empresas para mostrar.",
+      "reviews": "opiniões"
+    },
+    "latestReviews": {
+      "title": "Últimas Opiniões",
+      "previous": "Anterior",
+      "next": "Próximo",
+      "positiveAspects": "O bom:",
+      "areasForImprovement": "A melhorar:",
+      "readFullReview": "Ler opinião completa",
+      "noReviews": "Não há opiniões recentes para mostrar.",
+      "role": "Cargo/Função:"
+    },
+    "timeAgo": {
+      "today": "Hoje",
+      "oneDay": "Há 1 dia",
+      "days": "Há {{count}} dias",
+      "oneWeek": "Há 1 semana",
+      "weeks": "Há {{count}} semanas",
+      "oneMonth": "Há 1 mês",
+      "months": "Há {{count}} meses"
+    }
+  },
+  "rankings": {
+    "title": "Classificação de <1>Empresas</1>",
+    "description": "Descubra as empresas mais bem avaliadas por seus funcionários. Classificação baseada em opiniões reais e verificadas.",
+    "backHome": "Voltar ao início",
+    "reviews": "opiniões",
+    "noCompanies": "Não há empresas para mostrar na classificação.",
+    "table": {
+      "company": "Empresa",
+      "industry": "Indústria",
+      "rating": "Avaliação",
+      "reviews": "Opiniões",
+      "workEnv": "Ambiente",
+      "salary": "Salário",
+      "benefits": "Benefícios",
+      "culture": "Cultura",
+      "balance": "Equilíbrio",
+      "growth": "Crescimento",
+      "communication": "Comunicação",
+      "inclusion": "Inclusão"
+    },
+    "cta": {
+      "description": "Não encontra sua empresa? Adicione-a e ajude outros profissionais.",
+      "addCompany": "Adicionar empresa"
+    }
+  },
+  "thankYou": {
+    "company": {
+      "title": "Obrigado por adicionar sua empresa!",
+      "message": "Nossa equipe irá revisar as informações que você compartilhou conosco o mais rápido possível."
+    },
+    "review": {
+      "title": "Obrigado por compartilhar sua experiência!",
+      "message": "Nossa equipe irá revisar sua opinião o mais rápido possível para garantir que seja útil para outros profissionais."
+    },
+    "reviewTime": {
+      "title": "Tempo de revisão",
+      "description": "O tempo máximo de revisão é de 48 horas."
+    },
+    "button": {
+      "continue": "Continuar"
+    }
+  },
+  "common": {
+    "submitting": "Enviando...",
+    "submit": "Enviar",
+    "error": {
+      "title": "Erro",
+      "close": "Fechar"
+    }
+  }
 }
