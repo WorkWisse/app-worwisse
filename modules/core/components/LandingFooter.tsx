@@ -153,14 +153,7 @@ export const LandingFooter = () => {
                   {t("footer.workers.links.rankings")}
                 </Link>
               </li>
-              <li>
-                <Link
-                  className="hover:text-sky-400 dark:hover:text-sky-300 transition-colors"
-                  href="/reviews"
-                >
-                  {t("footer.workers.links.reviews")}
-                </Link>
-              </li>
+
             </ul>
           </div>
 
