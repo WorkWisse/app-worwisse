@@ -256,80 +256,105 @@ export const SearchBar = ({
                   {t("search.redirecting")}
                 </span>
               </div>
-            ) : suggestions.length > 0 ? (
-              <div className="space-y-1">
-                {suggestions.map((suggestion) => (
-                  <button
-                    key={suggestion.id}
-                    className="w-full text-left px-3 py-3 rounded-md hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors duration-200 group"
-                    type="button"
-                    onClick={() => handleSuggestionClick(suggestion)}
-                  >
-                    <div className="flex items-center justify-between">
-                      <div className="flex-1 min-w-0">
-                        <div className="flex items-center justify-between gap-4 mb-1">
-                          <div className="font-medium text-slate-900 dark:text-white group-hover:text-sky-600 dark:group-hover:text-sky-400 transition-colors truncate">
-                            {suggestion.name}
-                          </div>
-                          <span className="flex-shrink-0 inline-flex items-center px-2 py-0.5 rounded-full text-xs bg-sky-100 dark:bg-sky-900/30 text-sky-700 dark:text-sky-300">
-                            {suggestion.reviewsCount}{" "}
-                            {suggestion.reviewsCount === 1
-                              ? t("search.review")
-                              : t("search.reviews")}
-                          </span>
-                        </div>
-                        <div className="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400 flex-wrap">
-                          <span>{suggestion.industry}</span>
-                          <span>•</span>
-                          <span>{suggestion.location.country}</span>
-                          {suggestion.rating > 0 && (
-                            <>
-                              <span>•</span>
-                              <div className="flex items-center">
-                                <span className="text-yellow-500 mr-1">⭐</span>
-                                <span className="text-yellow-600 dark:text-yellow-400">
-                                  {suggestion.rating.toFixed(1)}
-                                </span>
-                              </div>
-                            </>
-                          )}
-                        </div>
-                      </div>
-                      <div className="flex-shrink-0 ml-2">
-                        <svg
-                          className="w-4 h-4 text-slate-400 group-hover:text-sky-500 transition-colors"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            d="M9 5l7 7-7 7"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                          />
-                        </svg>
-                      </div>
-                    </div>
-                  </button>
-                ))}
-              </div>
             ) : (
-              <div className="py-4 px-3 text-center text-sm text-slate-500 dark:text-slate-400">
-                {t("search.noResultsFound", { query: searchQuery })}{" "}
-                <Button
-                  as={Link}
-                  className="h-auto p-0 text-sky-600 dark:text-sky-400 font-medium hover:underline"
-                  href={`/company/add?name=${encodeURIComponent(searchQuery)}`}
-                  size="sm"
-                  variant="light"
-                  onClick={() => {
-                    setShowDropdown(false);
-                    setSuggestions([]);
-                  }}
-                >
-                  {t("search.wannaAddIt")}
-                </Button>
+              <div>
+                {suggestions.length > 0 && (
+                  <div className="space-y-1 mb-2">
+                    {suggestions.map((suggestion) => (
+                      <button
+                        key={suggestion.id}
+                        className="w-full text-left px-3 py-3 rounded-md hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors duration-200 group"
+                        type="button"
+                        onClick={() => handleSuggestionClick(suggestion)}
+                      >
+                        <div className="flex items-center justify-between">
+                          <div className="flex-1 min-w-0">
+                            <div className="flex items-center justify-between gap-4 mb-1">
+                              <div className="font-medium text-slate-900 dark:text-white group-hover:text-sky-600 dark:group-hover:text-sky-400 transition-colors truncate">
+                                {suggestion.name}
+                              </div>
+                              <span className="flex-shrink-0 inline-flex items-center px-2 py-0.5 rounded-full text-xs bg-sky-100 dark:bg-sky-900/30 text-sky-700 dark:text-sky-300">
+                                {suggestion.reviewsCount}{" "}
+                                {suggestion.reviewsCount === 1
+                                  ? t("search.review")
+                                  : t("search.reviews")}
+                              </span>
+                            </div>
+                            <div className="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400 flex-wrap">
+                              <span>{suggestion.industry}</span>
+                              <span>•</span>
+                              <span>{suggestion.location.country}</span>
+                              {suggestion.rating > 0 && (
+                                <>
+                                  <span>•</span>
+                                  <div className="flex items-center">
+                                    <span className="text-yellow-500 mr-1">⭐</span>
+                                    <span className="text-yellow-600 dark:text-yellow-400">
+                                      {suggestion.rating.toFixed(1)}
+                                    </span>
+                                  </div>
+                                </>
+                              )}
+                            </div>
+                          </div>
+                          <div className="flex-shrink-0 ml-2">
+                            <svg
+                              className="w-4 h-4 text-slate-400 group-hover:text-sky-500 transition-colors"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                d="M9 5l7 7-7 7"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                              />
+                            </svg>
+                          </div>
+                        </div>
+                      </button>
+                    ))}
+                  </div>
+                )}
+                {suggestions.length > 0 && (
+                  <div className="border-t border-slate-200 dark:border-slate-700 pt-2">
+                    <div className="py-2 px-3 text-center text-sm text-slate-500 dark:text-slate-400">
+                      {t("search.notWhatYouLookingFor")}{" "}
+                      <Button
+                        as={Link}
+                        className="h-auto p-0 text-sky-600 dark:text-sky-400 font-medium hover:underline"
+                        href={`/company/add?name=${encodeURIComponent(searchQuery)}`}
+                        size="sm"
+                        variant="light"
+                        onClick={() => {
+                          setShowDropdown(false);
+                          setSuggestions([]);
+                        }}
+                      >
+                        {t("search.wannaAddIt")}
+                      </Button>
+                    </div>
+                  </div>
+                )}
+                {suggestions.length === 0 && (
+                  <div className="py-4 px-3 text-center text-sm text-slate-500 dark:text-slate-400">
+                    {t("search.noResultsFound", { query: searchQuery })}{" "}
+                    <Button
+                      as={Link}
+                      className="h-auto p-0 text-sky-600 dark:text-sky-400 font-medium hover:underline"
+                      href={`/company/add?name=${encodeURIComponent(searchQuery)}`}
+                      size="sm"
+                      variant="light"
+                      onClick={() => {
+                        setShowDropdown(false);
+                        setSuggestions([]);
+                      }}
+                    >
+                      {t("search.wannaAddIt")}
+                    </Button>
+                  </div>
+                )}
               </div>
             )}
           </div>

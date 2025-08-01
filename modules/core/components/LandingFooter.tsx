@@ -1,7 +1,7 @@
 import { Link } from "@heroui/link";
 import { useTranslation } from "react-i18next";
 
-import LogoPng from "../../../public/images/logo.png"
+import LogoPng from "../../../public/images/logo.png";
 
 const SocialIcon = ({ title, href }: { title: string; href: string }) => {
   // Definir el ícono adecuado según el título
@@ -112,7 +112,7 @@ export const LandingFooter = () => {
               />
               <SocialIcon href="https://x.com/workwisse" title="X" />
               <SocialIcon
-                href="https://www.instagram.com/wworkwisse/"
+                href="https://www.instagram.com/work.wisse/"
                 title="Instagram"
               />
               <SocialIcon

@@ -8,7 +8,7 @@ export const LandingHero = () => {
   const router = useRouter();
 
   return (
-    <section className="bg-gradient-to-br from-slate-50 to-sky-100 dark:bg-none dark:bg-slate-900 py-20 sm:py-28 overflow-hidden transition-colors duration-200">
+    <section className="bg-gradient-to-br from-slate-50 to-sky-100 dark:bg-none dark:bg-slate-900 py-20 sm:py-28 transition-colors duration-200">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-12 gap-y-16 items-center">
           <div className="animate-fade-in-up delay-200">
@@ -29,12 +29,12 @@ export const LandingHero = () => {
 
           {/* BUSCADOR PROTAGONISTA en lugar de la imagen */}
           <div className="flex justify-center items-center animate-slide-in-right delay-300">
-            <div className="relative w-full max-w-lg">
+            <div className="relative w-full max-w-lg z-[9999]">
               {/* Efectos sutiles de fondo */}
               <div className="absolute inset-0 bg-gradient-to-br from-white/50 via-sky-50/30 to-slate-100/20 dark:bg-gradient-to-r dark:from-sky-400/5 dark:to-blue-500/5 rounded-xl blur-xl transform scale-110" />
 
               {/* Marco del buscador simple y elegante */}
-              <div className="relative bg-white/95 dark:bg-slate-800/95 backdrop-blur-sm rounded-xl shadow-xl border border-slate-200/50 dark:border-slate-700/50 p-8 lg:p-12 hover:shadow-2xl transition-all duration-500 group">
+              <div className="relative bg-white/95 dark:bg-slate-800/95 backdrop-blur-sm rounded-xl shadow-xl border border-slate-200/50 dark:border-slate-700/50 p-8 lg:p-12 hover:shadow-2xl transition-all duration-500 group z-[9998]">
                 {/* Sutil brillo en hover */}
                 <div className="absolute inset-0 bg-gradient-to-r from-sky-500/5 via-transparent to-sky-500/5 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
