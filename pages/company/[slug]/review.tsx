@@ -54,15 +54,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 
   try {
     const fetchedCompany = await CompanyService.getCompanyBySlug(companySlug);
-
-    // Serializar fechas si existen
-    if (fetchedCompany) {
-      company = {
-        ...fetchedCompany,
-        createdAt: fetchedCompany.createdAt?.toDate?.().toISOString?.() ?? null,
-        updatedAt: fetchedCompany.updatedAt?.toDate?.().toISOString?.() ?? null,
-      };
-    }
+    company = fetchedCompany;
   } catch (error) {
     // eslint-disable-next-line no-console
     console.error("Error fetching company:", error);
@@ -70,7 +62,6 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 
   return {
     props: {
-      companySlug,
       company: company || null,
     },
   };

@@ -104,6 +104,7 @@ export class SearchService {
         where("name", "<=", searchQuery + "\uf8ff"),
         orderBy("name"),
         orderBy("reviewsCount", "desc"),
+        orderBy("reviewsCount", "desc"),
         limit(maxResults)
       );
 
@@ -116,10 +117,12 @@ export class SearchService {
 
       // Filter results for better matching
       const query_lower = searchQuery.toLowerCase().trim();
-
       return companies.filter((company) =>
         company.companyName.toLowerCase().includes(query_lower),
       );
+      // eslint-disable-next-line no-console
+      console.error("Error searching companies:", error);
+      throw error;
     } catch (error) {
       // eslint-disable-next-line no-console
       console.error("Error searching companies:", error);

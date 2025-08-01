@@ -4,10 +4,8 @@ import { Input } from "@heroui/input";
 import { Card } from "@heroui/card";
 import { Select, SelectItem } from "@heroui/select";
 import { Trans, useTranslation } from "react-i18next";
+
 import { useRouter } from "next/router";
-
-import NotImage from "../../../public/images/notimage.png"
-
 
 import { CompanyService } from "@/services/companyService";
 import { ImageService } from "@/services/imageService";
@@ -19,7 +17,7 @@ import {
   getCountries,
   countryRegions,
 } from "@/modules/company/data/companyFormData";
-
+import ThankYouModal from "@/components/ThankYouModal";
 
 export default function AddCompanyForm() {
   const { t } = useTranslation();
@@ -39,6 +37,7 @@ export default function AddCompanyForm() {
   const [acceptedTerms, setAcceptedTerms] = useState(false);
   const [logoPreview, setLogoPreview] = useState<string | null>(null);
   const [isUploadingLogo, setIsUploadingLogo] = useState(false);
+  const [showThankYouModal, setShowThankYouModal] = useState(false);
 
   // Set initial company name from URL query
   useEffect(() => {
@@ -123,7 +122,7 @@ export default function AddCompanyForm() {
     if (!formData.name.trim()) {
       showError(
         t("addCompany.form.validation.error"),
-        t("addCompany.form.validation.nameRequired"),
+        t("addCompany.form.validation.nameRequired")
       );
 
       return;
@@ -132,7 +131,7 @@ export default function AddCompanyForm() {
     if (!formData.industry) {
       showError(
         t("addCompany.form.validation.error"),
-        t("addCompany.form.validation.industryRequired"),
+        t("addCompany.form.validation.industryRequired")
       );
 
       return;
@@ -141,7 +140,7 @@ export default function AddCompanyForm() {
     if (!formData.country) {
       showError(
         t("addCompany.form.validation.error"),
-        t("addCompany.form.validation.countryRequired"),
+        t("addCompany.form.validation.countryRequired")
       );
 
       return;
@@ -150,7 +149,7 @@ export default function AddCompanyForm() {
     if (!formData.state) {
       showError(
         t("addCompany.form.validation.error"),
-        t("addCompany.form.validation.stateRequired"),
+        t("addCompany.form.validation.stateRequired")
       );
 
       return;
@@ -169,7 +168,7 @@ export default function AddCompanyForm() {
         currentRegions.find((r) => r.key === formData.state)?.label ||
         formData.state;
 
-      let logoUrl = NotImage.src; // Default logo
+      let logoUrl = `https://picsum.photos/seed/${formData.name}/200/200`; // Default logo
 
       // Upload logo if provided
       if (formData.logo) {
@@ -178,12 +177,12 @@ export default function AddCompanyForm() {
           logoUrl = await ImageService.uploadImage(
             formData.logo,
             "companies/logos",
-            `${formData.name.toLowerCase().replace(/\s+/g, "-")}-logo`,
+            `${formData.name.toLowerCase().replace(/\s+/g, "-")}-logo`
           );
         } catch (logoError) {
           showError(
             t("addCompany.form.logo.uploadError"),
-            (logoError as Error).message,
+            (logoError as Error).message
           );
 
           return;
@@ -191,15 +190,6 @@ export default function AddCompanyForm() {
           setIsUploadingLogo(false);
         }
       }
-
-      // Generate slug from company name
-      const slug = formData.name
-        .toLowerCase()
-        .normalize("NFD")
-        .replace(/[\u0300-\u036f]/g, "")
-        .replace(/[^a-z0-9\s-]/g, "")
-        .trim()
-        .replace(/\s+/g, "-");
 
       // company data object
       const companyData: Omit<
@@ -219,19 +209,16 @@ export default function AddCompanyForm() {
         terms: acceptedTerms,
         creationDate: new Date().toISOString(),
         approved: false,
-        name: formData.name,
+        name: "",
         logo: logoUrl, // Also set this field for compatibility
-        slug: slug, // Add the generated slug
         location: {
           country: countryLabel,
           state: stateLabel,
         },
-        description: `Empresa de ${industryLabel} ubicada en ${stateLabel}, ${countryLabel}.`,
-        href: `/company/${slug}`,
       };
 
-      // Save to Firebase and get the company ID
-      const companyId = await CompanyService.addCompany(companyData);
+      // Save to Firebase
+      await CompanyService.addCompany(companyData);
 
       // Reset form
       setFormData({
@@ -247,9 +234,7 @@ export default function AddCompanyForm() {
       setAcceptedTerms(false);
       setBenefitsInput("");
       setLogoPreview(null);
-      
-      // Redirect to company review page instead of showing modal
-      router.push(`/company/${slug}/review`);
+      setShowThankYouModal(true);
     } catch (error) {
       // eslint-disable-next-line no-console
       console.error("Error adding company:", error);
@@ -730,7 +715,12 @@ export default function AddCompanyForm() {
         </div>
       </div>
 
-
+      {/* Thank You Modal */}
+      <ThankYouModal
+        isOpen={showThankYouModal}
+        type="company"
+        onClose={() => setShowThankYouModal(false)}
+      />
     </div>
   );
 }
