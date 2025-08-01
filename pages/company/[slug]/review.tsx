@@ -57,9 +57,11 @@ export default function ReviewPage({ company }: ReviewPageProps) {
 export const getStaticPaths: GetStaticPaths = async () => {
   const companies = await CompanyService.getCompanies();
 
-  const paths = companies.map((company: { slug?: string }) => ({
-    params: { slug: company.slug ?? "" },
-  }));
+  const paths = companies
+    .filter((company: { slug?: string }) => company.slug && company.slug.trim() !== "")
+    .map((company: { slug?: string }) => ({
+      params: { slug: company.slug! },
+    }));
 
   return {
     paths,

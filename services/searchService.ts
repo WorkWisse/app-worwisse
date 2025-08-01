@@ -120,9 +120,6 @@ export class SearchService {
       return companies.filter((company) =>
         company.companyName.toLowerCase().includes(query_lower),
       );
-      // eslint-disable-next-line no-console
-      console.error("Error searching companies:", error);
-      throw error;
     } catch (error) {
       // eslint-disable-next-line no-console
       console.error("Error searching companies:", error);
