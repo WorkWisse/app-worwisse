@@ -1,5 +1,6 @@
 import { GetStaticPaths, GetStaticProps } from "next";
 import Head from "next/head";
+import { useRouter } from "next/router";
 
 import ReviewForm from "@/modules/company/components/ReviewForm";
 import DefaultLayout from "@/layouts/default";
@@ -14,8 +15,27 @@ interface ReviewPageProps {
 }
 
 export default function ReviewPage({ company }: ReviewPageProps) {
+  const router = useRouter();
+
+  // Show loading state while page is being generated
+  if (router.isFallback) {
+    return (
+      <DefaultLayout>
+        <div className="flex justify-center items-center min-h-screen">
+          <div className="text-lg">Cargando...</div>
+        </div>
+      </DefaultLayout>
+    );
+  }
+
   if (!company) {
-    return <div>Company not found</div>;
+    return (
+      <DefaultLayout>
+        <div className="flex justify-center items-center min-h-screen">
+          <div className="text-lg">Empresa no encontrada</div>
+        </div>
+      </DefaultLayout>
+    );
   }
 
   return (
@@ -43,7 +63,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
   return {
     paths,
-    fallback: false,
+    fallback: 'blocking',
   };
 };
 
@@ -54,7 +74,19 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 
   try {
     const fetchedCompany = await CompanyService.getCompanyBySlug(companySlug);
-    company = fetchedCompany;
+
+    if (fetchedCompany) {
+      // Serialize Date objects to strings to avoid JSON serialization errors
+      company = {
+        ...fetchedCompany,
+        createdAt: fetchedCompany.createdAt
+          ? new Date(fetchedCompany.createdAt.seconds * 1000).toISOString()
+          : null,
+        updatedAt: fetchedCompany.updatedAt
+          ? new Date(fetchedCompany.updatedAt.seconds * 1000).toISOString()
+          : null,
+      };
+    }
   } catch (error) {
     // eslint-disable-next-line no-console
     console.error("Error fetching company:", error);

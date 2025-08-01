@@ -17,7 +17,6 @@ import {
   getCountries,
   countryRegions,
 } from "@/modules/company/data/companyFormData";
-import ThankYouModal from "@/components/ThankYouModal";
 
 export default function AddCompanyForm() {
   const { t } = useTranslation();
@@ -37,7 +36,6 @@ export default function AddCompanyForm() {
   const [acceptedTerms, setAcceptedTerms] = useState(false);
   const [logoPreview, setLogoPreview] = useState<string | null>(null);
   const [isUploadingLogo, setIsUploadingLogo] = useState(false);
-  const [showThankYouModal, setShowThankYouModal] = useState(false);
 
   // Set initial company name from URL query
   useEffect(() => {
@@ -191,6 +189,15 @@ export default function AddCompanyForm() {
         }
       }
 
+      // Generate slug from company name
+      const slug = formData.name
+        .toLowerCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .replace(/[^a-z0-9\s-]/g, "")
+        .trim()
+        .replace(/\s+/g, "-");
+
       // company data object
       const companyData: Omit<
         CompanyDocument,
@@ -209,8 +216,9 @@ export default function AddCompanyForm() {
         terms: acceptedTerms,
         creationDate: new Date().toISOString(),
         approved: false,
-        name: "",
+        name: formData.name,
         logo: logoUrl, // Also set this field for compatibility
+        slug: slug, // Add the generated slug
         location: {
           country: countryLabel,
           state: stateLabel,
@@ -218,7 +226,7 @@ export default function AddCompanyForm() {
       };
 
       // Save to Firebase
-      await CompanyService.addCompany(companyData);
+      const companyId = await CompanyService.addCompany(companyData);
 
       // Reset form
       setFormData({
@@ -234,7 +242,32 @@ export default function AddCompanyForm() {
       setAcceptedTerms(false);
       setBenefitsInput("");
       setLogoPreview(null);
-      setShowThankYouModal(true);
+
+      // Wait for the company to be available in the database before redirecting
+      const waitForCompany = async () => {
+        let attempts = 0;
+        const maxAttempts = 10;
+        
+        while (attempts < maxAttempts) {
+          try {
+            const company = await CompanyService.getCompanyBySlug(slug);
+            if (company) {
+              router.push(`/company/${slug}/review`);
+              return;
+            }
+          } catch (error) {
+            console.log('Waiting for company to be available...');
+          }
+          
+          attempts++;
+          await new Promise(resolve => setTimeout(resolve, 500));
+        }
+        
+        // If we couldn't find the company after all attempts, redirect anyway
+        router.push(`/company/${slug}/review`);
+      };
+      
+      waitForCompany();
     } catch (error) {
       // eslint-disable-next-line no-console
       console.error("Error adding company:", error);
@@ -714,13 +747,6 @@ export default function AddCompanyForm() {
           </div>
         </div>
       </div>
-
-      {/* Thank You Modal */}
-      <ThankYouModal
-        isOpen={showThankYouModal}
-        type="company"
-        onClose={() => setShowThankYouModal(false)}
-      />
     </div>
   );
 }

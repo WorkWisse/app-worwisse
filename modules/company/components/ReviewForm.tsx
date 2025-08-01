@@ -160,7 +160,7 @@ export default function ReviewForm({ company }: { company: any }) {
   const handleModalClose = () => {
     setShowThankYouModal(false);
     // Redirigir a la página de la empresa después de cerrar el modal
-    router.push(`/company/${slug}`);
+    router.push(`/company/${company.id}`);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -169,7 +169,7 @@ export default function ReviewForm({ company }: { company: any }) {
     if (!formData.acceptedTerms) {
       showError(
         t("common.error.title"),
-        t("reviewForm.validation.acceptTermsRequired"),
+        t("reviewForm.validation.acceptTermsRequired")
       );
 
       return;
@@ -179,7 +179,7 @@ export default function ReviewForm({ company }: { company: any }) {
     if (formData.overallRating === 0 || formData.workEnvironmentRating === 0) {
       showError(
         t("common.error.title"),
-        t("reviewForm.validation.ratingsRequired"),
+        t("reviewForm.validation.ratingsRequired")
       );
 
       return;
@@ -193,7 +193,7 @@ export default function ReviewForm({ company }: { company: any }) {
       if (startDate >= endDate) {
         showError(
           t("common.error.title"),
-          "La fecha de inicio debe ser anterior a la fecha de fin.",
+          "La fecha de inicio debe ser anterior a la fecha de fin."
         );
 
         return;
@@ -506,10 +506,10 @@ export default function ReviewForm({ company }: { company: any }) {
                           handleChange("overallRating", rating)
                         }
                       />
-                      
+
                       <StarRating
                         description={t(
-                          "reviewForm.ratings.equalOpportunityDesc",
+                          "reviewForm.ratings.equalOpportunityDesc"
                         )}
                         label={t("reviewForm.ratings.equalOpportunity")}
                         rating={formData.equalOpportunity}
@@ -624,9 +624,9 @@ export default function ReviewForm({ company }: { company: any }) {
                   </div>
 
                   {/* Botones de acción */}
-                  <div className="flex flex-col sm:flex-row gap-4 pt-6">
+                  <div className="pt-6">
                     <SubmitButton
-                      className="flex-1 sm:flex-initial px-8 py-3"
+                      className="w-full px-8 py-3"
                       isDisabled={
                         !formData.acceptedTerms || isSubmitting || !!dateError
                       }
@@ -635,14 +635,6 @@ export default function ReviewForm({ company }: { company: any }) {
                       submitText={t("reviewForm.submit")}
                       type="submit"
                     />
-                    <Button
-                      className="border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 font-medium px-8 py-3 transition-colors duration-200"
-                      size="lg"
-                      variant="bordered"
-                      onPress={() => router.push(`/company/${slug}`)}
-                    >
-                      {t("reviewForm.cancel")}
-                    </Button>
                   </div>
                 </form>
               </Card>{" "}

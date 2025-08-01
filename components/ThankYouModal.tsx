@@ -25,6 +25,17 @@ export default function ThankYouModal({
 }: ThankYouModalProps) {
   const { t } = useTranslation();
 
+  // Auto-close modal after 5 seconds
+  useEffect(() => {
+    if (isOpen) {
+      const timer = setTimeout(() => {
+        onClose();
+      }, 5000);
+
+      return () => clearTimeout(timer);
+    }
+  }, [isOpen, onClose]);
+
   // Close modal with Escape key
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
@@ -95,12 +106,12 @@ export default function ThankYouModal({
         </div>
 
         {/* Body */}
-        <div className="text-center px-6 pb-2">
+        <div className="text-center px-6 pb-6">
           <p className="text-slate-600 dark:text-slate-300 text-lg leading-relaxed mb-4">
             {t(`thankYou.${type}.message`)}
           </p>
 
-          <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg p-4">
+          <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg p-4 mb-6">
             <p className="text-blue-800 dark:text-blue-200 text-sm font-medium mb-2">
               ⏰ {t("thankYou.reviewTime.title")}
             </p>
@@ -108,6 +119,19 @@ export default function ThankYouModal({
               {t("thankYou.reviewTime.description")}
             </p>
           </div>
+
+          {/* Action Button */}
+          <button
+            className="w-full bg-sky-600 hover:bg-sky-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200"
+            type="button"
+            onClick={onClose}
+          >
+            Continuar
+          </button>
+          
+          <p className="text-xs text-slate-500 dark:text-slate-400 mt-3">
+            Se redirigirá automáticamente en 5 segundos
+          </p>
         </div>
       </div>
     </div>
