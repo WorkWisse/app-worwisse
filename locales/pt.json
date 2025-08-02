@@ -781,5 +781,9 @@
       "title": "Erro",
       "close": "Fechar"
     }
+  },
+  "imageValidation": {
+    "minSizeError": "A imagem deve ter um tamanho mínimo de {{minWidth}}x{{minHeight}} pixels. Tamanho atual: {{width}}x{{height}}",
+    "loadError": "Erro ao carregar a imagem"
   }
 }

@@ -65,7 +65,7 @@ export const Toast = ({
         };
       case "error":
         return {
-          cardClass: "border-l-4 border-red-500 bg-red-50 dark:bg-red-900/20",
+          cardClass: "border-l-4 border-red-500 bg-red-900 dark:bg-red-900",
           iconColor: "text-red-600 dark:text-red-400",
           icon: (
             <svg

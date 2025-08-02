@@ -764,5 +764,9 @@
       "title": "Error",
       "close": "Close"
     }
+  },
+  "imageValidation": {
+    "minSizeError": "Image must have a minimum size of {{minWidth}}x{{minHeight}} pixels. Current size: {{width}}x{{height}}",
+    "loadError": "Error loading image"
   }
 }

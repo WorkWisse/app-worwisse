@@ -4,6 +4,7 @@ import {
   getDownloadURL,
   deleteObject,
 } from "firebase/storage";
+import i18next from "i18next";
 
 import { storage } from "@/config/firebase";
 
@@ -119,7 +120,12 @@ export class ImageService {
         if (!isValid) {
           reject(
             new Error(
-              `La imagen debe tener un tamaño mínimo de ${minWidth}x${minHeight} píxeles. Tamaño actual: ${img.width}x${img.height}`,
+              i18next.t("imageValidation.minSizeError", {
+                minWidth,
+                minHeight,
+                width: img.width,
+                height: img.height,
+              }),
             ),
           );
         } else {
@@ -128,7 +134,7 @@ export class ImageService {
       };
 
       img.onerror = () => {
-        reject(new Error("Error al cargar la imagen"));
+        reject(new Error(i18next.t("imageValidation.loadError")));
       };
 
       img.src = URL.createObjectURL(file);

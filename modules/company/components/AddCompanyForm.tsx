@@ -190,13 +190,14 @@ export default function AddCompanyForm() {
       }
 
       // Generate slug from company name
-      const slug = formData.name
-        .toLowerCase()
-        .normalize("NFD")
-        .replace(/[\u0300-\u036f]/g, "")
-        .replace(/[^a-z0-9\s-]/g, "")
-        .trim()
-        .replace(/\s+/g, "-") || "company";
+      const slug =
+        formData.name
+          .toLowerCase()
+          .normalize("NFD")
+          .replace(/[\u0300-\u036f]/g, "")
+          .replace(/[^a-z0-9\s-]/g, "")
+          .trim()
+          .replace(/\s+/g, "-") || "company";
 
       // company data object
       const companyData: Omit<
@@ -247,7 +248,7 @@ export default function AddCompanyForm() {
       const waitForCompany = async () => {
         let attempts = 0;
         const maxAttempts = 10;
-        
+
         while (attempts < maxAttempts) {
           try {
             const company = await CompanyService.getCompanyBySlug(slug);
@@ -256,17 +257,17 @@ export default function AddCompanyForm() {
               return;
             }
           } catch (error) {
-            console.log('Waiting for company to be available...');
+            console.log("Waiting for company to be available...");
           }
-          
+
           attempts++;
-          await new Promise(resolve => setTimeout(resolve, 500));
+          await new Promise((resolve) => setTimeout(resolve, 500));
         }
-        
+
         // If we couldn't find the company after all attempts, redirect anyway
         router.push(`/company/${slug}/review`);
       };
-      
+
       waitForCompany();
     } catch (error) {
       // eslint-disable-next-line no-console
@@ -284,7 +285,7 @@ export default function AddCompanyForm() {
   const handleLogoChange = async (
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
-    const file = event.target.files?.[0];
+    let file = event.target.files?.[0];
 
     if (!file) return;
 
@@ -295,7 +296,8 @@ export default function AddCompanyForm() {
           t("addCompany.form.logo.uploadError"),
           t("addCompany.form.logo.invalidType")
         );
-
+        // Limpiar el input file
+        event.target.value = "";
         return;
       }
 
@@ -305,7 +307,8 @@ export default function AddCompanyForm() {
           t("addCompany.form.logo.uploadError"),
           t("addCompany.form.logo.invalidSize")
         );
-
+        // Limpiar el input file
+        event.target.value = "";
         return;
       }
 
@@ -317,7 +320,8 @@ export default function AddCompanyForm() {
           t("addCompany.form.logo.uploadError"),
           (error as Error).message
         );
-
+        // Limpiar el input file
+        event.target.value = "";
         return;
       }
 
@@ -333,6 +337,8 @@ export default function AddCompanyForm() {
         t("addCompany.form.logo.uploadError"),
         t("addCompany.form.logo.uploadError")
       );
+      // Limpiar el input file
+      event.target.value = "";
     }
   };
 
