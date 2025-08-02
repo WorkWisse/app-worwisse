@@ -1,28 +1,57 @@
 // Company form data constants
 
 export const getPredefinedBenefits = (t: (key: string) => string) => [
-  t("addCompany.form.benefits.options.remote"),
-  t("addCompany.form.benefits.options.flexibleHours"),
-  t("addCompany.form.benefits.options.healthInsurance"),
-  t("addCompany.form.benefits.options.dental"),
-  t("addCompany.form.benefits.options.vision"),
-  t("addCompany.form.benefits.options.lifeInsurance"),
-  t("addCompany.form.benefits.options.vacation"),
-  t("addCompany.form.benefits.options.paidLeave"),
-  t("addCompany.form.benefits.options.training"),
-  t("addCompany.form.benefits.options.gym"),
-  t("addCompany.form.benefits.options.freeLunch"),
-  t("addCompany.form.benefits.options.transportation"),
-  t("addCompany.form.benefits.options.parking"),
-  t("addCompany.form.benefits.options.childcare"),
-  t("addCompany.form.benefits.options.stockOptions"),
   t("addCompany.form.benefits.options.bonus"),
+  t("addCompany.form.benefits.options.careerDevelopment"),
+  t("addCompany.form.benefits.options.childcare"),
+  t("addCompany.form.benefits.options.companyEvents"),
+  t("addCompany.form.benefits.options.conferences"),
+  t("addCompany.form.benefits.options.dental"),
+  t("addCompany.form.benefits.options.discounts"),
+  t("addCompany.form.benefits.options.education"),
+  t("addCompany.form.benefits.options.flexibleHours"),
+  t("addCompany.form.benefits.options.freeLunch"),
+  t("addCompany.form.benefits.options.gym"),
+  t("addCompany.form.benefits.options.healthInsurance"),
+  t("addCompany.form.benefits.options.homeOffice"),
+  t("addCompany.form.benefits.options.lifeInsurance"),
+  t("addCompany.form.benefits.options.maternity"),
+  t("addCompany.form.benefits.options.mentalHealth"),
+  t("addCompany.form.benefits.options.parking"),
+  t("addCompany.form.benefits.options.paidLeave"),
+  t("addCompany.form.benefits.options.petFriendly"),
+  t("addCompany.form.benefits.options.profitSharing"),
+  t("addCompany.form.benefits.options.remote"),
+  t("addCompany.form.benefits.options.retirement"),
+  t("addCompany.form.benefits.options.sabbatical"),
+  t("addCompany.form.benefits.options.stockOptions"),
   t("addCompany.form.benefits.options.teamEvents"),
+  t("addCompany.form.benefits.options.training"),
+  t("addCompany.form.benefits.options.transportation"),
+  t("addCompany.form.benefits.options.vacation"),
+  t("addCompany.form.benefits.options.vision"),
+  t("addCompany.form.benefits.options.wellness"),
   t("addCompany.form.benefits.options.workFromHome"),
 ];
 
 export const getIndustries = (t: (key: string) => string) => {
   const industries = [
+    {
+      key: "agriculture",
+      label: t("addCompany.form.industry.options.agriculture"),
+    },
+    {
+      key: "automotive",
+      label: t("addCompany.form.industry.options.automotive"),
+    },
+    {
+      key: "banking",
+      label: t("addCompany.form.industry.options.banking"),
+    },
+    {
+      key: "construction",
+      label: t("addCompany.form.industry.options.construction"),
+    },
     {
       key: "consulting",
       label: t("addCompany.form.industry.options.consulting"),
@@ -31,14 +60,38 @@ export const getIndustries = (t: (key: string) => string) => {
       key: "education",
       label: t("addCompany.form.industry.options.education"),
     },
+    {
+      key: "energy",
+      label: t("addCompany.form.industry.options.energy"),
+    },
+    {
+      key: "entertainment",
+      label: t("addCompany.form.industry.options.entertainment"),
+    },
     { key: "finance", label: t("addCompany.form.industry.options.finance") },
     {
       key: "gastronomy",
       label: t("addCompany.form.industry.options.gastronomy"),
     },
     {
+      key: "government",
+      label: t("addCompany.form.industry.options.government"),
+    },
+    {
       key: "healthcare",
       label: t("addCompany.form.industry.options.healthcare"),
+    },
+    {
+      key: "hospitality",
+      label: t("addCompany.form.industry.options.hospitality"),
+    },
+    {
+      key: "insurance",
+      label: t("addCompany.form.industry.options.insurance"),
+    },
+    {
+      key: "legal",
+      label: t("addCompany.form.industry.options.legal"),
     },
     {
       key: "logistics",
@@ -53,22 +106,57 @@ export const getIndustries = (t: (key: string) => string) => {
       label: t("addCompany.form.industry.options.marketing"),
     },
     {
+      key: "media",
+      label: t("addCompany.form.industry.options.media"),
+    },
+    {
+      key: "mining",
+      label: t("addCompany.form.industry.options.mining"),
+    },
+    {
+      key: "nonprofit",
+      label: t("addCompany.form.industry.options.nonprofit"),
+    },
+    {
+      key: "pharmaceuticals",
+      label: t("addCompany.form.industry.options.pharmaceuticals"),
+    },
+    {
       key: "real-estate",
       label: t("addCompany.form.industry.options.real-estate"),
     },
     { key: "retail", label: t("addCompany.form.industry.options.retail") },
+    {
+      key: "sports",
+      label: t("addCompany.form.industry.options.sports"),
+    },
     { key: "tech", label: t("addCompany.form.industry.options.tech") },
+    {
+      key: "telecommunications",
+      label: t("addCompany.form.industry.options.telecommunications"),
+    },
     {
       key: "textile",
       label: t("addCompany.form.industry.options.textile"),
     },
+    {
+      key: "tourism",
+      label: t("addCompany.form.industry.options.tourism"),
+    },
+    {
+      key: "transportation",
+      label: t("addCompany.form.industry.options.transportation"),
+    },
   ].sort((a, b) => a.label.localeCompare(b.label));
-  
+
   // Add "other" option at the end
-  industries.push({ key: "other", label: t("addCompany.form.industry.options.other") });
-  
+  industries.push({
+    key: "other",
+    label: t("addCompany.form.industry.options.other"),
+  });
+
   return industries;
- };
+};
 
 export const getCountries = (t: (key: string) => string) => {
   const countries = [
@@ -80,10 +168,13 @@ export const getCountries = (t: (key: string) => string) => {
     { key: "pe", label: t("addCompany.form.country.options.pe") },
     { key: "uy", label: t("addCompany.form.country.options.uy") },
   ].sort((a, b) => a.label.localeCompare(b.label));
-  
+
   // Add "other" option at the end
-  countries.push({ key: "other", label: t("addCompany.form.country.options.other") });
-  
+  countries.push({
+    key: "other",
+    label: t("addCompany.form.country.options.other"),
+  });
+
   return countries;
 };
 
