@@ -789,6 +789,8 @@
   "common": {
     "submitting": "Submitting...",
     "submit": "Submit",
+    "showMore": "Show more",
+    "showLess": "Show less",
     "error": {
       "title": "Error",
       "close": "Close"

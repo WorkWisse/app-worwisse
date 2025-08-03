@@ -119,10 +119,40 @@ export const LandingMainContent = () => {
   const [latestReviews, setLatestReviews] = useState<LatestReview[]>([]);
   const [isLoadingCompanies, setIsLoadingCompanies] = useState(true);
   const [isLoadingReviews, setIsLoadingReviews] = useState(true);
+  
+  // Estado para manejar "Ver más" en textos largos de las reseñas
+  const [expandedTexts, setExpandedTexts] = useState<Set<string>>(new Set());
 
   const [[currentReviewIndex, direction], setCurrentReviewState] = useState([
     0, 0,
   ]);
+
+  // Funciones para truncado de texto responsivo
+  const truncateText = (text: string, isMobile: boolean = false) => {
+    const maxLength = isMobile ? 120 : 230;
+    if (!text || text.length <= maxLength) return text;
+    return text.substring(0, maxLength) + "...";
+  };
+
+  const toggleTextExpansion = (reviewId: string, textType: 'positive' | 'negative') => {
+    const key = `${reviewId}-${textType}`;
+    const newExpanded = new Set(expandedTexts);
+    if (newExpanded.has(key)) {
+      newExpanded.delete(key);
+    } else {
+      newExpanded.add(key);
+    }
+    setExpandedTexts(newExpanded);
+  };
+
+  const isTextExpanded = (reviewId: string, textType: 'positive' | 'negative') => {
+    return expandedTexts.has(`${reviewId}-${textType}`);
+  };
+
+  const needsTruncation = (text: string, isMobile: boolean = false) => {
+    const maxLength = isMobile ? 120 : 230;
+    return text && text.length > maxLength;
+  };
 
   // Load featured companies from Firebase
   useEffect(() => {
@@ -482,7 +512,7 @@ export const LandingMainContent = () => {
                               {t("landing.latestReviews.role")}
                             </span>
                             <span className="text-sm font-semibold text-slate-700 dark:text-slate-200 transition-colors duration-200">
-                              {currentReview.role}
+                              {currentReview.role ? currentReview.role.toUpperCase() : t("common.unknown")}
                             </span>
                           </div>
 
@@ -492,9 +522,38 @@ export const LandingMainContent = () => {
                               <span className="inline-block w-2 h-2 bg-green-500 rounded-full mr-2" />
                               {t("landing.latestReviews.positiveAspects")}
                             </h4>
-                            <p className="text-sm text-slate-700 dark:text-slate-300 leading-relaxed pl-4 border-l-2 border-green-200 dark:border-green-800">
-                              {currentReview.positiveAspects}
-                            </p>
+                            <div className="text-sm text-slate-700 dark:text-slate-300 leading-relaxed pl-4 border-l-2 border-green-200 dark:border-green-800">
+                              {/* Mobile version */}
+                              <span className="block sm:hidden">
+                                {isTextExpanded(currentReview.id, 'positive') || !needsTruncation(currentReview.positiveAspects, true) 
+                                  ? currentReview.positiveAspects 
+                                  : truncateText(currentReview.positiveAspects, true)
+                                }
+                                {needsTruncation(currentReview.positiveAspects, true) && (
+                                  <button
+                                    className="ml-2 text-green-600 dark:text-green-400 hover:text-green-700 dark:hover:text-green-300 font-medium text-xs underline"
+                                    onClick={() => toggleTextExpansion(currentReview.id, 'positive')}
+                                  >
+                                    {isTextExpanded(currentReview.id, 'positive') ? t("common.showLess") : t("common.showMore")}
+                                  </button>
+                                )}
+                              </span>
+                              {/* Desktop version */}
+                              <span className="hidden sm:block">
+                                {isTextExpanded(currentReview.id, 'positive') || !needsTruncation(currentReview.positiveAspects, false) 
+                                  ? currentReview.positiveAspects 
+                                  : truncateText(currentReview.positiveAspects, false)
+                                }
+                                {needsTruncation(currentReview.positiveAspects, false) && (
+                                  <button
+                                    className="ml-2 text-green-600 dark:text-green-400 hover:text-green-700 dark:hover:text-green-300 font-medium text-xs underline"
+                                    onClick={() => toggleTextExpansion(currentReview.id, 'positive')}
+                                  >
+                                    {isTextExpanded(currentReview.id, 'positive') ? t("common.showLess") : t("common.showMore")}
+                                  </button>
+                                )}
+                              </span>
+                            </div>
                           </div>
 
                           {/* Aspectos a Mejorar */}
@@ -503,9 +562,38 @@ export const LandingMainContent = () => {
                               <span className="inline-block w-2 h-2 bg-orange-500 rounded-full mr-2" />
                               {t("landing.latestReviews.areasForImprovement")}
                             </h4>
-                            <p className="text-sm text-slate-700 dark:text-slate-300 leading-relaxed pl-4 border-l-2 border-orange-200 dark:border-orange-800">
-                              {currentReview.areasForImprovement}
-                            </p>
+                            <div className="text-sm text-slate-700 dark:text-slate-300 leading-relaxed pl-4 border-l-2 border-orange-200 dark:border-orange-800">
+                              {/* Mobile version */}
+                              <span className="block sm:hidden">
+                                {isTextExpanded(currentReview.id, 'negative') || !needsTruncation(currentReview.areasForImprovement, true) 
+                                  ? currentReview.areasForImprovement 
+                                  : truncateText(currentReview.areasForImprovement, true)
+                                }
+                                {needsTruncation(currentReview.areasForImprovement, true) && (
+                                  <button
+                                    className="ml-2 text-orange-600 dark:text-orange-400 hover:text-orange-700 dark:hover:text-orange-300 font-medium text-xs underline"
+                                    onClick={() => toggleTextExpansion(currentReview.id, 'negative')}
+                                  >
+                                    {isTextExpanded(currentReview.id, 'negative') ? t("common.showLess") : t("common.showMore")}
+                                  </button>
+                                )}
+                              </span>
+                              {/* Desktop version */}
+                              <span className="hidden sm:block">
+                                {isTextExpanded(currentReview.id, 'negative') || !needsTruncation(currentReview.areasForImprovement, false) 
+                                  ? currentReview.areasForImprovement 
+                                  : truncateText(currentReview.areasForImprovement, false)
+                                }
+                                {needsTruncation(currentReview.areasForImprovement, false) && (
+                                  <button
+                                    className="ml-2 text-orange-600 dark:text-orange-400 hover:text-orange-700 dark:hover:text-orange-300 font-medium text-xs underline"
+                                    onClick={() => toggleTextExpansion(currentReview.id, 'negative')}
+                                  >
+                                    {isTextExpanded(currentReview.id, 'negative') ? t("common.showLess") : t("common.showMore")}
+                                  </button>
+                                )}
+                              </span>
+                            </div>
                           </div>
                         </CardBody>
                       </Card>

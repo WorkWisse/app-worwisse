@@ -805,6 +805,8 @@
   "common": {
     "submitting": "Enviando...",
     "submit": "Enviar",
+    "showMore": "Ver mais",
+    "showLess": "Ver menos",
     "error": {
       "title": "Erro",
       "close": "Fechar"

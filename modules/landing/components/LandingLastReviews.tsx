@@ -1,5 +1,7 @@
 import { Button } from "@heroui/button";
 import { Link } from "@heroui/link";
+import { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 // Using the simple Card component structure defined earlier
 const Card = ({
@@ -85,6 +87,41 @@ const lastReviewsData: Review[] = [
 ];
 
 export const LandingLastReviews = () => {
+  const { t } = useTranslation();
+  
+  // Estado para manejar "Ver más" en textos largos
+  const [expandedTexts, setExpandedTexts] = useState<Set<string>>(new Set());
+
+  // Función para truncar texto con límites responsivos
+  const truncateText = (text: string, isMobile: boolean = false) => {
+    const maxLength = isMobile ? 120 : 230;
+    if (!text || text.length <= maxLength) return text;
+    return text.substring(0, maxLength) + "...";
+  };
+
+  // Función para alternar expansión de texto específico (pros o cons)
+  const toggleTextExpansion = (reviewId: string, textType: 'pros' | 'cons') => {
+    const key = `${reviewId}-${textType}`;
+    const newExpanded = new Set(expandedTexts);
+    if (newExpanded.has(key)) {
+      newExpanded.delete(key);
+    } else {
+      newExpanded.add(key);
+    }
+    setExpandedTexts(newExpanded);
+  };
+
+  // Verificar si un texto específico está expandido
+  const isTextExpanded = (reviewId: string, textType: 'pros' | 'cons') => {
+    return expandedTexts.has(`${reviewId}-${textType}`);
+  };
+
+  // Verificar si el texto necesita truncarse con límites responsivos
+  const needsTruncation = (text: string, isMobile: boolean = false) => {
+    const maxLength = isMobile ? 120 : 230;
+    return text && text.length > maxLength;
+  };
+
   // Basic state for carousel, would need more logic for actual sliding
   // const [currentIndex, setCurrentIndex] = React.useState(0);
 
@@ -93,7 +130,7 @@ export const LandingLastReviews = () => {
       <div className="container mx-auto">
         <div className="flex justify-between items-center mb-8">
           <h2 className="text-3xl font-bold text-purple-600">
-            Últimas Calificaciones
+            {t("landing.latestReviews.title")}
           </h2>
 
         </div>
@@ -120,10 +157,72 @@ export const LandingLastReviews = () => {
                 </div>
               </div>
               <div>
-                <h4 className="font-semibold text-gray-700 mb-1">Pros:</h4>
-                <p className="text-gray-600 mb-3 text-sm">{review.pros}</p>
-                <h4 className="font-semibold text-gray-700 mb-1">Cons:</h4>
-                <p className="text-gray-600 mb-3 text-sm">{review.cons}</p>
+                <h4 className="font-semibold text-gray-700 mb-1">{t("companyDetail.pros")}:</h4>
+                <div className="text-gray-600 mb-3 text-sm">
+                  {/* Mobile version */}
+                  <span className="block sm:hidden">
+                    {isTextExpanded(review.id, 'pros') || !needsTruncation(review.pros, true) 
+                      ? review.pros 
+                      : truncateText(review.pros, true)
+                    }
+                    {needsTruncation(review.pros, true) && (
+                      <button
+                        className="ml-2 text-purple-600 hover:text-purple-800 font-medium text-xs underline"
+                        onClick={() => toggleTextExpansion(review.id, 'pros')}
+                      >
+                        {isTextExpanded(review.id, 'pros') ? t("common.showLess") : t("common.showMore")}
+                      </button>
+                    )}
+                  </span>
+                  {/* Desktop version */}
+                  <span className="hidden sm:block">
+                    {isTextExpanded(review.id, 'pros') || !needsTruncation(review.pros, false) 
+                      ? review.pros 
+                      : truncateText(review.pros, false)
+                    }
+                    {needsTruncation(review.pros, false) && (
+                      <button
+                        className="ml-2 text-purple-600 hover:text-purple-800 font-medium text-xs underline"
+                        onClick={() => toggleTextExpansion(review.id, 'pros')}
+                      >
+                        {isTextExpanded(review.id, 'pros') ? t("common.showLess") : t("common.showMore")}
+                      </button>
+                    )}
+                  </span>
+                </div>
+                <h4 className="font-semibold text-gray-700 mb-1">{t("companyDetail.cons")}:</h4>
+                <div className="text-gray-600 mb-3 text-sm">
+                  {/* Mobile version */}
+                  <span className="block sm:hidden">
+                    {isTextExpanded(review.id, 'cons') || !needsTruncation(review.cons, true) 
+                      ? review.cons 
+                      : truncateText(review.cons, true)
+                    }
+                    {needsTruncation(review.cons, true) && (
+                      <button
+                        className="ml-2 text-purple-600 hover:text-purple-800 font-medium text-xs underline"
+                        onClick={() => toggleTextExpansion(review.id, 'cons')}
+                      >
+                        {isTextExpanded(review.id, 'cons') ? t("common.showLess") : t("common.showMore")}
+                      </button>
+                    )}
+                  </span>
+                  {/* Desktop version */}
+                  <span className="hidden sm:block">
+                    {isTextExpanded(review.id, 'cons') || !needsTruncation(review.cons, false) 
+                      ? review.cons 
+                      : truncateText(review.cons, false)
+                    }
+                    {needsTruncation(review.cons, false) && (
+                      <button
+                        className="ml-2 text-purple-600 hover:text-purple-800 font-medium text-xs underline"
+                        onClick={() => toggleTextExpansion(review.id, 'cons')}
+                      >
+                        {isTextExpanded(review.id, 'cons') ? t("common.showLess") : t("common.showMore")}
+                      </button>
+                    )}
+                  </span>
+                </div>
                 <Link
                   className="text-purple-600 hover:text-purple-800 font-semibold text-sm"
                   href={`/reviews/${review.id}`}

@@ -46,6 +46,9 @@ export default function CompanyDetail({
   const [hasMoreReviews, setHasMoreReviews] = useState(false);
   const [isLoadingMore, setIsLoadingMore] = useState(false);
   const [isInitialLoading, setIsInitialLoading] = useState(true);
+  
+  // Estado para manejar "Ver más" en textos largos
+  const [expandedReviews, setExpandedReviews] = useState<Set<string>>(new Set());
 
   // Cargar reseñas iniciales
   useEffect(() => {
@@ -213,6 +216,36 @@ export default function CompanyDetail({
 
   const ratingAverages = calculateRatingAverages();
 
+  // Función para truncar texto con límites responsivos
+  const truncateText = (text: string, isMobile: boolean = false) => {
+    const maxLength = isMobile ? 120 : 230;
+    if (!text || text.length <= maxLength) return text;
+    return text.substring(0, maxLength) + "...";
+  };
+
+  // Función para alternar expansión de texto específico (pros o cons)
+  const toggleTextExpansion = (reviewId: string, textType: 'pros' | 'cons') => {
+    const key = `${reviewId}-${textType}`;
+    const newExpanded = new Set(expandedReviews);
+    if (newExpanded.has(key)) {
+      newExpanded.delete(key);
+    } else {
+      newExpanded.add(key);
+    }
+    setExpandedReviews(newExpanded);
+  };
+
+  // Verificar si un texto específico está expandido
+  const isTextExpanded = (reviewId: string, textType: 'pros' | 'cons') => {
+    return expandedReviews.has(`${reviewId}-${textType}`);
+  };
+
+  // Verificar si el texto necesita truncarse con límites responsivos
+  const needsTruncation = (text: string, isMobile: boolean = false) => {
+    const maxLength = isMobile ? 120 : 230;
+    return text && text.length > maxLength;
+  };
+
   const handleLoadMoreReviews = async () => {
     if (isLoadingMore || !hasMoreReviews) return;
 
@@ -311,84 +344,146 @@ export default function CompanyDetail({
                   </div>
                 ) : reviews.length > 0 ? (
                   <>
-                    <div className="grid gap-4">
-                      {reviews.map((review) => (
-                        <Card
-                          key={review.id}
-                          className="bg-white/60 dark:bg-slate-800/30 backdrop-blur-sm border border-slate-200/50 dark:border-slate-700/30 shadow-sm hover:shadow-md hover:bg-white/80 dark:hover:bg-slate-800/50 transition-all duration-200"
-                        >
-                          <CardBody className="p-4">
-                            <div className="flex items-start justify-between">
-                              <div className="flex-1">
-                                <div className="mb-3">
-                                  <span className="text-xs font-bold text-slate-800 dark:text-slate-200 uppercase tracking-wide">
-                                    {t("companyDetail.positionLabel")}{" "}
-                                    <span className="font-semibold text-slate-900 dark:text-white">
-                                      {review.role ||
-                                        t("companyDetail.anonymous")}
-                                    </span>
-                                  </span>
+                    <div className="grid gap-3 sm:gap-4">
+                      {reviews.map((review) => {
+                        const prosText = review.pros || review.positiveAspects || "No disponible";
+                        const consText = review.cons || review.areasForImprovement || "No disponible";
+                        const isProsExpanded = isTextExpanded(review.id || '', 'pros');
+                        const isConsExpanded = isTextExpanded(review.id || '', 'cons');
+                        
+                        return (
+                          <Card
+                            key={review.id}
+                            className="bg-white/60 dark:bg-slate-800/30 backdrop-blur-sm border border-slate-200/50 dark:border-slate-700/30 shadow-sm hover:shadow-md hover:bg-white/80 dark:hover:bg-slate-800/50 transition-all duration-200"
+                          >
+                            <CardBody className="p-3 sm:p-4">
+                              {/* Layout mobile optimizado */}
+                              <div className="space-y-3">
+                                {/* Header con rating y tiempo - Más compacto en mobile */}
+                                <div className="flex items-start justify-between gap-3">
+                                  <div className="flex-1 min-w-0">
+                                    <div className="flex items-center gap-2 mb-1">
+                                      <span className="text-xs font-bold text-slate-800 dark:text-slate-200 uppercase tracking-wide">
+                                        {review.role || t("companyDetail.anonymous")}
+                                      </span>
+                                      {(review.wouldRecommend || review.recommend) && (
+                                        <Chip
+                                          className="text-xs h-5"
+                                          color="success"
+                                          size="sm"
+                                          variant="flat"
+                                        >
+                                          {t("companyDetail.recommends")}
+                                        </Chip>
+                                      )}
+                                    </div>
+                                    <div className="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400">
+                                      <div className="flex items-center gap-1">
+                                        <div className="flex">
+                                          {renderCompactStars(
+                                            review.rating || review.overallRating || 0
+                                          )}
+                                        </div>
+                                        <span className="font-medium text-slate-900 dark:text-white">
+                                          {review.rating || review.overallRating || 0}/5
+                                        </span>
+                                      </div>
+                                      <span>•</span>
+                                      <span>{review.timeAgo || getTimeAgo(review.createdAt)}</span>
+                                    </div>
+                                  </div>
                                 </div>
 
-                                <div className="mb-3">
-                                  <div className="flex items-center gap-2 mb-2">
-                                    <span className="text-green-600 dark:text-green-400 text-sm font-medium">
+                                {/* Pros - Más compacto */}
+                                <div>
+                                  <div className="flex items-center gap-2 mb-1">
+                                    <span className="text-green-600 dark:text-green-400 text-xs font-medium flex items-center gap-1">
                                       {t("companyDetail.pros")}
                                     </span>
                                   </div>
-                                  <p className="text-sm text-slate-700 dark:text-slate-300 bg-green-50 dark:bg-green-900/20 p-2 rounded border-l-4 border-green-500">
-                                    {review.pros ||
-                                      review.positiveAspects ||
-                                      "No disponible"}
-                                  </p>
+                                  <div className="bg-green-50 dark:bg-green-900/20 p-2 rounded border-l-2 border-green-500">
+                                    <p className="text-xs sm:text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
+                                      {/* Mobile version */}
+                                      <span className="block sm:hidden">
+                                        {isProsExpanded || !needsTruncation(prosText, true) 
+                                          ? prosText 
+                                          : truncateText(prosText, true)
+                                        }
+                                        {needsTruncation(prosText, true) && (
+                                          <button
+                                            className="ml-2 text-sky-600 dark:text-sky-400 hover:text-sky-700 dark:hover:text-sky-300 font-medium text-xs underline"
+                                            onClick={() => toggleTextExpansion(review.id || '', 'pros')}
+                                          >
+                                            {isProsExpanded ? t("common.showLess") : t("common.showMore")}
+                                          </button>
+                                        )}
+                                      </span>
+                                      {/* Desktop version */}
+                                      <span className="hidden sm:block">
+                                        {isProsExpanded || !needsTruncation(prosText, false) 
+                                          ? prosText 
+                                          : truncateText(prosText, false)
+                                        }
+                                        {needsTruncation(prosText, false) && (
+                                          <button
+                                            className="ml-2 text-sky-600 dark:text-sky-400 hover:text-sky-700 dark:hover:text-sky-300 font-medium text-xs underline"
+                                            onClick={() => toggleTextExpansion(review.id || '', 'pros')}
+                                          >
+                                            {isProsExpanded ? t("common.showLess") : t("common.showMore")}
+                                          </button>
+                                        )}
+                                      </span>
+                                    </p>
+                                  </div>
                                 </div>
 
-                                <div className="mb-2">
-                                  <div className="flex items-center gap-2 mb-2">
-                                    <span className="text-orange-600 dark:text-orange-400 text-sm font-medium">
+                                {/* Cons - Más compacto */}
+                                <div>
+                                  <div className="flex items-center gap-2 mb-1">
+                                    <span className="text-orange-600 dark:text-orange-400 text-xs font-medium flex items-center gap-1">
                                       {t("companyDetail.cons")}
                                     </span>
                                   </div>
-                                  <p className="text-sm text-slate-700 dark:text-slate-300 bg-orange-50 dark:bg-orange-900/20 p-2 rounded border-l-4 border-orange-500">
-                                    {review.cons ||
-                                      review.areasForImprovement ||
-                                      "No disponible"}
-                                  </p>
-                                </div>
-                              </div>
-
-                              <div className="text-right text-xs text-slate-500 dark:text-slate-400 ml-4 flex flex-col items-end">
-                                <div className="flex items-center gap-1 mb-2">
-                                  <div className="flex">
-                                    {renderCompactStars(
-                                      review.rating || review.overallRating || 0
-                                    )}
+                                  <div className="bg-orange-50 dark:bg-orange-900/20 p-2 rounded border-l-2 border-orange-500">
+                                    <p className="text-xs sm:text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
+                                      {/* Mobile version */}
+                                      <span className="block sm:hidden">
+                                        {isConsExpanded || !needsTruncation(consText, true) 
+                                          ? consText 
+                                          : truncateText(consText, true)
+                                        }
+                                        {needsTruncation(consText, true) && (
+                                          <button
+                                            className="ml-2 text-sky-600 dark:text-sky-400 hover:text-sky-700 dark:hover:text-sky-300 font-medium text-xs underline"
+                                            onClick={() => toggleTextExpansion(review.id || '', 'cons')}
+                                          >
+                                            {isConsExpanded ? t("common.showLess") : t("common.showMore")}
+                                          </button>
+                                        )}
+                                      </span>
+                                      {/* Desktop version */}
+                                      <span className="hidden sm:block">
+                                        {isConsExpanded || !needsTruncation(consText, false) 
+                                          ? consText 
+                                          : truncateText(consText, false)
+                                        }
+                                        {needsTruncation(consText, false) && (
+                                          <button
+                                            className="ml-2 text-sky-600 dark:text-sky-400 hover:text-sky-700 dark:hover:text-sky-300 font-medium text-xs underline"
+                                            onClick={() => toggleTextExpansion(review.id || '', 'cons')}
+                                          >
+                                            {isConsExpanded ? t("common.showLess") : t("common.showMore")}
+                                          </button>
+                                        )}
+                                      </span>
+                                    </p>
                                   </div>
-                                  <span className="text-sm font-bold text-slate-900 dark:text-white">
-                                    {review.rating || review.overallRating || 0}
-                                    /5
-                                  </span>
                                 </div>
-                                <div className="mb-2">
-                                  {review.timeAgo ||
-                                    getTimeAgo(review.createdAt)}
-                                </div>
-                                {(review.wouldRecommend ||
-                                  review.recommend) && (
-                                  <Chip
-                                    className="text-xs"
-                                    color="success"
-                                    size="sm"
-                                    variant="flat"
-                                  >
-                                    {t("companyDetail.recommends")}
-                                  </Chip>
-                                )}
                               </div>
-                            </div>
-                          </CardBody>
-                        </Card>
-                      ))}
+                            </CardBody>
+                          </Card>
+                        );
+                      })}
                     </div>
 
                     {/* Load More Button */}
