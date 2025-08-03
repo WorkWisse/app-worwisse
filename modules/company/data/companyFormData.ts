@@ -68,7 +68,15 @@ export const getIndustries = (t: (key: string) => string) => {
       key: "entertainment",
       label: t("addCompany.form.industry.options.entertainment"),
     },
+    {
+      key: "fastFood",
+      label: t("addCompany.form.industry.options.fastFood"),
+    },
     { key: "finance", label: t("addCompany.form.industry.options.finance") },
+    {
+      key: "financial",
+      label: t("addCompany.form.industry.options.financial"),
+    },
     {
       key: "gastronomy",
       label: t("addCompany.form.industry.options.gastronomy"),
@@ -122,6 +130,10 @@ export const getIndustries = (t: (key: string) => string) => {
       label: t("addCompany.form.industry.options.pharmaceuticals"),
     },
     {
+      key: "privateSecurity",
+      label: t("addCompany.form.industry.options.privateSecurity"),
+    },
+    {
       key: "real-estate",
       label: t("addCompany.form.industry.options.real-estate"),
     },
@@ -129,6 +141,10 @@ export const getIndustries = (t: (key: string) => string) => {
     {
       key: "sports",
       label: t("addCompany.form.industry.options.sports"),
+    },
+    {
+      key: "supermarkets",
+      label: t("addCompany.form.industry.options.supermarkets"),
     },
     { key: "tech", label: t("addCompany.form.industry.options.tech") },
     {
