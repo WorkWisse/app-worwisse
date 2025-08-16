@@ -37,13 +37,8 @@ export class SearchService {
 
       const queryLower = searchQuery.toLowerCase().trim();
 
-      // Get all approved companies first (we'll filter on client side)
-      const q = query(
-        collection(db, COMPANIES_COLLECTION),
-        orderBy("reviewsCount", "desc"),
-        limit(50) // Get more results to filter client-side
-      );
-
+      // Get ALL companies without any ordering limitations
+      const q = query(collection(db, COMPANIES_COLLECTION));
       const querySnapshot = await getDocs(q);
 
       const allCompanies = querySnapshot.docs.map((doc) => {
@@ -51,20 +46,23 @@ export class SearchService {
 
         return {
           id: doc.id,
-          name: data.companyName || "",
+          name: data.companyName || data.name || "",
           reviewsCount: data.reviewsCount || 0,
           rating: data.rating || 0,
           industry: data.industry || "",
           location: {
-            country: data.country || "",
-            state: data.state || "",
+            country: data.country || data.location?.country || "",
+            state: data.state || data.location?.state || "",
           },
         };
       });
 
       // Filter and sort results client-side
       const suggestions = allCompanies
-        .filter((company) => company.name.toLowerCase().includes(queryLower))
+        .filter((company) => {
+          const companyNameLower = company.name.toLowerCase();
+          return companyNameLower.includes(queryLower);
+        })
         .sort((a, b) => {
           // Prioritize exact matches at the beginning
           const aStartsWith = a.name.toLowerCase().startsWith(queryLower);
@@ -98,28 +96,40 @@ export class SearchService {
         return this.getPopularCompanies(maxResults);
       }
 
-      const q = query(
-        collection(db, COMPANIES_COLLECTION),
-        where("name", ">=", searchQuery),
-        where("name", "<=", searchQuery + "\uf8ff"),
-        orderBy("name"),
-        orderBy("reviewsCount", "desc"),
-        orderBy("reviewsCount", "desc"),
-        limit(maxResults)
-      );
+      const queryLower = searchQuery.toLowerCase().trim();
 
+      // Get ALL companies without any ordering limitations
+      const q = query(collection(db, COMPANIES_COLLECTION));
       const querySnapshot = await getDocs(q);
 
-      const companies = querySnapshot.docs.map((doc) => ({
+      const allCompanies = querySnapshot.docs.map((doc) => ({
         id: doc.id,
         ...doc.data(),
       })) as CompanyDocument[];
 
       // Filter results for better matching
-      const query_lower = searchQuery.toLowerCase().trim();
-      return companies.filter((company) =>
-        company.companyName.toLowerCase().includes(query_lower),
-      );
+      const filteredCompanies = allCompanies.filter((company) => {
+        const companyName = (company.companyName || company.name || "").toLowerCase();
+        return companyName.includes(queryLower);
+      });
+
+      // Sort results: exact matches first, then by relevance
+      const sortedCompanies = filteredCompanies.sort((a, b) => {
+        const aName = (a.companyName || a.name || "").toLowerCase();
+        const bName = (b.companyName || b.name || "").toLowerCase();
+        
+        // Prioritize exact matches
+        const aStartsWith = aName.startsWith(queryLower);
+        const bStartsWith = bName.startsWith(queryLower);
+
+        if (aStartsWith && !bStartsWith) return -1;
+        if (!aStartsWith && bStartsWith) return 1;
+
+        // Then sort by review count
+        return (b.reviewsCount || 0) - (a.reviewsCount || 0);
+      });
+
+      return sortedCompanies.slice(0, maxResults);
     } catch (error) {
       // eslint-disable-next-line no-console
       console.error("Error searching companies:", error);
@@ -135,7 +145,6 @@ export class SearchService {
       const q = query(
         collection(db, COMPANIES_COLLECTION),
         orderBy("reviewsCount", "desc"),
-        orderBy("rating", "desc"),
         limit(maxResults)
       );
 
