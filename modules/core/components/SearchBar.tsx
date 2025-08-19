@@ -220,6 +220,7 @@ export const SearchBar = ({
             onFocus={handleInputFocus}
             onKeyDown={handleKeyDown}
             onValueChange={handleInputChange}
+            autoComplete="off"
           />
           {showButton && (
             <Button
